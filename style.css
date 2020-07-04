@@ -58,3 +58,58 @@ label{
 #entressMessage{
     text-align: center;
 }
+#LoginPage{
+   position: relative;
+    background-image: url("images/acibadem.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+#LoginTitle{
+    float: left;
+    margin: 15px 25px 15px 25px;
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+    line-height: 1.421;
+    text-shadow: 0.5px 0.866px 1px #000001;
+}
+#LoginTopLine{
+    height: 52px;
+    background: url(/v2/Content/site/images/login-top-band-bg.png) repeat-x left bottom;
+    position: relative;
+    opacity: 70%;
+}
+#LoginPanel{
+    width: 200px;
+    height: 380px;
+    margin: 50px auto 0  auto;
+    padding: 0 60px 50px;
+    background-color: teal;
+    opacity: 90%;
+    border-radius: 6%;
+    background-position: center;
+    padding-top: 30px;
+}
+#logo{
+    background-image:url("images/penmen.png");
+    background-size: cover;
+    width:120px;
+    height: 120px;
+    border-radius: 50%;
+    background-position-x:-25px;
+    margin-left: 22%;
+    
+}
+#form{
+    margin-top: 10px;
+}
+#userImg{
+    background-image: url(/images/img2.jpg);
+}
+#passImg{
+    background-image: url(/images/img2.jpg);
+}
+.userInput{
+    width: 43px;
+    height: 39px;
+}

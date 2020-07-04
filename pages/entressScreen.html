@@ -3,13 +3,44 @@
     <head> 
         <meta charset="utf-8">
         <title>  Öğrenci Bilgi Sistemi </title>
-        <link rel = "stylesheet" href = "style.css">
+        <link rel = "stylesheet" href = "../style.css">
     </head>
 
 
-    <body>
-        <h1> EĞİTİM & DEĞİŞİM & GELİŞİM </h1>
-        <img class = "penmen" src = "penmen.png"> <br> <br>
+    <body id = "LoginPage">
+        <div id = "LoginTopLine"> 
+            <div id = "LoginTitle"> 
+                ÇYDD&nbsp;|&nbsp;Öğrenci&nbsp;Bilgi&nbsp;Sistemi 
+                <!--Marmara&nbsp;Üniversitesi&nbsp;| Bilgi&nbsp;Yönetim&nbsp;Sistemi-->
+            </div>
+            <div id = "warnMessage" class = "warning" style="display: none;">
+                   Lütfen Bilgilerinizi Kontrol Ediniz! 
+            </div>
+        </div>
+        <div id = "LoginPanel">
+            <div id = "logo"></div>
+            <form>
+                <div id = "form">
+                    <div class = "userInput">
+                        <i id = "userImg"></i>
+                        <input id = "userID" placeholder = "Kullanıcı Adı"> 
+                    </div>
+                    <div class = "userInput">
+                        <i id = "pass-img"></i>
+                        <input id = "userPass" placeholder = "Şifre" autocomplete = "off">    
+                    </div>
+                    <div class = "userInput">
+                        <i id = "pass-img"></i>
+                        <select id = "branch" placeholder = "Şube">
+                            <option value = "0"> Şube </option>
+                            <option value = "1"> Fikirtepe </option>
+                        </select>    
+                    </div>
+                </div>
+            </form>    
+        </div>
+        <!--h1 style ="color:darkred;"> EĞİTİM & DEĞİŞİM & GELİŞİM </h1>
+        <img class = "penmen" src = "../images/penmen.png"> <br> <br>
         <form id = "entressForm" class = "entressForm"> 
             
             <label class = "label"  for = "user"> <strong>Kullanıcı(TCKN) : </strong></label>
@@ -25,7 +56,7 @@
             <p id = "entressMessage"> Giriş Başarılı.. </p>
         </form>
         <p id = "warn_userID" class = "warning"> T.C no ya da şifre hatalı, lütfen bilgileri kontrol ediniz!</p>
-        <p id = "warn_location" class = "warning"> Lütfen şube seçiniz! </p>
-        <script src = "app.js"> </script>
+        <p id = "warn_location" class = "warning"> Lütfen şube seçiniz! </p-->
+        <script src = "../src/app.js"> </script>
     </body>
 </html> 

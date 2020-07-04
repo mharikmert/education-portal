@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title> Direction page </title>
+        <link rel = "stylesheet">
+    </head>
+    <body>
+        <h1> you have been redirected.. </h1>
+        <form>
+        <div class="main">
+            <div class="input-bg">
+                <i class="img-user"></i>
+                <input id="Username" type="text" placeholder="Kullanıcı adı">
+            </div>
+            <div class="input-bg">
+                <i class="img-pass"></i>
+                <!--<input type="text" name="prevent_autofill" id="prevent_autofill" value="" autocomplete="off" style="display:none;" />
+                <input type="password" name="password_fake" id="password_fake" value="" autocomplete="off" style="display:none;" />-->
+                <input id="Password" type="password" placeholder="Şifre" autocomplete="off">
+            </div>
+            <button id="LoginButton" type="submit" class="red-button login-button">
+                <span>Giriş</span>
+            </button>
+
+                <div class="forgot">
+                    <a class="forgot-password" href="/UniFrame/lostpassword/default2.aspx?lang=tr-TR">Şifremi unuttum</a>
+                    <a class="forgot-username" href="/UniFrame/lostpassword/KullaniciAdiHatirlama.aspx?lang=tr-TR">Kullanıcı adımı unuttum</a>
+                </div>
+                <div class="generate">
+                    <a class="generate-password" href="/UniFrame/lostpassword/default.aspx?lang=tr-TR">İlk şifremi oluştur</a>
+                </div>
+        </div>
+    </form>
+        <button id = button onclick = "redirect('page2.html')">redirect  button</button>
+    <script src = app.js> </script>
+    </body>
+</html>

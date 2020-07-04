@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <meta charset="utf-8">
+        <title>  Öğrenci Bilgi Sistemi </title>
+        <link rel = "stylesheet" href = "style.css">
+    </head>
+
+
+    <body>
+        <h1> EĞİTİM & DEĞİŞİM & GELİŞİ </h1>
+        <img class = "penmen" src = "penmen.png"> <br> <br>
+
+        <form id = "entressForm" class = "entressForm"> 
+            
+            <label class = "label"  for = "user"> <strong>Kullanıcı(TCKN) : </strong></label>
+            <input type = "text" id = "user_ID" class = "input" name = "user_ID"> <br><br>
+            <label class = "label" for = "password" ><strong>Şifre : </strong> </label>
+            <input type = "password" id = "password" class = "input" name = "password"><br><br>
+            <label id = "location" class = "label" for = "location"> <strong>Şube : </strong> </label>
+            <select id = "select">
+                <option value = "0"> Şube </option> 
+                <option value = "1"> Fikirtepe </option> 
+            </select> <br><br>
+            <button id = "button"> <strong> Giriş </strong></button>
+            <p id = "entressMessage"> Giriş Başarılı.. </p>
+        </form>
+        <p id = "warn_userID" class = "warning"> T.C no ya da şifre hatalı, lütfen bilgileri kontrol ediniz!</p>
+        <p id = "warn_location" class = "warning"> Lütfen şube seçiniz! </p>
+        <script src = "app.js"> </script>
+    </body>
+</html> 

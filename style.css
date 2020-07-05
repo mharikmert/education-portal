@@ -11,9 +11,6 @@ h1{
     text-align: center;
     background-position: center;
 }
-body{
-    background-image: url("img2.jpg");
-}
 /*#location{
     display: block;
     text-align: center;
@@ -27,10 +24,7 @@ label{
     display: inline-block;
     color: wheat;
 }
-.input{
-    background-color: black;
-    color: antiquewhite;
-}
+
 #select{
     width: 173px;
     background-color: black;
@@ -75,7 +69,6 @@ label{
 }
 #LoginTopLine{
     height: 52px;
-    background: url(/v2/Content/site/images/login-top-band-bg.png) repeat-x left bottom;
     position: relative;
     opacity: 70%;
 }
@@ -89,6 +82,7 @@ label{
     border-radius: 6%;
     background-position: center;
     padding-top: 30px;
+    ;
 }
 #logo{
     background-image:url("images/penmen.png");
@@ -101,15 +95,51 @@ label{
     
 }
 #form{
-    margin-top: 10px;
-}
-#userImg{
-    background-image: url(/images/img2.jpg);
-}
-#passImg{
-    background-image: url(/images/img2.jpg);
+    margin-top: 20px;
 }
 .userInput{
     width: 43px;
-    height: 39px;
+    height: 45px;
+}
+.input{
+    height: 25px;
+    border-style: outset;
+    border-radius:7px;
+    color:black;
+}
+::placeholder{
+    font-size: 15px;
+    font-style: normal;
+    font-weight: bold;
+    font-family: serif;
+    text-align: center;
+}
+#branch{
+    text-align-last:center;
+    margin-left: 56px;
+}
+i{
+    width: 30px;
+    height: 25px;
+}
+#userImg{
+    background-image: url("images/img-user.png");
+}
+#passImg{
+    background-image: url("images/img2.jpg");
+}
+.userInput{
+    color:turquoise;
+    display: block;
+    width: 238px;
+    height: 40px;
+    position:relative;
+    background:transparent url("images/img-user.png");
+}
+#enterButton{
+    width: 185px;
+    background-color: darkred;
+    border-radius:10px;
+    height: 35px;
+    margin-top: 10px;
 }

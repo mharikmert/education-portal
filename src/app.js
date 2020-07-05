@@ -44,7 +44,16 @@ function showWarning(showWarning){
         document.querySelector('#warn_userID').style.display = 'block';
     }
 });*/
-var buttonDom = document.querySelector('#button');
+var buttonDom = document.querySelector('#enterButton');
 function redirect(URL){
-    window.location.href = URL;
+    console.log("clicked..")
+    window.location.replace(URL);
 }
+buttonDom.addEventListener('click',function(){
+    console.log('clicked..')
+});
+/*To Do
+-->İnputs connection with each other..get rid of the surplus
+-->Warning messages will be done
+-->Click event and redirection
+*/

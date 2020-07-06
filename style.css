@@ -121,8 +121,9 @@
 }
 #password-image{
     background-image:url("images/password-image.png");
-    width: 28px;
-    margin-left:6px;
+    height:25px;
+    margin-left: 5px;
+    margin-top: 3px;
 }
 #branch-image{
     background-image:url("images/branch-image.png");

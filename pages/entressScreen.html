@@ -18,26 +18,27 @@
             </div>
         </div>
         <div id = "LoginPanel">
+            <div id= slogan> EĞİTİM & DEĞİŞİM & GELİŞİM </div>
             <div id = "logo"></div>
             <form>
                 <div id = "form">
                     <div class = "userInput">
-                        <i id = "userImg"></i>
-                        <input id = "userID" class = "input" placeholder = "Kullanıcı Adı"> 
+                        <i id = "userImg" class = "LoginImage"></i>
+                        <input id = "userID" class = "input" placeholder = "Kullanıcı Adı / TCKN"> 
                     </div>
                     <div class = "userInput">
-                        <i id = "passImg"></i>
-                        <input id = "userPass" class = "input" placeholder = "Şifre" autocomplete = "off">    
+                        <i id = "passImg" class = "LoginImage"></i>
+                        <input id = "userPass" class = "input" placeholder = "Şifre" autocomplete = "off" aria-hidden ="false">    
                     </div>
                     <div class = "userInput">
-                        <i id = "pass-img"></i>
-                        <select id = "branch" class = "input" placeholder = "Şube">
+                        <i id = "passImg" class = "LoginImage"></i>
+                        <select id = "branch" class = "input">
                             <option class = "option" value = "0"> Şube </option>
                             <option class = "option" value = "1"> Fikirtepe </option>
                         </select>    
                     </div>
                     <div class = userInput">
-                        <button id = "enterButton" class = "userInput" onclick = "redirect('page2.html')"> <strong> GİRİŞ </strong> </button>
+                        <button id = "enterButton" class = "input" onclick = "redirect('page2.html')"> <strong> GİRİŞ </strong> </button>
                     </div>
                 </div>
             </form>    

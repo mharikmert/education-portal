@@ -53,7 +53,6 @@ buttonDom.addEventListener('click',function(){
     console.log('clicked..')
 });
 /*To Do
--->İnputs connection with each other..get rid of the surplus
 -->Warning messages will be done
--->Click event and redirection
+-->Click event, input controlls and redirection
 */

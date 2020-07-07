@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <meta charset="utf-8">
+        <title>  Öğrenci Bilgi Sistemi </title>
+        <link rel = "stylesheet" href = "../style.css">
+    </head>
+
+
+    <body id = "LoginPage">
+        <div id = "LoginTopLine"> 
+            <div id = "LoginTitle"> 
+                ÇYDD&nbsp;|&nbsp;Öğrenci&nbsp;Bilgi&nbsp;Sistemi 
+            </div>
+        </div>
+        <div id = "warning-place">
+            <div id = "wrong-data" class = "warning-message" style="display:none;">
+                   Kullanıcı adınız ya da şifreniz hatalı! 
+            </div>
+            <div id = "lack-of-data" class = "warning-message" style="display:none;">
+                   Lütfen bilgilerinizi giriniz!
+            </div>
+            <div id = "branch-warn" class = "warning-message" style="display: none;">
+                   Lütfen şubenizi seçiniz!
+            </div>
+        </div>                                                      
+        <div id = "LoginPanel">
+            <div id= slogan> EĞİTİM & DEĞİŞİM & GELİŞİM </div>
+            <div id = "logo"></div>
+            <form>
+                <div id = "form">
+                    <div class = "userInput">
+                        <i id = "user-image" class = "login-images"></i>
+                        <input id = "userID" class = "input" placeholder = "Kullanıcı Adı / TCKN"> 
+                    </div>
+                    <div class = "userInput">
+                        <i id = "password-image" class = "login-images"></i>
+                        <input type = "password" id = "password-field" class = "input" placeholder = "Şifre" autocomplete = "off" aria-hidden ="false">    
+                        <!--i id =  "password-eye" aria-hidden="true"></i-->
+                    </div>
+                    <div class = "userInput">
+                        <i id = "branch-image" class = "login-images"></i>
+                        <select id = "branch" class = "input">
+                            <option class = "option" value = "0"> Şube </option>
+                            <option class = "option" value = "1"> Fikirtepe </option>
+                        </select>    
+                    </div>
+                </div>
+            </form> 
+            <button id = "login-button" class = "input"> <strong> GİRİŞ </strong> </button>
+        </div>
+        <script src = "../src/app.js"> 
+        </script>
+    </body>
+</html> 

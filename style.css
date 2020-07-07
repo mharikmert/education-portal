@@ -17,7 +17,7 @@
     text-align: center;
 }
 #LoginPage{
-   position: relative;
+    position: relative;
     background-image: url("images/acibadem.jpg");
     background-repeat: no-repeat;
     background-size:cover;
@@ -29,7 +29,7 @@
     font-weight: bold;
     color: black;
     line-height: 1.421;
-    text-shadow: 0.5px 0.866px 1px #000001;
+    text-shadow: 0.5px 0.866px 1px darkred;
 }
 #LoginTopLine{
     height: 52px;
@@ -111,6 +111,8 @@
     background-color:darkred;
     color: white;
     margin-left:74px;
+    height: 30px;
+    border-color: darkred;
 }
 .warning-message{
     width: 400px;

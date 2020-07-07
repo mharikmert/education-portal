@@ -1,5 +1,5 @@
 var userID,password,branch;
-function userIDCheck(userNo){
+userIDCheck = (userNo) => {
     userNo = String(userNo);
     if (userNo.substring(0, 1) === '0') {
         return false;
@@ -25,12 +25,11 @@ function userIDCheck(userNo){
     }
     return true;
 }
-document.querySelector("#login-button").addEventListener('click',function(){
+document.querySelector("#login-button").addEventListener('click',function() {
     userID = document.querySelector('#userID').value;
     password = document.querySelector('#password-field').value;
     branch = document.querySelector('#branch').value;
-    console.log('user no: ' + userID + '\npassword: ' + password + '\n' + branch);
-    console.log(userIDCheck(userID));
+    //console.log(userIDCheck(userID));
     if(userID == 0 || password == 0) showWarning('lack-of-data')
     else if(branch == 0) showWarning('branch-warn')
     else{
@@ -39,12 +38,17 @@ document.querySelector("#login-button").addEventListener('click',function(){
      }else showWarning('wrong-data');  
     }
 });
-function showWarning(id){
+showWarning = (id) => {
     document.querySelector('#'+id).style.display = 'block';
     setTimeout(() => {
     document.querySelector('#'+id).style.display = 'none';
     },1500)
 }   
-function redirect(url){
-    window.location.href = url;
+redirect = (URL) => {
+    window.location.href = URL;
 }
+/*TO DO
+->password ocntrols
+->forgot password and first login parts is later
+->menu page design and other parts 
+*/ 

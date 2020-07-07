@@ -94,7 +94,8 @@
 #branch-image{
     background-image:url("images/branch-image.png");
     height:19px;
-    margin-left:4px;    
+    margin-left:6px;
+    margin-top:2px;    
 }
 #password-field{
     -webkit-text-security: disc;

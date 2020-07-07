@@ -11,12 +11,19 @@
         <div id = "LoginTopLine"> 
             <div id = "LoginTitle"> 
                 ÇYDD&nbsp;|&nbsp;Öğrenci&nbsp;Bilgi&nbsp;Sistemi 
-                <!--Marmara&nbsp;Üniversitesi&nbsp;| Bilgi&nbsp;Yönetim&nbsp;Sistemi-->
-            </div>
-            <div id = "warnMessage" class = "warning" style="display: none;">
-                   Lütfen Bilgilerinizi Kontrol Ediniz! 
             </div>
         </div>
+        <div id = "warning-place">
+            <div id = "wrong-data" class = "warning-message" style="display:none;">
+                   Kullanıcı adınız ya da şifreniz hatalı! 
+            </div>
+            <div id = "lack-of-data" class = "warning-message" style="display:none;">
+                   Lütfen bilgilerinizi giriniz!
+            </div>
+            <div id = "branch-warn" class = "warning-message" style="display: none;">
+                   Lütfen şubenizi seçiniz!
+            </div>
+        </div>                                                      
         <div id = "LoginPanel">
             <div id= slogan> EĞİTİM & DEĞİŞİM & GELİŞİM </div>
             <div id = "logo"></div>
@@ -29,7 +36,7 @@
                     <div class = "userInput">
                         <i id = "password-image" class = "login-images"></i>
                         <input type = "password" id = "password-field" class = "input" placeholder = "Şifre" autocomplete = "off" aria-hidden ="false">    
-                        <i id =  "password-eye" aria-hidden="true"></i>
+                        <!--i id =  "password-eye" aria-hidden="true"></i-->
                     </div>
                     <div class = "userInput">
                         <i id = "branch-image" class = "login-images"></i>
@@ -38,30 +45,11 @@
                             <option class = "option" value = "1"> Fikirtepe </option>
                         </select>    
                     </div>
-                    <div class = userInput">
-                        <button id = "enterButton" class = "input" onclick = "redirect('page2.html')"> <strong> GİRİŞ </strong> </button>
-                    </div>
                 </div>
-            </form>    
+            </form> 
+            <button id = "login-button" class = "input"> <strong> GİRİŞ </strong> </button>
         </div>
-        <!--h1 style ="color:darkred;"> EĞİTİM & DEĞİŞİM & GELİŞİM </h1>
-        <img class = "penmen" src = "../images/penmen.png"> <br> <br>
-        <form id = "entressForm" class = "entressForm"> 
-            
-            <label class = "label"  for = "user"> <strong>Kullanıcı(TCKN) : </strong></label>
-            <input type = "text" id = "user_ID" class = "input" name = "user_ID"> <br><br>
-            <label class = "label" for = "password" ><strong>Şifre : </strong> </label>
-            <input type = "password" id = "password" class = "input" name = "password"><br><br>
-            <label id = "location" class = "label" for = "location"> <strong>Şube : </strong> </label>
-            <select id = "select">
-                <option value = "0"> Şube </option> 
-                <option value = "1"> Fikirtepe </option> 
-            </select> <br><br>
-            <button id = "button" onclick = "redirect('page2.html')"><strong>Giriş</strong> </button>
-            <p id = "entressMessage"> Giriş Başarılı.. </p>
-        </form>
-        <p id = "warn_userID" class = "warning"> T.C no ya da şifre hatalı, lütfen bilgileri kontrol ediniz!</p>
-        <p id = "warn_location" class = "warning"> Lütfen şube seçiniz! </p-->
-        <script src = "../src/app.js"> </script>
+        <script src = "../src/app.js"> 
+        </script>
     </body>
 </html> 

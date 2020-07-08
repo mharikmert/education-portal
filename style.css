@@ -13,9 +13,6 @@
     text-align: center;
     background-position: center;
 }
-#entressMessage{
-    text-align: center;
-}
 #LoginPage{
     position: relative;
     background-image: url("images/acibadem.jpg");
@@ -38,7 +35,7 @@
 }
 #LoginPanel{
     width: 350px;
-    height: 400px;
+    height: 450px;
     margin: 70px auto 0  auto;
     background-color: teal;
     opacity: 90%;
@@ -112,8 +109,10 @@
     background-color:darkred;
     color: white;
     margin-left:74px;
+    margin-bottom:30px;
     height: 30px;
     border-color: darkred;
+    cursor: pointer;
 }
 .warning-message{
     width: 400px;
@@ -128,4 +127,12 @@
     font-size:20px;
     font-weight: bold;
     font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#create-password,#forgot-password{
+    border-style: dashed;
+    background-color: teal;
+    color: white;
+    margin-left:75px;
+    text-align:left;
+    cursor: pointer;
 }

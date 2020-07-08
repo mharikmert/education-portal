@@ -1,5 +1,5 @@
 var userID,password,branch;
-userIDCheck = (userNo) => {
+checkUserID = (userNo) => {
     userNo = String(userNo);
     if (userNo.substring(0, 1) === '0') {
         return false;
@@ -25,6 +25,9 @@ userIDCheck = (userNo) => {
     }
     return true;
 }
+checkPassword = (password) => {
+    //this part is after from DB
+}
 document.querySelector("#login-button").addEventListener('click',function() {
     userID = document.querySelector('#userID').value;
     password = document.querySelector('#password-field').value;
@@ -33,8 +36,9 @@ document.querySelector("#login-button").addEventListener('click',function() {
     if(userID == 0 || password == 0) showWarning('lack-of-data')
     else if(branch == 0) showWarning('branch-warn')
     else{
-     if(userIDCheck(userID)){
-        redirect('directionPage.html');
+     if(checkUserID(userID) && isValidPassword(password)){
+        redirect('web_menu1.html');
+        console.log(isValidPassword(password));
      }else showWarning('wrong-data');  
     }
 });
@@ -47,8 +51,29 @@ showWarning = (id) => {
 redirect = (URL) => {
     window.location.href = URL;
 }
+isValidPassword = (password) => {
+    /*at least 6 chars
+    *both number and letter for now
+    */
+    var intCounter = 0,lowerCaseCounter= 0,upperCaseCounter = 0;
+    password = String(password);
+    var passArr = password.substr(0,password.length).split('');
+    console.log(passArr);
+    for(var i = 0; i < passArr.length; i++){
+        //upper case- lower caseletter control
+        var ch = password.charAt(i);
+        if(ch >= 'A' && ch <= 'Z') upperCaseCounter++;
+        else if(ch >= 'a' && ch <= 'z') lowerCaseCounter++;
+        //integer control
+        else if(ch >= '0' && ch <= '9') intCounter++;
+        //if(Number.isInteger(parseInt(passArr[i]))) intCounter++;
+        else elseCounter++; //it will be edited, which characters?
+    }
+    if(password.length >= 6 && upperCaseCounter > 0 && lowerCaseCounter > 0 && intCounter > 0)
+        return true;
+    //console.log('total integer count in password: ' + intCounter)
+    return false;
+}
 /*TO DO
-->password ocntrols
-->forgot password and first login parts is later
-->menu page design and other parts 
+->menu page design and forward steps
 */ 

@@ -30,7 +30,7 @@ checkPassword = (password) => {
 }
 document.querySelector("#login-button").addEventListener('click',function() {
     userID = document.querySelector('#userID').value;
-    password = document.querySelector('#password-field').value;
+    password = document.querySelector('#password').value;
     branch = document.querySelector('#branch').value;
     //console.log(userIDCheck(userID));
     if(userID == 0 || password == 0) showWarning('lack-of-data')
@@ -55,7 +55,7 @@ isValidPassword = (password) => {
     /*at least 6 chars
     *both number and letter for now
     */
-    var intCounter = 0,lowerCaseCounter= 0,upperCaseCounter = 0;
+    var intCounter = 0,lowerCaseCounter= 0,upperCaseCounter = 0,elseCounter = 0;
     password = String(password);
     var passArr = password.substr(0,password.length).split('');
     console.log(passArr);
@@ -74,11 +74,13 @@ isValidPassword = (password) => {
     //console.log('total integer count in password: ' + intCounter)
     return false;
 }
+const togglePassword = document.querySelector('#toggle-password');
+const passwordX = document.querySelector('#password');
+togglePassword.addEventListener('click',function(){
+    const type = passwordX.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordX.setAttribute('type',type);
+    this.classList.toggle('fa-eye-slash');
+})
 /*TO DO
 ->menu page design and forward steps
 */ 
-document.querySelector('#closed-eye').addEventListener('click',function(){
-    var input = document.querySelector('#password-field');
-    if(input.type === "password") input.type = "text";
-    else input.type = "password";
-});

@@ -94,25 +94,9 @@
     margin-left:6px;
     margin-top:2px;    
 }
-#password-field{
-    -webkit-text-security: disc;
-}
-.password-eye{
-    position: absolute;
-    background-size:cover;
-    width:25px;
-    height:25px;
-    margin-left:-30px;
-    margin-top: 3px;
-    background-color: white;
-    border-style: none;
-}
-#open-eye{
-    background-image:url("images/open-eye.png"); 
-}
-#closed-eye{
-    background-image: url("images/closed-eye.png");
-}
+#toggle-password{
+        margin-left:-30px;
+    cursor: pointer;}
 #branch{
     text-align-last:center;
 }

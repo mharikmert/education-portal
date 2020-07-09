@@ -77,3 +77,8 @@ isValidPassword = (password) => {
 /*TO DO
 ->menu page design and forward steps
 */ 
+document.querySelector('#closed-eye').addEventListener('click',function(){
+    var input = document.querySelector('#password-field');
+    if(input.type === "password") input.type = "text";
+    else input.type = "password";
+});

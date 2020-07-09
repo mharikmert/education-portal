@@ -97,10 +97,21 @@
 #password-field{
     -webkit-text-security: disc;
 }
-#password-eye{
-    color:black;
-    width:10px;
-    height:5px;
+.password-eye{
+    position: absolute;
+    background-size:cover;
+    width:25px;
+    height:25px;
+    margin-left:-30px;
+    margin-top: 3px;
+    background-color: white;
+    border-style: none;
+}
+#open-eye{
+    background-image:url("images/open-eye.png"); 
+}
+#closed-eye{
+    background-image: url("images/closed-eye.png");
 }
 #branch{
     text-align-last:center;
@@ -129,10 +140,22 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 #create-password,#forgot-password{
-    border-style: dashed;
+    border-style: none;
     background-color: teal;
     color: white;
     margin-left:75px;
-    text-align:left;
+    text-align: center;
     cursor: pointer;
+    text-indent: -25px;
+}
+#forgot-password{text-indent:-35px;}
+.arrow{
+    width: 20px;
+    height:20px;
+    background-image: url("images/arrow.svg");
+    position:absolute;
+    display:black;
+    background-size:cover;
+    margin-left:-195px;
+    margin-top:3px;
 }

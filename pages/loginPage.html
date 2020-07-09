@@ -21,7 +21,7 @@
                    Lütfen bilgilerinizi giriniz!
             </div>
             <div id = "branch-warn" class = "warning-message" style="display: none;">
-                   Lütfen şubenizi seçiniz!
+                   Lütfen şubenizi seçiniz! 
             </div>
             <div id = "invalid-password" class = "warning-message" style = "display: none">
                    Şifreniz en az 6 karakterli olmalı, büyük harf, küçük harf ve rakam içermelidir.
@@ -39,8 +39,9 @@
                     <div class = "userInput">
                         <i id = "password-image" class = "login-images"></i>
                         <input type = "password" id = "password-field" class = "input" placeholder = "Şifre" autocomplete = "off" aria-hidden ="false">    
-                        <!--i id =  "password-eye" aria-hidden="true"></i-->
-                    </div>
+                        <i id = "closed-eye" class ="password-eye" > </i> 
+
+                        </div>
                     <div class = "userInput">
                         <i id = "branch-image" class = "login-images"></i>
                         <select id = "branch" class = "input">
@@ -52,7 +53,9 @@
             </form> 
             <button id = "login-button" class = "input"> <strong> GİRİŞ </strong> </button>
             <button id = "forgot-password" class = "input"> Şifremi unuttum </button>
+            <i class = "arrow""></i>
             <button id = "create-password" class = "input"> İlk şifremi oluştur </button>
+            <i class = "arrow"></i>
         </div>
         <script src = "../src/app.js"> 
         </script>

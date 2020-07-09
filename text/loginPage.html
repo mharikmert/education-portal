@@ -4,6 +4,7 @@
         <meta name = "description" content = "Fikirtepe öğrenci bilgi sistemi" charset="utf-8">
         <title>  Öğrenci Bilgi Sistemi </title>
         <link rel = "stylesheet" href = "../style.css">
+        <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     </head>
 
 
@@ -30,16 +31,15 @@
         <div id = "LoginPanel">
             <div id= slogan> EĞİTİM & DEĞİŞİM & GELİŞİM </div>
             <div id = "logo"></div>
-            <form>
                 <div id = "form">
                     <div class = "userInput">
                         <i id = "user-image" class = "login-images"></i>
                         <input id = "userID" class = "input" placeholder = "Kullanıcı Adı / TCKN"> 
                     </div>
-                    <div class = "userInput">
+                    <div id = "password-div" class = "userInput" style = "margin-left:-7px">
                         <i id = "password-image" class = "login-images"></i>
-                        <input type = "password" id = "password-field" class = "input" placeholder = "Şifre" autocomplete = "off" aria-hidden ="false">    
-                        <i id = "closed-eye" class ="password-eye" > </i> 
+                        <input type = "password" id = "password" class = "input" name = "password" placeholder = "Şifre" autocomplete = "off" aria-hidden ="false">    
+                        <i id = "toggle-password" class ="far fa-eye"> </i> 
 
                         </div>
                     <div class = "userInput">
@@ -50,7 +50,6 @@
                         </select>    
                     </div>
                 </div>
-            </form> 
             <button id = "login-button" class = "input"> <strong> GİRİŞ </strong> </button>
             <button id = "forgot-password" class = "input"> Şifremi unuttum </button>
             <i class = "arrow""></i>

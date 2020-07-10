@@ -6,12 +6,8 @@
     text-shadow: 0.5px 0.866px 1px red;
     margin-bottom:10px;
 }
-.penmen{
-    display:block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    background-position: center;
+html,body{
+    height: 100%;
 }
 #LoginPage{
     position: relative;

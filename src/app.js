@@ -1,13 +1,11 @@
 var userID,password,branch;
-checkUserID = (userNo) => {
-    userNo = String(userNo);
-    if (userNo.substring(0, 1) === '0') {
-        return false;
-    }
-    if (userNo.length !== 11) {
-        return false;
-    }
-    var tenTotalArray = userNo.substr(0, 10).split('');
+var inputList = [userID,password,branch];
+isValidUserID = (userID) => {
+    userID = String(userID);
+    if (userID.substring(0, 1) === '0') return false;
+    if (userID.length !== 11) return false;
+
+    var tenTotalArray = userID.substr(0, 10).split('');
     var tenTotal = odd = even = 0;
 
     for (var i = j = 0; i < 9; ++i) {
@@ -16,40 +14,14 @@ checkUserID = (userNo) => {
         else odd += j;
       tenTotal += j;
     }
-    if ( (odd * 7 -even ) % 10 !== parseInt(userNo.substr(-2, 1), 10)) {
+    if ( (odd * 7 -even ) % 10 !== parseInt(userID.substr(-2, 1), 10)) {
         return false;
     }
     tenTotal += parseInt(tenTotalArray[9], 10); 
-    if (tenTotal % 10 !== parseInt(userNo.substr(-1), 10)) {
+    if (tenTotal % 10 !== parseInt(userID.substr(-1), 10)) {
         return false;
     }
     return true;
-}
-checkPassword = (password) => {
-    //this part is after from DB
-}
-document.querySelector("#login-button").addEventListener('click',function() {
-    userID = document.querySelector('#userID').value;
-    password = document.querySelector('#password').value;
-    branch = document.querySelector('#branch').value;
-    //console.log(userIDCheck(userID));
-    if(userID == 0 || password == 0) showWarning('lack-of-data')
-    else if(branch == 0) showWarning('branch-warn')
-    else{
-     if(checkUserID(userID) && isValidPassword(password)){
-        redirect('web_menu1.html');
-        console.log(isValidPassword(password));
-     }else showWarning('wrong-data');  
-    }
-});
-showWarning = (id) => {
-    document.querySelector('#'+id).style.display = 'block';
-    setTimeout(() => {
-    document.querySelector('#'+id).style.display = 'none';
-    },1500)
-}   
-redirect = (URL) => {
-    window.location.href = URL;
 }
 isValidPassword = (password) => {
     /*at least 6 chars
@@ -74,13 +46,61 @@ isValidPassword = (password) => {
     //console.log('total integer count in password: ' + intCounter)
     return false;
 }
-const togglePassword = document.querySelector('#toggle-password');
-const passwordX = document.querySelector('#password');
+getElement = (id) =>{
+    return document.querySelector(id);
+}
+checkPassword = (password) => {
+    //this part is after from DB
+}
+checkUserID = (userID) =>{
+    //this part is also after from DB
+}
+loginVerification = (userID,password,branch) =>{
+    if(userID == 0 || password == 0) showWarning('lack-of-data')
+    else if(branch == 0) showWarning('branch-warn')
+    else if(isValidUserID(userID) && isValidPassword(password)) return true; 
+    else showWarning('wrong-data');
+    return false;
+}
+getInputValues = (userID,password,branch) =>{
+    //not sure about returning a inputList and check it like that
+}
+getElement("#login-button").addEventListener('click',function() {
+    userID = getElement('#userID').value;   
+    password = getElement('#password').value;   
+    branch = getElement('#branch').value;   
+    if(loginVerification(userID,password,branch))
+        redirect('web_menu1.html');
+});
+document.querySelectorAll('.input').forEach(item => {
+    item.addEventListener('keypress',function(e){
+    userID = getElement('#userID').value;   
+    password = getElement('#password').value;   
+    branch = getElement('#branch').value;
+    if(e.keyCode == 13){
+        console.log(userID,password,branch);
+        if(loginVerification(userID,password,branch))
+            redirect('web_menu1.html');
+        }
+    })
+})
+showWarning = (id) => {
+    getElement('#'+id).style.display = 'block';
+    setTimeout(() => {
+    getElement('#'+id).style.display = 'none';
+    },1500)
+}   
+redirect = (URL) => {
+    window.location.href = URL;
+}
+//toggle password visibility
+const togglePassword = getElement('#toggle-password');
+const passwordX = getElement('#password');
 togglePassword.addEventListener('click',function(){
     const type = passwordX.getAttribute('type') === 'password' ? 'text' : 'password';
     passwordX.setAttribute('type',type);
     this.classList.toggle('fa-eye-slash');
 })
-e /*To Do
+ /*To Do
 -> mobile compatibility, uh!
 */

@@ -14,25 +14,29 @@ html,body{
     background-image: url("../images/acibadem.jpg");
     background-repeat: no-repeat;
     background-size:cover;
+    text-align:center;
+    width: 60%;
+    height: 80%;
+    margin-left:20%;
 }
 #LoginTitle{
     float: left;
-    margin: 15px 25px 15px 25px;
-    font-size: 20px;
+    font-size: 130%;
     font-weight: bold;
     color: black;
     line-height: 1.421;
     text-shadow: 0.5px 0.866px 1px darkred;
 }
 #LoginTopLine{
-    height: 52px;
+    height: 10%;
     position: relative;
+    left:-30%;
     opacity: 70%;
 }
 #LoginPanel{
-    width: 350px;
-    height: 450px;
-    margin: 70px auto 0  auto;
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
     background-color: teal;
     opacity: 90%;
     border-radius: 15px;
@@ -42,18 +46,18 @@ html,body{
 #logo{
     background-image:url("../images/penmen.png");
     background-size: cover;
-    width:120px;
-    height: 120px;
+    width:40%;
+    height: 30%;
     border-radius: 50%;
-    background-position-x:-25px;
-    margin:auto;
+    background-position-x: 15%;
+    margin:0 auto;
 }
 #form{
-    margin-top:40px;
+    margin-top:10%;
     text-align: center;
 }
 .input{
-    width:200px;
+    width:50%;
     height: 25px;
     border-style: outset;
     border-radius:8px;
@@ -63,6 +67,7 @@ html,body{
     font-family: serif;
     text-align: center;
     color:black;
+    margin-left:auto;
     margin-bottom:10px;
 }
 ::placeholder{
@@ -91,7 +96,7 @@ html,body{
     margin-top:2px;    
 }
 #toggle-password{
-        margin-left:-30px;
+    margin-left:-30px;
     cursor: pointer;}
 #branch{
     text-align-last:center;
@@ -99,23 +104,22 @@ html,body{
 #login-button{
     background-color:darkred;
     color: white;
-    margin-left:74px;
-    margin-bottom:30px;
-    height: 30px;
+    margin-bottom:8%;
+    height: 6%;
     border-color: darkred;
     cursor: pointer;
 }
 .warning-message{
-    width: 400px;
-    height: 25px;
-    margin-left: 380px;
-    text-align: center;
-    position: absolute;
-    padding: 10px 100px 10px 100px;
+    width: 50%;
+    height: 3%;
+    margin:0 auto;
+    margin-bottom:5%;
+    position: relative;
+    padding: 2% 10% 2% 10%;
     border-radius: 10px;
     color:white;
     background-color: darkred;
-    font-size:20px;
+    font-size:100%;
     font-weight: bold;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
@@ -123,7 +127,7 @@ html,body{
     border-style: none;
     background-color: teal;
     color: white;
-    margin-left:75px;
+    margin-left:auto;
     text-align: center;
     cursor: pointer;
     text-indent: -25px;
@@ -138,4 +142,38 @@ html,body{
     background-size:cover;
     margin-left:-195px;
     margin-top:3px;
+}
+@media only screen and (max-width: 800px){
+    /*for tablets*/
+    #LoginPanel, #form{
+        width:80%;
+    }
+}
+@media only screen and (max-width: 500px){
+    /*for mobile phones*/
+    #LoginPanel, #form{
+        width:100%;
+    }
+    #LoginPanel{
+        padding:0 10% 0 10%;
+        margin-left:-10%;
+    }
+    .input{
+        width: 80%;
+    }
+    #login-button, #forgot-password, #create-password{
+        margin-left : auto;
+    }
+    #logo{
+        height: 20%;
+    }
+    .warning-message{
+        font-size:13px;
+    }
+    #slogan{
+        padding-top: 5%;
+    }
+    /*
+    Arrows will be edited
+    */
 }

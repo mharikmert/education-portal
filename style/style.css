@@ -1,13 +1,13 @@
+html,body{
+    height: 100%;
+}
 #slogan{
     position: relative;
     text-align: center;
-    font-size:17px;
+    font-size:100%;
     font-weight: bold;
     text-shadow: 0.5px 0.866px 1px red;
-    margin-bottom:10px;
-}
-html,body{
-    height: 100%;
+    margin-bottom:2%;
 }
 #LoginPage{
     position: relative;
@@ -35,13 +35,14 @@ html,body{
 }
 #LoginPanel{
     width: 50%;
-    height: 100%;
+    height: 85%;
     margin: 0 auto;
+    margin-top:8%;
     background-color: teal;
     opacity: 90%;
     border-radius: 15px;
     background-position: center;
-    padding-top: 30px;
+    padding-top: 3%;
 }
 #logo{
     background-image:url("../images/penmen.png");
@@ -54,21 +55,20 @@ html,body{
 }
 #form{
     margin-top:10%;
-    text-align: center;
 }
 .input{
     width:50%;
     height: 25px;
     border-style: outset;
     border-radius:8px;
-    font-size: 15px;
+    font-size: 90%;
     font-style: normal;
     font-weight: bold;
     font-family: serif;
     text-align: center;
     color:black;
     margin-left:auto;
-    margin-bottom:10px;
+    margin-bottom:2.2%;
 }
 ::placeholder{
     opacity: 70%;
@@ -88,6 +88,7 @@ html,body{
 #password-image{
     background-image:url("../images/password-image.png");
     height:25px;
+    margin-left:-0.3%;
 }
 #branch-image{
     background-image:url("../images/branch-image.png");
@@ -97,8 +98,12 @@ html,body{
 }
 #toggle-password{
     margin-left:-30px;
-    cursor: pointer;}
-#branch{
+    cursor: pointer;
+}
+#password{
+    margin-left:-2%;
+}
+#branch-div{
     text-align-last:center;
 }
 #login-button{
@@ -113,9 +118,9 @@ html,body{
     width: 50%;
     height: 3%;
     margin:0 auto;
-    margin-bottom:5%;
-    position: relative;
-    padding: 2% 10% 2% 10%;
+    margin-left:19%;
+    position: absolute;
+    padding: 2% 5% 2% 5%;
     border-radius: 10px;
     color:white;
     background-color: darkred;
@@ -132,7 +137,8 @@ html,body{
     cursor: pointer;
     text-indent: -25px;
 }
-#forgot-password{text-indent:-35px;}
+#forgot-password{text-indent:-35px;
+}
 .arrow{
     width: 20px;
     height:20px;
@@ -140,15 +146,10 @@ html,body{
     position:absolute;
     display:black;
     background-size:cover;
-    margin-left:-195px;
+    margin-left:-24%;
     margin-top:3px;
 }
-@media only screen and (max-width: 800px){
-    /*for tablets*/
-    #LoginPanel, #form{
-        width:80%;
-    }
-}
+
 @media only screen and (max-width: 500px){
     /*for mobile phones*/
     #LoginPanel, #form{
@@ -157,6 +158,7 @@ html,body{
     #LoginPanel{
         padding:0 10% 0 10%;
         margin-left:-10%;
+        margin-top:16%;
     }
     .input{
         width: 80%;
@@ -168,13 +170,16 @@ html,body{
         height: 20%;
     }
     .warning-message{
-        font-size:13px;
+        font-size:85%;
+        width: 100%;
+        position: absolute;
+        margin: 0 auto;
+        margin-left:-4%;
     }
     #slogan{
         padding-top: 5%;
     }
-    /*
-    ->Arrows will be edited
-    ->Sizes will be controled again for different devices
-    */
+    .arrow{
+        margin-left:-75%;
+    }
 }

@@ -101,6 +101,3 @@ togglePassword.addEventListener('click',function(){
     passwordX.setAttribute('type',type);
     this.classList.toggle('fa-eye-slash');
 })
- /*To Do
--> mobile compatibility, uh!
-*/

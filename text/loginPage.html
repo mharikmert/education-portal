@@ -35,25 +35,24 @@
                         <i id = "user-image" class = "login-images"></i>
                         <input id = "userID" class = "input" placeholder = "Kullanıcı Adı / TCKN"> 
                     </div>
-                    <div id = "password-div" class = "userInput" style = "margin-left:-7px">
+                    <div id = "password-div" class = "userInput">
                         <i id = "password-image" class = "login-images"></i>
                         <input type = "password" id = "password" class = "input" name = "password" placeholder = "Şifre" autocomplete = "off" aria-hidden ="false">    
                         <i id = "toggle-password" class ="far fa-eye"> </i> 
-
                         </div>
-                    <div class = "userInput">
+                    <div id = branch-div class = "userInput">
                         <i id = "branch-image" class = "login-images"></i>
                         <select id = "branch" class = "input">
                             <option class = "option" value = "0"> Şube </option>
                             <option class = "option" value = "1"> Fikirtepe </option>
                         </select>    
                     </div>
+                    <button id = "login-button" class = "input"> <strong> GİRİŞ </strong> </button>
+                    <button id = "forgot-password" class = "input"> Şifremi unuttum </button>
+                    <i class = "arrow""></i>
+                    <button id = "create-password" class = "input"> İlk şifremi oluştur </button>
+                    <i class = "arrow"></i>
                 </div>
-            <button id = "login-button" class = "input"> <strong> GİRİŞ </strong> </button>
-            <button id = "forgot-password" class = "input"> Şifremi unuttum </button>
-            <i class = "arrow""></i>
-            <button id = "create-password" class = "input"> İlk şifremi oluştur </button>
-            <i class = "arrow"></i>
         </div>
         <script src = "../src/app.js"> 
         </script>

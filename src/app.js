@@ -77,7 +77,7 @@ document.querySelectorAll('.input').forEach(item => {
     userID = getElement('#userID').value;   
     password = getElement('#password').value;   
     branch = getElement('#branch').value;
-    if(e.keyCode == 13){
+    if(e.keyCode == 13){//enter key code
         console.log(userID,password,branch);
         if(loginVerification(userID,password,branch))
             redirect('web_menu1.html');

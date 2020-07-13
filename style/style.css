@@ -120,7 +120,13 @@ html,body{
     line-height: 40px;
     margin: 0 auto;
     color:white;
-    position: relative;
+    position:relative;
+    /*
+    There is a litte positioning problem with warn messages.
+    If i do position absolute, it slips for different screen sizes. In relative case;
+    Login Panel moves to down when the message poped up. I'm not good at the positioning that much yet. 
+    However, not that important.I'll take care of it later.
+    */
     background-color: darkred;
     font-size:100%;
     font-weight: bold;

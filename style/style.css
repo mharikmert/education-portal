@@ -36,7 +36,7 @@ html,body{
     width: 380px;
     height: 450px;
     margin: 0 auto;
-    margin-top:8%;
+    margin-top:3%;
     background-color: teal;
     opacity: 90%;
     border-radius: 15px;
@@ -114,14 +114,13 @@ html,body{
     cursor: pointer;
 }
 .warning-message{
-    width: 50%;
-    height: 3%;
-    margin:0 auto;
-    margin-left:19%;
-    position: absolute;
-    padding: 2% 5% 2% 5%;
+    width: 380px;
+    height: 40px;
     border-radius: 10px;
+    line-height: 40px;
+    margin: 0 auto;
     color:white;
+    position: relative;
     background-color: darkred;
     font-size:100%;
     font-weight: bold;
@@ -143,14 +142,14 @@ html,body{
     background-size:cover;
     margin-top:3px;
 }
-@media only screen and (max-width: 550px){
+@media only screen and (max-width: 600px){
     #LoginPanel, #form{
         width:100%;
     }
     #LoginPanel{
         padding:0 10% 0 10%;
         margin-left:-10%;
-        margin-top:16%;
+        margin-top:5%;
     }
     .input{
         width: 70%;
@@ -163,10 +162,8 @@ html,body{
     }
     .warning-message{
         font-size:85%;
-        width: 100%;
-        position: absolute;
-        margin: 0 auto;
-        margin-left:-4%;
+        width: 120%;
+        margin-left: -10%;
     }
     #slogan{
         padding-top: 5%;

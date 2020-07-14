@@ -10,7 +10,7 @@ html,body{
     margin-bottom:2%;
 }
 #LoginPage{
-    background-image: url("../images/acibadem.jpg");
+    background-image: url("../assets-img/acibadem.jpg");
     background-repeat: no-repeat;
     background-size:cover;
     text-align:center;
@@ -44,7 +44,7 @@ html,body{
     padding-top: 3%;
 }
 #logo{
-    background-image:url("../images/penmen.png");
+    background-image:url("../assets-img/penmen.png");
     background-size: cover;
     width:40%;
     height: 30%;
@@ -72,7 +72,7 @@ html,body{
 ::placeholder{
     opacity: 70%;
 }
-.login-images{
+.login-assets-img{
     width:23px;
     height:23px;
     background-size:cover;
@@ -81,16 +81,16 @@ html,body{
     margin-top:3px;
 }
 #user-image{
-    background-image:url("../images/user-image.png");
+    background-image:url("../assets-img/user-image.png");
     margin-top:4px;
 }
 #password-image{
-    background-image:url("../images/password-image.png");
+    background-image:url("../assets-img/password-image.png");
     height:25px;
     margin-left:0;
 }
 #branch-image{
-    background-image:url("../images/branch-image.png");
+    background-image:url("../assets-img/branch-image.png");
     height:19px;
     margin-left:6px;
     margin-top:2px;    
@@ -142,7 +142,7 @@ html,body{
 .arrow{
     width: 20px;
     height:20px;
-    background-image: url("../images/arrow.svg");
+    background-image: url("../assets-img/arrow.svg");
     position:absolute;
     display:black;
     background-size:cover;

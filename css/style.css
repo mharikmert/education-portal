@@ -1,5 +1,8 @@
 html,body{
     height: 100%;
+    background-attachment: fixed;
+    background-position:center;
+    background-repeat: no-repeat;
 }
 #slogan{
     position: relative;
@@ -147,6 +150,34 @@ html,body{
     display:black;
     background-size:cover;
     margin-top:3px;
+}
+#web_menu1-body{
+    background-image:url("../assets-img/acibadem.jpg");
+    background-size:cover;
+    background-attachment: fixed;
+    background-position:center;
+    background-repeat: no-repeat;
+}
+.list{
+    list-style-type:none;
+    border-color:black;
+}
+.menu{
+    font-size: 180%;
+    font-weight: bold;
+    height:100%;
+}
+ul{
+    display:grid;
+}
+li{
+    margin-bottom: 5%;
+    background-color: white;
+    border-radius: 5%;
+    width: fit-content;
+}
+a{
+    color:darkred;
 }
 @media only screen and (max-width: 600px){
     #LoginPanel, #form{

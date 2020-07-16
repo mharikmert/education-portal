@@ -151,13 +151,6 @@ html,body{
     background-size:cover;
     margin-top:3px;
 }
-#web_menu1-body{
-    background-image:url("../assets-img/acibadem.jpg");
-    background-size:cover;
-    background-attachment: fixed;
-    background-position:center;
-    background-repeat: no-repeat;
-}
 .list{
     list-style-type:none;
     border-color:black;
@@ -179,6 +172,7 @@ li{
 a{
     color:darkred;
 }
+
 @media only screen and (max-width: 600px){
     #LoginPanel, #form{
         width:100%;

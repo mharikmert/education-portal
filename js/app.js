@@ -80,7 +80,7 @@ document.querySelectorAll('.input').forEach(item => {
     if(e.keyCode == 13){//enter key code
         console.log(userID,password,branch);
         if(loginVerification(userID,password,branch))
-            redirect('web_menu1.html');
+            redirect('web_menu.html');
         }
     })
 })

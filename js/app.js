@@ -1,5 +1,4 @@
-var userID,password,branch;
-var inputList = [userID,password,branch];
+var inputList = [''];
 isValidUserID = (userID) => {
     userID = String(userID);
     if (userID.substring(0, 1) === '0') return false;
@@ -24,13 +23,9 @@ isValidUserID = (userID) => {
     return true;
 }
 isValidPassword = (password) => {
-    /*at least 6 chars
-    *both number and letter for now
-    */
     var intCounter = 0,lowerCaseCounter= 0,upperCaseCounter = 0,elseCounter = 0;
     password = String(password);
     var passArr = password.substr(0,password.length).split('');
-    console.log(passArr);
     for(var i = 0; i < passArr.length; i++){
         //upper case- lower caseletter control
         var ch = password.charAt(i);
@@ -43,7 +38,6 @@ isValidPassword = (password) => {
     }
     if(password.length >= 6 && upperCaseCounter > 0 && lowerCaseCounter > 0 && intCounter > 0)
         return true;
-    //console.log('total integer count in password: ' + intCounter)
     return false;
 }
 getElement = (id) =>{
@@ -58,30 +52,23 @@ checkUserID = (userID) =>{
 loginVerification = (userID,password,branch) =>{
     if(userID == 0 || password == 0) showWarning('lack-of-data')
     else if(branch == 0) showWarning('branch-warn')
-    else if(isValidUserID(userID) && isValidPassword(password)) return true; 
+    else if(isValidUserID(userID) && isValidPassword(password)) redirect('web_menu.html'); 
     else showWarning('wrong-data');
-    return false;
 }
-getInputValues = (userID,password,branch) =>{
-    //not sure about returning a inputList and check it like that
+getInputValues = () =>{
+    inputList[0] = getElement('#userID').value; 
+    inputList[1] = getElement('#password').value;   
+    inputList[2] = getElement('#branch').value; 
 }
 getElement("#login-button").addEventListener('click',function() {
-    userID = getElement('#userID').value;   
-    password = getElement('#password').value;   
-    branch = getElement('#branch').value;   
-    if(loginVerification(userID,password,branch))
-        redirect('web_menu1.html');
+    getInputValues();
+    loginVerification(inputList[0],inputList[1],inputList[2]);
 });
 document.querySelectorAll('.input').forEach(item => {
     item.addEventListener('keypress',function(e){
-    userID = getElement('#userID').value;   
-    password = getElement('#password').value;   
-    branch = getElement('#branch').value;
-    if(e.keyCode == 13){//enter key code
-        console.log(userID,password,branch);
-        if(loginVerification(userID,password,branch))
-            redirect('web_menu.html');
-        }
+    getInputValues();
+    if(e.keyCode == 13)//enter key code
+        loginVerification(inputList[0],inputList[1],inputList[2]);    
     })
 })
 showWarning = (id) => {

@@ -172,7 +172,11 @@ li{
 a{
     color:darkred;
 }
-
+#add-term-button{
+    background-color:teal;
+    cursor:pointer;
+    border-radius:7px;
+}
 @media only screen and (max-width: 600px){
     #LoginPanel, #form{
         width:100%;

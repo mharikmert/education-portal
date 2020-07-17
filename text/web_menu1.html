@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name = "viewport" content = "width = device-width initial-scale = 1.0"charset="utf-8">
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width = device-width initial-scale = 1.0">
         <title>Dönem Tanımlama-ÇYDD Fikirtepe Öğrenci Bilgi Sistemi</title>
         <link rel = "stylesheet" href = "../css/style.css">
     </head>
-    <body>
+    <body style = "background-color:teal">
+        <h1 style = "text-align: center; color:white;">Dönem Tanımlama </h1>
+        <div id = "create-term-container" style = "text-align:center;">
+            <input id = "term-exp" class = "term-input" placeholder="Dönem Açıklama">
+            <input id = "term-start-date" class = "term-input" placeholder="Dönem Başlangıç Tarihi">
+            <input id = "term-end-date" class = "term-input" placeholder = "Dönem Bitiş Tarihi">
+            <button id = "add-term-button"> <strong> Dönem Ekle </strong></button> 
+        </div>
+        <div id = "existing-term-container" style = "text-align:center">
+            
+        </div>
         <script src = "../js/app.js"> </script>
     </body>
 </html>
+

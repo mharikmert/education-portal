@@ -177,6 +177,12 @@ a{
     cursor:pointer;
     border-radius:7px;
 }
+.term-input{
+    margin-right:4%;
+    font-weight: bold;
+}
+#term-end-date{margin-right:0;}
+
 @media only screen and (max-width: 600px){
     #LoginPanel, #form{
         width:100%;

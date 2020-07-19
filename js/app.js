@@ -87,10 +87,4 @@ togglePassword.addEventListener('click',function(){
     const type = passwordX.getAttribute('type') === 'password' ? 'text' : 'password';
     passwordX.setAttribute('type',type);
     this.classList.toggle('fa-eye-slash');
-})
-const addTermButton = document.querySelector('#add-term-button');
-addTermButton.addEventListener('click',function(){
-    var termExp = document.querySelector('#term-exp').value;
-    var startDate = docuemnt.querySelector('#term-start-date').value;
-    var endDate = docuemnt.querySelector('#term-end-date').value;
 });

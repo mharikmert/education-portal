@@ -182,6 +182,10 @@ a{
     font-weight: bold;
 }
 #term-end-date{margin-right:0;}
+#create-term-container{
+    text-align:center;
+    margin-left:8%;
+}
 
 @media only screen and (max-width: 600px){
     #LoginPanel, #form{

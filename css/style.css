@@ -126,9 +126,9 @@ html,body{
     position:relative;
     /*
     There is a litte positioning problem with warn messages.
-    If i do position absolute, it slips for different screen sizes. In relative case;
+    If i make the position absolute, it slips for different screen sizes. In relative case;
     Login Panel moves to down when the message poped up. I'm not good at the positioning that much yet. 
-    However, not that important.I'll take care of it later.
+    However, not that important.I'll handle it later.
     */
     background-color: darkred;
     font-size:100%;
@@ -185,8 +185,12 @@ a{
 #create-term-container{
     text-align:center;
     margin-left:8%;
+    margin-bottom:3%;
 }
-
+.term-info{margin-bottom: 2%;}
+/*
+maybe animaion for activity of new term? 
+*/
 @media only screen and (max-width: 600px){
     #LoginPanel, #form{
         width:100%;

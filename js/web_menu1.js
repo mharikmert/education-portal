@@ -32,3 +32,8 @@ document.querySelectorAll('.term-input').forEach(item => {
         }
     })
 })
+/*
+//to do
+->adding one term div under the other term div
+    respectively. 
+*/

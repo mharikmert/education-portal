@@ -96,7 +96,7 @@ html,body{
     background-image:url("../assets-img/branch-image.png");
     height:19px;
     margin-left:6px;
-    margin-top:2px;    
+    margin-top:2px;
 }
 #toggle-password{
     margin-left:-30px;
@@ -127,7 +127,7 @@ html,body{
     /*
     There is a litte positioning problem with warn messages.
     If i make the position absolute, it slips for different screen sizes. In relative case;
-    Login Panel moves to down when the message poped up. I'm not good at the positioning that much yet. 
+    Login Panel moves to down when the message poped up. I'm not good at the positioning that much yet.
     However, not that important.I'll handle it later.
     */
     background-color: darkred;
@@ -183,13 +183,18 @@ a{
 }
 #term-end-date{margin-right:0;}
 #create-term-container{
-    text-align:center;
-    margin-left:8%;
-    margin-bottom:3%;
+    margin: 3%;
 }
-.term-info{margin-bottom: 2%;}
+.term-info{
+  margin-bottom: 2%;
+  margin-left:3%;
+}
+#existing-term-container{
+  display:flex;
+  text-align:center;
+}
 /*
-maybe animaion for activity of new term? 
+maybe animaion for activity of new term?
 */
 @media only screen and (max-width: 600px){
     #LoginPanel, #form{

@@ -12,15 +12,18 @@
             <input id = "term-exp" class = "term-input" placeholder="Dönem Açıklama">
             <input id = "term-start-date" class = "term-input" placeholder="Dönem Başlangıç Tarihi">
             <input id = "term-end-date" class = "term-input" placeholder = "Dönem Bitiş Tarihi">
-            <button id = "add-term-button"> <strong> Dönem Ekle </strong></button> 
+            <button id = "add-term-button"> <strong> Dönem Ekle </strong></button>
         </div>
-        <div id = "existing-term-container" style = "text-align:center">
+        <div id = "existing-term-container" >
                 <div id = "term-exp-content" class = "term-info"> </div>
                 <div id = "term-start-date-content" class = "term-info"></div>
                 <div id = "term-end-date-content" class = "term-info"></div>
-                <!--edit dives acc to input boxes-->
+                <label class="switch" style = "display:none; margin-left:3%; margin-top:2%;"> Aktif
+                    <input type="checkbox" data-check-switch role = "switch">
+                    <span aria-hidden = "true"></span>
+                </label>
+                <button id = "create-class-btn" style="display: none;"> Sınıf Oluştur </button>
         </div>
         <script src = "../js/web_menu1.js"></script>
     </body>
 </html>
-

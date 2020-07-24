@@ -8,6 +8,9 @@ printInputs = () => {
     document.querySelector('#term-exp-content').innerHTML = '<strong>Dönem Açıklaması</strong><br>' + termExp;
     document.querySelector('#term-start-date-content').innerHTML = '<strong>Dönem Başlangıç Tarihi</strong><br>' + startDate;
     document.querySelector('#term-end-date-content').innerHTML = '<strong>Dönem Bitiş Tarihi </strong><br>' + endDate;
+    document.querySelector('.switch').style.display = 'block';
+    document.querySelector('#create-class-btn').style.display = 'block';
+
 }
 termValidation = () => {
     /*
@@ -25,7 +28,7 @@ document.querySelectorAll('.term-input').forEach(item => {
     item.addEventListener('keypress',function(e){
         if(e.keyCode == 13){
             getTermInputs();
-            printInputs(); 
-        }     
+            printInputs();
+        }
     })
 })

@@ -14,15 +14,18 @@
             <input id = "term-end-date" class = "term-input" placeholder = "Dönem Bitiş Tarihi">
             <button id = "add-term-button"> <strong> Dönem Ekle </strong></button>
         </div>
-        <div id = "existing-term-container" >
+        <div id = "existing-term-container">
                 <div id = "term-exp-content" class = "term-info"> </div>
                 <div id = "term-start-date-content" class = "term-info"></div>
                 <div id = "term-end-date-content" class = "term-info"></div>
-                <label class="switch" style = "display:none; margin-left:3%; margin-right:3%;"> Aktif
-                    <input type="checkbox" data-check-switch role = "switch">
-                    <span aria-hidden = "true"></span>
-                </label>
-                <button id = "create-class-btn" style="display: none;"> <strong> Sınıf Oluştur </strong> </button>
+                <div id = "toggle-switch-container" class = "term-info" style = "display:none;">
+                    <h id = activity-status> Aktif </h>
+                    <label class = "switch">
+                        <input type = "checkbox">
+                        <span class = "slider round"> </span>
+                    </label>
+                </div>
+                <button id = "create-class-btn" style = "display:none;"> <strong> Sınıf Oluştur </strong> </button>
         </div>
         <script src = "../js/web_menu1.js"></script>
     </body>

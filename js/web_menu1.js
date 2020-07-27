@@ -1,4 +1,4 @@
-var termExp,startDate,endDate
+var termExp,startDate,endDate,termYear1,termYear2;
 getTermInputs = () => {
      termExp = document.querySelector('#term-exp').value;
      startDate = document.querySelector('#term-start-date').value;
@@ -12,12 +12,14 @@ displayInfo = () => {
     document.querySelector('#toggle-switch-container').style.display = 'flex';
     document.querySelector('#create-class-btn').style.display = 'block';
 }
-termValidation = () => {
-    /*
-    //to do
-    ->inputs are ok acc to current time?
-    ->if not, warnings.
-    */
+termValidation = (input) => {
+      var parse = input.split('/');
+      var day = parse[0], month = parse[1], year = parse[2];
+      var parse2 = input.split('-');
+      if(parse2[1] !== undefined){
+        var firstY = parse2[0], secondY = parse2[1];
+      }
+      return day > 0 && day <= 31 && month > 0 && month <= 12;
 }
 const addTermButton = document.querySelector('#add-term-button');
 addTermButton.addEventListener('click',function(){

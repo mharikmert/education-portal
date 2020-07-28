@@ -1,4 +1,4 @@
-var termExp,startDate,endDate,firstYear,secondYear;
+var termExp,startDate,endDate,firstYear,secondYear,expFirstYear,expSecondYear;
 getTermInputs = () => {
      termExp = document.querySelector('#term-exp').value;
      startDate = document.querySelector('#term-start-date').value;
@@ -15,9 +15,12 @@ displayInfo = () => {
 termValidation = (input) => {
       var parseSlash = input.split('/'),parseDash = input.split('-');
       var day = parseSlash[0], month = parseSlash[1], year = parseSlash[2];
-      if(input === startDate)firstYear = year;
-      if(input === endDate)secondYear = year;
       var day_monthValidation = day > 0 && day <= 31 && month > 0 && month <= 12;
+      switch(input){
+        case termExp: expFirstYear = parseDash[0], expSecondYear = parseDash[1]; break;
+        case startDate: firstYear = year; break;  //global variables assignment
+        case endDate: secondYear = year; break;
+      }
       return input === termExp ? parseDash[1]-parseDash[0] === 1 : day_monthValidation;
 }
 const addTermButton = document.querySelector('#add-term-button');
@@ -30,12 +33,14 @@ document.querySelectorAll('.term-input').forEach(item => {
     item.addEventListener('keypress',function(e){
         if(e.keyCode == 13){
             getTermInputs();
-            if(termValidation(termExp) && termValidation(startDate) && termValidation(endDate))
+            if(termValidation(termExp) && termValidation(startDate) && termValidation(endDate)){
+              console.log(expFirstYear, expSecondYear, firstYear, secondYear);
+              if(expFirstYear == firstYear && expSecondYear == secondYear)// year validation
                 displayInfo();
+            } //warning pop-up, specific warning maybe?
         }
     })
 })
-
 /*
 //to do
 ->adding one term div under the other term div respectively.

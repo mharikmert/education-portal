@@ -1,4 +1,4 @@
-var termExp,startDate,endDate,firstYear,secondYear,expFirstYear,expSecondYear;
+var termExp,startDate,endDate,firstYear,secondYear,expFirstYear,expSecondYear ;
 getTermInputs = () => {
      termExp = document.querySelector('#term-exp').value;
      startDate = document.querySelector('#term-start-date').value;
@@ -37,11 +37,7 @@ document.querySelectorAll('.term-input').forEach(item => {
               console.log(expFirstYear, expSecondYear, firstYear, secondYear);
               if(expFirstYear == firstYear && expSecondYear == secondYear)// year validation
                 displayInfo();
-            } //warning pop-up, specific warning maybe?
+            }else alert('invalid input');//warning pop-up, specific warning maybe?
         }
     })
 })
-/*
-//to do
-->adding one term div under the other term div respectively.
-*/

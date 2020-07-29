@@ -23,21 +23,23 @@ termValidation = (input) => {
       }
       return input === termExp ? parseDash[1]-parseDash[0] === 1 : day_monthValidation;
 }
+checkInfo = () => {
+    getTermInputs();
+    if(termValidation(termExp) && termValidation(startDate) && termValidation(endDate)){
+        console.log('exp first : ' + expFirstYear + 'first :'+ firstYear + 'exp second: ' + expSecondYear,'second: '+ secondYear);
+        if(expFirstYear == firstYear && expSecondYear == secondYear)// year validation
+            displayInfo();
+        else alert('Lütfen dönem yılını kontrol ediniz!');
+      }else alert('Lütfen dönem bilgilerini kontrol ediniz!');
+}
 const addTermButton = document.querySelector('#add-term-button');
 addTermButton.addEventListener('click',function(){
-    getTermInputs();
-    if(termValidation(termExp) && termValidation(startDate) && termValidation(endDate))
-        displayInfo();
+    checkInfo();
 });
 document.querySelectorAll('.term-input').forEach(item => {
     item.addEventListener('keypress',function(e){
         if(e.keyCode == 13){
-            getTermInputs();
-            if(termValidation(termExp) && termValidation(startDate) && termValidation(endDate)){
-              console.log(expFirstYear, expSecondYear, firstYear, secondYear);
-              if(expFirstYear == firstYear && expSecondYear == secondYear)// year validation
-                displayInfo();
-            }else alert('invalid input');//warning pop-up, specific warning maybe?
+            checkInfo();
         }
     })
 })

@@ -124,12 +124,6 @@ html,body{
     margin: 0 auto;
     color:white;
     position:relative;
-    /*
-    There is a litte positioning problem with warn messages.
-    If i make the position absolute, it slips for different screen sizes. In relative case;
-    Login Panel moves to down when the message poped up. I'm not good at the positioning that much yet.
-    However, not that important.I'll handle it later.
-    */
     background-color: darkred;
     font-size:100%;
     font-weight: bold;
@@ -164,10 +158,9 @@ ul{
     display:grid;
 }
 li{
-    margin-bottom: 5%;
-    background-color: white;
-    border-radius: 5%;
-    width: fit-content;
+  font-size:71%;
+  margin: 0 auto;
+  margin-bottom: 5%;
 }
 a{
     color:darkred;
@@ -276,4 +269,5 @@ input:checked + .slider:before {
     #slogan{
         padding-top: 5%;
     }
+
 }

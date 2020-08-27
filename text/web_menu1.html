@@ -3,30 +3,30 @@
     <head>
         <meta charset = "utf-8">
         <meta name = "viewport" content = "width = device-width initial-scale = 1.0">
-        <title>Dönem Tanımlama-ÇYDD Fikirtepe Öğrenci Bilgi Sistemi</title>
+        <title>Dönem Tanımlama-Fikirtepe Öğrenci Bilgi Sistemi</title>
         <link rel = "stylesheet" href = "../css/style.css">
     </head>
     <body style = "background-color:teal">
-        <h1 style = "text-align: center; color:white;">Dönem Tanımlama </h1>
+        <div id = "term-def-title" style = "text-align: center; color:green;"> <strong > Dönem Tanımlama </strong></div>
         <div id = "create-term-container">
             <input id = "term-exp" class = "term-input" placeholder="Dönem Açıklaması">
             <input id = "term-start-date" class = "term-input" placeholder="Dönem Başlangıç Tarihi">
             <input id = "term-end-date" class = "term-input" placeholder = "Dönem Bitiş Tarihi">
-            <button id = "add-term-button" class = "term-input"> <strong> Dönem Ekle </strong></button>
+            <button id = "add-term-button" class = "term-input"> <strong> Ekle </strong></button>
         </div>
         <div id = "existing-term-container">
                 <div id = "term-exp-content" class = "term-info"> </div>
                 <div id = "term-start-date-content" class = "term-info"></div>
                 <div id = "term-end-date-content" class = "term-info"></div>
-                <div id = "toggle-switch-container" class = "term-info" style = "display:none;">
-                    <h id = activity-status> Aktif </h>
+                <div id = "toggle-switch-container" class = "term-info">
+                    <h id = "activity-status"> Aktif </h>
                     <label class = "switch">
                         <input type = "checkbox">
                         <span class = "slider round"> </span>
                     </label>
                 </div>
-                <button id = "create-class-btn" style = "display:none;"> <strong> Sınıf Oluştur </strong> </button>
         </div>
+        <button id = "create-class-btn" style = "display:none;"> <strong> Sınıf Oluştur </strong> </button>
         <script src = "../js/web_menu1.js"></script>
     </body>
 </html>

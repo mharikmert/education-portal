@@ -3,6 +3,8 @@ html,body{
     background-attachment: fixed;
     background-position:center;
     background-repeat: no-repeat;
+    background-image: url("../assets-img/acibadem.jpg");
+    background-size:cover;
 }
 #slogan{
     position: relative;
@@ -169,15 +171,11 @@ a{
     background-color:teal;
     cursor:pointer;
     border-radius:7px;
+    color:white;
 }
 #create-class-btn{height:5%;}
 .term-input{
-    margin-right:4%;
     font-weight: bold;
-}
-#term-end-date{margin-right:0;}
-#create-term-container{
-    margin: 3%;
 }
 .term-info{
   margin-bottom: 2%;
@@ -187,6 +185,7 @@ a{
 #existing-term-container{
   display:flex;
   text-align:center;
+  margin:auto;
 }
 #toggle-switch-container{
   width: 10%;
@@ -198,8 +197,11 @@ a{
   margin-right: 8%;
   font-size: 100%;
 }
+#term-def-title{
+  font-size:150%;
+}
 .switch {
-  position: relative;
+  position: absolute;
   display: inline-block;
   width: 60px;
   height: 34px;
@@ -269,5 +271,23 @@ input:checked + .slider:before {
     #slogan{
         padding-top: 5%;
     }
-
 }
+@media only screen and (max-width: 375px){
+  li{
+    font-size:60%;
+  }
+}
+@media only screen and (max-width: 755px){
+  .term-input{
+    display:block;
+    margin:3% auto;
+  }
+  .term-info{
+    display:block;
+    margin:3% auto;
+  }
+  #create-class-btn{
+    margin:auto;
+  }
+}
+/*it will be changed activity information*/

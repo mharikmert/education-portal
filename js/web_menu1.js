@@ -5,7 +5,7 @@ getTermInputs = () => {
      endDate = document.querySelector('#term-end-date').value;
 }
 displayInfo = () => {
-    document.querySelector('#term-exp-content').innerHTML = '<strong>Dönem Açıklaması</strong><br>' + localStorage.getItem(termExp);
+    document.querySelector('#term-exp-content').innerHTML = '<strong>Dönem Açıklaması</strong><br>' + termExp;
     document.querySelector('#term-start-date-content').innerHTML = '<strong>Dönem Başlangıç Tarihi</strong><br>' + startDate;
     document.querySelector('#term-end-date-content').innerHTML = '<strong>Dönem Bitiş Tarihi </strong><br>' + endDate;
     document.querySelectorAll('.term-input').forEach(item=>{item.value = '';});
@@ -23,36 +23,39 @@ termValidation = (input) => {
       }
       return input === termExp ? parseDash[1]-parseDash[0] === 1 : day_monthValidation;
 }
-// checkInfo = () => {
-//     getTermInputs();
-//     if(termValidation(termExp) && termValidation(startDate) && termValidation(endDate)){
-//         console.log('exp first : ' + expFirstYear + 'first :'+ firstYear + 'exp second: ' + expSecondYear,'second: '+ secondYear);
-//         if(expFirstYear == firstYear && expSecondYear == secondYear)// year validation
-//             displayInfo();
-//         else alert('Lütfen dönem yılını kontrol ediniz!');
-//       }else alert('Lütfen dönem bilgilerini kontrol ediniz!');
-// }
-// const addTermButton = document.querySelector('#add-term-button');
-// addTermButton.addEventListener('click',function(){
-//     checkInfo();
-// });
-// document.querySelectorAll('.term-input').forEach(item => {
-//     item.addEventListener('keypress',function(e){
-//         if(e.keyCode == 13){
-//             checkInfo();
-//         }
-//     })
-// })
-var term = {
-  explanation: "2018-2019",
-  start: "06/06/2018",
-  ending: "06/06/2019"
+checkInfo = () => {
+    getTermInputs();
+    if(termValidation(termExp) && termValidation(startDate) && termValidation(endDate)){
+        console.log('exp first : ' + expFirstYear + 'first :'+ firstYear + 'exp second: ' + expSecondYear,'second: '+ secondYear);
+        if(expFirstYear == firstYear && expSecondYear == secondYear){
+            var date = new Date();
+            if(!date.getFullYear() < firstYear){
+              displayInfo();
+            }else alert('İleri tarihli bi dönem ekleyemezsiniz')
+        }
+        else alert('Lütfen dönem yılını kontrol ediniz!');
+      }else alert('Lütfen dönem bilgilerini kontrol ediniz!');
 }
-  if(typeof(Storage) !== "undefined"){
-    localStorage.setItem(termExp,term.explanation)
-  }else{
-    console.log('browser is not supported')
-  }
-console.log(localStorage.getItem(termExp))
-console.log(localStorage.getItem(startDate))
-displayInfo();
+const addTermButton = document.querySelector('#add-term-button');
+addTermButton.addEventListener('click',function(){
+    checkInfo();
+});
+document.querySelectorAll('.term-input').forEach(item => {
+    item.addEventListener('keypress',function(e){
+        if(e.keyCode == 13){
+        //   var div = document.createElement('div')
+        //   div.innerHTML = 'i ama i new div'
+        //   document.body.appendChild(div)
+            checkInfo();
+        }
+    })
+})
+displayInfo()
+const setItem = (name, value) => localStorage.setItem(name,value) //sets the var to local storage
+const removeItem = (name) => localStorage.removeItem(name) //removes from the local storage
+const getItem = (item) => localStorage.getItem(item) // gets
+
+var div = document.querySelector('#existing-term-container')
+var createClass = document.querySelector('#create-class-btn')
+// div.style.marginTop = 77 + 'px'
+// createClass.style.marginTop = 25 + '%';

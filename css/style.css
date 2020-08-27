@@ -167,13 +167,22 @@ li{
 a{
     color:darkred;
 }
-#add-term-button, #create-class-btn{
+#add-term-button, #create-class-btn, #save-term-btn{
     background-color:teal;
     cursor:pointer;
     border-radius:7px;
     color:white;
 }
-#create-class-btn{height:5%;}
+#create-class-btn, #save-term-btn{
+    height:5%;
+    margin: auto;
+    display:block;
+}
+#save-term-btn{
+  background-color:darkred;
+  width: 95px;
+  margin-top: 10px;
+}
 .term-input{
     font-weight: bold;
 }
@@ -202,7 +211,6 @@ a{
 }
 .switch {
   position: absolute;
-  display: inline-block;
   width: 60px;
   height: 34px;
 }
@@ -244,7 +252,6 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-/*toggle switch mobile responsivity*/
 @media only screen and (max-width: 600px){
     #LoginPanel, #form{
         width:100%;
@@ -272,6 +279,11 @@ input:checked + .slider:before {
         padding-top: 5%;
     }
 }
+@media only screen and (min-width: 755px){
+    #create-term-container{
+      margin-bottom: 3%;
+    }
+}
 @media only screen and (max-width: 375px){
   li{
     font-size:60%;
@@ -286,8 +298,13 @@ input:checked + .slider:before {
     display:block;
     margin:3% auto;
   }
+  #create-class-btn #save-term-btn{
+      position: absolute;
+  }
   #create-class-btn{
-    margin:auto;
+    margin-top:25%;
+  }
+  #existing-term-container{
+    position:absolute;
   }
 }
-/*it will be changed activity information*/

@@ -1,4 +1,6 @@
 var termExp,startDate,endDate,firstYear,secondYear,expFirstYear,expSecondYear ;
+var iter = 25;
+var temp = 77;
 getTermInputs = () => {
      termExp = document.querySelector('#term-exp').value;
      startDate = document.querySelector('#term-start-date').value;
@@ -26,15 +28,16 @@ termValidation = (input) => {
 checkInfo = () => {
     getTermInputs();
     if(termValidation(termExp) && termValidation(startDate) && termValidation(endDate)){
-        console.log('exp first : ' + expFirstYear + 'first :'+ firstYear + 'exp second: ' + expSecondYear,'second: '+ secondYear);
         if(expFirstYear == firstYear && expSecondYear == secondYear){
             var date = new Date();
             if(!date.getFullYear() < firstYear){
               displayInfo();
+              return true;
             }else alert('İleri tarihli bi dönem ekleyemezsiniz')
         }
         else alert('Lütfen dönem yılını kontrol ediniz!');
       }else alert('Lütfen dönem bilgilerini kontrol ediniz!');
+    return false;
 }
 const addTermButton = document.querySelector('#add-term-button');
 addTermButton.addEventListener('click',function(){
@@ -43,10 +46,11 @@ addTermButton.addEventListener('click',function(){
 document.querySelectorAll('.term-input').forEach(item => {
     item.addEventListener('keypress',function(e){
         if(e.keyCode == 13){
-        //   var div = document.createElement('div')
-        //   div.innerHTML = 'i ama i new div'
-        //   document.body.appendChild(div)
-            checkInfo();
+          iter += 25;
+          temp += 70;
+            div.style.marginTop= temp + 'px'
+            createClass.style.marginTop = iter + '%'
+            checkInfo()
         }
     })
 })
@@ -57,5 +61,3 @@ const getItem = (item) => localStorage.getItem(item) // gets
 
 var div = document.querySelector('#existing-term-container')
 var createClass = document.querySelector('#create-class-btn')
-// div.style.marginTop = 77 + 'px'
-// createClass.style.marginTop = 25 + '%';

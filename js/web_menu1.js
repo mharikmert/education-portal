@@ -30,7 +30,7 @@ checkInfo = () => {
         if(expFirstYear == firstYear && expSecondYear == secondYear)// year validation
             displayInfo();
         else alert('Lütfen dönem yılını kontrol ediniz!');
-      }else alert('Lütfen dönem bilgilerini kontrol ediniz!');
+      }else alert('Lütfen dönem bilgilerini kontrol ediniz!'); 
 }
 const addTermButton = document.querySelector('#add-term-button');
 addTermButton.addEventListener('click',function(){

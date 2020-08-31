@@ -16,6 +16,7 @@ displayInfo = () => {
     document.querySelector('#term-end-date-content').innerHTML = '<strong>Dönem Bitiş Tarihi </strong><br>' + term.endDate;
     document.querySelectorAll('.term-input').forEach(item=>{item.value = '';});
     document.querySelector('#toggle-switch-container').style.display = 'flex';
+    document.querySelector('#save-btn').style.display = 'block';
     document.querySelector('#create-class-btn').style.display = 'block';
 }
 termValidation = (input) => {
@@ -47,26 +48,38 @@ var termCounter = 1;
 const addTermButton = document.querySelector('#add-term-button');
 addTermButton.addEventListener('click',function(){
   if(checkInfo()){
-    displayInfo();
     cloneDiv();
-
+    displayInfo();
+    addDiv();
   }
-      });
-
+});
 document.querySelectorAll('.term-input').forEach(item => {
     item.addEventListener('keypress',function(e){
-        // if(e.keyCode == 13){
-        //   if(checkInfo()){
-        //   }
-        // }
-})
+        if(e.keyCode == 13){
+          if(checkInfo()){
+              cloneDiv();
+              displayInfo();
+              addDiv();
+          }
+        }
+    })
 })
 cloneDiv = () => {
   var elem = document.querySelector('#existing-term-container')
   var clone = elem.cloneNode(true)
-  
+  // clone.classList.add('text-large')
+  // elem.after(clone)
 }
-
+addDiv = () => {
+  const newDiv = document.createElement('div')
+  newDiv.className = 'term-info';
+  const newContent = document.createTextNode('its text node')
+  newDiv.appendChild(newContent)
+  const currentDiv = document.getElementById('existing-term-container')
+  document.body.insertBefore(newDiv, currentDiv)
+  // getTermInputs(); newDiv = document.getElementById('existing-term-container')
+  // console.log(newDiv)
+}
 const setItem = (name, value) => localStorage.setItem(name,value) //sets the var to local storage
 const removeItem = (name) => localStorage.removeItem(name) //removes from the local storage
 const getItem = (item) => localStorage.getItem(item) // gets

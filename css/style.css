@@ -194,7 +194,7 @@ a{
 #existing-term-container{
   display:flex;
   text-align:center;
-  margin:auto;
+  margin-right: 0px;
 }
 #toggle-switch-container{
   width: 10%;
@@ -275,7 +275,7 @@ input:checked + .slider:before {
         width: 120%;
         margin-left: -10%;
     }
-    #slogan{
+    #slogan{asdasd
         padding-top: 5%;
     }
 }
@@ -295,16 +295,6 @@ input:checked + .slider:before {
     margin:3% auto;
   }
   .term-info{
-    display:block;
     margin:3% auto;
-  }
-  #create-class-btn #save-term-btn{
-      position: absolute;
-  }
-  #create-class-btn{
-    margin-top:25%;
-  }
-  #existing-term-container{
-    position:absolute;
   }
 }

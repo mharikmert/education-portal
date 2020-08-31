@@ -167,30 +167,37 @@ li{
 a{
     color:darkred;
 }
-#add-term-button, #create-class-btn, #save-term-btn{
+#create-term-container{
+  margin-top: 2%;
+}
+.term-input{
+  margin-right:5%;
+}
+#term-end-date{
+  margin:auto;
+}
+#add-term-button, #create-class-btn, #save-btn{
     background-color:teal;
     cursor:pointer;
     border-radius:7px;
     color:white;
 }
-#create-class-btn, #save-term-btn{
+#create-class-btn, #save-btn{
     height:5%;
     margin: auto;
     display:block;
 }
-#save-term-btn{
+#save-btn{
   background-color:darkred;
   width: 95px;
   margin-top: 10px;
-}
-.term-input{
-    font-weight: bold;
 }
 .term-info{
   margin-bottom: 2%;
   margin-left:3%;
   margin-right: 3%;
 }
+
 #existing-term-container{
   display:flex;
   text-align:center;

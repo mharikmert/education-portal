@@ -76,9 +76,7 @@ addDiv = () => {
   const newContent = document.createTextNode('its text node')
   newDiv.appendChild(newContent)
   const currentDiv = document.getElementById('existing-term-container')
-  document.body.insertBefore(newDiv, currentDiv)
-  // getTermInputs(); newDiv = document.getElementById('existing-term-container')
-  // console.log(newDiv)
+  document.body.insertBefore(newDiv,currentDiv)
 }
 const setItem = (name, value) => localStorage.setItem(name,value) //sets the var to local storage
 const removeItem = (name) => localStorage.removeItem(name) //removes from the local storage

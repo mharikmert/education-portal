@@ -8,9 +8,8 @@
         <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     </head>
     <body id = "LoginPage">
-        <div id = "LoginTopLine">
+            <div id = "LoginTopLine">
             <div id = "LoginTitle">
-                <!-- ÇYDD&nbsp;|&nbsp; -->
                 Öğrenci&nbsp;Bilgi&nbsp;Sistemi
             </div>
         </div>
@@ -34,23 +33,23 @@
                 <div id = "form">
                     <div class = "userInput">
                         <i id = "user-image" class = "login-images"></i>
-                        <input id = "userID" class = "input" placeholder = "Kullanıcı Adı / TCKN">
+                        <input id = "userID" class = "input" name = "user_id" placeholder = "Kullanıcı Adı / TCKN">
                     </div>
                     <div id = "password-div" class = "userInput">
                         <i id = "password-image" class = "login-images"></i>
-                        <input type = "password" id = "password" class = "input" name = "password" placeholder = "Şifre" autocomplete = "off" aria-hidden ="false">
+                        <input type = "password" id = "password" name = "user_password" class = "input" name = "password" placeholder = "Şifre" autocomplete = "off" aria-hidden ="false">
                         <i id = "toggle-password" class ="far fa-eye"> </i>
                         </div>
                     <div id = branch-div class = "userInput">
                         <i id = "branch-image" class = "login-images"></i>
                         <select id = "branch" class = "input">
-                            <option class = "option" value = "0" selected = "true" disabled = "disabled"> Şube </option>
-                            <option class = "option" value = "1"> Fikirtepe </option>
-                            <option class = "option" value = "2"> Temporary Branch </option>
+                            <option class = "option" value = "0" name = "default" selected = "true" disabled = "disabled"> Şube </option>
+                            <option class = "option" value = "1" name = "Fikirtepe"> Fikirtepe </option>
+                            <option class = "option" value = "2" name = "Temporary Branch"> Temporary Branch </option>
                         </select>
                     </div>
                     <div id = "log-button-div">
-                        <button id = "login-button" class = "input"> <strong> GİRİŞ </strong> </button>
+                        <button id = "login-button" class = "input" type = "submit" value = "submit"> <strong> GİRİŞ </strong> </button>
                     </div>
                     <div id = "for-pass-div">
                         <i class = "arrow"></i>

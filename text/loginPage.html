@@ -30,7 +30,7 @@
         <div id = "LoginPanel">
             <div id= slogan> EĞİTİM & DEĞİŞİM & GELİŞİM </div>
             <div id = "logo"></div>
-                <div id = "form">
+                <form id = "form" method = "post" action = "..db/process.php">
                     <div class = "userInput">
                         <i id = "user-image" class = "login-images"></i>
                         <input id = "userID" class = "input" name = "user_id" placeholder = "Kullanıcı Adı / TCKN">
@@ -44,8 +44,8 @@
                         <i id = "branch-image" class = "login-images"></i>
                         <select id = "branch" class = "input">
                             <option class = "option" value = "0" name = "default" selected = "true" disabled = "disabled"> Şube </option>
-                            <option class = "option" value = "1" name = "Fikirtepe"> Fikirtepe </option>
-                            <option class = "option" value = "2" name = "Temporary Branch"> Temporary Branch </option>
+                            <option class = "option" value = "1" name = "user_branch"> Fikirtepe </option>
+                            <option class = "option" value = "2" name = "user_branch"> Temporary Branch </option>
                         </select>
                     </div>
                     <div id = "log-button-div">
@@ -59,7 +59,7 @@
                         <i class = "arrow"></i>
                         <button id = "create-password" class = "input"> İlk şifremi oluştur </button>
                     </div>
-                </div>
+                </form>
         </div>
         <script src = "../js/app.js">
         </script>

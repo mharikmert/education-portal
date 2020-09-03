@@ -2,22 +2,25 @@
 $server = 'localhost';
 $username = 'root';
 $password = '';
-$db = 'fikirtepedb';
+$db = 'testdb';
 
-$con = mysqli_connect($server, $username, $password);
-
+$con = new mysqli($server, $username, $password, $db);
 if(!$con){
   echo "connection failed! ";
-}
+}else echo "connection succedded ";
+
 if(!mysqli_select_db($con, $db)){
   echo "database not selected";
-}
+}else echo "database -> $db ";
 
-$id = $_POST['user_id'];
-$password = $_POST['user_password'];
-$sql = "INSERT INTO kayit_log(id, password) VALUES ('$id', '$password')";
+$id = $_POST["user_id"];
+$password = $_POST["user_password"];
+// echo "id : $id password: $password"; //it is working
 
-if(!mysqli_query($con, $sql)){
-  echo " not inserted";
-}else echo "inserted";
+$sql = "INSERT INTO user (username, password) VALUES ($id,$password)";
+
+if($con->query($sql) == TRUE){
+  echo "succesfully";
+}else echo "ups not inserted";
+// header("refresh:2; url = web_menu.html");
 ?>

@@ -48,18 +48,18 @@ var termCounter = 1;
 const addTermButton = document.querySelector('#add-term-button');
 addTermButton.addEventListener('click',function(){
   if(checkInfo()){
-    cloneDiv();
+    // cloneDiv();
     displayInfo();
-    addDiv();
+    // addDiv();
   }
 });
 document.querySelectorAll('.term-input').forEach(item => {
     item.addEventListener('keypress',function(e){
         if(e.keyCode == 13){
           if(checkInfo()){
-              cloneDiv();
+              // cloneDiv();
               displayInfo();
-              addDiv();
+              // addDiv();
           }
         }
     })
@@ -70,14 +70,14 @@ cloneDiv = () => {
   // clone.classList.add('text-large')
   // elem.after(clone)
 }
-addDiv = () => {
+/*addDiv = () => {
   const newDiv = document.createElement('div')
   newDiv.className = 'term-info';
   const newContent = document.createTextNode('its text node')
   newDiv.appendChild(newContent)
   const currentDiv = document.getElementById('existing-term-container')
   document.body.insertBefore(newDiv,currentDiv)
-}
+}*/
 const setItem = (name, value) => localStorage.setItem(name,value) //sets the var to local storage
 const removeItem = (name) => localStorage.removeItem(name) //removes from the local storage
 const getItem = (item) => localStorage.getItem(item) // gets

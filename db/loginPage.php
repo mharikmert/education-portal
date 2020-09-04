@@ -12,5 +12,5 @@ VALUES('$user_id','$user_password','$user_branch')";
 if($conn->query($sql)){
   echo "data saved to table";
 }else echo "data couldn't save the table";
-// header("location: ../text/web_menu1.html");
+header("location: ../text/web_menu1.html");
  ?>

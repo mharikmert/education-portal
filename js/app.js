@@ -16,7 +16,7 @@ isValidUserID = (userID) => {
     if ( (odd * 7 -even ) % 10 !== parseInt(userID.substr(-2, 1), 10)) {
         return false;
     }
-    tenTotal += parseInt(tenTotalArray[9], 10); 
+    tenTotal += parseInt(tenTotalArray[9], 10);
     if (tenTotal % 10 !== parseInt(userID.substr(-1), 10)) {
         return false;
     }
@@ -52,13 +52,13 @@ checkUserID = (userID) =>{
 loginVerification = (userID,password,branch) =>{
     if(userID == 0 || password == 0) showWarning('lack-of-data')
     else if(branch == 0) showWarning('branch-warn')
-    else if(isValidUserID(userID) && isValidPassword(password)) redirect('web_menu.html'); 
+    else if(isValidUserID(userID) && isValidPassword(password)) 
     else showWarning('wrong-data');
 }
 getInputValues = () =>{
-    inputList[0] = getElement('#userID').value; 
-    inputList[1] = getElement('#password').value;   
-    inputList[2] = getElement('#branch').value; 
+    inputList[0] = getElement('#userID').value;
+    inputList[1] = getElement('#password').value;
+    inputList[2] = getElement('#branch').value;
 }
 getElement("#login-button").addEventListener('click',function() {
     getInputValues();
@@ -68,7 +68,7 @@ document.querySelectorAll('.input').forEach(item => {
     item.addEventListener('keypress',function(e){
     getInputValues();
     if(e.keyCode == 13)//enter key code
-        loginVerification(inputList[0],inputList[1],inputList[2]);    
+        loginVerification(inputList[0],inputList[1],inputList[2]);
     })
 })
 showWarning = (id) => {
@@ -76,7 +76,7 @@ showWarning = (id) => {
     setTimeout(() => {
     getElement('#'+id).style.display = 'none';
     },1500)
-}   
+}
 redirect = (URL) => {
     window.location.href = URL;
 }

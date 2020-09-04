@@ -10,9 +10,9 @@ $table = "CREATE TABLE testTable(
   password VARCHAR(20) NOT NULL,
   branch VARCHAR(20) NOT NULL
 )";
+
 if($connection->query($table)){
   echo " table test table is created successfully";
 }else echo "error creating table : " . $connection->error;
 $connection->close();
-
 ?>

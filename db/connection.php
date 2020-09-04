@@ -1,12 +1,9 @@
-<?php
-  $server = "localhost";
-  $username = "root";
-  $password = "";
-  $db = "fikirtepedb";
+<html>
+<form method="POST" action = "loginPage.php">
+  id : <input name = "user_id"/>
+  pass: <input name = "user_password"/>
+  branch : <input name = "user_branch">
+  <input type = "submit" value = "login"/>
 
-    $conn = new mysqli($server, $username, $password, $db) or die('unable to connect');
-    //$conn = mysqli_connect($server, $username, $password, $db);
-    $conn-> close();
-    //mysqli_close($conn);
-  echo "connection succedded";
-?>
+</form>
+</html>

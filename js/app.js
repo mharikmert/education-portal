@@ -52,7 +52,9 @@ checkUserID = (userID) =>{
 loginVerification = (userID,password,branch) =>{
     if(userID == 0 || password == 0) showWarning('lack-of-data')
     else if(branch == 0) showWarning('branch-warn')
-    else if(isValidUserID(userID) && isValidPassword(password)) 
+    else if(isValidUserID(userID) && isValidPassword(password)){
+      document.querySelector('#form').action = '../db/loginPage.php';
+    }
     else showWarning('wrong-data');
 }
 getInputValues = () =>{

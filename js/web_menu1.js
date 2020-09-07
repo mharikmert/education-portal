@@ -67,17 +67,6 @@ document.querySelectorAll('.term-input').forEach(item => {
 cloneDiv = () => {
   var elem = document.querySelector('#existing-term-container')
   var clone = elem.cloneNode(true)
-  // clone.classList.add('text-large')
-  // elem.after(clone)
-}
-/*addDiv = () => {
-  const newDiv = document.createElement('div')
-  newDiv.className = 'term-info';
-  const newContent = document.createTextNode('its text node')
-  newDiv.appendChild(newContent)
-  const currentDiv = document.getElementById('existing-term-container')
-  document.body.insertBefore(newDiv,currentDiv)
-}*/
 const setItem = (name, value) => localStorage.setItem(name,value) //sets the var to local storage
 const removeItem = (name) => localStorage.removeItem(name) //removes from the local storage
 const getItem = (item) => localStorage.getItem(item) // gets

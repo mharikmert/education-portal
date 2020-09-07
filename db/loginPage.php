@@ -1,5 +1,5 @@
 <?php
- $conn = mysqli_connect('localhost', 'root','','fikirtepe') or die ("unable to connect");
+ $conn = mysqli_connect('localhost', 'root','','FikirtepeDB') or die ("unable to connect");
 
  if($_SERVER['REQUEST_METHOD'] == 'POST'){
   $user_id = $_POST['user_id'];

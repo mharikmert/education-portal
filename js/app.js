@@ -81,6 +81,7 @@ showWarning = (id) => {
 }
 redirect = (URL) => {
     window.location.href = URL;
+    return true;
 }
 //toggle password visibility
 const togglePassword = getElement('#toggle-password');
@@ -90,3 +91,10 @@ togglePassword.addEventListener('click',function(){
     passwordX.setAttribute('type',type);
     this.classList.toggle('fa-eye-slash');
 });
+document.querySelector('#forgot-password').addEventListener('click', function(){
+    redirect('../text/forgot-password-page.html');
+});
+document.querySelector('#create-password').addEventListener('click', function(){
+    redirect('../text/create-password-page.html');
+});
+

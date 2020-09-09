@@ -120,6 +120,4 @@
         if($conn->query($table)) echo "$str table created..<br>";
         else mysqli_error($conn);
     }
-
-
  ?>

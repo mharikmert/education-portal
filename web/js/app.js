@@ -27,7 +27,7 @@ isValidPassword = (password) => {
     password = String(password);
     var passArr = password.substr(0,password.length).split('');
     for(var i = 0; i < passArr.length; i++){
-        //upper case- lower caseletter control
+        //upper case- lower case letter control
         var ch = password.charAt(i);
         if(ch >= 'A' && ch <= 'Z') upperCaseCounter++;
         else if(ch >= 'a' && ch <= 'z') lowerCaseCounter++;
@@ -36,9 +36,8 @@ isValidPassword = (password) => {
         //if(Number.isInteger(parseInt(passArr[i]))) intCounter++;
         else elseCounter++; //it will be edited, which characters?
     }
-    if(password.length >= 6 && upperCaseCounter > 0 && lowerCaseCounter > 0 && intCounter > 0)
-        return true;
-    return false;
+    return password.length >= 6 && upperCaseCounter > 0 && lowerCaseCounter > 0 && intCounter > 0;
+
 };
 getElement = (id) =>{
     return document.querySelector(id);
@@ -50,10 +49,10 @@ checkUserID = (userID) =>{
     //this part is also after from DB
 };
 loginVerification = (userID,password,branch) =>{
-    if(userID == 0 || password == 0) showWarning('lack-of-data')
-    else if(branch == 0) showWarning('branch-warn')
+    if(userID === 0 || password === 0) showWarning('lack-of-data');
+    else if(branch === 0) showWarning('branch-warn');
     else if(isValidUserID(userID) && isValidPassword(password)){
-      document.querySelector('#form').action = '../db/loginPage.php';
+      document.querySelector('#form').action = '../index.jsp/';
     }
     else showWarning('wrong-data');
 };

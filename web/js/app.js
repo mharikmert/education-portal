@@ -21,7 +21,7 @@ isValidUserID = (userID) => {
         return false;
     }
     return true;
-}
+};
 isValidPassword = (password) => {
     var intCounter = 0,lowerCaseCounter= 0,upperCaseCounter = 0,elseCounter = 0;
     password = String(password);
@@ -39,16 +39,16 @@ isValidPassword = (password) => {
     if(password.length >= 6 && upperCaseCounter > 0 && lowerCaseCounter > 0 && intCounter > 0)
         return true;
     return false;
-}
+};
 getElement = (id) =>{
     return document.querySelector(id);
-}
+};
 checkPassword = (password) => {
     //this part is after from DB
-}
+};
 checkUserID = (userID) =>{
     //this part is also after from DB
-}
+};
 loginVerification = (userID,password,branch) =>{
     if(userID == 0 || password == 0) showWarning('lack-of-data')
     else if(branch == 0) showWarning('branch-warn')
@@ -56,12 +56,12 @@ loginVerification = (userID,password,branch) =>{
       document.querySelector('#form').action = '../db/loginPage.php';
     }
     else showWarning('wrong-data');
-}
+};
 getInputValues = () =>{
     inputList[0] = getElement('#userID').value;
     inputList[1] = getElement('#password').value;
     inputList[2] = getElement('#branch').value;
-}
+};
 getElement("#login-button").addEventListener('click',function() {
     getInputValues();
     loginVerification(inputList[0],inputList[1],inputList[2]);
@@ -69,20 +69,20 @@ getElement("#login-button").addEventListener('click',function() {
 document.querySelectorAll('.input').forEach(item => {
     item.addEventListener('keypress',function(e){
     getInputValues();
-    if(e.keyCode == 13)//enter key code
+    if(e.keyCode === 13)//enter key code
         loginVerification(inputList[0],inputList[1],inputList[2]);
     })
-})
+});
 showWarning = (id) => {
     getElement('#'+id).style.display = 'block';
     setTimeout(() => {
     getElement('#'+id).style.display = 'none';
     },1500)
-}
+};
 redirect = (URL) => {
     window.location.href = URL;
     return true;
-}
+};
 //toggle password visibility
 const togglePassword = getElement('#toggle-password');
 const passwordX = getElement('#password');

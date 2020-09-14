@@ -1,18 +1,21 @@
-import java.sql*;
-class connection{
-    public static void main(String[]args){
+import java.sql.Connection;
+import java.sql.DriverManager;
+class db{
+    private static final String JDBC_Driver = "com.mysql.jdbc.Driver";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/fikirtepedb";
+    private static final String username = "root";
+    private static final String password = "";
+    private void connect(){
         try{
-            Class.forName("com.Mysql.jdbc.Driver"){
-                Connection conn = DriverManager.getConnection(
-                        "jdbc:mysql://localhost/3306/FikirtepeDB","root","");
-                Statement stmt = conn.createStatement();
-                )
-            }
-            conn.open();
-            System.out.println("connection successfully");
-            conn.close();
+            Class.forName(JDBC_Driver);
+            System.out.println("connection successful");
+            Connection conn = DriverManager.getConnection(DB_URL, username, password);
         }catch(Exception ex){
-            System.out.println("connection failed");
+            ex.printStackTrace();
         }
+    }
+    public static void main(String [] ærgs){
+        db db = new db();
+        db.connect();
     }
 }

@@ -12,7 +12,7 @@ class db{
             Connection conn = DriverManager.getConnection(DB_URL, username, password);
         }catch(Exception ex){
             ex.printStackTrace();
-        }
+         }
     }
     public static void main(String [] ærgs){
         db db = new db();

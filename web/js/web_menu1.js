@@ -63,10 +63,4 @@ document.querySelectorAll('.term-input').forEach(item => {
           }
         }
     })
-})
-cloneDiv = () => {
-  var elem = document.querySelector('#existing-term-container')
-  var clone = elem.cloneNode(true)
-const setItem = (name, value) => localStorage.setItem(name,value) //sets the var to local storage
-const removeItem = (name) => localStorage.removeItem(name) //removes from the local storage
-const getItem = (item) => localStorage.getItem(item) // gets
+});

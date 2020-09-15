@@ -52,7 +52,7 @@ loginVerification = (userID,password,branch) =>{
     if(userID === 0 || password === 0) showWarning('lack-of-data');
     else if(branch === 0) showWarning('branch-warn');
     else if(isValidUserID(userID) && isValidPassword(password)){
-      document.querySelector('#form').action = '../index.jsp/';
+      document.querySelector('#form').action = '../jsp/index.jsp/';
     }
     else showWarning('wrong-data');
 };

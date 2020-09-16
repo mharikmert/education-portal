@@ -3,7 +3,7 @@ import java.sql.*;
 class connection{
     private Connection conn = null;
     private static final String JDBC_Driver = "com.mysql.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/fikirtepe";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/FikirtepeDB";
     private static final String username = "root";
     private static final String password = "";
     private Connection connect(){

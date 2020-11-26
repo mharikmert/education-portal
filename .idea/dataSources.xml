@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="MySQL - fikirtepedb@localhost" uuid="be85f5df-8e29-458b-ab6a-3b1d04c5f216">
-      <driver-ref>mysql.8</driver-ref>
+    <data-source source="LOCAL" name="FikirtepeDB@localhost" uuid="43fcd711-cfd7-4cdb-bc80-6c4f303d1b66">
+      <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/FikirtepeDB</jdbc-url>

@@ -11,6 +11,6 @@
     <title>$Title$</title>
   </head>
   <body>
-    <% out.println("hello jsp"); %>
+    <% System.out.println("hello jsp"); %>
   </body>
 </html>

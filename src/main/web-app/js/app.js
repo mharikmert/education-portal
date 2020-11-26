@@ -96,4 +96,3 @@ document.querySelector('#forgot-password').addEventListener('click', function(){
 document.querySelector('#create-password').addEventListener('click', function(){
     redirect('../text/create-password-page.html');
 });
-

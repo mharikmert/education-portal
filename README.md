@@ -1,2 +1,0 @@
-
-# Fikirtepe-Student-Information-System

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width = device-width initial-scale = 1.0">
+        <title>Dönem Tanımlama-Fikirtepe Öğrenci Bilgi Sistemi</title>
+        <link rel = "stylesheet" href = "../../css/style.css">
+    </head>
+    <body style = "background-color:teal">
+        <div id = "term-def-title" style = "text-align: center; color:green;"> <strong > Dönem Tanımlama </strong></div>
+        <div id = "create-term-container">
+            <input id = "term-exp" class = "term-input" placeholder="Dönem Açıklaması(Yıl-Yıl)">
+            <input id = "term-start-date" class = "term-input" placeholder="Dönem Başlangıç Tarihi(gg/aa/yy)">
+            <input id = "term-end-date" class = "term-input" placeholder = "Dönem Bitiş Tarihi(gg/aa/yy)">
+            <button id = "add-term-button" class = "term-input"> <strong> Ekle </strong></button>
+        </div>
+        <div id = "existing-term-container">
+                <div id = "term-exp-content" class = "term-info"> </div>
+                <div id = "term-start-date-content" class = "term-info"></div>
+                <div id = "term-end-date-content" class = "term-info"></div>
+                <div id = "toggle-switch-container" class = "term-info" style= "display: none;">
+                    <h id = "activity-status"> Aktif </h>
+                    <label class = "switch">
+                        <input type = "checkbox">
+                        <span class = "slider round"> </span>
+                    </label>
+                </div>
+                <button id = "create-class-btn" class = 'buttons' style  = "display:none;"> <strong> Sınıf Oluştur </strong> </button>
+        </div>
+          <button id = "save-btn" class = 'buttons' style = "display:none;"> <strong> Kaydet </strong> </button>
+        <script src = "../js/web_menu1.js"></script>
+    </body>
+</html>

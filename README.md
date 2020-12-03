@@ -1,1 +1,1 @@
-We are trying to develop a student information system with Spring Boot and Gradle.
+Fikirtepe Student Information System with Spring Boot and Gradle.

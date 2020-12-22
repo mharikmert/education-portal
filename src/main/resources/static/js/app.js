@@ -1,18 +1,19 @@
-
-let currentUser = {
+//current user object
+const currentUser = {
     id: null,
     password: null
 };
 
-// use to registration part
+// use for registration part
+
+//id validation method for turkish identity number
 isValidUserID = (userID) => {
     userID = String(userID);
     if (userID.substring(0, 1) === '0') return false;
     if (userID.length !== 11) return false;
 
     const tenTotalArray = userID.substr(0, 10).split('');
-    let odd,even;
-    let tenTotal = odd = even = 0;
+    let odd = 0,even = 0, tenTotal = 0;
 
     let j;
     for (let i = j = 0; i < 9; ++i) {
@@ -30,6 +31,8 @@ isValidUserID = (userID) => {
 };
 
 // user to registration part
+
+// password validation, for strong passwords
 isValidPassword = (password) => {
     let intCounter = 0, lowerCaseCounter = 0, upperCaseCounter = 0, elseCounter = 0;
     password = String(password);
@@ -59,25 +62,60 @@ checkUserID = (userID) =>{
     //get user id from db
 };
 
+//get request to the service for login verification
+getRequest = () => {
+    const xhr = new XMLHttpRequest();
+    const url = "http://localhost:8080/api/users";
+    // open a synchronous request
+    xhr.open("GET",url,false);
+    xhr.send(null);
+    // assign the response to a const and parse
+    const responseJson = xhr.responseText;
+
+    // parse? or verification message?
+}
+
+
+//post request to the backend service with user id and password info for registration
 postRequest = () => {
     console.log("in post request");
     const xhr = new XMLHttpRequest();
     const url = "http://localhost:8080/api/users";
     xhr.open("POST",url,true);
     xhr.setRequestHeader("Content-Type","application/json");
+
     xhr.onreadystatechange = function(){
         if(xhr.readyState === 3 && xhr.status === 200){
             const json = JSON.parse(xhr.responseText);
-            console.log(json.id,json.password);
+            //console.log(json.id,json.password);
         }
     };
+    //convert the data to json objects
     const data = JSON.stringify({
         "id": currentUser.id,
         "password": currentUser.password
     });
+
+    console.log(data);
+    xhr.send(data);
+    console.log('response -> ' + xhr.responseText);
+    return xhr.responseText;
+}
+
+postUserInfo = (url) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST",url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    const data = JSON.stringify({
+        "ip" : currentUser.id,
+        "password" : currentUser.password
+    });
+
     xhr.send(data);
 }
 
+
+// login verification
 loginVerification = (userID,password) =>{
     if(userID === 0 || password === 0) showWarning('lack-of-data');
     else if(!((isValidPassword(password)) && isValidUserID(userID)))
@@ -87,30 +125,48 @@ loginVerification = (userID,password) =>{
     // return isValidUserID(userID) && isValidPassword(password);
 };
 
+//event listener for all input divs, click function will be updated
 document.querySelectorAll('.input').forEach(item => {
     item.addEventListener('keypress',function(e){
 
-        if(e.keyCode === 13){
+        if(e.keyCode === 13){ // enter key code
+            // set the id and password of current id input value to current user
             currentUser.id = document.querySelector('#userID').value;
             currentUser.password = document.querySelector('#password').value;
-            console.log(currentUser);
 
-            if(loginVerification(currentUser.id, currentUser.password)){
+            //console.log(postUserInfo("http://localhost:8080/api/login"));
+
+            //call the login verification method to check login info
+            //if(loginVerification(currentUser.id, currentUser.password)){
+                //send to the post request with id and password and redirect to the page
                 postRequest();
-                window.location.replace("../text/web_menu.html");
-            }
+                //const response = getRequest();
+                //const parsed = JSON.parse(response);
+                //console.log(parsed);
+                //window.location.replace("../text/web_menu.html");
+            //}
         }
     })
 });
 
+
+document.querySelector('#login-button').addEventListener('click', function (){
+    //post to the login info to the service;
+    //console.log(postRequest());
+
+});
+
+//take the id property as parameter of warning place and display during 1.5 secs
 showWarning = (id) => {
     document.querySelector('#'+id).style.display = 'block';
+    // warning place visibility timout
     setTimeout(() => {
     document.querySelector('#'+id).style.display = 'none';
     },1500)
 };
 
 
+//redirect the page to given url
 redirect = (URL) => {
     window.location.href = URL;
     return true;
@@ -121,6 +177,7 @@ const togglePassword = document.querySelector('#toggle-password');
 const passwordX = document.querySelector('#password');
 
 togglePassword.addEventListener('click',function(){
+    //when clicked the eye, change the password visibility
     const type = passwordX.getAttribute('type') === 'password' ? 'text' : 'password';
     passwordX.setAttribute('type',type);
     this.classList.toggle('fa-eye-slash');

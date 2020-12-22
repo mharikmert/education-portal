@@ -23,12 +23,12 @@ isValidUserID = (userID) => {
     return true;
 };
 isValidPassword = (password) => {
-    var intCounter = 0,lowerCaseCounter= 0,upperCaseCounter = 0,elseCounter = 0;
+    let intCounter = 0, lowerCaseCounter = 0, upperCaseCounter = 0, elseCounter = 0;
     password = String(password);
-    var passArr = password.substr(0,password.length).split('');
-    for(var i = 0; i < passArr.length; i++){
+    const passArr = password.substr(0, password.length).split('');
+    for(let i = 0; i < passArr.length; i++){
         //upper case- lower case letter control
-        var ch = password.charAt(i);
+        const ch = password.charAt(i);
         if(ch >= 'A' && ch <= 'Z') upperCaseCounter++;
         else if(ch >= 'a' && ch <= 'z') lowerCaseCounter++;
         //integer control
@@ -48,22 +48,38 @@ checkPassword = (password) => {
 checkUserID = (userID) =>{
     //this part is also after from DB
 };
-loginVerification = (userID,password,branch) =>{
+postRequest = (userID, password) => {
+    console.log("in post request");
+    const xhr = new XMLHttpRequest();
+    const url = "http://localhost:8080/api/users";
+    xhr.open("POST",url,true);
+    xhr.setRequestHeader("Content-Type","application/json");
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState === 3 && xhr.status === 200){
+            const json = JSON.parse(xhr.responseText);
+            console.log(json.id,json.password);
+        }
+    };
+    const data = JSON.stringify({
+        "id": inputList[0],
+        "password": inputList[1]
+    });
+    xhr.send(data);
+}
+loginVerification = (userID,password) =>{
     if(userID === 0 || password === 0) showWarning('lack-of-data');
-    else if(branch === 0) showWarning('branch-warn');
     else if(isValidUserID(userID) && isValidPassword(password)){
-      document.querySelector('#form').action = '../jsp/index.jsp/';
+        postRequest(userID, password);
     }
     else showWarning('wrong-data');
 };
 getInputValues = () =>{
     inputList[0] = getElement('#userID').value;
     inputList[1] = getElement('#password').value;
-    inputList[2] = getElement('#branch').value;
 };
 getElement("#login-button").addEventListener('click',function() {
     getInputValues();
-    loginVerification(inputList[0],inputList[1],inputList[2]);
+    loginVerification(inputList[0],inputList[1]);
 });
 document.querySelectorAll('.input').forEach(item => {
     item.addEventListener('keypress',function(e){
@@ -96,3 +112,20 @@ document.querySelector('#forgot-password').addEventListener('click', function(){
 document.querySelector('#create-password').addEventListener('click', function(){
     redirect('../text/create-password-page.html');
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

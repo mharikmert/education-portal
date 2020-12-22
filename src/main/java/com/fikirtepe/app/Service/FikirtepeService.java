@@ -7,4 +7,5 @@ import java.util.List;
 public interface FikirtepeService {
     void createUser(User user);
     List<User> getUsers();
+    User findById(long id);
 }

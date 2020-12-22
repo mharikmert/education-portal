@@ -1,12 +1,4 @@
-server:
-  port:8080
 spring:
-  application:
-    name:microservices
   jpa:
-    database-platform: org.hibernate.dialect.MySQL5Dialect
-    show-sql: true
     hibernate:
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: update

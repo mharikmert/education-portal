@@ -1,7 +1,6 @@
 package com.fikirtepe.app.Controller;
 
 import com.fikirtepe.app.Model.User;
-import com.fikirtepe.app.Repository.UserRepository;
 import com.fikirtepe.app.Service.FikirtepeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,15 +19,26 @@ public class UserController {
     }
 
     @RequestMapping( value = "/api/users", method = RequestMethod.POST)
-    public void createUser(@RequestBody User user){
+    public ResponseEntity<User> createUser(@RequestBody User user){
         user.setName("hilmi");
         user.setSurname("arikmert");
 
         fikirtepeService.createUser(user);
-        System.out.println(user.toString());
+        return ResponseEntity.ok(user);
     }
     @RequestMapping(value = "api/users", method = RequestMethod.GET)
     public ResponseEntity<List<User>> getUsers(){
         return ResponseEntity.ok(fikirtepeService.getUsers());
     }
+
+   @RequestMapping(value = "api/login", method = RequestMethod.POST)
+   public void userControl(@RequestBody User user){
+        User temp = fikirtepeService.findById(user.getId());
+        System.out.println(temp.toString());
+    }
+
+
+
+
+
 }

@@ -21,11 +21,16 @@ public class FikirtepeServiceImplementation implements FikirtepeService {
     }
     @Override
     public void createUser(User user) {
-        userRepository.save(user);
+        userRepository.create(user);
     }
 
     @Override
     public List<User> getUsers() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public User findById(long id) {
+        return userRepository.findById(id);
     }
 }

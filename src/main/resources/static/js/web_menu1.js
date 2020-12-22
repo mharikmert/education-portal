@@ -33,7 +33,7 @@ termValidation = (input) => {
 checkInfo = () => {
     getTermInputs();
     if(termValidation(term.explanation) && termValidation(term.startDate) && termValidation(term.endDate)){
-        if(expFirstYear == firstYear && expSecondYear == secondYear){
+        if(expFirstYear === firstYear && expSecondYear === secondYear){
             var date = new Date();
             if(!date.getFullYear() < firstYear){
               displayInfo();
@@ -55,7 +55,7 @@ addTermButton.addEventListener('click',function(){
 });
 document.querySelectorAll('.term-input').forEach(item => {
     item.addEventListener('keypress',function(e){
-        if(e.keyCode == 13){
+        if(e.keyCode === 13){
           if(checkInfo()){
               // cloneDiv();
               displayInfo();

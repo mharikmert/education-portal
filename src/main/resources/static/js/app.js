@@ -1,27 +1,35 @@
-var inputList = [''];
+
+let currentUser = {
+    id: null,
+    password: null
+};
+
+// use to registration part
 isValidUserID = (userID) => {
     userID = String(userID);
     if (userID.substring(0, 1) === '0') return false;
     if (userID.length !== 11) return false;
 
-    var tenTotalArray = userID.substr(0, 10).split('');
-    var tenTotal = odd = even = 0;
+    const tenTotalArray = userID.substr(0, 10).split('');
+    let odd,even;
+    let tenTotal = odd = even = 0;
 
-    for (var i = j = 0; i < 9; ++i) {
-      j = parseInt(tenTotalArray[i], 10);
-        if (i & 1) even  += j;
+    let j;
+    for (let i = j = 0; i < 9; ++i) {
+        j = parseInt(tenTotalArray[i], 10);
+        if (i & 1) even += j;
         else odd += j;
-      tenTotal += j;
+        tenTotal += j;
     }
     if ( (odd * 7 -even ) % 10 !== parseInt(userID.substr(-2, 1), 10)) {
         return false;
     }
     tenTotal += parseInt(tenTotalArray[9], 10);
-    if (tenTotal % 10 !== parseInt(userID.substr(-1), 10)) {
-        return false;
-    }
-    return true;
+    return tenTotal % 10 === parseInt(userID.substr(-1), 10);
+
 };
+
+// user to registration part
 isValidPassword = (password) => {
     let intCounter = 0, lowerCaseCounter = 0, upperCaseCounter = 0, elseCounter = 0;
     password = String(password);
@@ -39,16 +47,19 @@ isValidPassword = (password) => {
     return password.length >= 6 && upperCaseCounter > 0 && lowerCaseCounter > 0 && intCounter > 0;
 
 };
-getElement = (id) =>{
-    return document.querySelector(id);
-};
+
 checkPassword = (password) => {
-    //this part is after from DB
+    /* TO DO
+    * get password with get request and match info with database
+    */
+
 };
+
 checkUserID = (userID) =>{
-    //this part is also after from DB
+    //get user id from db
 };
-postRequest = (userID, password) => {
+
+postRequest = () => {
     console.log("in post request");
     const xhr = new XMLHttpRequest();
     const url = "http://localhost:8080/api/users";
@@ -61,54 +72,64 @@ postRequest = (userID, password) => {
         }
     };
     const data = JSON.stringify({
-        "id": inputList[0],
-        "password": inputList[1]
+        "id": currentUser.id,
+        "password": currentUser.password
     });
     xhr.send(data);
 }
+
 loginVerification = (userID,password) =>{
     if(userID === 0 || password === 0) showWarning('lack-of-data');
-    else if(isValidUserID(userID) && isValidPassword(password)){
-        postRequest(userID, password);
-    }
-    else showWarning('wrong-data');
+    else if(!((isValidPassword(password)) && isValidUserID(userID)))
+        showWarning('wrong-data');
+    else return true;
+    // return checkUserId(userId) && checkUserPassword(password);
+    // return isValidUserID(userID) && isValidPassword(password);
 };
-getInputValues = () =>{
-    inputList[0] = getElement('#userID').value;
-    inputList[1] = getElement('#password').value;
-};
-getElement("#login-button").addEventListener('click',function() {
-    getInputValues();
-    loginVerification(inputList[0],inputList[1]);
-});
+
 document.querySelectorAll('.input').forEach(item => {
     item.addEventListener('keypress',function(e){
-    getInputValues();
-    if(e.keyCode === 13)//enter key code
-        loginVerification(inputList[0],inputList[1],inputList[2]);
+
+        if(e.keyCode === 13){
+            currentUser.id = document.querySelector('#userID').value;
+            currentUser.password = document.querySelector('#password').value;
+            console.log(currentUser);
+
+            if(loginVerification(currentUser.id, currentUser.password)){
+                postRequest();
+                window.location.replace("../text/web_menu.html");
+            }
+        }
     })
 });
+
 showWarning = (id) => {
-    getElement('#'+id).style.display = 'block';
+    document.querySelector('#'+id).style.display = 'block';
     setTimeout(() => {
-    getElement('#'+id).style.display = 'none';
+    document.querySelector('#'+id).style.display = 'none';
     },1500)
 };
+
+
 redirect = (URL) => {
     window.location.href = URL;
     return true;
 };
+
 //toggle password visibility
-const togglePassword = getElement('#toggle-password');
-const passwordX = getElement('#password');
+const togglePassword = document.querySelector('#toggle-password');
+const passwordX = document.querySelector('#password');
+
 togglePassword.addEventListener('click',function(){
     const type = passwordX.getAttribute('type') === 'password' ? 'text' : 'password';
     passwordX.setAttribute('type',type);
     this.classList.toggle('fa-eye-slash');
 });
+
 document.querySelector('#forgot-password').addEventListener('click', function(){
     redirect('../text/forgot-password-page.html');
 });
+
 document.querySelector('#create-password').addEventListener('click', function(){
     redirect('../text/create-password-page.html');
 });

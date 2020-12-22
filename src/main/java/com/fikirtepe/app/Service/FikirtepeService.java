@@ -1,7 +1,6 @@
 package com.fikirtepe.app.Service;
 
 import com.fikirtepe.app.Model.User;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

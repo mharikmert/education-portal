@@ -1,4 +1,4 @@
-package com.fikirtepe.app.Service.Impl;
+package com.fikirtepe.app.Service.ServiceImplementation;
 
 import com.fikirtepe.app.Model.User;
 import com.fikirtepe.app.Repository.UserRepository;
@@ -14,18 +14,18 @@ import java.util.List;
 public class FikirtepeServiceImplementation implements FikirtepeService {
 
     private UserRepository userRepository;
+    //constructor injection
     @Autowired
     public void setUserRepository(UserRepository userRepository){
         this.userRepository = userRepository;
     }
-
     @Override
     public void createUser(User user) {
-        userRepository.createUser(user);
+        userRepository.save(user);
     }
 
     @Override
     public List<User> getUsers() {
-        return userRepository.getUsers();
+        return userRepository.findAll();
     }
 }

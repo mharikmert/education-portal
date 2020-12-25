@@ -76,8 +76,7 @@ getRequest = () => {
 }
 
 
-//post request to the backend service with user id and password info for registration
-postRequest = () => {
+postRegistrationRequest = () => {
     console.log("in post request");
     const xhr = new XMLHttpRequest();
     const url = "http://localhost:8080/api/users";
@@ -94,6 +93,7 @@ postRequest = () => {
     const data = JSON.stringify({
         "id": currentUser.id,
         "password": currentUser.password
+
     });
 
     console.log(data);
@@ -102,18 +102,19 @@ postRequest = () => {
     return xhr.responseText;
 }
 
-postUserInfo = (url) => {
+postLoginRequest = () => {
     const xhr = new XMLHttpRequest();
+    const url = "http://localhost:8080/api/login";
     xhr.open("POST",url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
+
     const data = JSON.stringify({
-        "ip" : currentUser.id,
+        "id" : currentUser.id,
         "password" : currentUser.password
     });
-
     xhr.send(data);
+    return xhr.responseText;
 }
-
 
 // login verification
 loginVerification = (userID,password) =>{
@@ -128,32 +129,25 @@ loginVerification = (userID,password) =>{
 //event listener for all input divs, click function will be updated
 document.querySelectorAll('.input').forEach(item => {
     item.addEventListener('keypress',function(e){
-
         if(e.keyCode === 13){ // enter key code
             // set the id and password of current id input value to current user
             currentUser.id = document.querySelector('#userID').value;
             currentUser.password = document.querySelector('#password').value;
+            //post the login info to the service
+            if(loginVerification(currentUser, currentUser.password))
+            postLoginRequest();
 
-            //console.log(postUserInfo("http://localhost:8080/api/login"));
-
-            //call the login verification method to check login info
-            //if(loginVerification(currentUser.id, currentUser.password)){
-                //send to the post request with id and password and redirect to the page
-                postRequest();
-                //const response = getRequest();
-                //const parsed = JSON.parse(response);
-                //console.log(parsed);
-                //window.location.replace("../text/web_menu.html");
-            //}
+            //const responseJson = JSON.parse(postLoginRequest());
+            //console.log(responseJson);
         }
     })
 });
 
 
 document.querySelector('#login-button').addEventListener('click', function (){
-    //post to the login info to the service;
-    //console.log(postRequest());
-
+    currentUser.id = document.querySelector('#userID').value;
+    currentUser.password = document.querySelector('#password').value;
+    postLoginRequest();
 });
 
 //take the id property as parameter of warning place and display during 1.5 secs

@@ -2,14 +2,14 @@ $(document).ready(function() {
     $("#login-button").click(function() {
         console.log("i am in the jquery")
         const loginInfo = {
-            id: $("userID"),
-            password: $("password")
+            id: $("#userID"),
+            password: $("#password")
         };
         console.log(loginInfo)
         const requestJSON = JSON.stringify(loginInfo);
         $.ajax({
             type : "POST",
-            url : "http://localhost:8080/api/users",
+            url : "http://localhost:8080/api/login",
             headers : {
                 "Content-Type" : "application/json; charset=utf-8"
             },

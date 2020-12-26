@@ -2,6 +2,7 @@ package com.fikirtepe.app.Model;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -13,7 +14,24 @@ public class User{
 
     @Id
     private long id;
-    private String name,surname,password;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "surname")
+    private String surname;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "phone_number")
+    private String phone_number;
+
+    @Column(name = "city")
+    private String city;
 
     public long getId() {
         return id;

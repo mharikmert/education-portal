@@ -71,13 +71,10 @@ getRequest = () => {
     xhr.send(null);
     // assign the response to a const and parse
     const responseJson = xhr.responseText;
-
-    // parse? or verification message?
 }
 
 
 postRegistrationRequest = () => {
-    console.log("in post request");
     const xhr = new XMLHttpRequest();
     const url = "http://localhost:8080/api/users";
     xhr.open("POST",url,true);
@@ -85,21 +82,15 @@ postRegistrationRequest = () => {
 
     xhr.onreadystatechange = function(){
         if(xhr.readyState === 3 && xhr.status === 200){
-            const json = JSON.parse(xhr.responseText);
-            //console.log(json.id,json.password);
+          //redirect the page
         }
     };
     //convert the data to json objects
     const data = JSON.stringify({
         "id": currentUser.id,
         "password": currentUser.password
-
     });
-
-    console.log(data);
     xhr.send(data);
-    console.log('response -> ' + xhr.responseText);
-    return xhr.responseText;
 }
 
 postLoginRequest = () => {
@@ -113,7 +104,14 @@ postLoginRequest = () => {
         "password" : currentUser.password
     });
     xhr.send(data);
-    return xhr.responseText;
+
+    xhr.onreadystatechange = function (){
+      //if response is ok, redirect the page
+      if(xhr.readyState ===3 && xhr.status === 200){
+        redirect("../text/web_menu.html");
+      }else // else show warning acc to id and password
+        loginVerification(currentUser.id, currentUser.password);
+    }
 }
 
 // login verification
@@ -122,8 +120,6 @@ loginVerification = (userID,password) =>{
     else if(!((isValidPassword(password)) && isValidUserID(userID)))
         showWarning('wrong-data');
     else return true;
-    // return checkUserId(userId) && checkUserPassword(password);
-    // return isValidUserID(userID) && isValidPassword(password);
 };
 
 //event listener for all input divs, click function will be updated
@@ -133,12 +129,8 @@ document.querySelectorAll('.input').forEach(item => {
             // set the id and password of current id input value to current user
             currentUser.id = document.querySelector('#userID').value;
             currentUser.password = document.querySelector('#password').value;
-            //post the login info to the service
-            if(loginVerification(currentUser, currentUser.password))
+            //post login data to the service
             postLoginRequest();
-
-            //const responseJson = JSON.parse(postLoginRequest());
-            //console.log(responseJson);
         }
     })
 });
@@ -184,20 +176,3 @@ document.querySelector('#forgot-password').addEventListener('click', function(){
 document.querySelector('#create-password').addEventListener('click', function(){
     redirect('../text/register.html');
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

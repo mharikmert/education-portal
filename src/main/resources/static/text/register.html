@@ -1,56 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title></title>
+    <link rel = "stylesheet" href = "../css/style.css">
 </head>
+<style>
+    #LoginPanel{
+        width: 500px;
+        height: 800px;
+    }
 
+</style>
+<body id = "LoginPage">
+    <div id = "LoginPanel">
+        <div id= slogan> EĞİTİM & DEĞİŞİM & GELİŞİM </div>
+        <div id = "logo"></div>
+        <div id = "form" >
+            <div>
+                <label for="user-name"></label><input id = "user-name" class = "input" name = "user_id" placeholder = " Ad ">
+            </div>
+            <div>
+                <label for="user-surname"></label><input id = "user-surname" class = "input" name = "user_id" placeholder = "Soyad">
+            </div>
+            <div class = "userInput">
+                <!-- <i id = "user-image" class = "login-images"></i> -->
+                <label for="userID"></label>
+                <input id = "userID" class = "input" name = "user_id" placeholder = "Kullanıcı Adı / TCKN">
+            </div>
+            <div id = "password-div" class = "userInput">
+                <!-- <i id = "password-image" class = "login-images"></i> -->
+                <label for="password"></label>
+                <input type = "password" id = "password" class = "input" name = "password" placeholder = "Şifre" autocomplete = "off" aria-hidden ="false" style ="margin-right: 4%;">
+                <i id = "toggle-password" class ="far fa-eye"> </i>
+            </div>
+            <div id = "password-div" class = "userInput">
+                <!-- <i id = "password-image" class = "login-images"></i> -->
+                <label for="password"></label>
+                <input type = "password" id = "password" class = "input" name = "password" placeholder = "Şifre (Tekrar)" autocomplete = "off" aria-hidden ="false" style ="margin-right: 4%;">
+                <i id = "toggle-password" class ="far fa-eye"> </i>
+            </div>
+            <div>
+                <label for="user-phone-number"></label><input id = "user-phone-number" class = "input" name = "user_id" placeholder = "Telefon Numarası">
+            </div>
+            <div>
+                <label for="user-address"></label><input id = "user-address" class = "input" name = "user_id" placeholder = "İl">
+            </div>
+            <div>
+                <label for="user-city"></label><input id = "user-city" class = "input" name = "user_id" placeholder = "Adres">
+            </div>
+            <div id = "log-button-div">
+                <input id = "login-button" class = "input" value = "KAYIT OL " type = "submit">
+            </div>
 
-<body style = "align-content: center">
-<form>
-    <div class="form-row">
-        <div class="form-group col-md-8">
-            <label for="inputEmail2">Email</label>
-            <input type="email" class="form-control" id="inputEmail2" placeholder="Email">
-        </div>
-        <div class="form-group col-md-8">
-            <label for="inputPassword2">Password</label>
-            <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
         </div>
     </div>
-    <div class="form-group">
-        <label for="inputAddress">Address</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="1232 Main St">
-    </div>
-    <div class="form-group">
-        <label for="inputAddress0">Address 2</label>
-        <input type="text" class="form-control" id="inputAddress0" placeholder="Apartment, studio, or floor">
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-8">
-            <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="inputState">State</label>
-            <select id="inputState" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
-            </select>
-        </div>
-        <div class="form-group col-md-4">
-            <label for="inputZip">Zip</label>
-            <input type="text" class="form-control" id="inputZip">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-                Check me out
-            </label>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary"> KAYIT OL </button>
-</form>
-
 </body>
 </html>

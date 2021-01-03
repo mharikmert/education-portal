@@ -108,7 +108,7 @@ html,body{
 #branch-div{
     text-align-last:center;
 }
-#login-button{
+#login-button,#register-button{
     background-color:darkred;
     color: white;
     margin-bottom:8%;
@@ -268,7 +268,7 @@ input:checked + .slider:before {
     .input{
         width: 70%;
     }
-    #login-button, #forgot-password, #create-password{
+    #login-button, #forgot-password, #create-password, #register-button{
         margin-left : auto;
     }
     #logo{

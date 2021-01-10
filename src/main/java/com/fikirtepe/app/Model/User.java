@@ -15,11 +15,11 @@ public class User{
     @Id
     private long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "first_name")
+    private String first_name;
 
-    @Column(name = "surname")
-    private String surname;
+    @Column(name = "last_name")
+    private String last_name;
 
     @Column(name = "password")
     private String password;
@@ -49,27 +49,32 @@ public class User{
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return this.first_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String first_name) {
+        this.first_name = first_name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return this.last_name;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastName(String last_name) {
+        this.last_name = last_name;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
                 ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
+                ", phone_number='" + phone_number + '\'' +
+                ", city='" + city + '\'' +
                 '}';
     }
 }

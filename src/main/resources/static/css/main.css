@@ -1,0 +1,36 @@
+html,body {
+    height: 100%;
+    margin: 0px; padding: 0px;
+}
+#login-title{
+    margin: auto;
+    font-size: 20px;
+    color: #800080;
+}
+#logo-container{
+    text-align: center;
+}
+#LoginTopLine{
+    display: flex;
+    align-items: center;
+}
+
+#full{
+    height: 86.4%;
+    background-image: url("../assets-img/bg.png");
+    background-size:cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+ }
+.button{
+    color : #800080;
+    font-weight: bold;
+    font-size: 18px;
+    height: 50px;
+    width: 100px;
+    margin-left: 10px;
+    border-radius: 30px;
+    outline:none;
+    cursor: pointer;
+}

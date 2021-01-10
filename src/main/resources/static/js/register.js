@@ -13,8 +13,8 @@ postRegistrationRequest = () => {
     };
     //convert the data to json objects
     const data = JSON.stringify({
-        "name": user.name,
-        "surname": user.surname,
+        "first_name": user.first_name,
+        "last_name": user.last_name,
         "id": user.id,
         "password": user.password,
         "phone_number": user.phone_number,
@@ -31,8 +31,8 @@ document.querySelector('#register-button').addEventListener('click', function(){
     user.address = document.querySelector('#user-address').value;
     user.phone_number = document.querySelector('#user-phone-number').value;
     user.city = document.querySelector('#user-city').value;
-    user.name = document.querySelector('#user-name').value;
-    user.surname = document.querySelector('#user-surname').value;
+    user.first_name = document.querySelector('#user-name').value;
+    user.last_name = document.querySelector('#user-surname').value;
 
     postRegistrationRequest();
     

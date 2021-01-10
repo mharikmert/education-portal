@@ -3,7 +3,7 @@ html,body{
     background-attachment: fixed;
     background-position:center;
     background-repeat: no-repeat;
-    background-image: url("../assets-img/acibadem.jpg");
+    background-image: url("../assets-img/bg.png");
     background-size:cover;
 }
 #slogan{
@@ -24,6 +24,7 @@ html,body{
 }
 #LoginTitle{
     float: left;
+    text-align: center;
     font-size: 130%;
     font-weight: bold;
     color: black;
@@ -31,7 +32,8 @@ html,body{
     text-shadow: 0.5px 0.866px 1px darkred;
 }
 #LoginTopLine{
-    height: 10%;
+    height: 15%;
+    width : 100%;
     position: relative;
     left:-30%;
     opacity: 70%;

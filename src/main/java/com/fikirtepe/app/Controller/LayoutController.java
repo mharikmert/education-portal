@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LayoutController {
-//    @GetMapping(value = "/login", produces = MediaType.TEXT_HTML_VALUE)
-//    @ResponseBody
-//    public String login(){
-//        return "login";
-//    }
+
+
 }

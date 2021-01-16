@@ -1,36 +1,24 @@
 package com.fikirtepe.app.Model;
-
 import lombok.Data;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "user")
 public class User{
 
     @Id
     private long id;
 
-    @Column(name = "first_name")
     private String first_name;
 
-    @Column(name = "last_name")
     private String last_name;
 
-    @Column(name = "password")
     private String password;
 
-    @Column(name = "address")
     private String address;
 
-    @Column(name = "phone_number")
     private String phone_number;
 
-    @Column(name = "city")
     private String city;
 
     public long getId() {
@@ -41,6 +29,22 @@ public class User{
         this.id = id;
     }
 
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -49,32 +53,40 @@ public class User{
         this.password = password;
     }
 
-    public String getFirstName() {
-        return this.first_name;
+    public String getAddress() {
+        return address;
     }
 
-    public void setName(String first_name) {
-        this.first_name = first_name;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getLastName() {
-        return this.last_name;
+    public String getPhone_number() {
+        return phone_number;
     }
 
-    public void setLastName(String last_name) {
-        this.last_name = last_name;
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
-                ", password='" + password + '\'' +
-                ", address='" + address + '\'' +
-                ", phone_number='" + phone_number + '\'' +
-                ", city='" + city + '\'' +
+                "id=" + this.id +
+                ", first_name='" + this.first_name + '\'' +
+                ", last_name='" + this.last_name + '\'' +
+                ", password='" + this.password + '\'' +
+                ", address='" + this.address + '\'' +
+                ", phone_number='" + this.phone_number + '\'' +
+                ", city='" + this.city + '\'' +
                 '}';
     }
 }

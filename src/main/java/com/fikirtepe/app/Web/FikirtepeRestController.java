@@ -24,8 +24,8 @@ public class FikirtepeRestController {
     //user info is taken from the post request and user creates
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void createUser(@RequestBody User user){
-        System.out.println(user.getId());
-        if(fikirtepeService.findById(user.getId()).isEmpty()) {
+//        System.out.println(user.getId());
+        if(fikirtepeService.findById(user.getId()) == null) {
             fikirtepeService.createUser(user);
             System.out.println(user.toString());
         }

@@ -58,7 +58,7 @@ postLoginRequest = () => {
 
     xhr.onreadystatechange = function (){
       //if response is ok, redirect the page
-      if(xhr.readyState ===3 && xhr.status === 200){
+      if(xhr.status === 200){
         redirect("../text/web_menu.html");
       }else // else show warning acc to id and password
         errorMessage(currentUser.id, currentUser.password);
@@ -67,7 +67,7 @@ postLoginRequest = () => {
 
 // login verification
 errorMessage = (userID,password) =>{
-    if(userID === 0 || password === 0) showWarning('lack-of-data');
+    if(userID.length === 0 || password.length === 0) showWarning('lack-of-data');
     else showWarning('wrong-data');
 };
 

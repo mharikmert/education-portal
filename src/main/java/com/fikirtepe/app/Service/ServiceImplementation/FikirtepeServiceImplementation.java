@@ -6,32 +6,47 @@ import com.fikirtepe.app.Service.FikirtepeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 //service layer between user and controller
 @Service
-@Transactional
-public class FikirtepeServiceImplementation implements FikirtepeService {
+public class FikirtepeServiceImplementation implements FikirtepeService{
 
-    private UserRepository userRepository;
-    //constructor injection
+    UserRepository userRepository;
+
     @Autowired
-    public void setUserRepository(UserRepository userRepository){
+    public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    @Override
-    public void createUser(User user) {
-        userRepository.create(user);
-    }
 
     @Override
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public void createUser(User user){
+        userRepository.save(user);
     }
 
     @Override
     public User findById(long id) {
-        return userRepository.findById(id);
+        return userRepository.findById(id).isPresent()? userRepository.findById(id).get(): null;
+    }
+
+    @Override
+    public User findByLastName(String lastname) {
+        return null;
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public void delete(User user){
+        userRepository.delete(user);
+    }
+
+    @Override
+    public boolean verifyUser(User user) {
+        User inDb = findById(user.getId());
+        return (inDb.getPassword().equals(user.getPassword()));
     }
 }

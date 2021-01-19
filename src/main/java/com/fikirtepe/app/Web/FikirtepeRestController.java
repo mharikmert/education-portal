@@ -42,14 +42,9 @@ public class FikirtepeRestController {
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public void checkUser(@RequestBody User user, HttpServletResponse response) throws IOException {
-//        System.out.println(user.toString());
-        //find the user acc to id
-
-        //nullity check and also password validation
-        if(fikirtepeService.verifyUser(user)){
+        if(user.getId() == 0 || user.getPassword() == null) response.sendError(401, "user info is missing");
+        else if(fikirtepeService.verifyUser(user)){
             System.out.println("User is verified !");
-            //take the user inside and redirect the page
-//            response.sendRedirect("../text/web_menu.html");
         }
         else {
             //unauthorized error as response and message

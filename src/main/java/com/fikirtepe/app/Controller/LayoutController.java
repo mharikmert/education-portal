@@ -22,5 +22,25 @@ public class LayoutController {
         return mav;
     }
 
+    @RequestMapping("/forgotPassword")
+    public ModelAndView forgotPassword(){
+            ModelAndView mav = new ModelAndView();
+            mav.setViewName("forgot-password-page");
+            return mav;
+    }
+
+    @RequestMapping("/register")
+    public ModelAndView register(){
+            ModelAndView mav = new ModelAndView();
+            mav.setViewName("register");
+            return mav;
+    }
+
+    @RequestMapping("/menu")
+    public ModelAndView menu(){
+            ModelAndView mav = new ModelAndView();
+            mav.setViewName("web_menu");
+            return mav;
+    }
 
 }

@@ -1,9 +1,8 @@
 package com.fikirtepe.app.Service;
 
 import com.fikirtepe.app.Model.User;
-
 import java.util.List;
-import java.util.Optional;
+
 
 
 public interface FikirtepeService{

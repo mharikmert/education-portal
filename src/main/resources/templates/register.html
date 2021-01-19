@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title></title>
+    <link rel = "stylesheet" href = "../css/style.css">
+</head>
+<style>
+    #LoginPanel{
+        width: 500px;
+        height: 800px;
+    }
+
+</style>
+<body id = "LoginPage">
+    <div id = "LoginPanel">
+        <div id= slogan> EĞİTİM & DEĞİŞİM & GELİŞİM </div>
+        <div id = "logo"></div>
+        <div id = "form" >
+            <div>
+                <label for="user-name"></label><input id = "user-name" class = "input" name = "user_id" placeholder = " Ad ">
+            </div>
+            <div>
+                <label for="user-surname"></label><input id = "user-surname" class = "input" name = "user_id" placeholder = "Soyad">
+            </div>
+            <div class = "userInput">
+                <!-- <i id = "user-image" class = "login-images"></i> -->
+                <label for="userID"></label>
+                <input id = "userID" class = "input" name = "user_id" placeholder = "Kullanıcı Adı / TCKN">
+            </div>
+            <div id = "password-div" class = "userInput">
+                <!-- <i id = "password-image" class = "login-images"></i> -->
+                <label for="password"></label>
+                <input type = "password" id = "password" class = "input" name = "password" placeholder = "Şifre" autocomplete = "off" aria-hidden ="false" style ="margin-right: 4%;">
+                <i id = "toggle-password" class ="far fa-eye"> </i>
+            </div>
+<!--            <div id = "password-div" class = "userInput">-->
+<!--                &lt;!&ndash; <i id = "password-image" class = "login-images"></i> &ndash;&gt;-->
+<!--                <label for="password"></label>-->
+<!--                <input type = "password" id = "passwordApprove" class = "input" name = "password" placeholder = "Şifre (Tekrar)" autocomplete = "off" aria-hidden ="false" style ="margin-right: 4%;">-->
+<!--                <i id = "toggle-password" class ="far fa-eye"> </i>-->
+<!--            </div>-->
+            <div>
+                <label for="user-phone-number"></label><input id = "user-phone-number" class = "input" name = "user_id" placeholder = "Telefon Numarası">
+            </div>
+            <div>
+                <label for="user-address"></label><input id = "user-address" class = "input" name = "user_id" placeholder = "İl">
+            </div>
+            <div>
+                <label for="user-city"></label><input id = "user-city" class = "input" name = "user_id" placeholder = "Adres">
+            </div>
+            <div id = "register-button-div">
+                <input id = "register-button" class = "input" value = "KAYIT OL " type = "submit">
+            </div>
+
+        </div>
+    </div>
+    <script src = "/js/register.js"> </script>
+</body>
+</html>

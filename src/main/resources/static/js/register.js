@@ -1,14 +1,17 @@
+//ecmascript 6 will be installed
+//import redirect from '/app.js'
+
 const user = {};
 
 postRegistrationRequest = () => {
     const xhr = new XMLHttpRequest();
-    const url = "http://localhost:8080/api/register";
+    const url = "/api/register"; // localhost:8080 not needed
     xhr.open("POST",url,true);
     xhr.setRequestHeader("Content-Type","application/json");
 
     xhr.onreadystatechange = function(){
-        if(xhr.readyState === 3 && xhr.status === 200){
-          alert('kaydınız alınmıştır..');
+        if(xhr.status === 200){
+                redirect("/main");
         }
     };
     //convert the data to json objects
@@ -35,5 +38,5 @@ document.querySelector('#register-button').addEventListener('click', function(){
     user.last_name = document.querySelector('#user-surname').value;
 
     postRegistrationRequest();
-    
+
 });

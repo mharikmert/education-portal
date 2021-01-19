@@ -2,7 +2,7 @@
 const currentUser = {};
 
 //id validation method for turkish identity number
-isValidUserID = (userID) => {
+const isValidUserID = (userID) => {
     userID = String(userID);
     if (userID.substring(0, 1) === '0') return false;
     if (userID.length !== 11) return false;
@@ -26,7 +26,7 @@ isValidUserID = (userID) => {
 };
 
 // password validation, for strong passwords
-isValidPassword = (password) => {
+const isValidPassword = (password) => {
     let intCounter = 0, lowerCaseCounter = 0, upperCaseCounter = 0, elseCounter = 0;
     password = String(password);
     const passArr = password.substr(0, password.length).split('');
@@ -44,9 +44,9 @@ isValidPassword = (password) => {
 
 };
 
-postLoginRequest = () => {
+const postLoginRequest = () => {
     const xhr = new XMLHttpRequest();
-    const url = "http://localhost:8080/api/login";
+    const url = "/api/login";
     xhr.open("POST",url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
 
@@ -59,14 +59,14 @@ postLoginRequest = () => {
     xhr.onreadystatechange = function (){
       //if response is ok, redirect the page
       if(xhr.status === 200){
-        redirect("../text/web_menu.html");
+        redirect("/menu"); // gives the mapping and redirect the page
       }else // else show warning acc to id and password
         errorMessage(currentUser.id, currentUser.password);
     }
 }
 
 // login verification
-errorMessage = (userID,password) =>{
+const errorMessage = (userID,password) =>{
     if(userID.length === 0 || password.length === 0) showWarning('lack-of-data');
     else showWarning('wrong-data');
 };
@@ -91,7 +91,7 @@ document.querySelector('#login-button').addEventListener('click', function (){
 });
 
 //take the id property as parameter of warning place and display during 1.5 secs
-showWarning = (id) => {
+const showWarning = (id) => {
     document.querySelector('#'+id).style.display = 'block';
     // warning place visibility timout
     setTimeout(() => {
@@ -101,7 +101,7 @@ showWarning = (id) => {
 
 
 //redirect the page to given url
-redirect = (URL) => {
+const redirect = (URL) => {
     window.location.href = URL;
     return true;
 };
@@ -119,9 +119,5 @@ togglePassword.addEventListener('click',function(){
 
 
 document.querySelector('#forgot-password').addEventListener('click', function(){
-    redirect('../text/forgot-password-page.html');
-});
-
-document.querySelector('#create-password').addEventListener('click', function(){
-    redirect('../text/register.html');
+    redirect('forgotPassword');
 });

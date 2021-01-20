@@ -5,7 +5,7 @@ import java.util.List;
 
 
 
-public interface FikirtepeService{
+public interface UserService {
     User findById(long id);
     User findByLastName(String lastname);
     List<User> findAllUsers();

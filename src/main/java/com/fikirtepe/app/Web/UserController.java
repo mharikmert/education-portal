@@ -1,7 +1,7 @@
 package com.fikirtepe.app.Web;
 
 import com.fikirtepe.app.Model.User;
-import com.fikirtepe.app.Service.FikirtepeService;
+import com.fikirtepe.app.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,29 +13,35 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class FikirtepeRestController {
+public class UserController {
 
-    FikirtepeService fikirtepeService;
+    UserService userService;
     @Autowired
-    public void setFikirtepeService(FikirtepeService fikirtepeService) {
-        this.fikirtepeService = fikirtepeService;
+    public void setFikirtepeService(UserService userService) {
+        this.userService = userService;
     }
 
     //user info is taken from the post request and user creates
+    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public void createUser(@RequestBody User user){
-//        System.out.println(user.getId());
-        if(fikirtepeService.findById(user.getId()) == null) {
-            fikirtepeService.createUser(user);
+    public void createUser(@RequestBody User user, HttpServletResponse response) throws IOException {
+
+        if(userService.findById(user.getId()) == null) {
+            userService.createUser(user);
             System.out.println(user.toString());
         }
-        else System.out.println("User is already exist");
+        else response.sendError(409,"user is already exist");
     }
 
     //get the whole users in system database
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ResponseEntity<List<User>> getUsers(){
-        return ResponseEntity.ok(fikirtepeService.findAllUsers());
+        return ResponseEntity.ok(userService.findAllUsers());
+    }
+    //get user with the given id
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+    public ResponseEntity<User> getUser(@PathVariable long id){
+        return ResponseEntity.ok(userService.findById(id));
     }
 
     //check to user info that comes from login screen
@@ -43,7 +49,7 @@ public class FikirtepeRestController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public void checkUser(@RequestBody User user, HttpServletResponse response) throws IOException {
         if(user.getId() == 0 || user.getPassword() == null) response.sendError(401, "user info is missing");
-        else if(fikirtepeService.verifyUser(user)){
+        else if(userService.verifyUser(user)){
             System.out.println("User is verified !");
         }
         else {

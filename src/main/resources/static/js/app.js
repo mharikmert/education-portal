@@ -96,15 +96,14 @@ const showWarning = (id) => {
     // warning place visibility timout
     setTimeout(() => {
     document.querySelector('#'+id).style.display = 'none';
-    },1500)
+},1000)
 };
-
 
 //redirect the page to given url
 const redirect = (URL) => {
     window.location.href = URL;
     return true;
-};
+}
 
 //toggle password visibility
 const togglePassword = document.querySelector('#toggle-password');
@@ -121,3 +120,6 @@ togglePassword.addEventListener('click',function(){
 document.querySelector('#forgot-password').addEventListener('click', function(){
     redirect('forgotPassword');
 });
+document.querySelector('#create-password').addEventListener('click', function(){
+    redirect('register')
+})

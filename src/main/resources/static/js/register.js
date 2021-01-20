@@ -1,9 +1,8 @@
-//ecmascript 6 will be installed
-//import redirect from '/app.js'
+// import { redirect } from "./app.js";
 
 const user = {};
 
-postRegistrationRequest = () => {
+const postRegistrationRequest = () => {
     const xhr = new XMLHttpRequest();
     const url = "/api/register"; // localhost:8080 not needed
     xhr.open("POST",url,true);
@@ -11,7 +10,8 @@ postRegistrationRequest = () => {
 
     xhr.onreadystatechange = function(){
         if(xhr.status === 200){
-                redirect("/main");
+            alert('kaydınız alınmıştır..');
+            // redirect("/main");
         }
     };
     //convert the data to json objects

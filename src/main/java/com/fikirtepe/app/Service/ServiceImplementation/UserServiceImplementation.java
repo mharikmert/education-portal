@@ -2,7 +2,7 @@ package com.fikirtepe.app.Service.ServiceImplementation;
 
 import com.fikirtepe.app.Model.User;
 import com.fikirtepe.app.Repository.UserRepository;
-import com.fikirtepe.app.Service.FikirtepeService;
+import com.fikirtepe.app.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import java.util.List;
 
 //service layer between user and controller
 @Service
-public class FikirtepeServiceImplementation implements FikirtepeService{
+public class UserServiceImplementation implements UserService {
 
     UserRepository userRepository;
 

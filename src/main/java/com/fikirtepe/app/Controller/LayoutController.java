@@ -32,7 +32,8 @@ public class LayoutController {
     @RequestMapping("/register")
     public ModelAndView register(){
             ModelAndView mav = new ModelAndView();
-            mav.setViewName("register");
+//            mav.setViewName("register");
+        mav.setViewName("newRegister");
             return mav;
     }
 

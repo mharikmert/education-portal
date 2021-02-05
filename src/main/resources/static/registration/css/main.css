@@ -13,6 +13,13 @@
 .font-opensans {
   font-family: "Open Sans", "Arial", "Helvetica Neue", sans-serif;
 }
+.user-title-container{
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  color: #555;
+  margin: 0 auto 15px;
+}
 
 /* ==========================================================================
    #GRID
@@ -270,7 +277,11 @@ h6 {
 /* ==========================================================================
    #BACKGROUND
    ========================================================================== */
-.bg-blue {
+html{
+  background-image: url("../../assets-img/bg.png");
+  background-size:cover;
+}
+/* .bg-blue {
   background: #2c6ed5;
 }
 
@@ -300,7 +311,7 @@ h6 {
   background: -moz-linear-gradient(bottom left, #08aeea 0%, #b721ff 100%);
   background: -o-linear-gradient(bottom left, #08aeea 0%, #b721ff 100%);
   background: linear-gradient(to top right, #08aeea 0%, #b721ff 100%);
-}
+} */
 
 /* ==========================================================================
    #SPACING

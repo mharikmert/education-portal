@@ -12,6 +12,9 @@
     <!-- Title Page-->
     <title>Kayıt Formu </title>
 
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+
     <!-- Icons font CSS-->
     <link href="registration/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="registration/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -24,6 +27,7 @@
 
     <!-- Main CSS-->
     <link href="registration/css/main.css" rel="stylesheet" media="all">
+
 </head>
 
 <body>
@@ -35,8 +39,11 @@
                 </div>
                 <div class="card-body">
                     <form onsubmit='return onSubmit(this)'>
+                        <div class = "user-title-container">
+                            <!-- <h class = "user-title"> Öğrencinin </h> -->
+                        </div>
                         <div class="form-row m-b-55">
-                            <div class="name">Ad-Soyad</div>
+                            <div class="name">Adı-Soyadı</div>
                             <div class="value">
                                 <div class="row row-space">
                                     <div class="col-2">
@@ -44,7 +51,7 @@
                                             <label>
                                                 <input class="input--style-5" type="text" name="first_name">
                                             </label>
-                                            <label class="label--desc"> Ad </label>
+                                            <label class="label--desc"> Adı </label>
                                         </div>
                                     </div>
                                     <div class="col-2">
@@ -52,7 +59,7 @@
                                             <label>
                                                 <input class="input--style-5" type="text" name="last_name">
                                             </label>
-                                            <label class="label--desc">Soyad </label>
+                                            <label class="label--desc">Soyadı </label>
                                         </div>
                                     </div>
                                 </div>
@@ -121,7 +128,94 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="name"> EA / SAY? </div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <label>
+                                            <select name="subject">
+                                                <option disabled="disabled" selected="selected">Bölüm Seçiniz </option>
+                                                <option> Eşit Ağırlık </option>
+                                                <option> Sayısal </option>
+                                            </select>
+                                        </label>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <div class="form-row">
+                          <div class="name"> Okul </div>
+                          <div class="value">
+                            <div class="input-group">
+                              <label>
+                                <input class="input--style-5" type="text" name="ders">
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class = "name"> İl - İlçe </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="il"></label>
+                                    <select name="il" id="il" class = "form-control">
+                                        <option value="">İl Seçiniz</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="ilce"></label>
+                                    <select name="ilce" id="ilce" class="form-control" disabled="disabled">
+                                        <option value="">İlçe Seçiniz</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--creates districts of the provinces dynamically with jquery from json file-->
+                        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+                        <script>
+                            $.getJSON("json/iller.json", function(result){
+                                $.each(result, function(index, value){
+                                    // console.log("first result : ", result);
+                                    let row = "";
+                                    row +='<option value="'+value.il+'">'+value.il+'</option>';
+                                    $("#il").append(row);
+                                })
+                            });
+
+                            $("#il").change(function(){
+                                const il = $(this).val();
+                                console.log('i am in change');
+                                $("#ilce").attr("disabled", false).html("<option value=''>İlçe Seçiniz</option>");
+                                $.getJSON("json/ilceler.json", function(result){
+                                    $.each(result, function(index, value){
+                                        // console.log("second result" , result);
+                                        let row = "";
+                                        if(value.il===il)
+                                        {
+                                            row +='<option value="'+value.ilce+'">'+value.ilce+'</option>';
+                                            $("#ilce").append(row);
+                                        }
+                                    });
+                                });
+                            });
+
+                        </script>
+
+                        <div class="form-row">
+                                <div class="name"> Adres </div>
+                                <div class="value">
+                                        <div class="input-group">
+                                            <label>
+                                                <input class="input--style-5" type="text" name="ders">
+                                            </label>
+                                        </div>
+                                </div>
+                        </div>
+
                         <div class="form-row">
                                 <div class="name"> Öğrenci dersi nasıl izleyecek? </div>
                                 <div class="value">
@@ -154,6 +248,7 @@
         </div>
     </div>
 
+
     <script>
         const onSubmit = (form) => {
             const formData = JSON.stringify($(form).serializeArray());
@@ -161,6 +256,7 @@
             const url = "/api/register";
             xhr.open("POST",url,true);
             xhr.setRequestHeader("Content-Type", "application/json");
+            console.log(formData);
             xhr.send(formData);
         }
     </script>
@@ -173,7 +269,7 @@
     <!-- Main JS-->
     <script src="/registration/js/global.js"></script>
 
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</body>
 
 </html>
 <!-- end document-->

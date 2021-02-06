@@ -157,8 +157,8 @@
 
                         <div class="form-row">
                             <div class = "name"> İl - İlçe </div>
-                            <div class="row">
-                                <div class="col-md-3">
+                            <div class="il-ilce-container" style = "display: flex;">
+                                <div class="col-md-3" style = "text-align:center;">
                                     <label for="il"></label>
                                     <select name="il" id="il" class = "form-control">
                                         <option value="">İl Seçiniz</option>
@@ -179,7 +179,6 @@
                         <script>
                             $.getJSON("json/iller.json", function(result){
                                 $.each(result, function(index, value){
-                                    // console.log("first result : ", result);
                                     let row = "";
                                     row +='<option value="'+value.il+'">'+value.il+'</option>';
                                     $("#il").append(row);

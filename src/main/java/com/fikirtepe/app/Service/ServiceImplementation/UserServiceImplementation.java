@@ -1,5 +1,6 @@
 package com.fikirtepe.app.Service.ServiceImplementation;
 
+import com.fikirtepe.app.Exceptions.UserNotFoundException;
 import com.fikirtepe.app.Model.User;
 import com.fikirtepe.app.Repository.UserRepository;
 import com.fikirtepe.app.Service.UserService;
@@ -25,12 +26,17 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public User findById(long id) {
-        return userRepository.findById(id).isPresent()? userRepository.findById(id).get(): null;
+    public User findUser(long id) {
+        return userRepository.findById(id).orElse(null);
     }
 
     @Override
-    public User findByLastName(String lastname) {
+    public User findUserByLastName(String lastname) {
+        User tempUser = new User();
+        tempUser.setLast_name(lastname);
+        for(User user: userRepository.findAll())
+            if(user.getLast_name().equals(lastname))
+                return user;
         return null;
     }
 
@@ -40,13 +46,15 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public void delete(User user){
-        userRepository.delete(user);
+    public void deleteUser(Long id){
+       User userInDb = userRepository.findById(id).orElse(null);
+       assert userInDb != null;
+       userRepository.delete(userInDb);
     }
 
     @Override
     public boolean verifyUser(User user) {
-        User inDb = findById(user.getId());
+        User inDb = findUser(user.getId());
         return (inDb.getPassword().equals(user.getPassword()));
     }
 }

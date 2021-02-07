@@ -26,8 +26,10 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public User findUser(long id) {
-        return userRepository.findById(id).orElse(null);
+    public User findUser(long id) throws UserNotFoundException{
+        User user = userRepository.findById(id).orElse(null);
+        if(user == null) throw new UserNotFoundException("User not found");
+        return user;
     }
 
     @Override
@@ -47,14 +49,16 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public void deleteUser(Long id){
-       User userInDb = userRepository.findById(id).orElse(null);
-       assert userInDb != null;
-       userRepository.delete(userInDb);
+       userRepository.delete(findUser(id));
     }
 
     @Override
     public boolean verifyUser(User user) {
-        User inDb = findUser(user.getId());
-        return (inDb.getPassword().equals(user.getPassword()));
+        try{
+            User inDb = findUser(user.getId());
+            return (inDb.getPassword().equals(user.getPassword()));
+        } catch(UserNotFoundException ex){
+            return false;
+        }
     }
 }

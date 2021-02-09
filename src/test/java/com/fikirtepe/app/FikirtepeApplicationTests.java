@@ -8,6 +8,7 @@ class FikirtepeApplicationTests {
 
     @Test
     void contextLoads() {
+        assert true;
     }
 
 }

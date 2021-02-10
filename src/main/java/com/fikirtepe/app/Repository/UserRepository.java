@@ -4,6 +4,10 @@ package com.fikirtepe.app.Repository;
 import com.fikirtepe.app.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+import java.util.List;
 
+public interface UserRepository extends JpaRepository<User, Long> {
+    //i liked this :)
+     List<User> findAllByLastName(String lastName);
+     List<User> findAllByCity(String city);
 }

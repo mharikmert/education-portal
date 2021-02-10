@@ -1,4 +1,4 @@
-package com.fikirtepe.app.Service.ServiceImplementation;
+package com.fikirtepe.app.Service.UserServiceImplementation;
 
 import com.fikirtepe.app.Exceptions.UserNotFoundException;
 import com.fikirtepe.app.Model.User;
@@ -30,16 +30,6 @@ public class UserServiceImplementation implements UserService {
         User user = userRepository.findById(id).orElse(null);
         if(user == null) throw new UserNotFoundException("User not found");
         return user;
-    }
-
-    @Override
-    public User findUserByLastName(String lastname) {
-        User tempUser = new User();
-        tempUser.setLast_name(lastname);
-        for(User user: userRepository.findAll())
-            if(user.getLast_name().equals(lastname))
-                return user;
-        return null;
     }
 
     @Override

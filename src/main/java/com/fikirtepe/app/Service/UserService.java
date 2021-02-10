@@ -5,7 +5,6 @@ import java.util.List;
 
 public interface UserService {
     User findUser(long id);
-    User findUserByLastName(String lastname);
     List<User> findAllUsers();
     void createUser(User user);
     void deleteUser(Long id);

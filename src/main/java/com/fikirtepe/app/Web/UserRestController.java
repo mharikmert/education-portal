@@ -30,7 +30,7 @@ public class UserRestController {
             value = "/register",
             method = RequestMethod.POST)
     public ResponseEntity<?> createUser(@RequestBody User user,
-                                             HttpServletResponse response) throws IOException {
+                                             HttpServletResponse response){
         try{
             userService.findUser(user.getId());
             System.out.println("User is already exist");
@@ -44,6 +44,25 @@ public class UserRestController {
         }
         return null;
     }
+    //handles with login requests
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(
+            value = "/login",
+            method = RequestMethod.POST)
+    public void checkUser(@RequestBody User user,
+                          HttpServletResponse response) throws IOException {
+        if(user.getId() == 0 || user.getPassword() == null)
+            response.sendError(401, "user info is missing");
+        else if(userService.verifyUser(user)){
+            System.out.println("User is verified !");
+            //return ok, and redirect the user in app.js
+        }
+        else {
+            //unauthorized error as response and message
+            response.sendError(401,"user is not verified");
+        }
+    }
+
     //returns all the users
     @RequestMapping(
             value = "/users",
@@ -63,24 +82,6 @@ public class UserRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build()); // 404 not found
     }
 
-    //check to user info that comes from login screen
-    @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(
-            value = "/login",
-            method = RequestMethod.POST)
-    public void checkUser(@RequestBody User user,
-                          HttpServletResponse response) throws IOException {
-        if(user.getId() == 0 || user.getPassword() == null)
-            response.sendError(401, "user info is missing");
-        else if(userService.verifyUser(user)){
-            System.out.println("User is verified !");
-            //return ok, and redirect the user in app.js
-        }
-        else {
-            //unauthorized error as response and message
-            response.sendError(401,"user is not verified");
-        }
-    }
     //deletes a user with id
     @RequestMapping(
             value = "/delete/{id}",

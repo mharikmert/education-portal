@@ -1,5 +1,6 @@
 package com.fikirtepe.app.Web;
 
+import com.fikirtepe.app.Error.Error;
 import com.fikirtepe.app.Exceptions.UserNotFoundException;
 import com.fikirtepe.app.Model.User;
 import com.fikirtepe.app.Service.UserService;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -25,19 +28,21 @@ public class UserRestController {
     }
 
     //user info is taken from the post request and user creates
-    @ResponseStatus(HttpStatus.CREATED) // returned 201 if process is succeeded
+    //@ResponseStatus(HttpStatus.CREATED) // returned 201 if process is succeeded
     @RequestMapping(
             value = "/register",
             method = RequestMethod.POST)
     public ResponseEntity<?> createUser(@RequestBody User user,
                                              HttpServletResponse response){
+        System.out.println(user.toString());
         try{
             userService.findUser(user.getId());
             System.out.println("User is already exist");
             return ResponseEntity.created(new URI("/user/id")).build();
         }
         catch(UserNotFoundException ex){
-            userService.createUser(user);
+            //userService.createUser(user);
+            System.out.println(user.toString());
         }
         catch(Exception ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -45,22 +50,21 @@ public class UserRestController {
         return null;
     }
     //handles with login requests
-    @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
             value = "/login",
             method = RequestMethod.POST)
-    public void checkUser(@RequestBody User user,
-                          HttpServletResponse response) throws IOException {
-        if(user.getId() == 0 || user.getPassword() == null)
-            response.sendError(401, "user info is missing");
-        else if(userService.verifyUser(user)){
-            System.out.println("User is verified !");
-            //return ok, and redirect the user in app.js
+    public ResponseEntity<?> checkUser(@RequestBody User user,
+                                           HttpServletResponse response) throws IOException {
+        //error sample usage if user id is empty
+        Error error = new Error(400, "validation error", "/api/login");
+        Map<String, String> validationErrors = new HashMap<>();
+        if(user.getId() == 0){
+            error.setValidationErrors(validationErrors);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
         }
-        else {
-            //unauthorized error as response and message
-            response.sendError(401,"user is not verified");
-        }
+        else if(userService.verifyUser(user))
+            return ResponseEntity.status(HttpStatus.OK).build(); // returns 200 ok
+        return null;
     }
 
     //returns all the users

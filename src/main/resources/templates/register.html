@@ -1,53 +1,224 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title></title>
-    <link rel = "stylesheet" href = "../css/style.css">
-</head>
-<style>
-    #LoginPanel{
-        width: 500px;
-        height: 800px;
-    }
-</style>
-<body id = "LoginPage">
-    <div id = "LoginPanel">
-        <div id= slogan> EĞİTİM & DEĞİŞİM & GELİŞİM </div>
-        <div id = "logo"></div>
-        <div id = "form" >
-            <div>
-                <label for="user-name"></label><input id = "user-name" class = "input" name = "user_id" placeholder = " Ad ">
-            </div>
-            <div>
-                <label for="user-surname"></label><input id = "user-surname" class = "input" name = "user_id" placeholder = "Soyad">
-            </div>
-            <div class = "userInput">
-                <!-- <i id = "user-image" class = "login-images"></i> -->
-                <label for="userID"></label>
-                <input id = "userID" class = "input" name = "user_id" placeholder = "Kullanıcı Adı / TCKN">
-            </div>
-            <div id = "password-div" class = "userInput">
-                <!-- <i id = "password-image" class = "login-images"></i> -->
-                <label for="password"></label>
-                <input type = "password" id = "password" class = "input" name = "password" placeholder = "Şifre" autocomplete = "off" aria-hidden ="false" style ="margin-right: 4%;">
-                <i id = "toggle-password" class ="far fa-eye"> </i>
-            </div>
-            <div>
-                <label for="user-phone-number"></label><input id = "user-phone-number" class = "input" name = "user_id" placeholder = "Telefon Numarası">
-            </div>
-            <div>
-                <label for="user-address"></label><input id = "user-address" class = "input" name = "user_id" placeholder = "İl">
-            </div>
-            <div>
-                <label for="user-city"></label><input id = "user-city" class = "input" name = "user_id" placeholder = "Adres">
-            </div>
-            <div id = "register-button-div">
-                <input id = "register-button" class = "input" value = "KAYIT OL " type = "submit">
-            </div>
+<!DOCTYPE html>
+<html lang="tr">
 
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Kayıt Formu </title>
+
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+
+    <!-- Icons font CSS-->
+    <link href="registration/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="registration/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="registration/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="registration/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="registration/css/main.css" rel="stylesheet" media="all">
+
+</head>
+
+<body>
+    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+        <div class="wrapper wrapper--w790">
+            <div class="card card-5">
+                <div class="card-heading">
+                    <h2 class="title">Fikirtepe Öğrenci Kayıt Formu </h2>
+                </div>
+                <div class="card-body">
+                    <form id = "form", method = "post">
+                        <div class = "user-title-container">
+                            <!-- <h class = "user-title"> Öğrencinin </h> -->
+                        </div>
+                        <div class="form-row m-b-55">
+                            <div class="name">Adı-Soyadı</div>
+                            <div class="value">
+                                <div class="row row-space">
+                                    <div class="col-2">
+                                        <div class="input-group-desc">
+                                            <label>
+                                                <input class="input--style-5" type="text" name="first_name">
+                                            </label>
+                                            <label class="label--desc"> Adı </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="input-group-desc">
+                                            <label>
+                                                <input class="input--style-5" type="text" name="last_name">
+                                            </label>
+                                            <label class="label--desc">Soyadı </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">T.C Kimlik Numarası </div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <label>
+                                        <input class="input--style-5" type="text" name="id">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="name">Email</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <label>
+                                        <input class="input--style-5" type="email" name="email">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Telefon Numarası</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <label>
+                                        <input class="input--style-5" type="text" name="phone_number">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="name">Sınıf </div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <label>
+                                            <select name="class">
+                                                <option disabled="disabled" selected="selected">Sınıf Seçiniz </option>
+                                                <option> 9. Sınıf </option>
+                                                <option> 10. Sınıf </option>
+                                                <option> 11. Sınıf </option>
+                                                <option> 12. Sınıf </option>
+                                            </select>
+                                        </label>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="name"> EA / SAY? </div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <label>
+                                            <select name="section">
+                                                <option disabled="disabled" selected="selected">Bölüm Seçiniz </option>
+                                                <option> Eşit Ağırlık </option>
+                                                <option> Sayısal </option>
+                                            </select>
+                                        </label>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="name"> Okul </div>
+                          <div class="value">
+                            <div class="input-group">
+                              <label>
+                                <input class="input--style-5" type="text" name="school_name">
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class = "name"> İl - İlçe </div>
+                            <div class="city-district-container" style = "display: flex;">
+                                <div class="col-md-3" style = "text-align:center;">
+                                    <label for="city"></label>
+                                    <select name="city" id="city" class = "form-control">
+                                        <option value="">İl Seçiniz</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="district"></label>
+                                    <select name="district" id="district" class="form-control" disabled="disabled">
+                                        <option value="">İlçe Seçiniz</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                                <div class="name"> Adres </div>
+                                <div class="value">
+                                        <div class="input-group">
+                                            <label>
+                                                <input class="input--style-5" type="text" name="address">
+                                            </label>
+                                        </div>
+                                </div>
+                        </div>
+
+<!--                        <div class="form-row">-->
+<!--                                <div class="name"> Öğrenci dersi nasıl izleyecek? </div>-->
+<!--                                <div class="value">-->
+<!--                                        <div class="input-group">-->
+<!--                                            <label>-->
+<!--                                                <input class="input&#45;&#45;style-5" type="text" name="">-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                </div>-->
+<!--                        </div>-->
+
+                        <div class="form-row p-t-20">
+                            <label class="label label--block">Evinizde internet var mı?</label>
+                            <div class="p-t-15">
+                                <label class="radio-container m-r-55">Evet
+                                    <input type="radio" checked="checked" name="true">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="radio-container">Hayır
+                                    <input type="radio" name="false">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <button id = "register-button" class="btn btn--radius-2 btn--red" type = "submit">KAYIT OL </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-    <script src = "/js/register.js"> </script>
+
+
+    <!-- Jquery JS-->
+    <script src="registration/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="registration/vendor/select2/select2.min.js"></script>
+    <script src="registration/vendor/datepicker/moment.min.js"></script>
+
+    <!-- Main JS-->
+    <script src="/registration/js/global.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src = "js/register.js"></script>
 </body>
+
 </html>
+<!-- end document-->

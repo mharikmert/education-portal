@@ -33,7 +33,7 @@ public class LayoutController {
     public ModelAndView register(){
             ModelAndView mav = new ModelAndView();
 //            mav.setViewName("register");
-        mav.setViewName("newRegister");
+        mav.setViewName("register");
             return mav;
     }
 

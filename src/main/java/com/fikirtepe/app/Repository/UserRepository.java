@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    //i liked this :)
      List<User> findAllByLastName(String lastName);
      List<User> findAllByCity(String city);
 }

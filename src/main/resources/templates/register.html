@@ -76,6 +76,16 @@
                             </div>
                         </div>
 
+                        <div class = "form-row">
+                            <div class = "name"> Doğum Tarihi</div>
+                            <div class = "value">
+                                <div class = "input-group">
+                                    <label for = "datetime">
+                                        <input type = "date" id = "datetime" name = "datetime">
+                                    </label>
+                             </div>
+                            </div>
+                        </div>
 
                         <div class="form-row">
                             <div class="name">Email</div>
@@ -87,6 +97,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-row">
                             <div class="name">Telefon Numarası</div>
                             <div class="value">
@@ -132,6 +143,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-row">
                           <div class="name"> Okul </div>
                           <div class="value">
@@ -146,7 +158,7 @@
                         <div class="form-row">
                             <div class = "name"> İl - İlçe </div>
                             <div class="city-district-container" style = "display: flex;">
-                                <div class="col-md-3" style = "text-align:center;">
+                                <div id = 'city-container' class="col-md-3" style = "text-align:center;">
                                     <label for="city"></label>
                                     <select name="city" id="city" class = "form-control">
                                         <option value="">İl Seçiniz</option>
@@ -173,30 +185,80 @@
                                 </div>
                         </div>
 
-<!--                        <div class="form-row">-->
-<!--                                <div class="name"> Öğrenci dersi nasıl izleyecek? </div>-->
-<!--                                <div class="value">-->
-<!--                                        <div class="input-group">-->
-<!--                                            <label>-->
-<!--                                                <input class="input&#45;&#45;style-5" type="text" name="">-->
-<!--                                            </label>-->
-<!--                                        </div>-->
-<!--                                </div>-->
-<!--                        </div>-->
-
                         <div class="form-row p-t-20">
                             <label class="label label--block">Evinizde internet var mı?</label>
                             <div class="p-t-15">
                                 <label class="radio-container m-r-55">Evet
-                                    <input type="radio" checked="checked" name="true">
+                                    <input type="radio" name="yes">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="radio-container">Hayır
-                                    <input type="radio" name="false">
+                                    <input type="radio" name="no">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
                         </div>
+
+
+
+                        <!-- Parent  information -->
+                        <div class="form-row m-b-55">
+                            <div class="name">Veli Adı-Soyadı</div>
+                            <div class="value">
+                                <div class="row row-space">
+                                    <div class="col-2">
+                                        <div class="input-group-desc">
+                                            <label>
+                                                <input class="input--style-5" type="text" name="parent_first_name">
+                                            </label>
+                                            <label class="label--desc"> Adı </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="input-group-desc">
+                                            <label>
+                                                <input class="input--style-5" type="text" name="parent_last_name">
+                                            </label>
+                                            <label class="label--desc">Soyadı </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="name">Veli Telefon Numarası</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <label>
+                                        <input class="input--style-5" type="text" name="parent_phone_number">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="name">Veli Email</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <label>
+                                        <input class="input--style-5" type="email" name="parent_email">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="name"> Neden bu eğitimi almak istiyorsunuz?  </div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <label>
+                                        <input class="input--style-5" type="text" name="education_reason">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
                         <div>
                             <button id = "register-button" class="btn btn--radius-2 btn--red" type = "submit">KAYIT OL </button>
                         </div>

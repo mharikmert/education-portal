@@ -14,15 +14,18 @@ import java.util.List;
 
 @Service
 public class CityAndDistrictServiceImplementation implements CityAndDistrictService {
-    DistrictRepository districtRepository;
 
+    DistrictRepository districtRepository;
     @Autowired
     public void setDistrictRepository(DistrictRepository districtRepository) {
         this.districtRepository = districtRepository;
     }
 
-    @Autowired
     private CityRepository cityRepository;
+    @Autowired
+    public void setCityRepository(CityRepository cityRepository){
+        this.cityRepository = cityRepository;
+    }
 
     @PersistenceContext
     private EntityManager entityManager;

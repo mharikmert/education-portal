@@ -38,7 +38,7 @@
                     <h2 class="title">Fikirtepe Öğrenci Kayıt Formu </h2>
                 </div>
                 <div class="card-body">
-                    <form id = "form", method = "post">
+                    <form id = "form" method = "post">
                         <div class = "user-title-container">
                             <!-- <h class = "user-title"> Öğrencinin </h> -->
                         </div>
@@ -81,7 +81,7 @@
                             <div class = "value">
                                 <div class = "input-group">
                                     <label for = "datetime">
-                                        <input type = "date" id = "datetime" name = "datetime">
+                                        <input type = "date" id = "datetime" name = "birthdate">
                                     </label>
                              </div>
                             </div>
@@ -157,19 +157,30 @@
 
                         <div class="form-row">
                             <div class = "name"> İl - İlçe </div>
-                            <div class="city-district-container" style = "display: flex;">
-                                <div id = 'city-container' class="col-md-3" style = "text-align:center;">
-                                    <label for="city"></label>
-                                    <select name="city" id="city" class = "form-control">
-                                        <option value="">İl Seçiniz</option>
-                                    </select>
-                                </div>
+                            <div class="value">
+                                <div class = 'input-group'>
+                                    <div class="rs-select2 js-select-simple select--no-search" style ='display:flex;' >
 
-                                <div class="col-md-3">
-                                    <label for="district"></label>
-                                    <select name="district" id="district" class="form-control" disabled="disabled">
-                                        <option value="">İlçe Seçiniz</option>
-                                    </select>
+                                        <div id = 'city-container' class="col-md-3" style = "text-align:center;">
+                                            <label for="city">
+                                                <select name="city" id="city" class = "form-control">
+                                                    <option value="">İl Seçiniz</option>
+                                                </select>
+                                            </label>
+<!--                                            <div class="select-dropdown"></div>-->
+                                        </div>
+
+                                        <div id = 'district-container' class="col-md-3">
+                                            <label for="district">
+                                                <select name="district" id="district" class="form-control" disabled="disabled">
+                                                    <option value="">İlçe Seçiniz</option>
+                                                </select>
+                                            </label>
+                                            <div class = "select-dropdown"></div>
+                                        </div>
+
+                                    </div>
+                                    <div class="select-dropdown"></div>
                                 </div>
                             </div>
                         </div>
@@ -189,7 +200,7 @@
                             <label class="label label--block">Evinizde internet var mı?</label>
                             <div class="p-t-15">
                                 <label class="radio-container m-r-55">Evet
-                                    <input type="radio" name="yes">
+                                    <input type="radio" name="yes" checked>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="radio-container">Hayır
@@ -271,6 +282,7 @@
 
     <!-- Jquery JS-->
     <script src="registration/vendor/jquery/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <!-- Vendor JS-->
     <script src="registration/vendor/select2/select2.min.js"></script>
     <script src="registration/vendor/datepicker/moment.min.js"></script>

@@ -1,6 +1,9 @@
 package com.fikirtepe.app.Model;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -15,11 +18,35 @@ public class User{
 
     private String password;
 
+    @JsonFormat(pattern = "mm-dd-yyyy")
+    private LocalDate birthDate;
+
     private String address;
 
     private String phoneNumber;
 
     private String city;
+
+    private String district;
+
+    private String schoolName;
+
+    private int grade;
+
+    private String section;
+
+    private boolean hasInternet;
+
+    /* it'll be edited after handling the form json*/
+//    @OneToOne
+//    private Parent parent;
+    private long parentId;
+
+    private String parentFirstName;
+
+    private String parentLastName;
+
+    private String parentEmail;
 
     public long getId() {
         return id;

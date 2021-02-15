@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
@@ -11,9 +10,6 @@
 
     <!-- Title Page-->
     <title>Kayıt Formu </title>
-
-    <!-- Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
 
     <!-- Icons font CSS-->
     <link href="registration/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -34,14 +30,16 @@
     <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
+
+                <!--form title -->
                 <div class="card-heading">
                     <h2 class="title">Fikirtepe Öğrenci Kayıt Formu </h2>
                 </div>
+
                 <div class="card-body">
                     <form id = "form" method = "post">
-                        <div class = "user-title-container">
-                            <!-- <h class = "user-title"> Öğrencinin </h> -->
-                        </div>
+
+                        <!-- name and surname container -->
                         <div class="form-row m-b-55">
                             <div class="name">Adı-Soyadı</div>
                             <div class="value">
@@ -65,6 +63,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- id container -->
                         <div class="form-row">
                             <div class="name">T.C Kimlik Numarası </div>
                             <div class="value">
@@ -76,6 +76,7 @@
                             </div>
                         </div>
 
+                        <!-- birthdate container-->
                         <div class = "form-row">
                             <div class = "name"> Doğum Tarihi</div>
                             <div class = "value">
@@ -87,6 +88,7 @@
                             </div>
                         </div>
 
+                        <!-- email container -->
                         <div class="form-row">
                             <div class="name">Email</div>
                             <div class="value">
@@ -98,6 +100,7 @@
                             </div>
                         </div>
 
+                        <!-- phone number container -->
                         <div class="form-row">
                             <div class="name">Telefon Numarası</div>
                             <div class="value">
@@ -109,41 +112,42 @@
                             </div>
                         </div>
 
+                        <!-- class and section container -->
                         <div class="form-row">
-                            <div class="name">Sınıf </div>
+                            <div class="name">Sınıf - Bölüm </div>
                             <div class="value">
                                 <div class="input-group">
-                                    <div class="rs-select2 js-select-simple select--no-search">
-                                        <label>
-                                            <select name="class">
-                                                <option disabled="disabled" selected="selected">Sınıf Seçiniz </option>
-                                                <option> 9. Sınıf </option>
-                                                <option> 10. Sınıf </option>
-                                                <option> 11. Sınıf </option>
-                                                <option> 12. Sınıf </option>
-                                            </select>
-                                        </label>
-                                        <div class="select-dropdown"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="name"> EA / SAY? </div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <div class="rs-select2 js-select-simple select--no-search">
-                                        <label>
-                                            <select name="section">
-                                                <option disabled="disabled" selected="selected">Bölüm Seçiniz </option>
-                                                <option> Eşit Ağırlık </option>
-                                                <option> Sayısal </option>
-                                            </select>
-                                        </label>
+                                    <div class="rs-select2 js-select-simple select--no-search" style = "display:flex;">
+
+                                        <!-- class container -->
+                                        <div id = "select-class">
+                                            <label>
+                                                <select name="class">
+                                                    <option disabled="disabled" selected="selected">Sınıf Seçiniz </option>
+                                                    <option> 9. Sınıf </option>
+                                                    <option> 10. Sınıf </option>
+                                                    <option> 11. Sınıf </option>
+                                                    <option> 12. Sınıf </option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                        <!-- section container -->
+                                        <div id = "select-section">
+                                            <label>
+                                                <select name="section">
+                                                    <option disabled="disabled" selected="selected">Bölüm Seçiniz </option>
+                                                    <option> Eşit Ağırlık </option>
+                                                    <option> Sayısal </option>
+                                                </select>
+                                            </label>
+                                        </div>
                                         <div class="select-dropdown"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- school name container -->
                         <div class="form-row">
                           <div class="name"> Okul </div>
                           <div class="value">
@@ -155,36 +159,38 @@
                           </div>
                         </div>
 
+                        <!-- city and district selection container -->
                         <div class="form-row">
                             <div class = "name"> İl - İlçe </div>
                             <div class="value">
                                 <div class = 'input-group'>
-                                    <div class="rs-select2 js-select-simple select--no-search" style ='display:flex;' >
+                                    <div class="rs-select2 js-select-simple select--no-search" style ='display:flex;'>
 
+                                        <!-- city container -->
                                         <div id = 'city-container' class="col-md-3" style = "text-align:center;">
                                             <label for="city">
                                                 <select name="city" id="city" class = "form-control">
                                                     <option value="">İl Seçiniz</option>
                                                 </select>
                                             </label>
-<!--                                            <div class="select-dropdown"></div>-->
                                         </div>
 
+                                        <!-- district container -->
                                         <div id = 'district-container' class="col-md-3">
                                             <label for="district">
                                                 <select name="district" id="district" class="form-control" disabled="disabled">
                                                     <option value="">İlçe Seçiniz</option>
                                                 </select>
                                             </label>
-                                            <div class = "select-dropdown"></div>
                                         </div>
+                                        <div class="select-dropdown"></div>
 
                                     </div>
-                                    <div class="select-dropdown"></div>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- address container -->
                         <div class="form-row">
                                 <div class="name"> Adres </div>
                                 <div class="value">
@@ -196,11 +202,12 @@
                                 </div>
                         </div>
 
+                        <!-- radio button container -->
                         <div class="form-row p-t-20">
                             <label class="label label--block">Evinizde internet var mı?</label>
                             <div class="p-t-15">
                                 <label class="radio-container m-r-55">Evet
-                                    <input type="radio" name="yes" checked>
+                                    <input type="radio" name="yes">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="radio-container">Hayır
@@ -281,18 +288,12 @@
 
 
     <!-- Jquery JS-->
-    <script src="registration/vendor/jquery/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <!-- Vendor JS-->
     <script src="registration/vendor/select2/select2.min.js"></script>
-    <script src="registration/vendor/datepicker/moment.min.js"></script>
-
     <!-- Main JS-->
     <script src="/registration/js/global.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src = "js/register.js"></script>
 </body>
-
 </html>
 <!-- end document-->

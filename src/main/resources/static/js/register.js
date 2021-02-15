@@ -1,7 +1,8 @@
+//post request
 $(document).ready(function() {
     $("#register-button").on('click', function() {
         $.ajax({
-            url : "localhost:8080/api/register",
+            url : "/api/register",
             type : "POST",
             dataType: 'json',
             headers : {"Content-Type" : "application/json; charset=utf-8"},
@@ -25,6 +26,7 @@ $(document).ready(function(){
         type: 'GET',
         dataType : 'json',
         headers : {"Content-Type" : "application/json; charset=utf-8"},
+        //appends the cities to the city select box
         success: function (result){
             $.each(result, function(index,value){
                 const option = document.createElement('option');
@@ -32,17 +34,22 @@ $(document).ready(function(){
                 $('#city').append(option);
             });
         },
+        error : function (result){
+            console.log('city ajax GET failed! with result : ', result);
+        }
     });
 });
-/* district select box should be filled with selection city */
-$(document).ready(function (){
-    $('#city').change( function() {
-        console.log('city is changed..');
-        let selectedOption = $(this).children('option:selected').val();
+
+$(document).ready(function () {
+    //when option value is selected or changed
+    $('#city').change( () => {
+        let option = document.querySelector('#city');
+        let selectedOption = option.options[option.selectedIndex].value;
         console.log(selectedOption);
     });
-})
+});
 const redirect = (URL) => {
     window.location.href = URL;
     return true;
 }
+

@@ -4,6 +4,8 @@ import com.fikirtepe.app.Error.Error;
 import com.fikirtepe.app.Exceptions.UserNotFoundException;
 import com.fikirtepe.app.Model.User;
 import com.fikirtepe.app.Service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class UserRestController {
+    private static final Logger logger = LoggerFactory.getLogger(UserRestController.class);
 
     UserService userService;
     @Autowired
@@ -33,16 +36,17 @@ public class UserRestController {
             value = "/register",
             method = RequestMethod.POST)
     public ResponseEntity<?> createUser(@RequestBody User user,
-                                             HttpServletResponse response){
-        System.out.println(user.toString());
+                                             HttpServletResponse response) throws IOException {
+        logger.info(user.toString());
         try{
             userService.findUser(user.getId());
-            System.out.println("User is already exist");
             return ResponseEntity.created(new URI("/user/id")).build();
         }
         catch(UserNotFoundException ex){
-            //userService.createUser(user);
-            System.out.println(user.toString());
+            /*
+            should refactor
+            */
+            userService.createUser(user);
         }
         catch(Exception ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

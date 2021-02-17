@@ -1,21 +1,32 @@
 //post request
 $(document).ready(() => {
-    $("#register-button").on('click', function() {
-        $.ajax({
-            url : "/api/register",
-            type : "POST",
-            dataType: 'json',
-            headers : {"Content-Type" : "application/json; charset=utf-8"},
-            data : $('#form').serialize(),
-            /* data json should be edited */
-            success : (result) =>{
-                console.log(result);
-                redirect('registrationApproval.html');
-            },
-            error : (xhr, resp, text) => {
-                console.log(xhr, resp, text)
+    $('#register-button').on('click', function(event) {
+        event.preventDefault();
+        let formData= $('#form').serializeArray();
+        let obj = {};
+        $.each(formData, (index, value) => {
+            if(value['name'] === 'yes' || value['name'] === 'no'){
+                //yes -> true, no -> false
+                value['value'] = value['name'] === 'yes';
+                value['name'] = 'hasInternet';
             }
-        });
+            obj[value['name']] = value['value']
+        })
+        const formJson = JSON.stringify(obj);
+        $.ajax({
+                url : '/api/register',
+                type : 'POST',
+                dataType: 'json',
+                headers : {'Content-Type' : 'application/json; charset=utf-8'},
+                data : formJson,
+                success : (result) =>{
+                    console.log('result', result);
+                    redirect('/');
+                },
+                error : (xhr, resp, text) => {
+                    console.log(xhr, resp, text)
+                }
+            });
     });
 });
 
@@ -28,7 +39,7 @@ $(document).ready(() => {
         type: 'GET',
         dataType : 'json',
         headers : {
-            "Content-Type" : "application/json; charset=utf-8"
+            'Content-Type' : 'application/json; charset=utf-8'
         },
         success: (result) => {
             citiesJson = result;

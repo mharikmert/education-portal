@@ -1,6 +1,8 @@
 package com.fikirtepe.app.Model;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sun.istack.NotNull;
 import lombok.Data;
+import org.graalvm.compiler.api.replacements.Snippet;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -8,7 +10,6 @@ import java.time.LocalDate;
 @Data
 @Entity
 public class User{
-
     @Id
     private long id;
 
@@ -18,8 +19,9 @@ public class User{
 
     private String password;
 
-    @JsonFormat(pattern = "mm-dd-yyyy")
-    private LocalDate birthDate;
+//    @JsonFormat(pattern = "mm-dd-yyyy")
+//  private LocalDatetime birthDate;
+    private String birthDate;
 
     private String address;
 
@@ -47,6 +49,14 @@ public class User{
     private String parentLastName;
 
     private String parentEmail;
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
 
     public long getId() {
         return id;
@@ -104,6 +114,78 @@ public class User{
         this.city = city;
     }
 
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
+    }
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
+
+    public boolean isHasInternet() {
+        return hasInternet;
+    }
+
+    public void setHasInternet(boolean hasInternet) {
+        this.hasInternet = hasInternet;
+    }
+
+    public long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(long parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getParentFirstName() {
+        return parentFirstName;
+    }
+
+    public void setParentFirstName(String parentFirstName) {
+        this.parentFirstName = parentFirstName;
+    }
+
+    public String getParentLastName() {
+        return parentLastName;
+    }
+
+    public void setParentLastName(String parentLastName) {
+        this.parentLastName = parentLastName;
+    }
+
+    public String getParentEmail() {
+        return parentEmail;
+    }
+
+    public void setParentEmail(String parentEmail) {
+        this.parentEmail = parentEmail;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -111,9 +193,19 @@ public class User{
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", password='" + password + '\'' +
+                ", birthDate=" + birthDate +
                 ", address='" + address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", city='" + city + '\'' +
+                ", district='" + district + '\'' +
+                ", schoolName='" + schoolName + '\'' +
+                ", grade=" + grade +
+                ", section='" + section + '\'' +
+                ", hasInternet=" + hasInternet +
+                ", parentId=" + parentId +
+                ", parentFirstName='" + parentFirstName + '\'' +
+                ", parentLastName='" + parentLastName + '\'' +
+                ", parentEmail='" + parentEmail + '\'' +
                 '}';
     }
 }

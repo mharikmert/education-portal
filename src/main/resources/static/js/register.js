@@ -165,3 +165,66 @@ const throwWarning = (inputInputFieldId, warningId) => {
 const takeBackWarning = (warningId) => {
     $(warningId).css('display', 'none');
 }
+
+function ValidateEmail(mail,warningId){
+    var x = document.forms["form"][mail].value;
+    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(x))
+    {
+        takeBackWarning("#" + warningId);
+        return (true)
+    }
+    console.log(document.getElementById(mail.id));
+   throwWarning("#" + mail,"#" + warningId);
+    return (false)
+}
+
+
+//It prevents entering non-number characters
+$('#tc').bind('keypress', function(e) {
+
+    if($('#tc').val().length < 11){
+        var k = e.which;
+        var ok = k >= 48 && k <= 57; // 0-9
+
+        if (!ok){
+            e.preventDefault();
+        }
+    }else{
+        e.preventDefault();
+    }
+
+});
+
+//It prevents entering non-number characters
+$('#phoneNumber').bind('keypress', function(e) {
+
+    if($('#phoneNumber').val().length < 11){
+        var k = e.which;
+        var ok = k >= 48 && k <= 57; // 0-9
+
+        if (!ok){
+            e.preventDefault();
+        }
+    }else{
+        e.preventDefault();
+    }
+
+});
+
+//It prevents entering non-number characters
+$('#parentPhoneNumber').bind('keypress', function(e) {
+
+    if($('#parentPhoneNumber').val().length < 11){
+        var k = e.which;
+        var ok = k >= 48 && k <= 57; // 0-9
+
+        if (!ok){
+            e.preventDefault();
+        }
+    }else{
+        e.preventDefault();
+    }
+
+});
+
+

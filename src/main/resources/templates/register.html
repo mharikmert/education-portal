@@ -72,7 +72,7 @@
                             <div class="value">
                                 <div id = 'id-container' class="input-group">
                                     <label>
-                                        <input id = "id" class="input--style-5" type="text" name="id">
+                                        <input id = "tc" class="input--style-5" type="text" name="tc">
                                     </label>
                                 </div>
                                 <div id = 'invalid-tckn' class='invalid-input' > Lütfen geçerli bir tckn giriniz </div>
@@ -99,7 +99,7 @@
                             <div class="value">
                                 <div class="input-group">
                                     <label>
-                                        <input id = 'email' class="input--style-5" type="email" name="email">
+                                        <input id = 'email' class="input--style-5" type="email" name="email" onfocusout="ValidateEmail(this.id, 'invalid-email-warning')">
                                     </label>
                                 </div>
                                 <div id = 'invalid-email-warning' class = 'invalid-input' >  Lütfen geçerli bir mail adresi giriniz </div>
@@ -112,7 +112,7 @@
                             <div class="value">
                                 <div class="input-group">
                                     <label>
-                                        <input id = 'phoneNumber' class="input--style-5" type="text" name="phoneNumber">
+                                        <input id = 'phoneNumber' class="input--style-5" type="text" name="phoneNumber" value="05">
                                     </label>
                                 </div>
                                 <div id = 'invalid-phone-number-warning' class = 'invalid-input' >  Lütfen geçerli bir  telefon numarası giriniz </div>
@@ -267,12 +267,12 @@
                                         <input id = 'parentPhoneNumber' class="input--style-5" type="text" name="parentPhoneNumber">
                                     </label>
                                 </div>
-                                <div id = 'invalid-parent-phone-number-warning' class = 'invalid-input' >  Lütfen ebeveny telefon numarasını giriniz </div>
+                                <div id = 'invalid-parent-phone-number-warning' class = 'invalid-input' >  Lütfen ebeveyn telefon numarasını giriniz </div>
                             </div>
                         </div>
 
                         <div class="form-row">
-                            <div class="name">Veli Email </div>
+                            <div class="name" id="veli-mail">Veli Email </div>
                             <div class="value">
                                 <div class="input-group">
                                     <label>

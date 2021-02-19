@@ -1,19 +1,43 @@
+
 //post request
 $(document).ready(() => {
+    let formState = false;
     $('#register-button').on('click', function(event) {
         event.preventDefault();
         let formData= $('#form').serializeArray();
         let obj = {};
         $.each(formData, (index, value) => {
-            if(value['name'] === 'yes' || value['name'] === 'no'){
+            //radio button conversion
+            if(value['value'] === 'yes' || value['value'] === 'no'){
                 //yes -> true, no -> false
-                value['value'] = value['name'] === 'yes';
+                value['value'] = value['value'] === 'yes';
                 value['name'] = 'hasInternet';
             }
+
+            //id check
+            else if(value['name'] === 'id'){
+                const id = value['value'];
+                if(!isValidUserID(id)){
+                    throwWarning('#id', '#invalid-tckn')
+                }
+            }
+
+            // name fields check
+            else if(value['name'] === 'firstName' || value['name'] === 'lastName'){
+                const nameField = value['name'];
+                if(!validateNameField('#' + nameField)){
+                    throwWarning('#'+ nameField, '#invalid-' + nameField + '-warning')
+                }
+            }
+
             obj[value['name']] = value['value']
         })
+
         const formJson = JSON.stringify(obj);
-        $.ajax({
+
+        console.log('state -> ', formState);
+        if(formState){
+            $.ajax({
                 url : '/api/register',
                 type : 'POST',
                 dataType: 'json',
@@ -27,6 +51,7 @@ $(document).ready(() => {
                     console.log(xhr, resp, text)
                 }
             });
+        }
     });
 });
 
@@ -97,9 +122,46 @@ $(document).ready( () => {
     }); // end of city change function
 
 })
-//redirects to pages to the given url
-const redirect = (URL) => {
-    window.location.href = URL;
-    return true;
+
+//id validation method for turkish identity number
+const isValidUserID = (userID) => {
+    userID = String(userID);
+    if (userID.substring(0, 1) === '0') return false;
+    if (userID.length !== 11) return false;
+
+    const tenTotalArray = userID.substr(0, 10).split('');
+    let odd = 0,even = 0, tenTotal = 0;
+
+    let j;
+    for (let i = j = 0; i < 9; ++i) {
+        j = parseInt(tenTotalArray[i], 10);
+        if (i & 1) even += j;
+        else odd += j;
+        tenTotal += j;
+    }
+    if ( (odd * 7 -even ) % 10 !== parseInt(userID.substr(-2, 1), 10)) {
+        return false;
+    }
+    tenTotal += parseInt(tenTotalArray[9], 10);
+    return tenTotal % 10 === parseInt(userID.substr(-1), 10);
+};
+
+//validates the name fields
+const validateNameField = (fieldId) => {
+    //regex pattern for name fields
+    const regex = /^[a-zA-Z ]{2,30}$/; // between 2-30, might contain any character from a to Z
+    const field = document.querySelector(fieldId).value;
+    return regex.test(field);
 }
 
+//throws warning with given input field id and its warning
+// warning id's might edit, to avoid second parameter
+const throwWarning = (inputInputFieldId, warningId) => {
+    $(inputInputFieldId).css('border', '2px solid red')
+    $(warningId).css('display', 'block');
+}
+
+//focusin event will be appended
+const takeBackWarning = (warningId) => {
+    $(warningId).css('display', 'none');
+}

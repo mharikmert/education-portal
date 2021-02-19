@@ -47,18 +47,20 @@
                                     <div class="col-2">
                                         <div class="input-group-desc">
                                             <label>
-                                                <input class="input--style-5" type="text" name="firstName">
+                                                <input id = 'firstName' class="input--style-5" type="text" name="firstName">
                                             </label>
                                             <label class="label--desc"> Adı </label>
                                         </div>
+                                        <div id = 'invalid-firstName-warning' class = 'invalid-input' > Lütfen geçerli bir ad giriniz </div>
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group-desc">
                                             <label>
-                                                <input class="input--style-5" type="text" name="lastName">
+                                                <input id = 'lastName' class="input--style-5" type="text" name="lastName">
                                             </label>
                                             <label class="label--desc">Soyadı </label>
                                         </div>
+                                        <div id = 'invalid-lastName-warning' class = 'invalid-input' > Lütfen geçerli bir soyad giriniz </div>
                                     </div>
                                 </div>
                             </div>
@@ -68,11 +70,12 @@
                         <div class="form-row">
                             <div class="name">T.C Kimlik Numarası </div>
                             <div class="value">
-                                <div class="input-group">
+                                <div id = 'id-container' class="input-group">
                                     <label>
-                                        <input class="input--style-5" type="text" name="id">
+                                        <input id = "id" class="input--style-5" type="text" name="id">
                                     </label>
                                 </div>
+                                <div id = 'invalid-tckn' class='invalid-input' > Lütfen geçerli bir tckn giriniz </div>
                             </div>
                         </div>
 
@@ -81,10 +84,12 @@
                             <div class = "name"> Doğum Tarihi</div>
                             <div class = "value">
                                 <div class = "input-group">
-                                    <label for = "datetime">
-                                        <input type = "date" id = "datetime" name = "birthDate">
+                                    <label for = "birthDate">
+                                        <input type = "date" id = "birthDate" name = "birthDate">
                                     </label>
-                             </div>
+                                </div>
+                                <div id = 'invalid-birthdate-warning' class = 'invalid-input' >  Yaş uyarısı ? ! </div>
+
                             </div>
                         </div>
 
@@ -94,9 +99,10 @@
                             <div class="value">
                                 <div class="input-group">
                                     <label>
-                                        <input class="input--style-5" type="email" name="email">
+                                        <input id = 'email' class="input--style-5" type="email" name="email">
                                     </label>
                                 </div>
+                                <div id = 'invalid-email-warning' class = 'invalid-input' >  Lütfen geçerli bir mail adresi giriniz </div>
                             </div>
                         </div>
 
@@ -106,9 +112,10 @@
                             <div class="value">
                                 <div class="input-group">
                                     <label>
-                                        <input class="input--style-5" type="text" name="phoneNumber">
+                                        <input id = 'phoneNumber' class="input--style-5" type="text" name="phoneNumber">
                                     </label>
                                 </div>
+                                <div id = 'invalid-phone-number-warning' class = 'invalid-input' >  Lütfen geçerli bir  telefon numarası giriniz </div>
                             </div>
                         </div>
 
@@ -122,7 +129,7 @@
                                         <!-- class container -->
                                         <div id = "select-class">
                                             <label>
-                                                <select name="grade">
+                                                <select name="grade" id = 'grade'>
                                                     <option disabled="disabled" selected="selected">Sınıf Seçiniz </option>
                                                     <option> 9 </option>
                                                     <option> 10 </option>
@@ -131,16 +138,19 @@
                                                 </select>
                                             </label>
                                         </div>
+
+                                        <div id = 'invalid-grade-warning' class = 'invalid-input' >  Lütfen sınıf seçiniz </div>
                                         <!-- section container -->
                                         <div id = "select-section">
                                             <label>
-                                                <select name="section">
+                                                <select id = 'section' name="section">
                                                     <option disabled="disabled" selected="selected">Bölüm Seçiniz </option>
                                                     <option> Eşit Ağırlık </option>
                                                     <option> Sayısal </option>
                                                 </select>
                                             </label>
                                         </div>
+                                        <div id = 'invalid-section-warning' class = 'invalid-input' >  <p> Lütfen bölüm seçiniz </p></div>
                                         <div class="select-dropdown"></div>
                                     </div>
                                 </div>
@@ -153,9 +163,10 @@
                           <div class="value">
                             <div class="input-group">
                               <label>
-                                <input class="input--style-5" type="text" name="schoolName">
+                                <input id = 'schoolName' class="input--style-5" type="text" name="schoolName">
                               </label>
                             </div>
+                              <div id = 'invalid-school-warning' class = 'invalid-input' >  Lütfen okul adınızı giriniz </div>
                           </div>
                         </div>
 
@@ -170,10 +181,12 @@
                                         <div id = 'city-container' class="col-md-3" style = "text-align:center;">
                                             <label for="city">
                                                 <select name="city" id="city" class = "form-control">
-                                                    <option value="">İl Seçiniz</option>
+                                                    <option value="" disabled = "disabled">İl Seçiniz</option>
                                                 </select>
                                             </label>
                                         </div>
+
+                                        <div id = 'invalid-city-warning' class = 'invalid-input' >  Lütfen şehir seçiniz </div>
 
                                         <!-- district container -->
                                         <div id = 'district-container' class="col-md-3">
@@ -183,6 +196,7 @@
                                                 </select>
                                             </label>
                                         </div>
+                                        <div id = 'invalid-district-warning' class = 'invalid-input' >  Lütfen ilçe seçiniz </div>
                                         <div class="select-dropdown"></div>
 
                                     </div>
@@ -196,9 +210,10 @@
                                 <div class="value">
                                         <div class="input-group">
                                             <label>
-                                                <input class="input--style-5" type="text" name="address">
+                                                <input id = 'address' class="input--style-5" type="text" name="address">
                                             </label>
                                         </div>
+                                    <div id = 'invalid-adress-warning' class = 'invalid-input' >  Lütfen adresinizi giriniz </div>
                                 </div>
                         </div>
 
@@ -207,17 +222,15 @@
                             <label class="label label--block">Evinizde internet var mı?</label>
                             <div class="p-t-15">
                                 <label class="radio-container m-r-55">Evet
-                                    <input type="radio" name="yes">
+                                    <input type="radio" name="exist" value = "yes" checked = "checked">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="radio-container">Hayır
-                                    <input type="radio" name="no">
+                                    <input type="radio" name="exist" value = "no">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
                         </div>
-
-
 
                         <!-- Parent  information -->
                         <div class="form-row m-b-55">
@@ -227,18 +240,20 @@
                                     <div class="col-2">
                                         <div class="input-group-desc">
                                             <label>
-                                                <input class="input--style-5" type="text" name="parentFirstName">
+                                                <input id = 'parentFirstName' class="input--style-5" type="text" name="parentFirstName">
                                             </label>
                                             <label class="label--desc"> Adı </label>
                                         </div>
+                                        <div id = 'invalid-parent-first-name-warning' class = 'invalid-input' >  Lütfen ebeveyn adını giriniz </div>
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group-desc">
                                             <label>
-                                                <input class="input--style-5" type="text" name="parentLastName">
+                                                <input id = 'parentLastName' class="input--style-5" type="text" name="parentLastName">
                                             </label>
                                             <label class="label--desc">Soyadı </label>
                                         </div>
+                                        <div id = 'invalid-parent-last-name-warning' class = 'invalid-input' >  Lütfen ebeveyn soyadını giriniz </div>
                                     </div>
                                 </div>
                             </div>
@@ -249,31 +264,34 @@
                             <div class="value">
                                 <div class="input-group">
                                     <label>
-                                        <input class="input--style-5" type="text" name="parentPhoneNumber">
+                                        <input id = 'parentPhoneNumber' class="input--style-5" type="text" name="parentPhoneNumber">
                                     </label>
                                 </div>
+                                <div id = 'invalid-parent-phone-number-warning' class = 'invalid-input' >  Lütfen ebeveny telefon numarasını giriniz </div>
                             </div>
                         </div>
 
                         <div class="form-row">
-                            <div class="name">Veli Email</div>
+                            <div class="name">Veli Email </div>
                             <div class="value">
                                 <div class="input-group">
                                     <label>
                                         <input class="input--style-5" type="email" name="parentEmail">
                                     </label>
                                 </div>
+<!--                                <div id = 'invalid&#45;&#45;warning' class = 'invalid-input' >  Lütfen  giriniz </div>-->
                             </div>
                         </div>
 
                         <div class="form-row">
-                            <div class="name"> Neden bu eğitimi almak istiyorsunuz?  </div>
+                            <div class="name"> Neden bu eğitimi almak istiyorsunuz? </div>
                             <div class="value">
                                 <div class="input-group">
                                     <label>
-                                        <input class="input--style-5" type="text" name="education_reason">
+                                        <input id = 'education-reason' class="input--style-5" type="text" name="educationReason">
                                     </label>
                                 </div>
+                                <div id = 'invalid-education-reason-warning' class = 'invalid-input' >  Bu alanı doldurmak zorunludur </div>
                             </div>
                         </div>
 

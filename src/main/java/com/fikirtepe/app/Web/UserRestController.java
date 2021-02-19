@@ -46,7 +46,7 @@ public class UserRestController {
             /*
             should refactor
             */
-            userService.createUser(user);
+//            userService.createUser(user);
         }
         catch(Exception ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

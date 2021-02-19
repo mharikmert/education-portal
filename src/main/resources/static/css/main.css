@@ -1,8 +1,8 @@
 html,body {
     height: 100%;
-    margin: 0px; padding: 0px;
+    margin: 0; padding: 0;
 }
-#login-title{
+#title-container{
     margin: auto;
     font-size: 20px;
     color: #800080;
@@ -10,12 +10,21 @@ html,body {
 #logo-container{
     text-align: center;
 }
-#LoginTopLine{
+#logo-container img{
+    height: 100px;
+}
+#top-line-container{
     display: flex;
     align-items: center;
 }
+.body-sentence{
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 25px;
+    color: black;
+}
 
-#full{
+#body-container{
     height: 86.4%;
     background-image: url("../assets-img/bg.png");
     background-size:cover;
@@ -23,6 +32,10 @@ html,body {
     background-repeat: no-repeat;
     background-position: center;
  }
+#sentence-container{
+    text-align: center;
+    padding-top: 5%;
+}
 .button{
     color : #800080;
     font-weight: bold;
@@ -33,4 +46,30 @@ html,body {
     border-radius: 30px;
     outline:none;
     cursor: pointer;
+}
+
+@media  only screen and (max-width: 900px) and (min-width: 700px) {
+    #title-container{
+        font-size: 60%;
+    }
+}
+@media only screen and (max-width: 500px){
+    #top-line-container{
+        display: block;
+        text-align: center;
+    }
+    #title-container{
+        font-size: 50%;
+    }
+    #logo-container img{
+        height: 20%;
+        width: 60%;
+    }
+    #body-container{
+        margin-top: 3%;
+        text-align:center;
+    }
+    .body-sentence{
+        font-size: 80%;
+    }
 }

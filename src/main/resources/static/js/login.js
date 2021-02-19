@@ -1,49 +1,6 @@
 //current user object
 const currentUser = {};
 
-//id validation method for turkish identity number
-const isValidUserID = (userID) => {
-    userID = String(userID);
-    if (userID.substring(0, 1) === '0') return false;
-    if (userID.length !== 11) return false;
-
-    const tenTotalArray = userID.substr(0, 10).split('');
-    let odd = 0,even = 0, tenTotal = 0;
-
-    let j;
-    for (let i = j = 0; i < 9; ++i) {
-        j = parseInt(tenTotalArray[i], 10);
-        if (i & 1) even += j;
-        else odd += j;
-        tenTotal += j;
-    }
-    if ( (odd * 7 -even ) % 10 !== parseInt(userID.substr(-2, 1), 10)) {
-        return false;
-    }
-    tenTotal += parseInt(tenTotalArray[9], 10);
-    return tenTotal % 10 === parseInt(userID.substr(-1), 10);
-
-};
-
-// password validation, for strong passwords
-const isValidPassword = (password) => {
-    let intCounter = 0, lowerCaseCounter = 0, upperCaseCounter = 0, elseCounter = 0;
-    password = String(password);
-    const passArr = password.substr(0, password.length).split('');
-    for(let i = 0; i < passArr.length; i++){
-        //upper case- lower case letter control
-        const ch = password.charAt(i);
-        if(ch >= 'A' && ch <= 'Z') upperCaseCounter++;
-        else if(ch >= 'a' && ch <= 'z') lowerCaseCounter++;
-        //integer control
-        else if(ch >= '0' && ch <= '9') intCounter++;
-        //if(Number.isInteger(parseInt(passArr[i]))) intCounter++;
-        else elseCounter++; //it will be edited, which characters?
-    }
-    return password.length >= 6 && upperCaseCounter > 0 && lowerCaseCounter > 0 && intCounter > 0;
-
-};
-
 const postLoginRequest = () => {
     const xhr = new XMLHttpRequest();
     const url = "/api/login";

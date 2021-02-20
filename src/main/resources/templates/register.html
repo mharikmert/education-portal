@@ -27,292 +27,292 @@
 </head>
 
 <body>
-    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
-        <div class="wrapper wrapper--w790">
-            <div class="card card-5">
+<div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+    <div class="wrapper wrapper--w790">
+        <div class="card card-5">
 
-                <!--form title -->
-                <div class="card-heading">
-                    <h2 class="title">Fikirtepe Öğrenci Kayıt Formu </h2>
-                </div>
+            <!--form title -->
+            <div class="card-heading">
+                <h2 class="title">Fikirtepe Öğrenci Kayıt Formu </h2>
+            </div>
 
-                <div class="card-body">
-                    <form id = "form" method = "post">
+            <div class="card-body">
+                <form id = "form" method = "post">
 
-                        <!-- name and surname container -->
-                        <div class="form-row m-b-55">
-                            <div class="name">Adı-Soyadı</div>
-                            <div class="value">
-                                <div class="row row-space">
-                                    <div class="col-2">
-                                        <div class="input-group-desc">
-                                            <label>
-                                                <input id = 'firstName' class="input--style-5" type="text" name="firstName" onfocusout="validateNameForm(this.id,'invalid-firstName-warning')" onkeyup="this.value = this.value.toUpperCase();">
-                                            </label>
-                                            <label class="label--desc"> Adı </label>
-                                        </div>
-                                        <div id = 'invalid-firstName-warning' class = 'invalid-input' > Lütfen geçerli bir ad giriniz </div>
+                    <!-- name and surname container -->
+                    <div class="form-row m-b-55">
+                        <div class="name">Adı-Soyadı</div>
+                        <div class="value">
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="input-group-desc">
+                                        <label>
+                                            <input id = 'firstName' class="input--style-5" type="text" name="firstName" onfocusout="validateNameForm(this.id,'invalid-firstName-warning')" onkeyup="this.value = this.value.toUpperCase();">
+                                        </label>
+                                        <label class="label--desc"> Adı </label>
                                     </div>
-                                    <div class="col-2">
-                                        <div class="input-group-desc">
-                                            <label>
-                                                <input id = 'lastName' class="input--style-5" type="text" name="lastName" onfocusout="validateNameForm(this.id,'invalid-lastName-warning')" onkeyup="this.value = this.value.toUpperCase();">
-                                            </label>
-                                            <label class="label--desc">Soyadı </label>
-                                        </div>
-                                        <div id = 'invalid-lastName-warning' class = 'invalid-input' > Lütfen geçerli bir soyad giriniz </div>
+                                    <div id = 'invalid-firstName-warning' class = 'invalid-input' > Lütfen geçerli bir ad giriniz </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="input-group-desc">
+                                        <label>
+                                            <input id = 'lastName' class="input--style-5" type="text" name="lastName" onfocusout="validateNameForm(this.id,'invalid-lastName-warning')" onkeyup="this.value = this.value.toUpperCase();">
+                                        </label>
+                                        <label class="label--desc">Soyadı </label>
                                     </div>
+                                    <div id = 'invalid-lastName-warning' class = 'invalid-input' > Lütfen geçerli bir soyad giriniz </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- id container -->
-                        <div class="form-row">
-                            <div class="name">T.C Kimlik Numarası </div>
-                            <div class="value">
-                                <div id = 'id-container' class="input-group">
-                                    <label>
-                                        <input id = "tc" class="input--style-5" type="text" name="tc" onfocusout="validateIdForm(this.id,'invalid-tckn')">
-                                    </label>
+                    <!-- id container -->
+                    <div class="form-row">
+                        <div class="name">T.C Kimlik Numarası </div>
+                        <div class="value">
+                            <div id = 'id-container' class="input-group">
+                                <label>
+                                    <input id = "tc" class="input--style-5" type="text" name="tc" onfocusout="validateIdForm(this.id,'invalid-tckn')">
+                                </label>
+                            </div>
+                            <div id = 'invalid-tckn' class='invalid-input' > Lütfen geçerli bir tckn giriniz </div>
+                        </div>
+                    </div>
+
+                    <!-- birthdate container-->
+                    <div class = "form-row">
+                        <div class = "name"> Doğum Tarihi</div>
+                        <div class = "value">
+                            <div class = "input-group">
+                                <label for = "birthDate">
+                                    <input type = "date" id = "birthDate" name = "birthDate">
+                                </label>
+                            </div>
+                            <div id = 'invalid-birthdate-warning' class = 'invalid-input' >  Yaş uyarısı ? ! </div>
+
+                        </div>
+                    </div>
+
+                    <!-- email container -->
+                    <div class="form-row">
+                        <div class="name">Email</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <label>
+                                    <input id = 'email' class="input--style-5" type="email" name="email" onfocusout="ValidateEmail(this.id, 'invalid-email-warning')">
+                                </label>
+                            </div>
+                            <div id = 'invalid-email-warning' class = 'invalid-input' >  Lütfen geçerli bir mail adresi giriniz </div>
+                        </div>
+                    </div>
+
+                    <!-- phone number container -->
+                    <div class="form-row">
+                        <div class="name">Telefon Numarası</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <label>
+                                    <input id = 'phoneNumber' class="input--style-5" type="text" name="phoneNumber" value="05" onfocusout="validatePhoneForm(this.id,'invalid-phone-number-warning')">
+                                </label>
+                            </div>
+                            <div id = 'invalid-phone-number-warning' class = 'invalid-input' >  Lütfen geçerli bir  telefon numarası giriniz </div>
+                        </div>
+                    </div>
+
+                    <!-- class and section container -->
+                    <div class="form-row">
+                        <div class="name">Sınıf - Bölüm </div>
+                        <div class="value">
+                            <div class="input-group">
+                                <div class="rs-select2 js-select-simple select--no-search" style = "display:flex;">
+
+                                    <!-- class container -->
+                                    <div id = "select-class">
+                                        <label>
+                                            <select name="grade" id = 'grade'>
+                                                <option disabled="disabled" selected="selected">Sınıf Seçiniz </option>
+                                                <option> 9 </option>
+                                                <option> 10 </option>
+                                                <option> 11 </option>
+                                                <option> 12 </option>
+                                            </select>
+                                        </label>
+                                    </div>
+
+                                    <div id = 'invalid-grade-warning' class = 'invalid-input' >  Lütfen sınıf seçiniz </div>
+                                    <!-- section container -->
+                                    <div id = "select-section">
+                                        <label>
+                                            <select id = 'section' name="section">
+                                                <option disabled="disabled" selected="selected">Bölüm Seçiniz </option>
+                                                <option> Eşit Ağırlık </option>
+                                                <option> Sayısal </option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div id = 'invalid-section-warning' class = 'invalid-input' >  <p> Lütfen bölüm seçiniz </p></div>
+                                    <div class="select-dropdown"></div>
                                 </div>
-                                <div id = 'invalid-tckn' class='invalid-input' > Lütfen geçerli bir tckn giriniz </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- birthdate container-->
-                        <div class = "form-row">
-                            <div class = "name"> Doğum Tarihi</div>
-                            <div class = "value">
-                                <div class = "input-group">
-                                    <label for = "birthDate">
-                                        <input type = "date" id = "birthDate" name = "birthDate">
-                                    </label>
-                                </div>
-                                <div id = 'invalid-birthdate-warning' class = 'invalid-input' >  Yaş uyarısı ? ! </div>
-
+                    <!-- school name container -->
+                    <div class="form-row">
+                        <div class="name"> Okul </div>
+                        <div class="value">
+                            <div class="input-group">
+                                <label>
+                                    <input id = 'schoolName' class="input--style-5" type="text" name="schoolName" onfocusout="validateNameForm(this.id,'invalid-school-warning')">
+                                </label>
                             </div>
+                            <div id = 'invalid-school-warning' class = 'invalid-input' >  Lütfen okul adınızı giriniz </div>
                         </div>
+                    </div>
 
-                        <!-- email container -->
-                        <div class="form-row">
-                            <div class="name">Email</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <label>
-                                        <input id = 'email' class="input--style-5" type="email" name="email" onfocusout="ValidateEmail(this.id, 'invalid-email-warning')">
-                                    </label>
-                                </div>
-                                <div id = 'invalid-email-warning' class = 'invalid-input' >  Lütfen geçerli bir mail adresi giriniz </div>
-                            </div>
-                        </div>
+                    <!-- city and district selection container -->
+                    <div class="form-row">
+                        <div class = "name"> İl - İlçe </div>
+                        <div class="value">
+                            <div class = 'input-group'>
+                                <div class="rs-select2 js-select-simple select--no-search" style ='display:flex;'>
 
-                        <!-- phone number container -->
-                        <div class="form-row">
-                            <div class="name">Telefon Numarası</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <label>
-                                        <input id = 'phoneNumber' class="input--style-5" type="text" name="phoneNumber" value="05" onfocusout="validatePhoneForm(this.id,'invalid-phone-number-warning')">
-                                    </label>
-                                </div>
-                                <div id = 'invalid-phone-number-warning' class = 'invalid-input' >  Lütfen geçerli bir  telefon numarası giriniz </div>
-                            </div>
-                        </div>
-
-                        <!-- class and section container -->
-                        <div class="form-row">
-                            <div class="name">Sınıf - Bölüm </div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <div class="rs-select2 js-select-simple select--no-search" style = "display:flex;">
-
-                                        <!-- class container -->
-                                        <div id = "select-class">
-                                            <label>
-                                                <select name="grade" id = 'grade'>
-                                                    <option disabled="disabled" selected="selected">Sınıf Seçiniz </option>
-                                                    <option> 9 </option>
-                                                    <option> 10 </option>
-                                                    <option> 11 </option>
-                                                    <option> 12 </option>
+                                    <!-- city container -->
+                                    <div>
+                                        <div id = 'city-container' class="col-md-3" style = "text-align:center;">
+                                            <label for="city">
+                                                <select name="city" id="city" class = "form-control">
+                                                    <option disabled = "disabled" selected = "selected">İl Seçiniz</option>
                                                 </select>
                                             </label>
                                         </div>
-
-                                        <div id = 'invalid-grade-warning' class = 'invalid-input' >  Lütfen sınıf seçiniz </div>
-                                        <!-- section container -->
-                                        <div id = "select-section">
-                                            <label>
-                                                <select id = 'section' name="section">
-                                                    <option disabled="disabled" selected="selected">Bölüm Seçiniz </option>
-                                                    <option> Eşit Ağırlık </option>
-                                                    <option> Sayısal </option>
+                                        <div id = 'invalid-city-warning' class = 'invalid-input' >  Lütfen şehir seçiniz </div>
+                                    </div>
+                                    <!-- district container -->
+                                    <div>
+                                        <div id = 'district-container' class="col-md-3">
+                                            <label for="district">
+                                                <select name="district" id="district" class="form-control" disabled="disabled">
+                                                    <option value="" disabled = "disabled" selected = "selected">İlçe Seçiniz</option>
                                                 </select>
                                             </label>
                                         </div>
-                                        <div id = 'invalid-section-warning' class = 'invalid-input' >  <p> Lütfen bölüm seçiniz </p></div>
+                                        <div id = 'invalid-district-warning' class = 'invalid-input' >  Lütfen ilçe seçiniz </div>
                                         <div class="select-dropdown"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- school name container -->
-                        <div class="form-row">
-                          <div class="name"> Okul </div>
-                          <div class="value">
+                    <!-- address container -->
+                    <div class="form-row">
+                        <div class="name"> Adres </div>
+                        <div class="value">
                             <div class="input-group">
-                              <label>
-                                <input id = 'schoolName' class="input--style-5" type="text" name="schoolName" onfocusout="validateNameForm(this.id,'invalid-school-warning')">
-                              </label>
-                            </div>
-                              <div id = 'invalid-school-warning' class = 'invalid-input' >  Lütfen okul adınızı giriniz </div>
-                          </div>
-                        </div>
-
-                        <!-- city and district selection container -->
-                        <div class="form-row">
-                            <div class = "name"> İl - İlçe </div>
-                            <div class="value">
-                                <div class = 'input-group'>
-                                    <div class="rs-select2 js-select-simple select--no-search" style ='display:flex;'>
-
-                                        <!-- city container -->
-                                        <div>
-                                            <div id = 'city-container' class="col-md-3" style = "text-align:center;">
-                                                <label for="city">
-                                                    <select name="city" id="city" class = "form-control">
-                                                        <option value="">İl Seçiniz</option>
-                                                    </select>
-                                                </label>
-                                            </div>
-                                            <div id = 'invalid-city-warning' class = 'invalid-input' >  Lütfen şehir seçiniz </div>
-                                        </div>
-                                        <!-- district container -->
-                                        <div>
-                                            <div id = 'district-container' class="col-md-3">
-                                                <label for="district">
-                                                    <select name="district" id="district" class="form-control" disabled="disabled">
-                                                        <option value="">İlçe Seçiniz</option>
-                                                    </select>
-                                                </label>
-                                            </div>
-                                            <div id = 'invalid-district-warning' class = 'invalid-input' >  Lütfen ilçe seçiniz </div>
-                                            <div class="select-dropdown"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- address container -->
-                        <div class="form-row">
-                                <div class="name"> Adres </div>
-                                <div class="value">
-                                        <div class="input-group">
-                                            <label>
-                                                <input id = 'address' class="input--style-5" type="text" name="address" onfocusout="validateNameForm(this.id,'invalid-adress-warning')">
-                                            </label>
-                                        </div>
-                                    <div id = 'invalid-adress-warning' class = 'invalid-input' >  Lütfen adresinizi giriniz </div>
-                                </div>
-                        </div>
-
-                        <!-- radio button container -->
-                        <div class="form-row p-t-20">
-                            <label class="label label--block">Evinizde internet var mı?</label>
-                            <div class="p-t-15">
-                                <label class="radio-container m-r-55">Evet
-                                    <input type="radio" name="exist" value = "yes" checked = "checked">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="radio-container">Hayır
-                                    <input type="radio" name="exist" value = "no">
-                                    <span class="checkmark"></span>
+                                <label>
+                                    <input id = 'address' class="input--style-5" type="text" name="address" onfocusout="validateNameForm(this.id,'invalid-adress-warning')">
                                 </label>
                             </div>
+                            <div id = 'invalid-adress-warning' class = 'invalid-input' >  Lütfen adresinizi giriniz </div>
                         </div>
+                    </div>
 
-                        <!-- Parent  information -->
-                        <div class="form-row m-b-55">
-                            <div class="name">Veli Adı-Soyadı</div>
-                            <div class="value">
-                                <div class="row row-space">
-                                    <div class="col-2">
-                                        <div class="input-group-desc">
-                                            <label>
-                                                <input id = 'parentFirstName' class="input--style-5" type="text" name="parentFirstName" onfocusout="validateNameForm(this.id,'invalid-parent-first-name-warning')" onkeyup="this.value = this.value.toUpperCase();">
-                                            </label>
-                                            <label class="label--desc"> Adı </label>
-                                        </div>
-                                        <div id = 'invalid-parent-first-name-warning' class = 'invalid-input' >  Lütfen ebeveyn adını giriniz </div>
+                    <!-- radio button container -->
+                    <div class="form-row p-t-20">
+                        <label class="label label--block">Evinizde internet var mı?</label>
+                        <div class="p-t-15">
+                            <label class="radio-container m-r-55">Evet
+                                <input type="radio" name="exist" value = "yes" checked = "checked">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="radio-container">Hayır
+                                <input type="radio" name="exist" value = "no">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Parent  information -->
+                    <div class="form-row m-b-55">
+                        <div class="name">Veli Adı-Soyadı</div>
+                        <div class="value">
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="input-group-desc">
+                                        <label>
+                                            <input id = 'parentFirstName' class="input--style-5" type="text" name="parentFirstName" onfocusout="validateNameForm(this.id,'invalid-parent-first-name-warning')" onkeyup="this.value = this.value.toUpperCase();">
+                                        </label>
+                                        <label class="label--desc"> Adı </label>
                                     </div>
-                                    <div class="col-2">
-                                        <div class="input-group-desc">
-                                            <label>
-                                                <input id = 'parentLastName' class="input--style-5" type="text" name="parentLastName" onfocusout="validateNameForm(this.id,'invalid-parent-last-name-warning')" onkeyup="this.value = this.value.toUpperCase();">
-                                            </label>
-                                            <label class="label--desc">Soyadı </label>
-                                        </div>
-                                        <div id = 'invalid-parent-last-name-warning' class = 'invalid-input' >  Lütfen ebeveyn soyadını giriniz </div>
+                                    <div id = 'invalid-parent-first-name-warning' class = 'invalid-input' >  Lütfen ebeveyn adını giriniz </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="input-group-desc">
+                                        <label>
+                                            <input id = 'parentLastName' class="input--style-5" type="text" name="parentLastName" onfocusout="validateNameForm(this.id,'invalid-parent-last-name-warning')" onkeyup="this.value = this.value.toUpperCase();">
+                                        </label>
+                                        <label class="label--desc">Soyadı </label>
                                     </div>
+                                    <div id = 'invalid-parent-last-name-warning' class = 'invalid-input' >  Lütfen ebeveyn soyadını giriniz </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="form-row">
-                            <div class="name">Veli Telefon Numarası</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <label>
-                                        <input id = 'parentPhoneNumber' class="input--style-5" type="text" name="parentPhoneNumber" onfocusout="validatePhoneForm(this.id,'invalid-parent-phone-number-warning')">
-                                    </label>
-                                </div>
-                                <div id = 'invalid-parent-phone-number-warning' class = 'invalid-input' >  Lütfen ebeveyn telefon numarasını giriniz </div>
+                    <div class="form-row">
+                        <div class="name">Veli Telefon Numarası</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <label>
+                                    <input id = 'parentPhoneNumber' class="input--style-5" type="text" name="parentPhoneNumber" onfocusout="validatePhoneForm(this.id,'invalid-parent-phone-number-warning')">
+                                </label>
                             </div>
+                            <div id = 'invalid-parent-phone-number-warning' class = 'invalid-input' >  Lütfen ebeveyn telefon numarasını giriniz </div>
                         </div>
+                    </div>
 
-                        <div class="form-row">
-                            <div class="name" id="veli-mail">Veli Email </div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <label>
-                                        <input class="input--style-5" type="email" name="parentEmail">
-                                    </label>
-                                </div>
-<!--                                <div id = 'invalid&#45;&#45;warning' class = 'invalid-input' >  Lütfen  giriniz </div>-->
+                    <div class="form-row">
+                        <div class="name" id="veli-mail">Veli Email </div>
+                        <div class="value">
+                            <div class="input-group">
+                                <label>
+                                    <input class="input--style-5" type="email" name="parentEmail">
+                                </label>
                             </div>
+                            <!--                                <div id = 'invalid&#45;&#45;warning' class = 'invalid-input' >  Lütfen  giriniz </div>-->
                         </div>
+                    </div>
 
-                        <div class="form-row">
-                            <div class="name"> Neden bu eğitimi almak istiyorsunuz? </div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <label>
-                                        <input id = 'education-reason' class="input--style-5" type="text" name="educationReason" onfocusout="validateNameForm(this.id,'invalid-education-reason-warning')">
-                                    </label>
-                                </div>
-                                <div id = 'invalid-education-reason-warning' class = 'invalid-input' >  Bu alanı doldurmak zorunludur </div>
+                    <div class="form-row">
+                        <div class="name"> Neden bu eğitimi almak istiyorsunuz? </div>
+                        <div class="value">
+                            <div class="input-group">
+                                <label>
+                                    <input id = 'education-reason' class="input--style-5" type="text" name="educationReason" onfocusout="validateNameForm(this.id,'invalid-education-reason-warning')">
+                                </label>
                             </div>
+                            <div id = 'invalid-education-reason-warning' class = 'invalid-input' >  Bu alanı doldurmak zorunludur </div>
                         </div>
+                    </div>
 
-                        <div>
-                            <button id = "register-button" class="btn btn--radius-2 btn--red" type = "submit">KAYIT OL </button>
-                        </div>
-                    </form>
-                </div>
+                    <div>
+                        <button id = "register-button" class="btn btn--radius-2 btn--red" type = "submit">KAYIT OL </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
 
-    <!-- Jquery JS-->
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    <!-- Vendor JS-->
-    <script src="registration/vendor/select2/select2.min.js"></script>
-    <!-- Main JS-->
-    <script src="/registration/js/global.js"></script>
-    <script src = "js/register.js"></script>
+<!-- Jquery JS-->
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<!-- Vendor JS-->
+<script src="registration/vendor/select2/select2.min.js"></script>
+<!-- Main JS-->
+<script src="/registration/js/global.js"></script>
+<script src = "js/register.js"></script>
 </body>
 </html>
 <!-- end document-->

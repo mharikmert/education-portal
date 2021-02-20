@@ -84,10 +84,8 @@ $(document).ready(() => {
 //city and district selections
 $(document).ready( () => {
     $('#city').change( () =>{
-        //city changes, then clear the content of district
-        $('#district').attr('disabled',false).html(
-            '<option> İlçe seçiniz </option>'
-        );
+        //district becomes enable to select
+        $('#district').attr('disabled',false);
         //defines the selected option
         let option = document.querySelector('#city');
         let selectedOption = option.options[option.selectedIndex].value;
@@ -260,4 +258,50 @@ $('#parentPhoneNumber').bind('keypress', function(e) {
 
 });
 
+$('#firstName').bind('keypress', function(e) {
 
+    var k = e.which;
+    var ok = k >= 65 && k <= 90 || // A-Z
+        k >= 97 && k <= 122 // a-z
+
+    if (!ok){
+        e.preventDefault();
+    }
+
+});
+
+$('#lastName').bind('keypress', function(e) {
+
+    var k = e.which;
+    var ok = k >= 65 && k <= 90 || // A-Z
+        k >= 97 && k <= 122 // a-z
+
+    if (!ok){
+        e.preventDefault();
+    }
+
+});
+
+$('#parentFirstName').bind('keypress', function(e) {
+
+    var k = e.which;
+    var ok = k >= 65 && k <= 90 || // A-Z
+        k >= 97 && k <= 122 // a-z
+
+    if (!ok){
+        e.preventDefault();
+    }
+
+});
+
+$('#parentLastName').bind('keypress', function(e) {
+
+    var k = e.which;
+    var ok = k >= 65 && k <= 90 || // A-Z
+        k >= 97 && k <= 122 // a-z
+
+    if (!ok){
+        e.preventDefault();
+    }
+
+});

@@ -210,98 +210,44 @@ function ValidateEmail(mail,warningId){
     return (false)
 }
 
-//It prevents entering non-number characters
-$('#tc').bind('keypress', function(e) {
+const nameSurnameFieldControl = (id) => {
+    $(id).bind('keypress', function(e) {
 
-    if($('#tc').val().length < 11){
         var k = e.which;
-        var ok = k >= 48 && k <= 57; // 0-9
+        var ok = k >= 65 && k <= 90 || // A-Z
+            k >= 97 && k <= 122 // a-z
 
         if (!ok){
             e.preventDefault();
         }
-    }else{
-        e.preventDefault();
-    }
+    });
 
-});
 
-//It prevents entering non-number characters
-$('#phoneNumber').bind('keypress', function(e) {
+}
 
-    if($('#phoneNumber').val().length < 11){
-        var k = e.which;
-        var ok = k >= 48 && k <= 57; // 0-9
+nameSurnameFieldControl("#firstName");
+nameSurnameFieldControl("#lastName");
+nameSurnameFieldControl("#parentFirstName");
+nameSurnameFieldControl("#parentLastName");
 
-        if (!ok){
+const numericalFieldsControl = (id) => {
+    $(id).bind('keypress', function(e) {
+
+        if($(id).val().length < 11){
+            var k = e.which;
+            var ok = k >= 48 && k <= 57; // 0-9
+
+            if (!ok){
+                e.preventDefault();
+            }
+        }else{
             e.preventDefault();
         }
-    }else{
-        e.preventDefault();
-    }
+    });
 
-});
 
-//It prevents entering non-number characters
-$('#parentPhoneNumber').bind('keypress', function(e) {
+}
 
-    if($('#parentPhoneNumber').val().length < 11){
-        var k = e.which;
-        var ok = k >= 48 && k <= 57; // 0-9
-
-        if (!ok){
-            e.preventDefault();
-        }
-    }else{
-        e.preventDefault();
-    }
-
-});
-
-$('#firstName').bind('keypress', function(e) {
-
-    var k = e.which;
-    var ok = k >= 65 && k <= 90 || // A-Z
-        k >= 97 && k <= 122 // a-z
-
-    if (!ok){
-        e.preventDefault();
-    }
-
-});
-
-$('#lastName').bind('keypress', function(e) {
-
-    var k = e.which;
-    var ok = k >= 65 && k <= 90 || // A-Z
-        k >= 97 && k <= 122 // a-z
-
-    if (!ok){
-        e.preventDefault();
-    }
-
-});
-
-$('#parentFirstName').bind('keypress', function(e) {
-
-    var k = e.which;
-    var ok = k >= 65 && k <= 90 || // A-Z
-        k >= 97 && k <= 122 // a-z
-
-    if (!ok){
-        e.preventDefault();
-    }
-
-});
-
-$('#parentLastName').bind('keypress', function(e) {
-
-    var k = e.which;
-    var ok = k >= 65 && k <= 90 || // A-Z
-        k >= 97 && k <= 122 // a-z
-
-    if (!ok){
-        e.preventDefault();
-    }
-
-});
+numericalFieldsControl("#tc");
+numericalFieldsControl("#phoneNumber");
+numericalFieldsControl("#parentPhoneNumber");

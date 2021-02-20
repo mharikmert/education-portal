@@ -1,11 +1,8 @@
 package com.fikirtepe.app.Model;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sun.istack.NotNull;
 import lombok.Data;
-import org.graalvm.compiler.api.replacements.Snippet;
-
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Data
 @Entity
@@ -19,9 +16,7 @@ public class User{
 
     private String password;
 
-//    @JsonFormat(pattern = "mm-dd-yyyy")
-//  private LocalDatetime birthDate;
-    private String birthDate;
+    private LocalDate birthDate;
 
     private String address;
 
@@ -50,12 +45,9 @@ public class User{
 
     private String parentEmail;
 
-    public String getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+    //calculates user's age
+    public int getAge(){
+        return Period.between(this.birthDate, LocalDate.now()).getYears();
     }
 
     public long getId() {
@@ -88,6 +80,14 @@ public class User{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getAddress() {

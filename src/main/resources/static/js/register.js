@@ -84,10 +84,8 @@ $(document).ready(() => {
 //city and district selections
 $(document).ready( () => {
     $('#city').change( () =>{
-
         //district becomes enable to select
         $('#district').attr('disabled',false);
-
         //defines the selected option
         let option = document.querySelector('#city');
         let selectedOption = option.options[option.selectedIndex].value;
@@ -157,11 +155,153 @@ const validateNameField = (fieldId) => {
 //throws warning with given input field id and its warning
 // warning id's might edit, to avoid second parameter
 const throwWarning = (inputInputFieldId, warningId) => {
-    $(inputInputFieldId).css('border', '2px solid red')
+    $(inputInputFieldId).css('border', '1px solid red')
     $(warningId).css('display', 'block');
 }
 
 //focusin event will be appended
-const takeBackWarning = (warningId) => {
+const takeBackWarning = (inputInputFieldId,warningId) => {
+    $(inputInputFieldId).css('border', 'none')
     $(warningId).css('display', 'none');
 }
+
+function validateNameForm(id,warningId) {
+    var x = document.forms["form"][id].value;
+    if (x==="" || x.length<2){
+        throwWarning("#"+id,"#"+warningId);
+        return false;
+    }else{
+        takeBackWarning("#"+id,"#"+warningId);
+        return true;
+    }
+}
+
+function validateIdForm(id,warningId) {
+    var x = document.forms["form"][id].value;
+    if (x.length !== 11 || !isValidUserID(x)) {
+        throwWarning("#"+id,"#"+warningId);
+        return false;
+    }else{
+        takeBackWarning("#"+id,"#"+warningId);
+        return true;
+    }
+}
+
+function validatePhoneForm(phoneNumber,warningId) {
+    var x = document.forms["form"][phoneNumber].value;
+    if(x.length !== 11) {
+        throwWarning("#"+phoneNumber, "#"+warningId);
+        return false;
+    }else {
+        takeBackWarning("#"+phoneNumber,"#"+warningId);
+        return true ;
+    }
+}
+
+function ValidateEmail(mail,warningId){
+    var x = document.forms["form"][mail].value;
+    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(x))
+    {
+        takeBackWarning("#"+mail,"#" + warningId);
+        return (true)
+    }
+    console.log(document.getElementById(mail.id));
+    throwWarning("#" + mail,"#" + warningId);
+    return (false)
+}
+
+//It prevents entering non-number characters
+$('#tc').bind('keypress', function(e) {
+
+    if($('#tc').val().length < 11){
+        var k = e.which;
+        var ok = k >= 48 && k <= 57; // 0-9
+
+        if (!ok){
+            e.preventDefault();
+        }
+    }else{
+        e.preventDefault();
+    }
+
+});
+
+//It prevents entering non-number characters
+$('#phoneNumber').bind('keypress', function(e) {
+
+    if($('#phoneNumber').val().length < 11){
+        var k = e.which;
+        var ok = k >= 48 && k <= 57; // 0-9
+
+        if (!ok){
+            e.preventDefault();
+        }
+    }else{
+        e.preventDefault();
+    }
+
+});
+
+//It prevents entering non-number characters
+$('#parentPhoneNumber').bind('keypress', function(e) {
+
+    if($('#parentPhoneNumber').val().length < 11){
+        var k = e.which;
+        var ok = k >= 48 && k <= 57; // 0-9
+
+        if (!ok){
+            e.preventDefault();
+        }
+    }else{
+        e.preventDefault();
+    }
+
+});
+
+$('#firstName').bind('keypress', function(e) {
+
+    var k = e.which;
+    var ok = k >= 65 && k <= 90 || // A-Z
+        k >= 97 && k <= 122 // a-z
+
+    if (!ok){
+        e.preventDefault();
+    }
+
+});
+
+$('#lastName').bind('keypress', function(e) {
+
+    var k = e.which;
+    var ok = k >= 65 && k <= 90 || // A-Z
+        k >= 97 && k <= 122 // a-z
+
+    if (!ok){
+        e.preventDefault();
+    }
+
+});
+
+$('#parentFirstName').bind('keypress', function(e) {
+
+    var k = e.which;
+    var ok = k >= 65 && k <= 90 || // A-Z
+        k >= 97 && k <= 122 // a-z
+
+    if (!ok){
+        e.preventDefault();
+    }
+
+});
+
+$('#parentLastName').bind('keypress', function(e) {
+
+    var k = e.which;
+    var ok = k >= 65 && k <= 90 || // A-Z
+        k >= 97 && k <= 122 // a-z
+
+    if (!ok){
+        e.preventDefault();
+    }
+
+});

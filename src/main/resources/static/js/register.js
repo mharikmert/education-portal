@@ -84,10 +84,10 @@ $(document).ready(() => {
 //city and district selections
 $(document).ready( () => {
     $('#city').change( () =>{
-        //city changes, then clear the content of district
-        $('#district').attr('disabled',false).html(
-            '<option> İlçe seçiniz </option>'
-        );
+
+        //district becomes enable to select
+        $('#district').attr('disabled',false);
+
         //defines the selected option
         let option = document.querySelector('#city');
         let selectedOption = option.options[option.selectedIndex].value;

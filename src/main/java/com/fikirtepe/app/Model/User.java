@@ -1,14 +1,17 @@
 package com.fikirtepe.app.Model;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-public class User{
-    @Id
-    private long id;
+@EntityListeners(AuditingEntityListener.class)
+public class User extends BaseEntity{
 
     private String firstName;
 
@@ -50,13 +53,6 @@ public class User{
         return Period.between(this.birthDate, LocalDate.now()).getYears();
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -189,7 +185,7 @@ public class User{
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id=" + getId() + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", password='" + password + '\'' +

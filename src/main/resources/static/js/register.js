@@ -157,27 +157,60 @@ const validateNameField = (fieldId) => {
 //throws warning with given input field id and its warning
 // warning id's might edit, to avoid second parameter
 const throwWarning = (inputInputFieldId, warningId) => {
-    $(inputInputFieldId).css('border', '2px solid red')
+    $(inputInputFieldId).css('border', '1px solid red')
     $(warningId).css('display', 'block');
 }
 
 //focusin event will be appended
-const takeBackWarning = (warningId) => {
+const takeBackWarning = (inputInputFieldId,warningId) => {
+    $(inputInputFieldId).css('border', 'none')
     $(warningId).css('display', 'none');
+}
+
+function validateNameForm(id,warningId) {
+    var x = document.forms["form"][id].value;
+    if (x==="" || x.length<2){
+        throwWarning("#"+id,"#"+warningId);
+        return false;
+    }else{
+        takeBackWarning("#"+id,"#"+warningId);
+        return true;
+    }
+}
+
+function validateIdForm(id,warningId) {
+    var x = document.forms["form"][id].value;
+    if (x.length !== 11 || !isValidUserID(x)) {
+        throwWarning("#"+id,"#"+warningId);
+        return false;
+    }else{
+        takeBackWarning("#"+id,"#"+warningId);
+        return true;
+    }
+}
+
+function validatePhoneForm(phoneNumber,warningId) {
+    var x = document.forms["form"][phoneNumber].value;
+    if(x.length !== 11) {
+        throwWarning("#"+phoneNumber, "#"+warningId);
+        return false;
+    }else {
+        takeBackWarning("#"+phoneNumber,"#"+warningId);
+        return true ;
+    }
 }
 
 function ValidateEmail(mail,warningId){
     var x = document.forms["form"][mail].value;
     if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(x))
     {
-        takeBackWarning("#" + warningId);
+        takeBackWarning("#"+mail,"#" + warningId);
         return (true)
     }
     console.log(document.getElementById(mail.id));
-   throwWarning("#" + mail,"#" + warningId);
+    throwWarning("#" + mail,"#" + warningId);
     return (false)
 }
-
 
 //It prevents entering non-number characters
 $('#tc').bind('keypress', function(e) {

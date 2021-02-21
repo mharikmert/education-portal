@@ -253,7 +253,7 @@ const nameFieldsControl = (id) => {
 }
 const numericalFieldsControl = (id) => {
     $('#' + id).bind('keypress', function(e) {
-         if($(id).val().length < 11){
+         if($("#"+id).val().length < 11){
             var k = e.which;
             var ok = k >= 48 && k <= 57; // 0-9
 
@@ -300,11 +300,3 @@ const redirect = (url) => {
     window.location.href = url;
     return true;
 }
-/*TR UpperCase()*/
-String.prototype.turkishToUpper = function(){
-    var string = this;
-    var letters = { "i": "İ", "ş": "Ş", "ğ": "Ğ", "ü": "Ü", "ö": "Ö", "ç": "Ç", "ı": "I" };
-    string = string.replace(/(([iışğüçö]))/g, function(letter){ return letters[letter]; })
-    return string.toUpperCase();
-}
-/*TR UpperCase*/

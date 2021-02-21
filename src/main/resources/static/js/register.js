@@ -237,7 +237,13 @@ const nameFieldsControl = (id) => {
         const ok =
             k >= 65 && k <= 90 || // A-Z
             k >= 97 && k <= 122 ||// a-z
-            k === ' ' || k === 128
+            k === 32 || k === 199 ||
+            k === 231 || k === 286 ||
+            k === 287 || k === 304 ||
+            k === 305 || k === 214 ||
+            k === 246 || k === 350 ||
+            k === 351 || k === 220 ||
+            k === 252
 
         if (!ok){
             // throwWarning(id)
@@ -261,13 +267,13 @@ const numericalFieldsControl = (id) => {
     });
 }
 
-// nameFieldsControl('firstName');
-// nameFieldsControl('lastName');
-// nameFieldsControl('parentFirstName');
-// nameFieldsControl('parentLastName');
-// numericalFieldsControl('id');
-// numericalFieldsControl('phoneNumber');
-// numericalFieldsControl('parentPhoneNumber');
+nameFieldsControl('firstName');
+nameFieldsControl('lastName');
+nameFieldsControl('parentFirstName');
+nameFieldsControl('parentLastName');
+numericalFieldsControl('id');
+numericalFieldsControl('phoneNumber');
+numericalFieldsControl('parentPhoneNumber');
 
 const inputFocusIn = (id) => {
     $('#' + id).focus( () => {

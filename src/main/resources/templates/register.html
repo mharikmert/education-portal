@@ -47,18 +47,18 @@
                                 <div class="col-2">
                                     <div class="input-group-desc">
                                         <label>
-                                            <input id = 'firstName' class="input--style-5" type="text" name="firstName" onfocusout="validateNameForm(this.id,'invalid-firstName-warning')" onkeyup="this.value = this.value.toUpperCase();">
+                                            <input id = 'firstName' class="input--style-5" type="text" name="firstName" onfocusout="validateNameForm(this.id)" onkeyup="this.value = this.value.toUpperCase();">
                                         </label>
-                                        <label class="label--desc"> Adı </label>
+                                        <label id = 'firstNameLabel' class="label--desc"> Adı </label>
                                     </div>
                                     <div id = 'invalid-firstName-warning' class = 'invalid-input' > Lütfen geçerli bir ad giriniz </div>
                                 </div>
                                 <div class="col-2">
                                     <div class="input-group-desc">
                                         <label>
-                                            <input id = 'lastName' class="input--style-5" type="text" name="lastName" onfocusout="validateNameForm(this.id,'invalid-lastName-warning')" onkeyup="this.value = this.value.toUpperCase();">
+                                            <input id = 'lastName' class="input--style-5" type="text" name="lastName" onfocusout="validateNameForm(this.id)" onkeyup="this.value = this.value.toUpperCase();">
                                         </label>
-                                        <label class="label--desc">Soyadı </label>
+                                        <label id = 'lastNameLabel' class="label--desc">Soyadı </label>
                                     </div>
                                     <div id = 'invalid-lastName-warning' class = 'invalid-input' > Lütfen geçerli bir soyad giriniz </div>
                                 </div>
@@ -72,10 +72,10 @@
                         <div class="value">
                             <div id = 'id-container' class="input-group">
                                 <label>
-                                    <input id = "tc" class="input--style-5" type="text" name="tc" onfocusout="validateIdForm(this.id,'invalid-tckn')">
+                                    <input id = "id" class="input--style-5" type="text" name="id" onfocusout="validateIdForm(this.id)">
                                 </label>
                             </div>
-                            <div id = 'invalid-tckn' class='invalid-input' > Lütfen geçerli bir tckn giriniz </div>
+                            <div id = 'invalid-id-warning' class='invalid-input' > Lütfen geçerli bir tckn giriniz </div>
                         </div>
                     </div>
 
@@ -85,10 +85,10 @@
                         <div class = "value">
                             <div class = "input-group">
                                 <label for = "birthDate">
-                                    <input type = "date" id = "birthDate" name = "birthDate">
+                                    <input type = "date" id = "birthDate" name = "birthDate" onfocusout="validateSelectOptions(this.id)">
                                 </label>
                             </div>
-                            <div id = 'invalid-birthdate-warning' class = 'invalid-input' >  Yaş uyarısı ? ! </div>
+                            <div id = 'invalid-birthdate-warning' class = 'invalid-input' >  Lütfen doğum tarihinizi giriniz </div>
 
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                         <div class="value">
                             <div class="input-group">
                                 <label>
-                                    <input id = 'email' class="input--style-5" type="email" name="email" onfocusout="ValidateEmail(this.id, 'invalid-email-warning')">
+                                    <input id = 'email' class="input--style-5" type="email" name="email" onfocusout="validateEmail(this.id)">
                                 </label>
                             </div>
                             <div id = 'invalid-email-warning' class = 'invalid-input' >  Lütfen geçerli bir mail adresi giriniz </div>
@@ -112,10 +112,10 @@
                         <div class="value">
                             <div class="input-group">
                                 <label>
-                                    <input id = 'phoneNumber' class="input--style-5" type="text" name="phoneNumber" value="05" onfocusout="validatePhoneForm(this.id,'invalid-phone-number-warning')">
+                                    <input id = 'phoneNumber' class="input--style-5" type="text" name="phoneNumber" value = "05" onfocusout="validatePhoneForm(this.id)">
                                 </label>
                             </div>
-                            <div id = 'invalid-phone-number-warning' class = 'invalid-input' >  Lütfen geçerli bir  telefon numarası giriniz </div>
+                            <div id = 'invalid-phoneNumber-warning' class = 'invalid-input'>  Lütfen geçerli bir  telefon numarası giriniz </div>
                         </div>
                     </div>
 
@@ -129,7 +129,7 @@
                                     <!-- class container -->
                                     <div id = "select-class">
                                         <label>
-                                            <select name="grade" id = 'grade'>
+                                            <select name="grade" id = 'grade' onfocusout="validateSelectOptions(this.id)">
                                                 <option disabled="disabled" selected="selected">Sınıf Seçiniz </option>
                                                 <option> 9 </option>
                                                 <option> 10 </option>
@@ -143,7 +143,7 @@
                                     <!-- section container -->
                                     <div id = "select-section">
                                         <label>
-                                            <select id = 'section' name="section">
+                                            <select id = 'section' name="section" onfocusout="validateSelectOptions(this.id)">
                                                 <option disabled="disabled" selected="selected">Bölüm Seçiniz </option>
                                                 <option> Eşit Ağırlık </option>
                                                 <option> Sayısal </option>
@@ -163,10 +163,10 @@
                         <div class="value">
                             <div class="input-group">
                                 <label>
-                                    <input id = 'schoolName' class="input--style-5" type="text" name="schoolName" onfocusout="validateNameForm(this.id,'invalid-school-warning')">
+                                    <input id = 'schoolName' class="input--style-5" type="text" name="schoolName" onfocusout="validateNameForm(this.id)">
                                 </label>
                             </div>
-                            <div id = 'invalid-school-warning' class = 'invalid-input' >  Lütfen okul adınızı giriniz </div>
+                            <div id = 'invalid-schoolName-warning' class = 'invalid-input' >  Lütfen okul adınızı giriniz </div>
                         </div>
                     </div>
 
@@ -182,7 +182,7 @@
                                         <div id = 'city-container' class="col-md-3" style = "text-align:center;">
                                             <label for="city">
                                                 <select name="city" id="city" class = "form-control">
-                                                    <option disabled = "disabled" selected = "selected">İl Seçiniz</option>
+                                                    <option disabled = "disabled" selected = "selected" onfocusout="validateSelectOptions(this.id)">İl Seçiniz</option>
                                                 </select>
                                             </label>
                                         </div>
@@ -193,7 +193,7 @@
                                         <div id = 'district-container' class="col-md-3">
                                             <label for="district">
                                                 <select name="district" id="district" class="form-control" disabled="disabled">
-                                                    <option value="" disabled = "disabled" selected = "selected">İlçe Seçiniz</option>
+                                                    <option disabled = "disabled" selected = "selected" onfocusout="validateSelectOptions(this.id)">İlçe Seçiniz</option>
                                                 </select>
                                             </label>
                                         </div>
@@ -211,10 +211,10 @@
                         <div class="value">
                             <div class="input-group">
                                 <label>
-                                    <input id = 'address' class="input--style-5" type="text" name="address" onfocusout="validateNameForm(this.id,'invalid-adress-warning')">
+                                    <input id = 'address' class="input--style-5" type="text" name="address" onfocusout="validateNameForm(this.id)">
                                 </label>
                             </div>
-                            <div id = 'invalid-adress-warning' class = 'invalid-input' >  Lütfen adresinizi giriniz </div>
+                            <div id = 'invalid-address-warning' class = 'invalid-input' >  Lütfen geçerli bir adres giriniz </div>
                         </div>
                     </div>
 
@@ -241,20 +241,20 @@
                                 <div class="col-2">
                                     <div class="input-group-desc">
                                         <label>
-                                            <input id = 'parentFirstName' class="input--style-5" type="text" name="parentFirstName" onfocusout="validateNameForm(this.id,'invalid-parent-first-name-warning')" onkeyup="this.value = this.value.toUpperCase();">
+                                            <input id = 'parentFirstName' class="input--style-5" type="text" name="parentFirstName" onfocusout="validateNameForm(this.id)" onkeyup="this.value = this.value.toUpperCase();">
                                         </label>
-                                        <label class="label--desc"> Adı </label>
+                                        <label id = 'parentFirstNameLabel' class="label--desc"> Adı </label>
                                     </div>
-                                    <div id = 'invalid-parent-first-name-warning' class = 'invalid-input' >  Lütfen ebeveyn adını giriniz </div>
+                                    <div id = 'invalid-parentFirstName-warning' class = 'invalid-input' >  Lütfen geçerli bir ad giriniz </div>
                                 </div>
                                 <div class="col-2">
                                     <div class="input-group-desc">
                                         <label>
-                                            <input id = 'parentLastName' class="input--style-5" type="text" name="parentLastName" onfocusout="validateNameForm(this.id,'invalid-parent-last-name-warning')" onkeyup="this.value = this.value.toUpperCase();">
+                                            <input id = 'parentLastName' class="input--style-5" type="text" name="parentLastName" onfocusout="validateNameForm(this.id)" onkeyup="this.value = this.value.toUpperCase();">
                                         </label>
-                                        <label class="label--desc">Soyadı </label>
+                                        <label id = 'parentLastNameLabel' class="label--desc">Soyadı </label>
                                     </div>
-                                    <div id = 'invalid-parent-last-name-warning' class = 'invalid-input' >  Lütfen ebeveyn soyadını giriniz </div>
+                                    <div id = 'invalid-parentLastName-warning' class = 'invalid-input' >  Lütfen geçerli bir soyad giriniz </div>
                                 </div>
                             </div>
                         </div>
@@ -265,10 +265,10 @@
                         <div class="value">
                             <div class="input-group">
                                 <label>
-                                    <input id = 'parentPhoneNumber' class="input--style-5" type="text" name="parentPhoneNumber" onfocusout="validatePhoneForm(this.id,'invalid-parent-phone-number-warning')">
+                                    <input id = 'parentPhoneNumber' class="input--style-5" type="text" name="parentPhoneNumber" onfocusout="validatePhoneForm(this.id)">
                                 </label>
                             </div>
-                            <div id = 'invalid-parent-phone-number-warning' class = 'invalid-input' >  Lütfen ebeveyn telefon numarasını giriniz </div>
+                            <div id = 'invalid-parentPhoneNumber-warning' class = 'invalid-input' > Lütfen geçerli bir telefon numarası giriniz </div>
                         </div>
                     </div>
 
@@ -289,10 +289,10 @@
                         <div class="value">
                             <div class="input-group">
                                 <label>
-                                    <input id = 'education-reason' class="input--style-5" type="text" name="educationReason" onfocusout="validateNameForm(this.id,'invalid-education-reason-warning')">
+                                    <input id = 'educationReason' class="input--style-5" type="text" name="educationReason" onfocusout="validateNameForm(this.id)">
                                 </label>
                             </div>
-                            <div id = 'invalid-education-reason-warning' class = 'invalid-input' >  Bu alanı doldurmak zorunludur </div>
+                            <div id = 'invalid-educationReason-warning' class = 'invalid-input' >  Bu alanı doldurmak zorunludur </div>
                         </div>
                     </div>
 

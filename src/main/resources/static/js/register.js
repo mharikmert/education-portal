@@ -103,7 +103,7 @@ $(document).ready( () => {
                     },
                     success: (result) => {
                         //districts are selectable
-                        $('#district').attr('disabled',false);
+                        $('#district').attr('disabled',true).html('<option> İlçe Seçiniz </option>');
                         //fill the districts
                         $.each(result, (index, value) => {
                             const option = document.createElement('option');

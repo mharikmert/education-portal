@@ -22,12 +22,12 @@ public class LayoutController {
         return mav;
     }
 
-    @RequestMapping("/forgotPassword")
-    public ModelAndView forgotPassword(){
-            ModelAndView mav = new ModelAndView();
-            mav.setViewName("forgot-password-page");
-            return mav;
-    }
+//    @RequestMapping("/forgotPassword")
+//    public ModelAndView forgotPassword(){
+//            ModelAndView mav = new ModelAndView();
+//            mav.setViewName("forgot-password-page");
+//            return mav;
+//    }
 
     @RequestMapping("/register")
     public ModelAndView register(){
@@ -36,11 +36,23 @@ public class LayoutController {
             return mav;
     }
 
-    @RequestMapping("/menu")
-    public ModelAndView menu(){
-            ModelAndView mav = new ModelAndView();
-            mav.setViewName("web_menu");
-            return mav;
+//    @RequestMapping("/menu")
+//    public ModelAndView menu(){
+//            ModelAndView mav = new ModelAndView();
+//            mav.setViewName("web_menu");
+//            return mav;
+//    }
+    @RequestMapping("/approval")
+    public ModelAndView approval(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("registrationApproval");
+        return mav;
     }
+//    @RequestMapping("/admin")
+//    public ModelAndView admin(){
+//        ModelAndView mav = new ModelAndView();
+//        mav.setViewName("adminPanel");
+//        return mav;
+//    }
 
 }

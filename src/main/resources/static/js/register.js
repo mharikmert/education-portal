@@ -1,11 +1,10 @@
 
 //post request
 $(document).ready(() => {
-    let formState = false;
     $('#register-button').on('click', function(event) {
         event.preventDefault();
-        let formData= $('#form').serializeArray();
-        let obj = {};
+        const formData = $('#form').serializeArray();
+        let obj = {}, formState = {}, registerCondition = true;
         $.each(formData, (index, value) => {
             //radio button conversion
             if(value['value'] === 'yes' || value['value'] === 'no'){
@@ -14,45 +13,46 @@ $(document).ready(() => {
                 value['name'] = 'hasInternet';
             }
 
-            //id check
-            else if(value['name'] === 'id'){
-                const id = value['value'];
-                if(!isValidUserID(id)){
-                    throwWarning('#id', '#invalid-tckn')
-                }
-            }
-
-            // name fields check
-            else if(value['name'] === 'firstName' || value['name'] === 'lastName'){
-                const nameField = value['name'];
-                if(!validateNameField('#' + nameField)){
-                    throwWarning('#'+ nameField, '#invalid-' + nameField + '-warning')
-                }
-            }
-
             obj[value['name']] = value['value']
+
+            if(value['name'].includes('Name') || value['name'] === 'educationReason')
+                formState[value['name']] = validateNameForm(value['name']);
+
+            else if(value['name'] === 'id')
+                formState[value['name']] = validateIdForm(value['name'])
+
+            else if(value['name'] === 'email')
+                formState[value['name']] = validateEmail(value['name'])
+
+            else if(value['name'].includes('Number'))
+                formState[value['name']] = validatePhoneForm(value['name'])
+
+            $.each(formState, (index, value) => {
+                if(!value) registerCondition = false;
+            })
         })
-
         const formJson = JSON.stringify(obj);
-
-        console.log('state -> ', formState);
-        if(formState){
+        // console.log(formJson);
+        // console.log('state -> ', formState);
+        // console.log('condition -> ' , registerCondition);
+        if(registerCondition){
             $.ajax({
                 url : '/api/register',
                 type : 'POST',
                 dataType: 'json',
                 headers : {'Content-Type' : 'application/json; charset=utf-8'},
                 data : formJson,
-                success : (result) =>{
-                    console.log('result', result);
-                    redirect('/');
+                success : () =>{
+                    redirect('/approval')
                 },
                 error : (xhr, resp, text) => {
-                    console.log(xhr, resp, text)
+                    // console.log(xhr, resp, text)
+                    alert('kullanıcı kayıtlı')
                 }
             });
         }
     });
+
 });
 
 let citiesJson;
@@ -154,86 +154,98 @@ const validateNameField = (fieldId) => {
 
 //throws warning with given input field id and its warning
 // warning id's might edit, to avoid second parameter
-const throwWarning = (inputInputFieldId, warningId) => {
-    $(inputInputFieldId).css('border', '1px solid red')
-    $(warningId).css('display', 'block');
+const throwWarning = (inputFieldId) => {
+    $('#'+inputFieldId).css('border', '1px solid red')
+    $('#invalid-' + inputFieldId + '-warning').css('display', 'block');
+    $('#' + inputFieldId + 'Label').css('display','none');
 }
+
+// const throwEmptyFieldWarning = (inputFieldId) => {
+//     $('#'+inputFieldId).css('border', '1px solid red')
+//     const warningDiv = $('#invalid-' + inputFieldId + '-warning');
+//     warningDiv.text('Bu alan boş bırakılamaz');
+//     warningDiv.css('display', 'block');
+//     $('#' + inputFieldId + 'Label').css('display','none');
+// }
 
 //focusin event will be appended
-const takeBackWarning = (inputInputFieldId,warningId) => {
-    $(inputInputFieldId).css('border', 'none')
-    $(warningId).css('display', 'none');
+const takeBackWarning = (inputFieldId) => {
+    $('#'+inputFieldId).css('border', 'none')
+    $('#invalid-' + inputFieldId + '-warning').css('display', 'none');
+    $('#' + inputFieldId + 'Label').css('display','block');
 }
 
-function validateNameForm(id,warningId) {
+function validateNameForm(id) {
     var x = document.forms["form"][id].value;
-    if (x==="" || x.length<2){
-        throwWarning("#"+id,"#"+warningId);
-        return false;
-    }else{
-        takeBackWarning("#"+id,"#"+warningId);
+    // if (x === "")
+    //     throwEmptyFieldWarning(id)
+
+    if (x.length<2)
+        throwWarning(id);
+    else{
+        takeBackWarning(id);
         return true;
     }
+    return false;
 }
 
-function validateIdForm(id,warningId) {
+function validateIdForm(id) {
     var x = document.forms["form"][id].value;
-    if (x.length !== 11 || !isValidUserID(x)) {
-        throwWarning("#"+id,"#"+warningId);
-        return false;
-    }else{
-        takeBackWarning("#"+id,"#"+warningId);
+    // if(x.length === 0)
+    //     throwEmptyFieldWarning(id);
+    if (isValidUserID(x)){
+        takeBackWarning(id)
         return true;
     }
+    else throwWarning(id)
+    return false;
 }
 
-function validatePhoneForm(phoneNumber,warningId) {
-    var x = document.forms["form"][phoneNumber].value;
-    if(x.length !== 11) {
-        throwWarning("#"+phoneNumber, "#"+warningId);
-        return false;
-    }else {
-        takeBackWarning("#"+phoneNumber,"#"+warningId);
+function validatePhoneForm(id) {
+    var x = document.forms["form"][id].value;
+    // if(x.length === 0)
+    //     throwEmptyFieldWarning(id)
+
+    if(x === 'string') throwWarning(id)
+    else if (x.length !== 11)
+        throwWarning(id);
+    else {
+        takeBackWarning(id);
         return true ;
     }
+    return false;
 }
 
-function ValidateEmail(mail,warningId){
-    var x = document.forms["form"][mail].value;
-    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(x))
-    {
-        takeBackWarning("#"+mail,"#" + warningId);
-        return (true)
+function validateEmail(id){
+    var x = document.forms["form"][id].value;
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+
+    if (emailRegex.test(x)){
+        takeBackWarning(id);
+        return true;
     }
-    console.log(document.getElementById(mail.id));
-    throwWarning("#" + mail,"#" + warningId);
-    return (false)
+    else
+        throwWarning(id);
+
+    return false;
 }
 
-const nameSurnameFieldControl = (id) => {
-    $(id).bind('keypress', function(e) {
+const nameFieldsControl = (id) => {
+    $('#' + id).bind('keypress', function(e) {
 
         var k = e.which;
         var ok = k >= 65 && k <= 90 || // A-Z
             k >= 97 && k <= 122 // a-z
 
         if (!ok){
+            // throwWarning(id)
             e.preventDefault();
         }
     });
-
-
 }
-
-nameSurnameFieldControl("#firstName");
-nameSurnameFieldControl("#lastName");
-nameSurnameFieldControl("#parentFirstName");
-nameSurnameFieldControl("#parentLastName");
-
 const numericalFieldsControl = (id) => {
-    $(id).bind('keypress', function(e) {
-
-        if($(id).val().length < 11){
+    $('#' + id).bind('keypress', function(e) {
+         if($(id).val().length < 11){
             var k = e.which;
             var ok = k >= 48 && k <= 57; // 0-9
 
@@ -241,13 +253,44 @@ const numericalFieldsControl = (id) => {
                 e.preventDefault();
             }
         }else{
+            // throwWarning(id);
             e.preventDefault();
         }
     });
-
-
 }
 
-numericalFieldsControl("#tc");
-numericalFieldsControl("#phoneNumber");
-numericalFieldsControl("#parentPhoneNumber");
+nameFieldsControl('firstName');
+nameFieldsControl('lastName');
+nameFieldsControl('parentFirstName');
+nameFieldsControl('parentLastName');
+numericalFieldsControl('id');
+numericalFieldsControl('phoneNumber');
+numericalFieldsControl('parentPhoneNumber');
+
+const inputFocusIn = (id) => {
+    $('#' + id).focus( () => {
+        takeBackWarning(id);
+    })
+}
+
+/* TO DO -> iterate through all the inputs and invoke the method */
+inputFocusIn('id')
+inputFocusIn('firstName')
+inputFocusIn('lastName')
+inputFocusIn('phoneNumber')
+inputFocusIn('email')
+inputFocusIn('birthDate')
+inputFocusIn('address')
+inputFocusIn('schoolName')
+inputFocusIn('parentFirstName')
+inputFocusIn('parentLastName')
+inputFocusIn('parentPhoneNumber')
+inputFocusIn('educationReason')
+
+
+const redirect = (url) => {
+    window.location.href = url;
+    return true;
+}
+String.prototype.turkishToUpper = (string) =>{
+}

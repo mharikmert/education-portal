@@ -40,18 +40,18 @@ public class UserRestController {
         logger.info(user.toString());
         try{
             userService.findUser(user.getId());
-            return ResponseEntity.created(new URI("/user/id")).build();
+            return ResponseEntity.status(409).build();
         }
         catch(UserNotFoundException ex){
             /*
             should refactor
             */
-//            userService.createUser(user);
+            userService.createUser(user);
+            return ResponseEntity.ok(HttpStatus.CREATED);
         }
         catch(Exception ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        return null;
     }
     //handles with login requests
     @RequestMapping(

@@ -48,11 +48,11 @@ public class LayoutController {
         mav.setViewName("registrationApproval");
         return mav;
     }
-//    @RequestMapping("/admin")
-//    public ModelAndView admin(){
-//        ModelAndView mav = new ModelAndView();
-//        mav.setViewName("adminPanel");
-//        return mav;
-//    }
+    @RequestMapping("/admin")
+    public ModelAndView admin(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("adminPanel");
+        return mav;
+    }
 
 }

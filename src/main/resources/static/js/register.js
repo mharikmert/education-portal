@@ -233,9 +233,11 @@ function validateEmail(id){
 const nameFieldsControl = (id) => {
     $('#' + id).bind('keypress', function(e) {
 
-        var k = e.which;
-        var ok = k >= 65 && k <= 90 || // A-Z
-            k >= 97 && k <= 122 // a-z
+        const k = e.which;
+        const ok =
+            k >= 65 && k <= 90 || // A-Z
+            k >= 97 && k <= 122 ||// a-z
+            k === ' ' || k === 128
 
         if (!ok){
             // throwWarning(id)
@@ -259,13 +261,13 @@ const numericalFieldsControl = (id) => {
     });
 }
 
-nameFieldsControl('firstName');
-nameFieldsControl('lastName');
-nameFieldsControl('parentFirstName');
-nameFieldsControl('parentLastName');
-numericalFieldsControl('id');
-numericalFieldsControl('phoneNumber');
-numericalFieldsControl('parentPhoneNumber');
+// nameFieldsControl('firstName');
+// nameFieldsControl('lastName');
+// nameFieldsControl('parentFirstName');
+// nameFieldsControl('parentLastName');
+// numericalFieldsControl('id');
+// numericalFieldsControl('phoneNumber');
+// numericalFieldsControl('parentPhoneNumber');
 
 const inputFocusIn = (id) => {
     $('#' + id).focus( () => {
@@ -292,5 +294,11 @@ const redirect = (url) => {
     window.location.href = url;
     return true;
 }
-String.prototype.turkishToUpper = (string) =>{
+/*TR UpperCase()*/
+String.prototype.turkishToUpper = function(){
+    var string = this;
+    var letters = { "i": "İ", "ş": "Ş", "ğ": "Ğ", "ü": "Ü", "ö": "Ö", "ç": "Ç", "ı": "I" };
+    string = string.replace(/(([iışğüçö]))/g, function(letter){ return letters[letter]; })
+    return string.toUpperCase();
 }
+/*TR UpperCase*/

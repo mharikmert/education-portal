@@ -32,9 +32,6 @@ $(document).ready(() => {
             })
         })
         const formJson = JSON.stringify(obj);
-        // console.log(formJson);
-        // console.log('state -> ', formState);
-        // console.log('condition -> ' , registerCondition);
         if(registerCondition){
             $.ajax({
                 url : '/api/register',
@@ -43,11 +40,10 @@ $(document).ready(() => {
                 headers : {'Content-Type' : 'application/json; charset=utf-8'},
                 data : formJson,
                 success : () =>{
-                    addElement();
                     redirect('/approval')
                 },
                 error : (xhr, resp, text) => {
-                    // console.log(xhr, resp, text)
+                    console.log(xhr, resp, text)
                     alert('kullanıcı kayıtlı')
                 }
             });
@@ -108,7 +104,7 @@ $(document).ready(() => {
 $(document).ready( () => {
     $('#city').change( () =>{
         //district becomes enable to select
-        $('#district').attr('disabled',false);
+        $('#district').attr('disabled',false).html('<option> İlçe Seçiniz </option>');
         //defines the selected option
         let option = document.querySelector('#city');
         let selectedOption = option.options[option.selectedIndex].value;
@@ -126,7 +122,7 @@ $(document).ready( () => {
                     },
                     success: (result) => {
                         //districts are selectable
-                        $('#district').attr('disabled',true).html('<option> İlçe Seçiniz </option>');
+                        $('#district').attr('disabled',false);
                         //fill the districts
                         $.each(result, (index, value) => {
                             const option = document.createElement('option');

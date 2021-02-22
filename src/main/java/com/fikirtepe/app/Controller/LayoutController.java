@@ -51,7 +51,7 @@ public class LayoutController {
     @RequestMapping("/admin")
     public ModelAndView admin(){
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("adminPanel");
+        mav.setViewName("Admin/adminPanel");
         return mav;
     }
 

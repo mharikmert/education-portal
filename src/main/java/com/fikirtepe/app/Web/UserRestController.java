@@ -3,17 +3,18 @@ package com.fikirtepe.app.Web;
 import com.fikirtepe.app.Error.Error;
 import com.fikirtepe.app.Exceptions.UserNotFoundException;
 import com.fikirtepe.app.Model.User;
+import com.fikirtepe.app.Service.EmailService;
 import com.fikirtepe.app.Service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,13 @@ import java.util.Optional;
 public class UserRestController {
     private static final Logger logger = LoggerFactory.getLogger(UserRestController.class);
 
-    UserService userService;
+    private EmailService emailService;
+    @Autowired
+    public void setEmailService(EmailService emailService) {
+        this.emailService = emailService;
+    }
+
+    private UserService userService;
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
@@ -110,5 +117,17 @@ public class UserRestController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
+    }
+
+    @RequestMapping(
+            value = "/sendEmail"
+    )
+    public void send(){
+        try{
+            emailService.sendEmail();
+        }
+        catch(MailException ex){
+            logger.info("Error sending message" + ex.getMessage());
+        }
     }
 }

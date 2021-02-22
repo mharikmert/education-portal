@@ -44,7 +44,9 @@ $(document).ready(() => {
                 },
                 error : (xhr, resp, text) => {
                     console.log(xhr, resp, text)
-                    alert('kullanıcı kayıtlı')
+                    $(document).ready(function(){
+                        $("#myModal").modal();
+                    });
                 }
             });
         }

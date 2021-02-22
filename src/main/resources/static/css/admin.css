@@ -70,3 +70,31 @@
     background-color: #555;
     color: white;
 }
+
+.content {
+    margin-top: 25px;
+    margin-left: 230px;
+}
+
+#approval-list {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#approval-list td, #approval-list th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#approval-list tr:nth-child(even){background-color: #f2f2f2;}
+
+#approval-list tr:hover {background-color: #ddd;}
+
+#approval-list th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}

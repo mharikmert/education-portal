@@ -54,5 +54,11 @@ public class LayoutController {
         mav.setViewName("Admin/adminPanel");
         return mav;
     }
+    @RequestMapping("/studentApproval")
+    public ModelAndView studentApproval(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("Admin/studentApproval");
+        return mav;
+    }
 
 }

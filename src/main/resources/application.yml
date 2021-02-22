@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://fikirtepedb.czwdi9ywdyf3.us-east-2.rds.amazonaws.com :3306/fikirtepedb
+    url: jdbc:mysql://fikirtepedb.czwdi9ywdyf3.us-east-2.rds.amazonaws.com:3306/fikirtepedb
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: admin
     password: Fikirtepe.cydd99

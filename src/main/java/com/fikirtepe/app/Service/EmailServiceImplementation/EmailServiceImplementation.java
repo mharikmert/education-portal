@@ -26,8 +26,8 @@ public class EmailServiceImplementation implements EmailService {
     @Override
     public void sendEmail() throws MailException{
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setFrom("emailfrom@gmail.com");
-        msg.setTo("toemail@gmail.com");
+        msg.setFrom("noreplyfikirtepe@gmail.com");
+        msg.setTo("enesakturk999@hotmail.com");
         msg.setText("spring boot email testing");
         msg.setSubject("subject");
         javaMailSender.send(msg);

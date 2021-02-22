@@ -60,5 +60,10 @@ public class LayoutController {
         mav.setViewName("Admin/studentApproval");
         return mav;
     }
-
+    @RequestMapping("/roleAssign")
+    public ModelAndView roleAssign(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("Admin/roleAssign");
+        return mav;
+    }
 }

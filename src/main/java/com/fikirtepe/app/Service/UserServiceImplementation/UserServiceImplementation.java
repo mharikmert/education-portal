@@ -51,4 +51,10 @@ public class UserServiceImplementation implements UserService {
             return false;
         }
     }
+
+    @Override
+    public void save(User user){
+        userRepository.save(user);
+    }
+
 }

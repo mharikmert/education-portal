@@ -52,28 +52,6 @@ $(document).ready(() => {
 
 });
 
-let usersJson ;
-$(document).ready(() => {
-    //ajax post to get all the cities
-    $.ajax({
-        url: '/api/users', // contains all the cities
-        type: 'GET',
-        dataType : 'json',
-        headers : {
-            'Content-Type' : 'application/json; charset=utf-8'
-        },
-        success: (result) => {
-            usersJson = result;
-            $.each(result, function(index,value){
-                $('#list').append("<li>"+value.id+" "+value.firstName+" "+value.lastName+"<button>Approve</button>"+"<button>Remove</button>"+"</li>");
-            });
-        }, // end of ajax success
-        error : function (result){
-            console.log('city ajax GET failed! with result : ', result);
-        }
-    }); // end of ajax GET cities
-});
-
 let citiesJson;
 //add all the cities to the #city select box with get request
 $(document).ready(() => {

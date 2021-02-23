@@ -1,5 +1,6 @@
 package com.fikirtepe.app.Web;
 
+import com.fikirtepe.app.Service.CityAndDistrictService;
 import com.fikirtepe.app.Service.CityServiceImplemtation.CityAndDistrictServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class CityRestController {
 
-    CityAndDistrictServiceImplementation cityService;
+    CityAndDistrictService cityService;
 
     @Autowired
-    public void setCityService(CityAndDistrictServiceImplementation cityService) {
+    public void setCityService(CityAndDistrictService cityService) {
         this.cityService = cityService;
     }
 

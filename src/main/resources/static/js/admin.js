@@ -47,17 +47,16 @@ $(document).ready(() => {
                     '<td><button id="'+id+"assign"+'">'+"Onay"+"</button></td>"+'<td><button id="'+id+"delete"+'">'+"Sil"+"</button></td>")
                 $('#'+id+"assign").on('click', function(event) {
                     $.ajax({
-                        success : () =>{
-                            console.log(id);
-                        }
+                        url: '/api/user/updateApprove/'+id, // contains all the cities
+                        type: 'POST',
+                        dataType : 'json',
+                        headers : {
+                            'Content-Type' : 'application/json; charset=utf-8'
+                        },
                     });
                 });
                 $('#'+id+"delete").on('click', function(event) {
-                    $.ajax({
-                        success : () =>{
-                            console.log(id);
-                        }
-                    });
+                    value.isApproved = false ;
                 });
             });
         }, // end of ajax success

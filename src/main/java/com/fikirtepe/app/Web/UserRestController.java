@@ -3,6 +3,7 @@ package com.fikirtepe.app.Web;
 import com.fikirtepe.app.Error.Error;
 import com.fikirtepe.app.Exceptions.UserNotFoundException;
 import com.fikirtepe.app.Model.User;
+import com.fikirtepe.app.Repository.UserRepository;
 import com.fikirtepe.app.Service.EmailService;
 import com.fikirtepe.app.Service.UserService;
 import org.slf4j.Logger;
@@ -32,6 +33,7 @@ public class UserRestController {
     }
 
     private UserService userService;
+
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
@@ -104,7 +106,8 @@ public class UserRestController {
     public void updateApprove(@PathVariable long id) {
         System.out.println(id);
         System.out.println(userService.findUser(id).isApproved());
-
+        userService.findUser(id).setApproved(true);
+        userService.save(userService.findUser(id));
         System.out.println(userService.findUser(id).isApproved());
     }
     //deletes a user with id

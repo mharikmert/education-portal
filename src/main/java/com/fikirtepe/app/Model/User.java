@@ -50,12 +50,6 @@ public class User extends BaseEntity{
 
     private String parentEmail;
 
-    //calculates user's age
-    public int getAge(){
-        return Period.between(this.birthDate, LocalDate.now()).getYears();
-    }
-
-
     public String getFirstName() {
         return firstName;
     }

@@ -50,6 +50,8 @@ public class User extends BaseEntity{
 
     private String parentEmail;
 
+    private boolean isApproved;
+
     public String getFirstName() {
         return firstName;
     }
@@ -186,6 +188,14 @@ public class User extends BaseEntity{
         this.parentEmail = parentEmail;
     }
 
+    public boolean isApproved() {
+        return isApproved;
+    }
+
+    public void setApproved(boolean approved) {
+        isApproved = approved;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -206,6 +216,7 @@ public class User extends BaseEntity{
                 ", parentFirstName='" + parentFirstName + '\'' +
                 ", parentLastName='" + parentLastName + '\'' +
                 ", parentEmail='" + parentEmail + '\'' +
+                ", isApproved='" + isApproved + '\'' +
                 '}';
     }
 }

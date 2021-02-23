@@ -40,17 +40,26 @@ $(document).ready(() => {
         },
         success: (result) => {
             usersJson = result;
-            let idIndex = 0 ;
             $.each(result, function(index,value){
-                $('#approval-list').append("<tr id=idIndex>"+"<td>"+value.id+"</td>"+"<td>"+value.firstName+"</td>"+"<td>"+value.lastName+"</td>"+
+                var id = value.id;
+                $('#approval-list').append("<tr>"+"<td>"+value.id+"</td>"+"<td>"+value.firstName+"</td>"+"<td>"+value.lastName+"</td>"+
                     "<td>"+31+"</td>"+"<td>"+value.grade+"</td>"+"<td>"+value.section+"</td>"+"<td>"+value.phoneNumber+"</td>"+"<td>"+value.email+"</td>"+
-                    "<td><button id='accept-approval'>"+"Onay"+"</button></td>"+"<td><button id='reject-approval'>"+"Sil"+"</button></td>"+"</tr>")
-
-
-                idIndex++;
-
+                    '<td><button id="'+id+"assign"+'">'+"Onay"+"</button></td>"+'<td><button id="'+id+"delete"+'">'+"Sil"+"</button></td>")
+                $('#'+id+"assign").on('click', function(event) {
+                    $.ajax({
+                        success : () =>{
+                            console.log(id);
+                        }
+                    });
+                });
+                $('#'+id+"delete").on('click', function(event) {
+                    $.ajax({
+                        success : () =>{
+                            console.log(id);
+                        }
+                    });
+                });
             });
-
         }, // end of ajax success
         error : function (result){
             console.log('city ajax GET failed! with result : ', result);

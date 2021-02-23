@@ -46,9 +46,9 @@ $(document).ready(() => {
                     $('#approval-list').append("<tr>"+"<td>"+value.id+"</td>"+"<td>"+value.firstName+"</td>"+"<td>"+value.lastName+"</td>"+
                         "<td>"+31+"</td>"+"<td>"+value.grade+"</td>"+"<td>"+value.section+"</td>"+"<td>"+value.phoneNumber+"</td>"+"<td>"+value.email+"</td>"+
                         '<td><button  onclick="SomeDeleteRowFunction(this)" id="'+id+"assign"+'">'+"Onay"+"</button></td>"+'<td><button  onclick="SomeDeleteRowFunction(this)" id="'+id+"delete"+'">'+"Sil"+"</button></td>"+"<tr>")
-                    $('#'+id+"assign").on('click', function(event) {
+                    $('#'+id+"assign").on('click', function() {
                         $.ajax({
-                            url: '/api/user/updateApprove/'+id, // contains all the cities
+                            url: '/api/approveUser/'+id, // contains all the cities
                             type: 'POST',
                             dataType : 'json',
                             headers : {
@@ -57,8 +57,16 @@ $(document).ready(() => {
                         });
                     });
 
-                    $('#'+id+"delete").on('click', function(event) {
-                        value.isApproved = false ;
+                    $('#'+id+"delete").on('click', function() {
+                        $.ajax({
+                            url: 'api/rejectUser/'+id,
+                            type: 'POST',
+                            dataType: 'json',
+                            headers: {
+                                'Content-Type': 'application/json; charset=utf-8'
+                            }
+                        })
+
                     });
                 }
             });
@@ -71,7 +79,6 @@ $(document).ready(() => {
 
 
 function SomeDeleteRowFunction(o) {
-    //no clue what to put here?
-    var p=o.parentNode.parentNode;
+    const p = o.parentNode.parentNode;
     p.parentNode.removeChild(p);
 }

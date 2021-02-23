@@ -98,6 +98,15 @@ public class UserRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build()); // 404 not found
     }
 
+    @RequestMapping(
+            value = "/user/updateApprove/{id}",
+            method = {RequestMethod.GET, RequestMethod.PUT, RequestMethod.POST})
+    public void updateApprove(@PathVariable long id) {
+        System.out.println(id);
+        System.out.println(userService.findUser(id).isApproved());
+
+        System.out.println(userService.findUser(id).isApproved());
+    }
     //deletes a user with id
     @RequestMapping(
             value = "/delete/{id}",

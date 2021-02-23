@@ -31,7 +31,7 @@ public class EmailServiceImplementation implements EmailService {
         this.email = email;
     }
     @Override
-    public void sendRegistrationEmail(User user) {
+    public void sendRegistrationReceivedMail(User user) {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(email);
         msg.setTo(user.getEmail());
@@ -41,5 +41,33 @@ public class EmailServiceImplementation implements EmailService {
                 "İyi günler."
         );
         javaMailSender.send(msg);
+    }
+
+    @Override
+    public void sendRegistrationApprovedMail(User user){
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setFrom(email);
+        msg.setTo(user.getEmail());
+        msg.setSubject("Fikirtepe Öğrenci Sistemi Kayıt Onay");
+        msg.setText("Sevgili " + user.getFirstName() + " " + user.getLastName() + "\n\n" +
+                "Kaydınız onaylanmıştır, şifrenizi giriş ekranından oluşturup sisteme giriş yapabilirsiniz. \n\n" +
+                "İyi günler."
+        );
+        javaMailSender.send(msg);
+
+    }
+
+    @Override
+    public void sendRegistrationRejectedMail(User user){
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setFrom(email);
+        msg.setTo(user.getEmail());
+        msg.setSubject("Fikirtepe Öğrenci Sistemi Kayıt Red");
+        msg.setText("Sevgili " + user.getFirstName() + " " + user.getLastName() + "\n\n" +
+                "Kaydınız reddedilmiştir \n\n" + //rejection reason
+                "İyi günler."
+        );
+        javaMailSender.send(msg);
+
     }
 }

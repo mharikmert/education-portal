@@ -41,23 +41,25 @@ $(document).ready(() => {
         success: (result) => {
             usersJson = result;
             $.each(result, function(index,value){
-                var id = value.id;
-                $('#approval-list').append("<tr>"+"<td>"+value.id+"</td>"+"<td>"+value.firstName+"</td>"+"<td>"+value.lastName+"</td>"+
-                    "<td>"+31+"</td>"+"<td>"+value.grade+"</td>"+"<td>"+value.section+"</td>"+"<td>"+value.phoneNumber+"</td>"+"<td>"+value.email+"</td>"+
-                    '<td><button id="'+id+"assign"+'">'+"Onay"+"</button></td>"+'<td><button id="'+id+"delete"+'">'+"Sil"+"</button></td>")
-                $('#'+id+"assign").on('click', function(event) {
-                    $.ajax({
-                        url: '/api/user/updateApprove/'+id, // contains all the cities
-                        type: 'POST',
-                        dataType : 'json',
-                        headers : {
-                            'Content-Type' : 'application/json; charset=utf-8'
-                        },
+                if (value["approved"] === false){
+                    var id = value.id;
+                    $('#approval-list').append("<tr>"+"<td>"+value.id+"</td>"+"<td>"+value.firstName+"</td>"+"<td>"+value.lastName+"</td>"+
+                        "<td>"+31+"</td>"+"<td>"+value.grade+"</td>"+"<td>"+value.section+"</td>"+"<td>"+value.phoneNumber+"</td>"+"<td>"+value.email+"</td>"+
+                        '<td><button id="'+id+"assign"+'">'+"Onay"+"</button></td>"+'<td><button id="'+id+"delete"+'">'+"Sil"+"</button></td>")
+                    $('#'+id+"assign").on('click', function(event) {
+                        $.ajax({
+                            url: '/api/user/updateApprove/'+id, // contains all the cities
+                            type: 'POST',
+                            dataType : 'json',
+                            headers : {
+                                'Content-Type' : 'application/json; charset=utf-8'
+                            },
+                        });
                     });
-                });
-                $('#'+id+"delete").on('click', function(event) {
-                    value.isApproved = false ;
-                });
+                    $('#'+id+"delete").on('click', function(event) {
+                        value.isApproved = false ;
+                    });
+                }
             });
         }, // end of ajax success
         error : function (result){

@@ -54,6 +54,7 @@ public class UserRestController {
             should refactor
             */
             userService.createUser(user);
+            emailService.sendRegistrationEmail(user);
             return ResponseEntity.ok(HttpStatus.CREATED);
         }
         catch(Exception ex){
@@ -115,19 +116,6 @@ public class UserRestController {
         }catch(Exception ex){
             //other exceptions are caught, build an internal server error
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-
-    }
-
-    @RequestMapping(
-            value = "/sendEmail"
-    )
-    public void send(){
-        try{
-            emailService.sendEmail();
-        }
-        catch(MailException ex){
-            logger.info("Error sending message" + ex.getMessage());
         }
     }
 }

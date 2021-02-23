@@ -56,7 +56,7 @@ public class UserRestController {
             should refactor
             */
             userService.createUser(user);
-            emailService.sendRegistrationEmail(user);
+            emailService.sendRegistrationReceivedMail(user);
             return ResponseEntity.ok(HttpStatus.CREATED);
         }
         catch(Exception ex){
@@ -100,16 +100,27 @@ public class UserRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build()); // 404 not found
     }
 
+    //saves users that is approved by the admin in registration queue
     @RequestMapping(
-            value = "/user/updateApprove/{id}",
-            method = {RequestMethod.GET, RequestMethod.PUT, RequestMethod.POST})
-    public void updateApprove(@PathVariable long id) {
-        System.out.println(id);
-        System.out.println(userService.findUser(id).isApproved());
-        userService.findUser(id).setApproved(true);
-        userService.save(userService.findUser(id));
-        System.out.println(userService.findUser(id).isApproved());
+            value = "/approveUser/{id}",
+            method = RequestMethod.POST)
+    public void approveUser(@PathVariable long id) {
+        User user = userService.findUser(id);
+        user.setApproved(true);
+        userService.save(user);
+        emailService.sendRegistrationApprovedMail(user);
     }
+
+    //deletes user that is rejected by the admin in registration queue
+    @RequestMapping(
+            value = "/rejectUser/{id}",
+            method = RequestMethod.POST)
+    public void rejectUser(@PathVariable long id){
+        User user = userService.findUser(id);
+        userService.deleteUser(id);
+        emailService.sendRegistrationRejectedMail(user);
+    }
+
     //deletes a user with id
     @RequestMapping(
             value = "/delete/{id}",

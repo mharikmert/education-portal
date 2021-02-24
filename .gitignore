@@ -37,4 +37,4 @@ out/
 .vscode/
 
 ### Local Configuration ###
-.env
+src/main/resources/config.properties

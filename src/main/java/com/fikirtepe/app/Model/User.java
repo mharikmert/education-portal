@@ -52,6 +52,13 @@ public class User extends BaseEntity{
 
     private boolean isApproved;
 
+    //constructor for tests
+    public User(){}
+    public User(Long id, String firstName, String lastName) {
+        this.setId(id); // super class
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
     public String getFirstName() {
         return firstName;
     }

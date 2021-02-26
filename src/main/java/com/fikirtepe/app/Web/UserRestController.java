@@ -76,18 +76,23 @@ public class UserRestController {
     @RequestMapping(
             value = "/login",
             method = RequestMethod.POST)
-    public ResponseEntity<?> checkUser(@RequestBody User user,
-                                           HttpServletResponse response) throws IOException {
+    public ResponseEntity<?> validateUser(@RequestBody User user)
+    {
         //error sample usage if user id is empty
         Error error = new Error(400, "validation error", "/api/login");
         Map<String, String> validationErrors = new HashMap<>();
-        if(user.getId() == 0){
+
+        if(user.getId() == 0)
+        {
             error.setValidationErrors(validationErrors);
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error); // id 0, 400 bad request
         }
+
         else if(userService.verifyUser(user))
+        {
             return ResponseEntity.status(HttpStatus.OK).build(); // returns 200 ok
-        return null;
+        }
+        else return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
     //returns all the users

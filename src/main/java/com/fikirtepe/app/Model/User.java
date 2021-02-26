@@ -54,10 +54,11 @@ public class User extends BaseEntity{
 
     //constructor for tests
     public User(){}
-    public User(Long id, String firstName, String lastName) {
+    public User(Long id, String firstName, String lastName, String email) {
         this.setId(id); // super class
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
     }
     public String getFirstName() {
         return firstName;

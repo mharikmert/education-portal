@@ -39,19 +39,20 @@ $(document).ready(() => {
                 dataType: 'json',
                 headers : {'Content-Type' : 'application/json; charset=utf-8'},
                 data : formJson,
-                success : () =>{
-                    redirect('/approval')
+                statusCode: {
+                    201: () => {
+                        redirect('/approval')
+                    },
+                    409: () => {
+                        $('#myModal').modal()
+                    },
+                    500: () => {
+                        console.log('beklenmedik bir hata oluştu')
+                    }
                 },
-                error : (xhr, resp, text) => {
-                    console.log(xhr, resp, text)
-                    $(document).ready(function(){
-                        $("#myModal").modal();
-                    });
-                }
             });
         }
     });
-
 });
 
 let citiesJson;

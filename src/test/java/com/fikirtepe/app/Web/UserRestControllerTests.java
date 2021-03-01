@@ -3,10 +3,8 @@ package com.fikirtepe.app.Web;
 import com.fikirtepe.app.Exceptions.UserNotFoundException;
 import com.fikirtepe.app.Model.User;
 import com.fikirtepe.app.Service.UserService;
-import com.sun.xml.bind.v2.runtime.output.SAXOutput;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.hamcrest.collection.IsEmptyCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -15,7 +13,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
-import sun.net.www.HeaderParser;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -26,7 +23,7 @@ import java.util.Objects;
 
 @ActiveProfiles("dev")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-//@Transactional
+@Transactional
 public class UserRestControllerTests {
 
     @LocalServerPort
@@ -42,14 +39,14 @@ public class UserRestControllerTests {
     @Autowired
     private UserService userService;
 
-    @Test @Transactional
+    @Test
     public void testCreateUserSuccess() throws URISyntaxException {
         //define base url and convert to a uri
-        final String baseUrl =  + randomPort + "/api/register/";
+        final String baseUrl =  "http://localhost:" + randomPort + "/api/register/";
         URI uri = new URI(baseUrl);
 
         //test User
-        User user = new User(5L,"testFirstName", "testLastName","testEmail@gmail.com");
+        User user = new User(5L,"password", "testFirstName", "testLastName","testEmail@gmail.com");
 
         //define a request with test User
         HttpEntity<User> request = new HttpEntity<>(user);
@@ -77,7 +74,7 @@ public class UserRestControllerTests {
             //post a request for that user and expect 200
             ResponseEntity<String> result = this.restTemplate.postForEntity(uri, request, String.class);
 
-            Assertions.assertEquals(result.getStatusCodeValue(), 200);
+            Assertions.assertEquals(result.getStatusCodeValue(),200);
 
         }catch(URISyntaxException ex){
             ex.printStackTrace();
@@ -96,20 +93,19 @@ public class UserRestControllerTests {
 
     @Test
     public void testGetUserSuccess() {
-
         User testUser = userService.findAllUsers().get(0);
 
         final String baseUrl = "http://localhost:" + randomPort + "/api/user/" + testUser.getId();
 
-        User responseUser = this.restTemplate.getForObject(baseUrl + testUser.getId(), User.class);
+        User responseUser = this.restTemplate.getForObject(baseUrl, User.class);
         //ResponseEntity<User> responseEntity = this.restTemplate.getForEntity(baseUrl + testUser.getId(), User.class);
 
         Assertions.assertEquals(testUser.getId(), responseUser.getId());
     }
 
-    @Test @Transactional
+    @Test
     public void testApproveUserSuccess() {
-        User testUser = new User(5L,"testFirstName", "testLastName","testEmail@gmail.com");
+        User testUser = new User(5L,"password", "testFirstName", "testLastName","testEmail@gmail.com");
         testUser.setApproved(false);
 
         final String baseUrl = "http://localhost:" + randomPort + "/api/approveUser/" + testUser.getId();
@@ -122,7 +118,7 @@ public class UserRestControllerTests {
 
     @Test
     public void testRejectUserSuccess() {
-        User testUser = new User(5L,"testFirstName", "testLastName","testEmail@gmail.com");
+        User testUser = new User(6L,"password", "testFirstName", "testLastName","testEmail@gmail.com");
         testUser.setApproved(true);
 
         final String baseUrl = "http://localhost:" + randomPort + "/api/rejectUser/" + testUser.getId();
@@ -132,9 +128,9 @@ public class UserRestControllerTests {
         Assertions.assertNotEquals(testUser.isApproved(), responseUser.isApproved());
     }
 
-    @Test @Transactional
+    @Test
     public void deleteUserSuccess(){
-        User testUser = new User(5L,"testFirstName", "testLastName","testEmail@gmail.com");
+        User testUser = new User(7L,"password", "testFirstName", "testLastName","testEmail@gmail.com");
         userService.createUser(testUser);
 
         final String baseUrl = "http://localhost:" + randomPort + "/api/delete/" + testUser.getId();

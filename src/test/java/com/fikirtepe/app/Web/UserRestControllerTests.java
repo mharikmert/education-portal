@@ -1,7 +1,9 @@
 package com.fikirtepe.app.Web;
 
+import com.fikirtepe.app.Exceptions.UserNotFoundException;
 import com.fikirtepe.app.Model.User;
 import com.fikirtepe.app.Service.UserService;
+import com.sun.xml.bind.v2.runtime.output.SAXOutput;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.hamcrest.collection.IsEmptyCollection;
@@ -13,11 +15,14 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
+import sun.net.www.HeaderParser;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 @ActiveProfiles("dev")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -28,6 +33,7 @@ public class UserRestControllerTests {
     private int randomPort;
 
     /* if baseURL is defined here, randomPort is 0 ?? */
+//    private final String baseUrl = "http://localhost:";
 
     //restTemplate for testing requests
     @Autowired
@@ -38,9 +44,8 @@ public class UserRestControllerTests {
 
     @Test @Transactional
     public void testCreateUserSuccess() throws URISyntaxException {
-
         //define base url and convert to a uri
-        final String baseUrl = "http://localhost:" + randomPort + "/api/register/";
+        final String baseUrl =  + randomPort + "/api/register/";
         URI uri = new URI(baseUrl);
 
         //test User
@@ -72,11 +77,75 @@ public class UserRestControllerTests {
             //post a request for that user and expect 200
             ResponseEntity<String> result = this.restTemplate.postForEntity(uri, request, String.class);
 
-            Assertions.assertTrue(result.getStatusCodeValue() == 200);
+            Assertions.assertEquals(result.getStatusCodeValue(), 200);
 
         }catch(URISyntaxException ex){
             ex.printStackTrace();
         }
 
     }
+
+    @Test
+    public void testGetUsersSuccess() {
+        final String baseUrl = "http://localhost:" + randomPort + "/api/users";
+        ResponseEntity<User []> responseEntity = this.restTemplate.getForEntity(baseUrl, User[].class);
+        List<User> userList = Arrays.asList(Objects.requireNonNull(responseEntity.getBody()));
+
+        Assertions.assertTrue(userList.size() > 0);
+    }
+
+    @Test
+    public void testGetUserSuccess() {
+
+        User testUser = userService.findAllUsers().get(0);
+
+        final String baseUrl = "http://localhost:" + randomPort + "/api/user/" + testUser.getId();
+
+        User responseUser = this.restTemplate.getForObject(baseUrl + testUser.getId(), User.class);
+        //ResponseEntity<User> responseEntity = this.restTemplate.getForEntity(baseUrl + testUser.getId(), User.class);
+
+        Assertions.assertEquals(testUser.getId(), responseUser.getId());
+    }
+
+    @Test @Transactional
+    public void testApproveUserSuccess() {
+        User testUser = new User(5L,"testFirstName", "testLastName","testEmail@gmail.com");
+        testUser.setApproved(false);
+
+        final String baseUrl = "http://localhost:" + randomPort + "/api/approveUser/" + testUser.getId();
+
+        //transactional annotation is not working with restTemplate?
+        User responseUser = this.restTemplate.getForObject(baseUrl, User.class);
+
+        Assertions.assertNotEquals(testUser.isApproved(), responseUser.isApproved());
+    }
+
+    @Test
+    public void testRejectUserSuccess() {
+        User testUser = new User(5L,"testFirstName", "testLastName","testEmail@gmail.com");
+        testUser.setApproved(true);
+
+        final String baseUrl = "http://localhost:" + randomPort + "/api/rejectUser/" + testUser.getId();
+
+        User responseUser = this.restTemplate.getForObject(baseUrl, User.class);
+
+        Assertions.assertNotEquals(testUser.isApproved(), responseUser.isApproved());
+    }
+
+    @Test @Transactional
+    public void deleteUserSuccess(){
+        User testUser = new User(5L,"testFirstName", "testLastName","testEmail@gmail.com");
+        userService.createUser(testUser);
+
+        final String baseUrl = "http://localhost:" + randomPort + "/api/delete/" + testUser.getId();
+
+        try{
+            userService.findUser(testUser.getId());
+        }catch (UserNotFoundException ex){
+            assert true;
+        }catch (Exception ex){
+            assert false;
+        }
+    }
+
 }

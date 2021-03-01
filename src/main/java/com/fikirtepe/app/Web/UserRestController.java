@@ -3,16 +3,16 @@ package com.fikirtepe.app.Web;
 import com.fikirtepe.app.Error.Error;
 import com.fikirtepe.app.Exceptions.UserNotFoundException;
 import com.fikirtepe.app.Model.User;
-import com.fikirtepe.app.Repository.UserRepository;
 import com.fikirtepe.app.Service.EmailService;
 import com.fikirtepe.app.Service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
@@ -29,13 +29,14 @@ public class UserRestController {
     private static final Logger logger = LoggerFactory.getLogger(UserRestController.class);
 
     private EmailService emailService;
+    //injects email service
     @Autowired
     public void setEmailService(EmailService emailService) {
         this.emailService = emailService;
     }
 
     private UserService userService;
-
+    //injects user service
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
@@ -117,22 +118,24 @@ public class UserRestController {
     //saves users that is approved by the admin in registration queue
     @RequestMapping(
             value = "/approveUser/{id}",
-            method = RequestMethod.POST)
-    public void approveUser(@PathVariable long id) {
+            method = RequestMethod.GET)
+    public ResponseEntity<User> approveUser(@PathVariable long id) {
         User user = userService.findUser(id);
         user.setApproved(true);
         userService.save(user);
         emailService.sendRegistrationApprovedMail(user);
+        return ResponseEntity.ok(user);
     }
 
     //deletes user that is rejected by the admin in registration queue
     @RequestMapping(
             value = "/rejectUser/{id}",
-            method = RequestMethod.POST)
-    public void rejectUser(@PathVariable long id){
+            method = RequestMethod.GET)
+    public ResponseEntity<User> rejectUser(@PathVariable long id){
         User user = userService.findUser(id);
         userService.deleteUser(id);
         emailService.sendRegistrationRejectedMail(user);
+        return ResponseEntity.ok(user);
     }
 
     //deletes a user with id

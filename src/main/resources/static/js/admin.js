@@ -49,7 +49,7 @@ $(document).ready(() => {
                     $('#'+id+"assign").on('click', function() {
                         $.ajax({
                             url: '/api/approveUser/'+id, // contains all the cities
-                            type: 'POST',
+                            type: 'GET',
                             dataType : 'json',
                             headers : {
                                 'Content-Type' : 'application/json; charset=utf-8'
@@ -60,7 +60,7 @@ $(document).ready(() => {
                     $('#'+id+"delete").on('click', function() {
                         $.ajax({
                             url: 'api/rejectUser/'+id,
-                            type: 'POST',
+                            type: 'GET',
                             dataType: 'json',
                             headers: {
                                 'Content-Type': 'application/json; charset=utf-8'

@@ -67,7 +67,7 @@ public class UserRestController {
                     .buildAndExpand(user.getId())
                     .toUri();
             //return 201 from uri location
-            return ResponseEntity.created(location).build();
+            return ResponseEntity.ok(HttpStatus.CREATED);
         }
         catch(Exception ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -122,6 +122,7 @@ public class UserRestController {
     public ResponseEntity<User> approveUser(@PathVariable long id) {
         User user = userService.findUser(id);
         user.setApproved(true);
+        user.setRole("STUDENT");
         userService.save(user);
         emailService.sendRegistrationApprovedMail(user);
         return ResponseEntity.ok(user);
@@ -158,4 +159,19 @@ public class UserRestController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @RequestMapping(
+            value = "/assignRole/{id}/{role}",
+            method = RequestMethod.GET)
+    public ResponseEntity<User> assignRole(@PathVariable long id,@PathVariable int role){
+        User user = userService.findUser(id);
+        switch (role){
+            case 0 : user.setRole("STUDENT"); break;
+            case 1 : user.setRole("TEACHER"); break;
+            case 2 : user.setRole("ADMIN");   break;
+        }
+        userService.save(user);
+        return ResponseEntity.ok(user);
+    }
+
 }

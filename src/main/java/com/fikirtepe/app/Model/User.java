@@ -52,6 +52,8 @@ public class User extends BaseEntity{
 
     private boolean isApproved;
 
+    private String role ;
+
     //constructor for tests
     public User(){}
     public User(Long id, String password , String firstName, String lastName, String email) {
@@ -203,6 +205,14 @@ public class User extends BaseEntity{
 
     public void setApproved(boolean approved) {
         isApproved = approved;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override

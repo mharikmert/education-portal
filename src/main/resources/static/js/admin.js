@@ -96,35 +96,67 @@ $(document).ready(() => {
         success: (result) => {
             usersJsonAssignment = result;
             $.each(result, function(index,value){
+                if (value["approved"]===true){
                     var id = value.id;
                     $('#assignment-list').append("<tr>"+"<td>"+value.id+"</td>"+"<td>"+value.firstName+"</td>"+"<td>"+value.lastName+"</td>"+
                         "<td>"+value.phoneNumber+"</td>"+"<td>"+value.email+"</td>"+
-                        '<td><button id="'+id+"assign"+'">'+"Öğrenci"+"</button></td>"+'<td><button  id="'+id+"delete"+'">'+"Öğretmen"+"</button></td>"+"</tr>")
+                        '<td><button id="'+id+"STUDENT"+'">'+"Öğrenci"+"</button></td>"+'<td><button id="'+id+"TEACHER"+'">'+"Öğretmen"+"</button>" +
+                        "</td>"+'<td><button  id="'+id+"ADMIN"+'">'+"Admin"+"</button></td>"+"</tr>")
 
-                /*
-                    $('#'+id+"assign").on('click', function() {
+                    if (value["role"]==="STUDENT")
+                        $('#'+id+"STUDENT").attr('disabled',true)
+                    else if (value["role"]==="TEACHER")
+                        $('#'+id+"TEACHER").attr('disabled',true)
+                    else if (value["role"]==="ADMIN")
+                        $('#'+id+"ADMIN").attr('disabled',true)
+
+                    $('#'+id+"STUDENT").on('click', function() {
                         $.ajax({
-                            url: '/api/approveUser/'+id,
-                            type: 'POST',
+                            url: '/api/assignRole/'+id+ "/"+0,
+                            type: 'GET',
                             dataType : 'json',
                             headers : {
                                 'Content-Type' : 'application/json; charset=utf-8'
                             },
+                            success(){
+                                $('#'+id+"STUDENT").attr('disabled',true)
+                                $('#'+id+"TEACHER").attr('disabled',false)
+                                $('#'+id+"ADMIN").attr('disabled',false)
+                            }
                         });
                     });
-
-                    $('#'+id+"delete").on('click', function() {
+                    $('#'+id+"TEACHER").on('click', function() {
                         $.ajax({
-                            url: 'api/rejectUser/'+id,
-                            type: 'POST',
-                            dataType: 'json',
-                            headers: {
-                                'Content-Type': 'application/json; charset=utf-8'
+                            url: '/api/assignRole/'+id + "/"+1,
+                            type: 'GET',
+                            dataType : 'json',
+                            headers : {
+                                'Content-Type' : 'application/json; charset=utf-8'
+                            },
+                            success(){
+                                $('#'+id+"STUDENT").attr('disabled',false)
+                                $('#'+id+"TEACHER").attr('disabled',true)
+                                $('#'+id+"ADMIN").attr('disabled',false)
                             }
-                        })
-
+                        });
                     });
-                */
+                    $('#'+id+"ADMIN").on('click', function() {
+                        $.ajax({
+                            url: '/api/assignRole/'+id+ "/"+2,
+                            type: 'GET',
+                            dataType : 'json',
+                            headers : {
+                                'Content-Type' : 'application/json; charset=utf-8'
+                            },
+                            success(){
+                                $('#'+id+"STUDENT").attr('disabled',false)
+                                $('#'+id+"TEACHER").attr('disabled',false)
+                                $('#'+id+"ADMIN").attr('disabled',true)
+                            }
+                        });
+                    });
+                }
+
             });
         }, // end of ajax success
         error : function (result){

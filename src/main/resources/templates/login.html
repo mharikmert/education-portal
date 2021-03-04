@@ -13,7 +13,12 @@
             <div id = "LoginTitle">
                 Öğrenci&nbsp;Bilgi&nbsp;Sistemi
             </div>
+
+            <div class = "turn-back-btn-container">
+                <button class = "turn-back-btn" type = "button" onclick="redirect('/')"> Ana Sayfaya Dön </button>
+            </div>
         </div>
+
         <div id = "warning-place">
                 <div id = "wrong-data" class = "warning-message" style="display:none;">
                    Kullanıcı adınız ya da şifreniz hatalı!
@@ -45,11 +50,11 @@
                     </div>
                     <div id = "for-pass-div">
                         <i class = "arrow"></i>
-                        <button id = "forgot-password" class = "input"> Şifremi unuttum </button>
+                        <button id = "forgot-password" class = "input" onclick="redirect('forgot-password')"> Şifremi unuttum </button>
                     </div>
                     <div id = "create-pass-div">
                         <i class = "arrow"></i>
-                        <button id = "create-password" class = "input"> Kayıt Ol </button>
+                        <button id = "create-password" class = "input" onclick="redirect('register')"> Kayıt Ol </button>
                     </div>
                 </div>
         </div>

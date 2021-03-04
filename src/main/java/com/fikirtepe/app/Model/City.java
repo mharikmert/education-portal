@@ -14,19 +14,4 @@ public class City {
 
     private String cityName;
 
-    public long getPlateNo() {
-        return plateNo;
-    }
-
-    public void setPlateNo(long plateNo) {
-        this.plateNo = plateNo;
-    }
-
-    public String getCityName() {
-        return cityName;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
-    }
 }

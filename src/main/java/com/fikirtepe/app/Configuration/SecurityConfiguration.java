@@ -26,7 +26,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/css/**",
                         "/js/**",
                         "/assets-img/**",
+                        "/", // main screen
+                        "/register", // registration form
                         "/login").permitAll()
+                //role restriction to avoid direct access by out users
+                .antMatchers("menu").access("hasRole('USER')")
                 /* pages authentication according to user roles*/
                 //.antMatchers("/actuator/**").access("hasRole('ADMIN')")
                 /* Request methods are accessed by just authenticated users*/

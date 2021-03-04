@@ -304,3 +304,29 @@ input:checked + .slider:before {
     margin:3% auto;
   }
 }
+/*** Turn back button ***/
+.turn-back-btn-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    left: 120%;
+    margin-top: 5%;
+}
+
+.turn-back-btn-container .turn-back-btn {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.turn-back-btn-container .turn-back-btn:hover {
+    background-color: black;
+}

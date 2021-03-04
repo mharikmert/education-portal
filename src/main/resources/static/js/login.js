@@ -73,10 +73,3 @@ togglePassword.addEventListener('click',function(){
     this.classList.toggle('fa-eye-slash');
 });
 
-
-document.querySelector('#forgot-password').addEventListener('click', function(){
-    redirect('forgotPassword');
-});
-document.querySelector('#create-password').addEventListener('click', function(){
-    redirect('register')
-})

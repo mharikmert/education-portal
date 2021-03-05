@@ -26,6 +26,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/css/**",
                         "/js/**",
                         "/assets-img/**",
+                        "/api/register/**",
+                        "/api/cities/**",
+                        "/registration/**", // to be able to access registration pages' static sources
                         "/", // main screen
                         "/register", // registration form
                         "/login").permitAll()
@@ -39,7 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         /* unauthenticated users redirect login page by default*/
         http.formLogin()
                 .loginPage("/login") //login path
-                .loginProcessingUrl("/login") //submit uri
+                .loginProcessingUrl("/menu") //submit uri
                 .failureForwardUrl("/login.html?loginFailed=true"); //authentication failure
         http.rememberMe().userDetailsService(userDetailsService); //remember me ability
 //        http.httpBasic(); // enabling basic authentication

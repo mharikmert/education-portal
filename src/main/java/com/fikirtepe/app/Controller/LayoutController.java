@@ -36,12 +36,13 @@ public class LayoutController {
             return mav;
     }
 
-//    @RequestMapping("/menu")
-//    public ModelAndView menu(){
-//            ModelAndView mav = new ModelAndView();
-//            mav.setViewName("web_menu");
-//            return mav;
-//    }
+    @RequestMapping("/menu")
+    public ModelAndView menu(){
+            ModelAndView mav = new ModelAndView();
+            mav.setViewName("web_menu");
+            return mav;
+    }
+
     @RequestMapping("/approval")
     public ModelAndView approval(){
         ModelAndView mav = new ModelAndView();

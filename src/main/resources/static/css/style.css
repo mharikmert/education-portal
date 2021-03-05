@@ -36,7 +36,6 @@ html,body{
     width : 100%;
     position: relative;
     left:-30%;
-    opacity: 70%;
 }
 #LoginPanel{
     width: 380px;
@@ -302,6 +301,9 @@ input:checked + .slider:before {
   }
   .term-info{
     margin:3% auto;
+  }
+  .turn-back-btn-container{
+      float: right;
   }
 }
 /*** Turn back button ***/

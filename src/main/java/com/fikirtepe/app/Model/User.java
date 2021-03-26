@@ -61,6 +61,10 @@ public class User extends BaseEntity{
         this.lastName = lastName;
         this.email = email;
     }
+    public User(Long id, String password){
+        this.setId(id);
+        this.password = password;
+    }
 
     @Override
     public String toString() {

@@ -5,6 +5,7 @@ import com.fikirtepe.app.Model.User;
 import com.fikirtepe.app.Repository.UserRepository;
 import com.fikirtepe.app.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,8 +21,16 @@ public class UserServiceImplementation implements UserService {
         this.userRepository = userRepository;
     }
 
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder){
+        this.passwordEncoder = passwordEncoder;
+    }
+
     @Override
     public void createUser(User user){
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
@@ -46,7 +55,8 @@ public class UserServiceImplementation implements UserService {
     public boolean verifyUser(User user) {
         try{
             User inDb = findUser(user.getId());
-            return (inDb.getPassword().equals(user.getPassword()));
+            //check the password matches with encrypted password in database
+            return passwordEncoder.matches(user.getPassword(), inDb.getPassword());
         } catch(UserNotFoundException ex){
             return false;
         }

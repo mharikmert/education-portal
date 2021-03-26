@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -26,6 +28,7 @@ public class AuthenticationServiceImplementation implements AuthenticationServic
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
+
 
     @Override
     public ResponseEntity<?> authenticate(String authorization){
@@ -78,4 +81,22 @@ public class AuthenticationServiceImplementation implements AuthenticationServic
         return null;
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        if(username == null){
+            throw new UserNotFoundException("User is not found");
+        }
+        long id = Long.parseLong(username);
+
+        try{
+            User user = userService.findUser(id);
+            return org.springframework.security.core.userdetails.User
+                    .withUsername(username)
+                    .password(user.getPassword())
+                    .authorities(user.getRole())
+                    .build();
+        }catch (UserNotFoundException ex){
+            return null;
+        }
+    }
 }

@@ -1,6 +1,6 @@
 # Fikirtepe-Student-Information-System (In Development)
 ## About
-The main idea behind this project is to maintain a online platform for high school students studying at Fikirtepe for free within the Association for the Support of Contemporary Living. Registration page is active for now
+The main idea behind this project is to maintain a online platform for high school students studying at Fikirtepe for free within the Association for the Support of Contemporary Living. It is an information system about students' lectures, schedules, absence etc.  
 
 ## Installation
 ```

@@ -1,24 +1,22 @@
 //current user object
 const currentUser = {};
 
-const postLoginRequest = () => {
+const postLoginRequest  = () => {
     const xhr = new XMLHttpRequest();
-    const url = "/api/login";
+    const url = "/api/auth";
     xhr.open("POST",url, true);
+    xhr.setRequestHeader("Authorization","Basic " + btoa(currentUser.id + ":" + currentUser.password))
     xhr.setRequestHeader("Content-Type", "application/json");
-
-    const data = JSON.stringify({
-        "id" : currentUser.id,
-        "password" : currentUser.password
-    });
-    xhr.send(data);
-
+    xhr.send();
+    $('#login-spinner').css('display','inline-block');
     xhr.onreadystatechange = function (){
       //if response is ok, redirect the page
       if(xhr.status === 200){
         redirect("/menu"); // gives the mapping and redirect the page
       }else // else show warning acc to id and password
         errorMessage(currentUser.id, currentUser.password);
+      $('#login-spinner').css('display', 'none');
+
     }
 }
 

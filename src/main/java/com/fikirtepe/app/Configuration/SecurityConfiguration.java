@@ -32,10 +32,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //commence method overwritten to avoid unauth as default
         http.httpBasic().authenticationEntryPoint((request, response, authException) -> response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase()));
         http
-                //just login endpoint should be authenticated for now
-                .authorizeRequests().antMatchers(HttpMethod.POST, "/api/auth").authenticated()
-                .and()
-                .authorizeRequests().anyRequest().permitAll();
+
+                .authorizeRequests().antMatchers( "/", "/register", "/login", "/js/**","/css/**", "/assets-img/**","/registration/**").permitAll()
+                .anyRequest().authenticated();
+                /* TO DO
+                * Authentication config with logout process
+                * Role assignments
+                * Error page and its configuration for unauthenticated users
+                * */
+
 
     }
 

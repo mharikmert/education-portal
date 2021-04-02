@@ -87,6 +87,7 @@ public class User extends BaseEntity{
                 ", parentLastName='" + parentLastName + '\'' +
                 ", parentEmail='" + parentEmail + '\'' +
                 ", isApproved='" + isApproved + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

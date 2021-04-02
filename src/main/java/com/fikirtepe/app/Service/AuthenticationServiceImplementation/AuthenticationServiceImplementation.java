@@ -48,15 +48,14 @@ public class AuthenticationServiceImplementation implements AuthenticationServic
         }
 
         //determine the user
-        Long userId = Long.parseLong(id);
+        long userId = Long.parseLong(id);
+        //User user = userService.findUser(userId);
         User user = new User(userId, password);
-
         try{
             //checks user credentials
             if(userService.verifyUser(user)){
-                // TO DO
-                // user should be authorized to access other endpoints
-                return ResponseEntity.status(HttpStatus.OK).build();
+                logger.info(user.toString());
+                return ResponseEntity.status(HttpStatus.OK).body(userService.findUser(userId));
             }else
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 

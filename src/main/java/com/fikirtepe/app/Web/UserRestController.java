@@ -53,9 +53,7 @@ public class UserRestController {
             return ResponseEntity.status(409).build();
         }
         catch(UserNotFoundException ex){
-            /*
-            should refactor
-            */
+            user.setPassword("temp password");
             userService.createUser(user);
             emailService.sendRegistrationReceivedMail(user);
 

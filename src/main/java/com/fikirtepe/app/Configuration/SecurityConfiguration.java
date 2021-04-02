@@ -31,9 +31,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         //commence method overwritten to avoid unauth as default
         http.httpBasic().authenticationEntryPoint((request, response, authException) -> response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase()));
-        http
-
-                .authorizeRequests().antMatchers( "/", "/register", "/login", "/js/**","/css/**", "/assets-img/**","/registration/**").permitAll()
+        http.authorizeRequests()
+                .antMatchers( "/", "/register", "/login", "/js/**","/css/**", "/assets-img/**","/registration/**").permitAll()
+                //allow register and login post requests
+                .antMatchers(HttpMethod.POST, "/api/register").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/auth").permitAll()
                 .anyRequest().authenticated();
                 /* TO DO
                 * Authentication config with logout process

@@ -1,6 +1,6 @@
 # Fikirtepe-Student-Information-System (In Development)
 ## About
-The main idea behind this project is to maintain a online platform for high school students studying at Fikirtepe for free within the Association for the Support of Contemporary Living. It is an information system about students' lectures, schedules, absence etc.  
+The main idea behind this project is to maintain an online platform for high school students studying at Fikirtepe for free within the Association for the Support of Contemporary Living. It is an information system about students' lectures, schedules, absence etc.  
 
 ## Installation
 ```
@@ -8,12 +8,14 @@ git clone https://github.com/mharikmert/Fikirtepe-Student-Information-System
 ```
 ## Running Locally
 First, set your environment variables to your own  **config.properties** file under the resources  as in **sample_properties** file.
+You can use run configuration of your IDE or you can build a jar and run it.
 
 ### Build with
+In the main directory
 ```
-$cd Fikirtepe-Student-Information-System
-/Fikirtepe-Student-Information-System$ gradle build
+./gradlew build 
 ```
+
 After your jar file is created, run your jar file.
 ```
 /Fikirtepe-Student-Information-System$ java -jar build/libs/Fikirtepe-Student-Information-System-0.0.1-SNAPSHOT.jar

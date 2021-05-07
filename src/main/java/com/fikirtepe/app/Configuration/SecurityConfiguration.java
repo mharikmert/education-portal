@@ -32,7 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //commence method overwritten to avoid unauth as default
         http.httpBasic().authenticationEntryPoint((request, response, authException) -> response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase()));
         http.authorizeRequests()
-                .antMatchers( "/", "/register", "/login", "/js/**","/css/**", "/assets-img/**","/registration/**").permitAll()
+                .antMatchers( "/", "/register", "/login", "/js/**","/css/**", "/assets-img/**","/registration/**", "/approval", "/api/cities/**").permitAll()
                 //allow register and login post requests
                 .antMatchers(HttpMethod.POST, "/api/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/auth").permitAll()

@@ -9,10 +9,14 @@ const postLoginRequest  = () => {
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
     $('#login-spinner').css('display','inline-block');
-    xhr.onreadystatechange = function (){
+    xhr.onreadystatechange =  () => {
       //if response is ok, redirect the page
+        //console.log(response.json());
       if(xhr.status === 200){
-        redirect("/menu"); // gives the mapping and redirect the page
+          const body = JSON.parse(xhr.responseText);
+          //const userType = body['type'];
+          userPages(body);
+
       }else // else show warning acc to id and password
         errorMessage(currentUser.id, currentUser.password);
       $('#login-spinner').css('display', 'none');
@@ -44,6 +48,16 @@ document.querySelector('#login-button').addEventListener('click', function (){
     currentUser.password = document.querySelector('#password').value;
     postLoginRequest();
 });
+
+//redirects the page depends on the user information that comes in the body
+const userPages = (body) => {
+    const type = body['type'].toLowerCase();
+    fetch(type + '-menu', { // fetch student-menu, admin-menu etc.
+        method: 'POST',
+        body: body
+    }).then( response => response.json())
+    redirect(type + '-menu')
+}
 
 //take the id property as parameter of warning place and display during 1.5 secs
 const showWarning = (id) => {

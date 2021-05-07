@@ -52,6 +52,8 @@ public class User extends BaseEntity{
 
     private String role ;
 
+    private String type;
+
     //constructor for tests
     public User(){}
     public User(Long id, String password , String firstName, String lastName, String email) {
@@ -88,6 +90,7 @@ public class User extends BaseEntity{
                 ", parentEmail='" + parentEmail + '\'' +
                 ", isApproved='" + isApproved + '\'' +
                 ", role='" + role + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

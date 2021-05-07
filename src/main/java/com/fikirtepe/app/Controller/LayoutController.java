@@ -61,10 +61,28 @@ public class LayoutController {
         mav.setViewName("Admin/studentApproval");
         return mav;
     }
-    @RequestMapping("/roleAssign")
-    public ModelAndView roleAssign(){
+    @RequestMapping("/admin-menu")
+    public ModelAndView adminMenu(){
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("Admin/roleAssign");
+        mav.setViewName("/User Types/admin-menu");
+        return mav;
+    }
+    @RequestMapping("/student-menu")
+    public ModelAndView studentMenu(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("User Types/student-menu");
+        return mav;
+    }
+    @RequestMapping("/teacher-menu")
+    public ModelAndView teacherMenu(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("User Types/teacher-menu");
+        return mav;
+    }
+    @RequestMapping("/parent-menu")
+    public ModelAndView parentMenu(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("User Types/parent-menu");
         return mav;
     }
 }

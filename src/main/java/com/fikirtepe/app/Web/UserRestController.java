@@ -1,6 +1,5 @@
 package com.fikirtepe.app.Web;
 
-import com.fikirtepe.app.Error.Error;
 import com.fikirtepe.app.Exceptions.UserNotFoundException;
 import com.fikirtepe.app.Model.User;
 import com.fikirtepe.app.Service.EmailService;
@@ -16,9 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -53,7 +50,8 @@ public class UserRestController {
             return ResponseEntity.status(409).build();
         }
         catch(UserNotFoundException ex){
-            user.setPassword("temp password");
+            user.setPassword("password");
+            user.setType("STUDENT");
             userService.createUser(user);
             emailService.sendRegistrationReceivedMail(user);
 
@@ -139,9 +137,9 @@ public class UserRestController {
     public ResponseEntity<User> assignRole(@PathVariable long id,@PathVariable int role){
         User user = userService.findUser(id);
         switch (role){
-            case 0 : user.setRole("STUDENT"); break;
-            case 1 : user.setRole("TEACHER"); break;
-            case 2 : user.setRole("ADMIN");   break;
+            case 0 : user.setRole("ROLE_USER"); break;
+            case 1 : user.setRole("ROLE_EDITOR"); break;
+            case 2 : user.setRole("ROLE_ADMIN");   break;
         }
         userService.save(user);
         return ResponseEntity.ok(user);

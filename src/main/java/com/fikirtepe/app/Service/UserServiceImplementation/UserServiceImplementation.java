@@ -5,6 +5,7 @@ import com.fikirtepe.app.Model.User;
 import com.fikirtepe.app.Repository.UserRepository;
 import com.fikirtepe.app.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -42,11 +43,13 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
+    @Secured(value = {"ROLE_ADMIN"})
     public List<User> findAllUsers() {
         return userRepository.findAll();
     }
 
     @Override
+    @Secured(value = {"ROLE_ADMIN"})
     public void deleteUser(Long id){
        userRepository.delete(findUser(id));
     }

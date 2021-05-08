@@ -7,8 +7,8 @@ The main idea behind this project is to maintain an online platform for high sch
 git clone https://github.com/mharikmert/Fikirtepe-Student-Information-System
 ```
 ## Running Locally
-First, set your environment variables to your own  **config.properties** file under the resources  as in **sample_properties** file.
-You can use run configuration of your IDE or you can build a jar and run it.
+Firstly, set your environment variables to your own  **config.properties** file under the resources  such as **sample_config.properties**. DataSource information is provided from this file.
+After setting your secrets, you can use run configuration of your IDE or you can build a jar and run it.
 
 ### Build with
 In the main directory
@@ -18,15 +18,21 @@ In the main directory
 
 After your jar file is created, run your jar file.
 ```
-/Fikirtepe-Student-Information-System$ java -jar build/libs/Fikirtepe-Student-Information-System-0.0.1-SNAPSHOT.jar
+java -jar build/libs/Fikirtepe-Student-Information-System-0.0.1-SNAPSHOT.jar
 ```
 
-Also you can use Dockerfile directly
+### Docker Configuration (Optional)
+You can create a docker image and run
 
 ```
-docker build fikirtepe-app .
+docker build -t fikirtepe-app .
 docker run -p 80:8080 fikirtepe-app
 ```
+If you use local storage, use this run configuration for your image
+````
+docker run --network="host" -p 80:8080 fikirtepe-app
+````
+
 Check http://localhost:8080 with your browser to see our main page
 
 

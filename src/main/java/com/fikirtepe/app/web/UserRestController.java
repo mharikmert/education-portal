@@ -23,20 +23,14 @@ import java.util.Optional;
 public class UserRestController {
     private static final Logger logger = LoggerFactory.getLogger(UserRestController.class);
 
-    private EmailService emailService;
-    //injects email service
-    @Autowired
-    public void setEmailService(EmailService emailService) {
-        this.emailService = emailService;
-    }
+    private final EmailService emailService;
+    private final UserService userService;
 
-    private UserService userService;
-    //injects user service
     @Autowired
-    public void setUserService(UserService userService) {
+    public UserRestController(EmailService emailService, UserService userService){
+        this.emailService = emailService;
         this.userService = userService;
     }
-
     //user info is taken from the post request and user creates
     //@ResponseStatus(HttpStatus.CREATED) // returned 201 if process is succeeded
     @RequestMapping(
@@ -144,5 +138,4 @@ public class UserRestController {
         userService.save(user);
         return ResponseEntity.ok(user);
     }
-
 }

@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Admin menu</title>
+    <title>Admin Menu</title>
 </head>
 <body>
-    Admin menu
+
+    <div> User Type ->  <span th:text="${user.getType()}"></span></div>
+    <div> FirstName -> <span th:text="${user.getFirstName()}"></span></div>
+    <div> LastName -> <span th:text="${user.getLastName()}"></span></div>
+    <div> ID -> <span th:text="${user.getId()}"></span></div>
+
 </body>
 </html>

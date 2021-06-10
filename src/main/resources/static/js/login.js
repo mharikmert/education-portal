@@ -12,10 +12,12 @@ const postLoginRequest  = () => {
     xhr.onreadystatechange =  () => {
       //if response is ok, redirect the page
         //console.log(response.json());
-      if(xhr.status === 200){
-          const body = JSON.parse(xhr.responseText);
-          //const userType = body['type'];
-          userPages(body);
+
+        //needs randomizing algorithm for both sides to hide user id
+        const generateUrlId = (id) => id;
+
+        if(xhr.status === 200){
+          redirect('/admin-menu/' + generateUrlId(currentUser.id))
 
       }else // else show warning acc to id and password
         errorMessage(currentUser.id, currentUser.password);
@@ -48,16 +50,6 @@ document.querySelector('#login-button').addEventListener('click', function (){
     currentUser.password = document.querySelector('#password').value;
     postLoginRequest();
 });
-
-//redirects the page depends on the user information that comes in the body
-const userPages = (body) => {
-    const type = body['type'].toLowerCase();
-    fetch(type + '-menu', { // fetch student-menu, admin-menu etc.
-        method: 'POST',
-        body: body
-    }).then( response => response.json())
-    redirect(type + '-menu')
-}
 
 //take the id property as parameter of warning place and display during 1.5 secs
 const showWarning = (id) => {

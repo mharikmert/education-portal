@@ -27,6 +27,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-configuration-processor'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.security:spring-security-test'
+    implementation 'org.springframework.session:spring-session-jdbc'
 
     implementation 'mysql:mysql-connector-java'
 

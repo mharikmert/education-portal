@@ -5,7 +5,7 @@ const postLoginRequest  = () => {
     const xhr = new XMLHttpRequest();
     const url = "/api/auth";
     xhr.open("POST",url, true);
-    xhr.setRequestHeader("Authorization","Basic " + btoa(currentUser.id + ":" + currentUser.password))
+    xhr.setRequestHeader("Authorization","Basic " + btoa(unescape(encodeURIComponent(currentUser.id + ":" + currentUser.password))))
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
     $('#login-spinner').css('display','inline-block');

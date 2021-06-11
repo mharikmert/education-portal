@@ -55,7 +55,7 @@ public class AuthenticationServiceImplementation implements AuthenticationServic
             //checks user credentials
             if(userService.verifyUser(user)){
                 logger.info(user.toString());
-                return ResponseEntity.status(HttpStatus.OK).body(userService.findUser(userId));
+                return ResponseEntity.status(HttpStatus.OK).body(userService.findUser(userId).getType());
             }else
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 

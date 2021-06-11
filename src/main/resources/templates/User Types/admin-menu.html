@@ -10,5 +10,14 @@
     <div> LastName -> <span th:text="${user.getLastName()}"></span></div>
     <div> ID -> <span th:text="${user.getId()}"></span></div>
 
+    <button class = 'logout-btn'> logout button </button>
+    <button onclick="location.href = '/perform_logout'"> Logout button 2</button>
+
+    <script>
+
+        document.querySelector('.logout-btn').addEventListener('click', () => redirect('/perform_logout'))
+        const redirect = (url) => window.location.href = url
+    </script>
 </body>
+
 </html>

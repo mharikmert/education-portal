@@ -10,14 +10,14 @@ const postLoginRequest  = () => {
     xhr.send();
     $('#login-spinner').css('display','inline-block');
     xhr.onreadystatechange =  () => {
-      //if response is ok, redirect the page
-        //console.log(response.json());
-
         //needs randomizing algorithm for both sides to hide user id
         const generateUrlId = (id) => id;
 
         if(xhr.status === 200){
-          redirect('/admin-menu/' + generateUrlId(currentUser.id))
+            // userType is sent as response for successful login
+            // redirection might be done after authentication, best practice?
+            const userType = xhr.responseText.toLowerCase();
+            redirect(userType + '-menu/' + generateUrlId(currentUser.id))
 
       }else // else show warning acc to id and password
         errorMessage(currentUser.id, currentUser.password);

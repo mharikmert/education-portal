@@ -32,20 +32,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //commence method overwritten to avoid unauth as default
         http.httpBasic().authenticationEntryPoint((request, response, authException) -> response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase()));
         http.authorizeRequests()
-                .antMatchers( "/", "/register", "/login", "/js/**","/css/**", "/assets-img/**","/registration/**", "/approval", "/api/cities/**").permitAll()
+                .antMatchers("/", "/register", "/login", "/js/**", "/css/**", "/assets-img/**", "/registration/**", "/approval", "/api/cities/**").permitAll()
                 //allow register and login post requests
                 .antMatchers(HttpMethod.POST, "/api/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/auth").permitAll()
                 .anyRequest().authenticated();
-                /* TO DO
-                * Authentication config with logout process
-                * Role assignments
-                * Error page and its configuration for unauthenticated users
-                * */
-
-
+        http
+                .formLogin()
+                .loginPage("/login")
+                .and()
+                .logout()
+                .logoutUrl("/perform_logout")
+                .logoutSuccessUrl("/login");
     }
-
     //authorizes our users -> user detail config is in auth service
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

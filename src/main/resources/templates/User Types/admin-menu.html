@@ -1,23 +1,21 @@
 <!DOCTYPE>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Admin Menu</title>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" integrity="undefined" crossorigin="anonymous"> -->
+    <link rel = 'stylesheet' href= '/css/menu.css'/>
 </head>
 <body>
-
-    <div> User Type ->  <span th:text="${user.getType()}"></span></div>
-    <div> FirstName -> <span th:text="${user.getFirstName()}"></span></div>
-    <div> LastName -> <span th:text="${user.getLastName()}"></span></div>
-    <div> ID -> <span th:text="${user.getId()}"></span></div>
-
-    <button class = 'logout-btn'> logout button </button>
-    <button onclick="location.href = '/perform_logout'"> Logout button 2</button>
-
-    <script>
-
-        document.querySelector('.logout-btn').addEventListener('click', () => redirect('/perform_logout'))
-        const redirect = (url) => window.location.href = url
-    </script>
+    <div class = 'container'>
+<!--        <div> <span th:text = "${user.getFirstName()}"></span></div>-->
+        <h1> Admin Menüsü </h1>
+        <div>
+            <button type = 'button' class = 'btn btn-secondary'> Dönem Tanımlama  </button>
+        </div>
+        <div class = 'logout-btn'>
+            <button type = 'button' class = 'btn btn-secondary' onclick = "location.href = '/perform_logout' "> Çıkış </button>
+        </div>
+    </div>
 </body>
-
 </html>

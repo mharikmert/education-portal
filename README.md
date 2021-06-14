@@ -4,7 +4,7 @@ The main idea behind this project is to maintain an online platform for high sch
 
 ## Installation
 ```
-git clone https://github.com/mharikmert/Fikirtepe-Student-Information-System
+git clone https://github.com/mharikmert/fikirtepe-student-information-system
 ```
 ## Running Locally
 Firstly, set your environment variables to your own  **config.properties** file under the resources  such as **sample_config.properties**. DataSource information is provided from this file.
@@ -18,7 +18,7 @@ In the main directory
 
 After your jar file is created, run your jar file.
 ```
-java -jar build/libs/Fikirtepe-Student-Information-System-0.0.1-SNAPSHOT.jar
+java -jar build/libs/fikirtepe-student-information-system-0.0.1-SNAPSHOT.jar
 ```
 
 ### Docker Configuration (Optional)

@@ -1,1 +1,34 @@
-<p>login works!</p>
+<div class="top-line-container">
+    <div class = "login-header">
+        <div class = "login-title">
+            Öğrenci&nbsp;Bilgi&nbsp;Sistemi
+        </div>
+
+        <div class = "turn-back-btn-container">
+            <button class = "turn-back-btn" [routerLink]="['/']" routerLinkActive="router-link-active" > Ana Sayfaya Dön </button>
+        </div>
+    </div>
+    <div id = "warning-place">
+        <app-login-error
+            errorType = "{{ errorType }}"
+        > 
+        </app-login-error>
+    </div>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <form class = 'login-panel' (ngSubmit) = "onSubmit()">
+        <div class = 'slogan'> EGITIM DEGISIM & GELISIM </div>
+        <div class="logo"></div>
+        
+        <div>
+            <input type="text" name = 'username' [(ngModel)] = 'username' placeholder = 'Kullanici Adi/ TCKN'>
+        </div>
+
+        <div>
+            <input type="password" name = 'password' [(ngModel)]='password' placeholder = 'Sifre'>
+        </div>
+
+        <button class = 'login-button btn' type = 'submit'> GIRIS 
+            <span *ngIf="btnClicked" class = 'spinner-border spinner-sm'> </span>
+        </button> 
+    </form>
+</div>

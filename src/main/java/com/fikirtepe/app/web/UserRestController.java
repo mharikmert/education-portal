@@ -46,6 +46,7 @@ public class UserRestController {
         catch(UserNotFoundException ex){
             user.setPassword("password");
             user.setType("STUDENT");
+            user.setRole("ADMIN");
             userService.createUser(user);
             emailService.sendRegistrationReceivedMail(user);
 

@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AuthenticationController {
@@ -21,9 +18,9 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
-
-    @RequestMapping(value = "/api/auth", method = RequestMethod.POST)
-    public ResponseEntity<?> authHandler(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorization){
+//    @CrossOrigin(origins = "https://localhost:4200")
+    @RequestMapping(value = "/api/auth", method = RequestMethod.GET)
+    public ResponseEntity<?> authHandler(@RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authorization){
         try{
             return authenticationService.authenticate(authorization);
         }

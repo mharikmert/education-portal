@@ -1,4 +1,3 @@
-import { JsonpInterceptor } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -25,11 +24,15 @@ export class LoginComponent implements OnInit {
 
     if(!this.username || !this.password){
       this.errorType = 'empty-data'
-      setTimeout( () => this.btnClicked = false, 1500)
+      setTimeout( () => {this.btnClicked = false, this.errorType = ''}, 1500)
       return; 
     }
 
     let resp  = this.authService.login(this.username, this.password)
-    console.log(resp)
+    resp.subscribe((response) => {
+      console.log(response)
+      this.btnClicked = false
+    })
+
   }
 }

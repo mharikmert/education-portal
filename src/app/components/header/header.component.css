@@ -14,6 +14,7 @@
     background-color: white;
     display: flex;
     align-items: center;
+    border-color: purple;
 }
 @media  only screen and (max-width: 900px) and (min-width: 700px) {
     #title-container{

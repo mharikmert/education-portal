@@ -66,3 +66,17 @@ body {
 .logout-btn, h1{
     text-align: center;
 }
+
+input{
+    height: 25px;
+    border-style: outset;
+    border-radius:8px;
+    font-size: 90%;
+    font-style: normal;
+    font-weight: bold;
+    font-family: serif;
+    text-align: center;
+    color:black;
+    margin-left:auto;
+    margin-bottom:2.2%;
+}

@@ -1,0 +1,14 @@
+.create-term-container{
+    display: block;
+    width: 300px;
+}
+
+.term-container{
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+}
+.term-info{
+    margin-right: 150px
+}

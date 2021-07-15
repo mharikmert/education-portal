@@ -1,5 +1,40 @@
 <div class = 'container'>
     <h1> Admin Menüsü </h1>
-    <app-button text = 'Donem Tanimlama'></app-button>
+    
+    <div class="term-container">
+        <div class="term-info">
+            <h3> Donem Aciklamasi  </h3>
+            {{ terms[0] }}
+        </div>
+        <div class="term-info">
+            <h3> Baslangic  Tarihi </h3>
+            {{ terms[1] }}
+        </div>
+        <div class="term-info ">
+            <h3> Bitis Tarihi </h3>
+            {{ terms[2] }}
+        </div>
+    </div>
+
+    <app-button *ngIf = '!termButtonClicked' text = 'Donem Tanimlama' (click) = "onClick()"></app-button>
+    
+    <div class="create-term-container" *ngIf = "termButtonClicked" >
+        <div>
+            <label for="term-explanation"> <h3> Donem Aciklama </h3></label>
+            <input type="text" class = 'input'>
+        </div>
+        <div>
+            <label for="term-start-date"> <h3> Baslangic Tarihi </h3></label>
+            <input type="date" class = 'input'>
+        </div>
+        <div>
+            <label for="term-end-date"> <h3> Donem Bitis Tarihi </h3> </label>
+            <input type="date" class = 'input'>
+        </div>
+
+        <app-button text = 'EKLE' color = 'red'></app-button>
+    </div>
+    {{ termButtonClicked }}
+
     <app-logout-button></app-logout-button>
 </div>

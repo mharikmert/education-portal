@@ -13,10 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
 
 @Configuration
 @EnableWebSecurity
@@ -38,8 +34,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/", "/register", "/login", "/js/**", "/css/**", "/assets-img/**", "/registration/**", "/approval", "/api/cities/**").permitAll()
                 //allow register and login post requests
-                .antMatchers(HttpMethod.POST, "/api/register").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/users").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/users").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET, "/api/auth").permitAll()
+                .antMatchers("/swagger-resources/*", "*.html", "/api/v1/swagger.json")
+                    .hasAuthority("ADMIN")
                 .anyRequest().authenticated();
         http
                 .formLogin()

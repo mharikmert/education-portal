@@ -34,7 +34,7 @@ public class UserRestController {
     //user info is taken from the post request and user creates
     //@ResponseStatus(HttpStatus.CREATED) // returned 201 if process is succeeded
     @RequestMapping(
-            value = "/register",
+            value = "/users",
             method = RequestMethod.POST)
     public ResponseEntity<?> createUser(@RequestBody User user,
                                              HttpServletResponse response) throws IOException {
@@ -72,7 +72,7 @@ public class UserRestController {
 
     //returns user with the given id parameter
     @RequestMapping(
-            value = "/user/{id}",
+            value = "/users/{id}",
             method = RequestMethod.GET)
     public ResponseEntity<User> getUser(@PathVariable long id) {
         return Optional

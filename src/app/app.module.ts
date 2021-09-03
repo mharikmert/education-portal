@@ -17,6 +17,7 @@ import { TeacherMenuComponent } from './pages/menu/teacher-menu/teacher-menu.com
 import { AdminMenuComponent } from './pages/menu/admin-menu/admin-menu.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LogoutUseCase } from './common/usecase/logout-usecase';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [LogoutUseCase],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

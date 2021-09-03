@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LogoutUseCase } from 'src/app/common/usecase/logout-usecase';
 
 @Component({
   selector: 'app-logout-button',
@@ -8,12 +9,6 @@ import { Router } from '@angular/router';
 })
 export class LogoutButtonComponent implements OnInit {
 
-  constructor(private router: Router) { }
-
+  constructor(private router: Router, public logoutService: LogoutUseCase) { }
   ngOnInit(): void {}
-
-  performLogout(){
-    localStorage.removeItem("JWT");
-    this.router.navigate(['login'])
-  }
 }

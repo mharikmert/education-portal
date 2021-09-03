@@ -27,7 +27,7 @@
             <input type="password" name = 'password' [(ngModel)]='password' placeholder = 'Sifre'>
         </div>
 
-        <button class = 'login-button btn' type = 'submit'> GIRIS 
+        <button class = 'login-button btn' type = 'submit' (click) = 'onSubmit()'> GIRIS 
             <span *ngIf="btnClicked" class = 'spinner-border spinner-sm'> </span>
         </button> 
     </form>

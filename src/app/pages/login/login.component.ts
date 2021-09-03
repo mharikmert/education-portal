@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoggedInService } from 'src/app/services/logged-in.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -9,12 +11,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   
-  username?:string; 
-  password?:string; 
+  username:string = ''; 
+  password:string = ''; 
   errorType?: string; //should refactor as boolean  
   btnClicked: boolean = false; 
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, 
+    private router: Router, 
+    private tokenService: TokenService,
+    private loggedInService: LoggedInService) { }
 
   ngOnInit(): void {
   }
@@ -34,9 +39,9 @@ export class LoginComponent implements OnInit {
       const token = (<any>response).token;     
       // console.log(token)
       //puts the JWT to local storage 
-      localStorage.setItem("JWT", token)
-
-      console.log(localStorage.getItem("JWT"))  
+      this.tokenService.setToken(token)
+      console.log(this.tokenService.getToken());
+      this.loggedInService.setLoggedInUser(this.username)
 
       this.btnClicked = false
       this.router.navigate(['/admin-menu'])

@@ -8,20 +8,24 @@ import { ParentMenuComponent } from './pages/menu/parent-menu/parent-menu.compon
 import { StudentMenuComponent } from './pages/menu/student-menu/student-menu.component';
 import { TeacherMenuComponent } from './pages/menu/teacher-menu/teacher-menu.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { AuthGuard } from './auth.guard';
+
 const routes: Routes = [
-  {path: '', component : HomeComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'student-menu', component: StudentMenuComponent},
-  {path: 'teacher-menu', component: TeacherMenuComponent},
-  {path: 'admin-menu', component: AdminMenuComponent},
-  {path: 'parent-menu', component: ParentMenuComponent},
-  {path: 'authorized-menu', component: AuthorizedMenuComponent}
+  {path: 'home', component: HomeComponent}, 
 
+    //refactor these as children routes  
+    {path: 'admin-menu', component: AdminMenuComponent, canActivate: [AuthGuard]}, 
+    {path: 'student-menu', component: StudentMenuComponent, canActivate: [AuthGuard]},
+    {path: 'teacher-menu', component: TeacherMenuComponent, canActivate: [AuthGuard]}, 
+    {path: 'parent-menu', component: ParentMenuComponent, canActivate: [AuthGuard]},
+    {path: 'authorized-menu', component: AuthorizedMenuComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

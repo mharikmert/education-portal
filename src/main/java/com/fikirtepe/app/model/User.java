@@ -11,6 +11,8 @@ import java.time.LocalDate;
 @EntityListeners(AuditingEntityListener.class)
 public class User extends BaseEntity{
 
+    private String username;
+
     private String firstName;
 
     private String lastName;

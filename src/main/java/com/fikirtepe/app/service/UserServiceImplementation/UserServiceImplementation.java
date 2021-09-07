@@ -1,6 +1,7 @@
 package com.fikirtepe.app.service.UserServiceImplementation;
 
 import com.fikirtepe.app.exceptions.UserNotFoundException;
+import com.fikirtepe.app.model.Teacher;
 import com.fikirtepe.app.model.User;
 import com.fikirtepe.app.repository.UserRepository;
 import com.fikirtepe.app.service.UserService;
@@ -43,13 +44,13 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    @Secured(value = {"ROLE_ADMIN"})
+//    @Secured(value = {"ROLE_ADMIN"})
     public List<User> findAllUsers() {
         return userRepository.findAll();
     }
 
     @Override
-    @Secured(value = {"ROLE_ADMIN"})
+//    @Secured(value = {"ROLE_ADMIN"})
     public void deleteUser(Long id){
        userRepository.delete(findUser(id));
     }
@@ -68,6 +69,11 @@ public class UserServiceImplementation implements UserService {
     @Override
     public void save(User user){
         userRepository.save(user);
+    }
+
+    @Override
+    public User findByUserName(String username) {
+        return userRepository.findUserByUsername(username) ;
     }
 
 }

@@ -32,4 +32,9 @@ public class EmailConfiguration {
     public String getPassword(){
         return properties.getProperty("EMAIL_PASSWORD");
     }
+
+    @Bean(name = "jwt_secret")
+    public String getJwtSecret(){
+        return properties.getProperty("JWT_SECRET");
+    }
 }

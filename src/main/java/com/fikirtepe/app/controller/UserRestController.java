@@ -1,7 +1,10 @@
-package com.fikirtepe.app.web;
+package com.fikirtepe.app.controller;
 
-import com.fikirtepe.app.exceptions.UserNotFoundException;
+import com.fikirtepe.app.exception.UserNotFoundException;
+import com.fikirtepe.app.model.Role;
+import com.fikirtepe.app.model.Term;
 import com.fikirtepe.app.model.User;
+import com.fikirtepe.app.repository.TermRepository;
 import com.fikirtepe.app.service.EmailService;
 import com.fikirtepe.app.service.UserService;
 import org.slf4j.Logger;
@@ -15,21 +18,26 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
 public class UserRestController {
+
     private static final Logger logger = LoggerFactory.getLogger(UserRestController.class);
 
     private final EmailService emailService;
     private final UserService userService;
+    private final TermRepository termRepository;
 
     @Autowired
-    public UserRestController(EmailService emailService, UserService userService){
+    public UserRestController(EmailService emailService, UserService userService, TermRepository termRepository){
         this.emailService = emailService;
         this.userService = userService;
+        this.termRepository = termRepository;
+
     }
     //user info is taken from the post request and user creates
     //@ResponseStatus(HttpStatus.CREATED) // returned 201 if process is succeeded
@@ -46,7 +54,6 @@ public class UserRestController {
         catch(UserNotFoundException ex){
             user.setPassword("password");
             user.setType("STUDENT");
-            user.setRole("ADMIN");
             userService.createUser(user);
             emailService.sendRegistrationReceivedMail(user);
 
@@ -81,6 +88,17 @@ public class UserRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build()); // 404 not found
     }
 
+    @GetMapping("/terms")
+    public ResponseEntity<List<Term>> getTerms(){
+        return ResponseEntity.ok(termRepository.findAll());
+    }
+
+    @PostMapping( "/terms")
+    public ResponseEntity<Term> addTerm(@RequestBody Term term){
+        termRepository.save(term);
+        return ResponseEntity.ok(term);
+    }
+
     //saves users that is approved by the admin in registration queue
     @RequestMapping(
             value = "/approveUser/{id}",
@@ -88,7 +106,6 @@ public class UserRestController {
     public ResponseEntity<User> approveUser(@PathVariable long id) {
         User user = userService.findUser(id);
         user.setApproved(true);
-        user.setRole("STUDENT");
         userService.save(user);
         emailService.sendRegistrationApprovedMail(user);
         return ResponseEntity.ok(user);
@@ -132,9 +149,8 @@ public class UserRestController {
     public ResponseEntity<User> assignRole(@PathVariable long id,@PathVariable int role){
         User user = userService.findUser(id);
         switch (role){
-            case 0 : user.setRole("ROLE_USER"); break;
-            case 1 : user.setRole("ROLE_EDITOR"); break;
-            case 2 : user.setRole("ROLE_ADMIN");   break;
+            case 0 : user.setRoles(Collections.singletonList(Role.ROLE_USER)); break;
+            case 1 : user.setRoles(Collections.singletonList(Role.ROLE_ADMIN)); break;
         }
         userService.save(user);
         return ResponseEntity.ok(user);

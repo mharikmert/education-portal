@@ -1,4 +1,4 @@
-package com.fikirtepe.app.exceptions;
+package com.fikirtepe.app.exception;
 
 public class UserNotFoundException extends RuntimeException{
     public UserNotFoundException(String message){

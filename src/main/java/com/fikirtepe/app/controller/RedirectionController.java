@@ -1,4 +1,4 @@
-package com.fikirtepe.app.web;
+package com.fikirtepe.app.controller;
 
 import com.fikirtepe.app.model.User;
 import com.fikirtepe.app.service.UserService;

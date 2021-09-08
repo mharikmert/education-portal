@@ -1,4 +1,4 @@
-package com.fikirtepe.app.web;
+package com.fikirtepe.app.controller;
 
 import com.fikirtepe.app.service.CityAndDistrictService;
 import org.springframework.beans.factory.annotation.Autowired;

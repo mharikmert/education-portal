@@ -1,4 +1,4 @@
-package com.fikirtepe.app.web;
+package com.fikirtepe.app.controller;
 
 import org.springframework.stereotype.Controller;
 

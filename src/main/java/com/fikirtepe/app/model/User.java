@@ -1,12 +1,17 @@
 package com.fikirtepe.app.model;
+
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import java.time.LocalDate;
+import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
+@Getter
+@Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class User extends BaseEntity{
@@ -39,9 +44,6 @@ public class User extends BaseEntity{
 
     private boolean hasInternet;
 
-    /* it'll be edited after handling the form json*/
-//    @OneToOne
-//    private Parent parent;
     private long parentId;
 
     private String parentFirstName;
@@ -52,7 +54,8 @@ public class User extends BaseEntity{
 
     private boolean isApproved;
 
-    private String role ;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Role> roles;
 
     private String type;
 
@@ -91,7 +94,7 @@ public class User extends BaseEntity{
                 ", parentLastName='" + parentLastName + '\'' +
                 ", parentEmail='" + parentEmail + '\'' +
                 ", isApproved='" + isApproved + '\'' +
-                ", role='" + role + '\'' +
+                ", roles='" + roles + '\'' +
                 ", type='" + type + '\'' +
                 '}';
     }

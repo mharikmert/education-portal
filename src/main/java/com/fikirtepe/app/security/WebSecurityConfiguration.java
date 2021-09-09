@@ -21,16 +21,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-    private JwtUserDetailsService jwtUserDetailsService;
-    private JwtRequestFilter jwtRequestFilter;
-
     @Autowired
-    public void setAuthenticationService(JwtUserDetailsService jwtUserDetailsService, JwtRequestFilter jwtRequestFilter, JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint){
-        this.jwtUserDetailsService = jwtUserDetailsService;
-        this.jwtRequestFilter = jwtRequestFilter;
-        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
-    }
+    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    @Autowired
+    private JwtUserDetailsService jwtUserDetailsService;
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
@@ -55,6 +51,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        // Add a filter to validate the tokens with every request
+        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
         http
                 .formLogin()
                 .loginPage("/login")
@@ -62,8 +61,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutUrl("/perform_logout")
                 .logoutSuccessUrl("/login");
-        // Add a filter to validate the tokens with every request
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     //password encoder bean

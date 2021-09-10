@@ -1,6 +1,7 @@
 package com.fikirtepe.app.controller;
 
-import com.fikirtepe.app.model.User;
+import com.fikirtepe.app.payload.LoginRequest;
+import com.fikirtepe.app.payload.LoginResponse;
 import com.fikirtepe.app.security.JwtTokenUtil;
 import com.fikirtepe.app.service.JwtUserDetailsService;
 import org.slf4j.Logger;
@@ -32,13 +33,12 @@ public class AuthenticationController {
 
 //    @CrossOrigin(origins = "https://localhost:4200")
     @RequestMapping(value = "/api/auth", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthToken(@RequestBody User user) throws Exception{
+    public ResponseEntity<LoginResponse> createAuthToken(@RequestBody LoginRequest user) throws Exception{
         authenticate(user.getUsername(), user.getPassword());
         final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(user.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
-        logger.info(token);
-
-        return ResponseEntity.ok(token);
+        LoginResponse response = new LoginResponse(user.getUsername(), token);
+        return ResponseEntity.ok(response);
     }
 
     private void authenticate(String username, String password) throws Exception{

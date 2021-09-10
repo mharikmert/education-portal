@@ -1,12 +1,10 @@
 package com.fikirtepe.app.service.UserServiceImplementation;
 
-import com.fikirtepe.app.exceptions.UserNotFoundException;
-import com.fikirtepe.app.model.Teacher;
+import com.fikirtepe.app.exception.UserNotFoundException;
 import com.fikirtepe.app.model.User;
 import com.fikirtepe.app.repository.UserRepository;
 import com.fikirtepe.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -73,7 +71,12 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public User findByUserName(String username) {
-        return userRepository.findUserByUsername(username) ;
+        try{
+            return userRepository.findUserByUsername(username) ;
+        }
+        catch (UserNotFoundException ex){
+            throw new UserNotFoundException("User is not found with username");
+        }
     }
 
 }

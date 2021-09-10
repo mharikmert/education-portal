@@ -1,6 +1,6 @@
 package com.fikirtepe.app.service;
 
-import com.fikirtepe.app.exceptions.UserNotFoundException;
+import com.fikirtepe.app.exception.UserNotFoundException;
 import com.fikirtepe.app.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,10 +27,10 @@ public class JwtUserDetailsService implements UserDetailsService {
         }
         try{
             User user = userService.findByUserName(username);
-            logger.info(user.toString());
             return org.springframework.security.core.userdetails.User
                     .withUsername(username)
                     .password(user.getPassword())
+                    .authorities(user.getRoles())
                     .build();
         }catch (UserNotFoundException ex){
             logger.info("user is not found in user detail service " + ex.toString());

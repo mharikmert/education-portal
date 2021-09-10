@@ -42,10 +42,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         //commence method overwritten to avoid unauth as default
         http.authorizeRequests()
-                .antMatchers("/", "/register", "/login", "/js/**", "/css/**", "/assets-img/**", "/registration/**", "/approval", "/api/cities/**").permitAll()
+                .antMatchers(allowedPaths).permitAll()
                 //allow register and login post requests
                 .antMatchers(HttpMethod.POST, "/api/users").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/users").hasRole("ADMIN")
+//                .antMatchers(HttpMethod.GET, "/api/users").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST, "/api/auth").permitAll()
                 .antMatchers("/swagger-resources/*", "*.html", "/api/v1/swagger.json")
                 .hasAuthority("ADMIN")

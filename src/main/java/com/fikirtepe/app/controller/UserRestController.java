@@ -88,6 +88,16 @@ public class UserRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build()); // 404 not found
     }
 
+    @RequestMapping(
+            path = "/users/by/username/{username}",
+            method = RequestMethod.GET)
+    public ResponseEntity<User> getUserWithUsername(@PathVariable("username") String username){
+        return Optional
+                .ofNullable(userService.findByUserName(username))
+                .map( user -> ResponseEntity.ok().body(user))
+                .orElseGet( () -> ResponseEntity.notFound().build());
+    }
+
     @GetMapping("/terms")
     public ResponseEntity<List<Term>> getTerms(){
         return ResponseEntity.ok(termRepository.findAll());

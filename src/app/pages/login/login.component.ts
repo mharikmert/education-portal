@@ -36,11 +36,15 @@ export class LoginComponent implements OnInit {
     let resp  = this.authService.login(this.username, this.password)
 
     resp.subscribe((response) => {
-      const token = (<any>response).token;     
+      console.log(response)
+      const token = (<any>response).accessToken;     
       // console.log(token)
       //puts the JWT to local storage 
       this.tokenService.setToken(token)
       console.log(this.tokenService.getToken());
+      
+      localStorage.setItem('username', this.username);
+
       this.loggedInService.setLoggedInUser(this.username)
 
       this.btnClicked = false

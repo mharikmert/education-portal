@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   constructor(private httpClient: HttpClient, private router: Router) { }
 
-  private apiUrl = 'https://localhost:5001/api/auth'
+  private apiUrl = 'http://localhost:8080/api/auth'
 
   login(username: string, password: string) : Observable<HttpClientModule> {
     // const httpOptions = {

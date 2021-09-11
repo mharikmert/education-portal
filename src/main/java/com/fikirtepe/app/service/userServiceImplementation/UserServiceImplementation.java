@@ -1,4 +1,4 @@
-package com.fikirtepe.app.service.UserServiceImplementation;
+package com.fikirtepe.app.service.userServiceImplementation;
 
 import com.fikirtepe.app.exception.UserNotFoundException;
 import com.fikirtepe.app.model.User;

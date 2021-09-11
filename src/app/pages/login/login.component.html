@@ -23,7 +23,8 @@
         </div>
 
         <div>
-            <input type="password" name = 'password' [(ngModel)]='password' placeholder = 'Sifre'>
+            <input [type]="showPassword ? 'text' : 'password' " name = 'password' [(ngModel)]='password' placeholder = 'Sifre'>
+            <i id = 'toggle-password' [ngClass] = "showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'" aria-hidden="true" (click) = 'showPassword = !showPassword'></i>
         </div>
 
         <button class = 'login-button btn' type = 'submit' (click) = 'onSubmit()'> GIRIS 

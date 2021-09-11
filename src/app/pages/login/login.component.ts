@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   password:string = ''; 
   errorType?: string; //should refactor as boolean  
   btnClicked: boolean = false; 
+  showPassword:boolean = false;
 
   constructor(private authService: AuthService, 
     private router: Router, 

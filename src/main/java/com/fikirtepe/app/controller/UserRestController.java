@@ -12,9 +12,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
@@ -69,8 +71,11 @@ public class UserRestController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-    //returns all the users
-    @RequestMapping(
+//    @Secured(value = "ROLE_ADMIN") -> api/users/** handles in web security config
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+//    @RolesAllowed({"ROLE_ADMIN","ROLE_USER"})
+//returns all the users
+@RequestMapping(
             value = "/users",
             method = RequestMethod.GET)
     public ResponseEntity<List<User>> getUsers(){

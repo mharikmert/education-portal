@@ -45,10 +45,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(allowedPaths).permitAll()
                 //allow register and login post requests
                 .antMatchers(HttpMethod.POST, "/api/users").permitAll()
-//                .antMatchers(HttpMethod.GET, "/api/users").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/users/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST, "/api/auth").permitAll()
                 .antMatchers("/swagger-resources/*", "*.html", "/api/v1/swagger.json")
-                .hasAuthority("ADMIN")
+                /*
+                similar to hasRole with only difference ROLE prefix
+                in hasRole("ADMIN"), ROLE prefix automatically added by spring security
+                 */
+                .hasAuthority("ROLE_ADMIN")
+                //.hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)

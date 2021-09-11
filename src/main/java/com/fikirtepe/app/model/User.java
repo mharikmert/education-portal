@@ -44,14 +44,6 @@ public class User extends BaseEntity{
 
     private boolean hasInternet;
 
-    private long parentId;
-
-    private String parentFirstName;
-
-    private String parentLastName;
-
-    private String parentEmail;
-
     private boolean isApproved;
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -89,10 +81,6 @@ public class User extends BaseEntity{
                 ", grade=" + grade +
                 ", section='" + section + '\'' +
                 ", hasInternet=" + hasInternet +
-                ", parentId=" + parentId +
-                ", parentFirstName='" + parentFirstName + '\'' +
-                ", parentLastName='" + parentLastName + '\'' +
-                ", parentEmail='" + parentEmail + '\'' +
                 ", isApproved='" + isApproved + '\'' +
                 ", roles='" + roles + '\'' +
                 ", type='" + type + '\'' +

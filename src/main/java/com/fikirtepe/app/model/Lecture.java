@@ -1,6 +1,5 @@
 package com.fikirtepe.app.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +11,12 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Parent extends User{
+public class Lecture {
+    @Id
+    private Long id;
+    private String name;
     @OneToMany
-    private List<Student> students;
+    private List<Teacher> teachers;
+    @OneToMany
+    private List<Class> classes;
 }

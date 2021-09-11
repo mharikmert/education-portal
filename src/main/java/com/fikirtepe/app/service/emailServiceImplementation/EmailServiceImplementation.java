@@ -1,4 +1,4 @@
-package com.fikirtepe.app.service.EmailServiceImplementation;
+package com.fikirtepe.app.service.emailServiceImplementation;
 
 import com.fikirtepe.app.model.User;
 import com.fikirtepe.app.service.EmailService;

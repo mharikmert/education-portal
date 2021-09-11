@@ -1,4 +1,4 @@
-package com.fikirtepe.app.service.CityServiceImplemtation;
+package com.fikirtepe.app.service.cityServiceImplemtation;
 
 import com.fikirtepe.app.model.City;
 import com.fikirtepe.app.model.District;

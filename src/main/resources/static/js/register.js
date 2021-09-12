@@ -34,7 +34,7 @@ $(document).ready(() => {
         const formJson = JSON.stringify(obj);
         if(registerCondition){
             $.ajax({
-                url : '/api/register',
+                url : '/api/users',
                 type : 'POST',
                 dataType: 'json',
                 headers : {'Content-Type' : 'application/json; charset=utf-8'},

@@ -1,6 +1,5 @@
 package com.fikirtepe.app.repository;
 
-import com.fikirtepe.app.model.Class;
 import com.fikirtepe.app.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 

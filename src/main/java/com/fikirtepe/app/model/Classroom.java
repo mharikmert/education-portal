@@ -11,20 +11,25 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name= "grades")
-public class Grade implements Serializable {
+@Table(name= "classrooms")
+public class Classroom implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
-    @OneToMany(mappedBy = "grade", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Student> students;
+    @OneToMany(mappedBy = "classroom", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Student> students;
 
-    @OneToMany(mappedBy = "grade", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Teacher> teachers;
+    @ManyToMany(mappedBy = "classrooms", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Teacher> teachers;
 
+    @ManyToMany(mappedBy = "classrooms", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Lecture> lectures;
 
+    @ManyToOne
+    @JoinColumn(name = "term_id")
+    private Term term;
 
 }

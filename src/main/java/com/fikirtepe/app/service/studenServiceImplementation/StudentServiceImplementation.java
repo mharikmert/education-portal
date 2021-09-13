@@ -1,6 +1,6 @@
 package com.fikirtepe.app.service.studenServiceImplementation;
 
-import com.fikirtepe.app.model.Class;
+import com.fikirtepe.app.model.Classroom;
 import com.fikirtepe.app.model.Lecture;
 import com.fikirtepe.app.model.Student;
 import com.fikirtepe.app.model.Teacher;
@@ -9,6 +9,7 @@ import com.fikirtepe.app.service.StudentService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class StudentServiceImplementation implements StudentService {
@@ -32,22 +33,22 @@ public class StudentServiceImplementation implements StudentService {
     }
 
     @Override
-    public Class findClassById(Long id) {
-        return studentRepository.findStudentById(id).getStudentClass();
+    public Classroom findClassroomsById(Long id) {
+        return studentRepository.findStudentById(id).getClassroom();
     }
 
     @Override
-    public List<Student> findAll() {
+    public List<Student> findAllStudents() {
         return studentRepository.findAll();
     }
 
     @Override
-    public List<Lecture> findLecturesById(Long id) {
+    public Set<Lecture> findLecturesById(Long id) {
         return studentRepository.findStudentById(id).getLectures();
     }
 
     @Override
-    public List<Teacher> findTeachersById(Long id) {
-        return studentRepository.findStudentById(id).getStudentClass().getTeachers();
+    public Set<Teacher> findTeachersById(Long id) {
+        return studentRepository.findStudentById(id).getClassroom().getTeachers();
     }
 }

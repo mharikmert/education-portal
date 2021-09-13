@@ -1,14 +1,14 @@
 package com.fikirtepe.app.service;
 
-import com.fikirtepe.app.model.Class;
+import com.fikirtepe.app.model.Classroom;
 import com.fikirtepe.app.model.Lecture;
-import com.fikirtepe.app.model.Student;
 import com.fikirtepe.app.model.Teacher;
 
-import java.util.List;
+import java.util.Set;
 
 public interface LectureService {
+    Lecture createLecture(Lecture lecture);
     Lecture findLectureByName(String name);
-    List<Class> findClassesByLectureName(String name);
-    List<Teacher> findTeachersByLectureName(String name);
+    Set<Classroom> findClassroomsByLectureName(String name);
+    Set<Teacher> findTeachersByLectureName(String name);
 }

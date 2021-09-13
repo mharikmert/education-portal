@@ -4,14 +4,17 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class Term {
+@Table(name = "terms")
+public class Term implements Serializable {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
@@ -19,12 +22,12 @@ public class Term {
    private String startDate;
    private String endDate;
 
-   @OneToMany
-   private List<Teacher> teachers;
-   @OneToMany
-   private List<Student> students;
-   @OneToMany
-   private List<Class> classes;
+   @OneToMany(mappedBy = "term", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+   private Set<Teacher> teachers;
+   @OneToMany(mappedBy = "term", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+   private Set<Student> students;
+   @OneToMany(mappedBy = "term", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+   private Set<Classroom> classrooms;
 
 
    @Override
@@ -50,7 +53,6 @@ public class Term {
               ", endDate='" + endDate + '\'' +
               ", teachers=" + teachers +
               ", students=" + students +
-              ", classes=" + classes +
               '}';
    }
 }

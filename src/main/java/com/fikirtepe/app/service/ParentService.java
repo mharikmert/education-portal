@@ -4,10 +4,11 @@ import com.fikirtepe.app.model.Parent;
 import com.fikirtepe.app.model.Student;
 
 import java.util.List;
+import java.util.Set;
 
 public interface ParentService {
     Parent createParent(Parent parent);
     Parent findParentById(Long id);
-    List<Student> findStudentsByParentId(Long id);
+    Set<Student> findStudentsByParentId(Long id);
     void deleteParent(Parent parent);
 }

@@ -1,6 +1,6 @@
 package com.fikirtepe.app.web;
 
-import com.fikirtepe.app.exceptions.UserNotFoundException;
+import com.fikirtepe.app.exception.UserNotFoundException;
 import com.fikirtepe.app.model.User;
 import com.fikirtepe.app.service.UserService;
 import org.junit.jupiter.api.Assertions;

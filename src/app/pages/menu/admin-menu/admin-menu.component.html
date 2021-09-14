@@ -4,46 +4,65 @@
     <!-- <button class ="btn btn-secondary" (click) = 'getAdminInformation()'> Get admin information </button> -->
     <h2> Dönemler </h2> 
 
-    <div class="table-responsive">
-        <table id = 'term-table' class="table table-striped table-bordered table-hover">
+    <div class="table table-responsive">
+        <table class="table table-striped table-bordered table-hover">
           <tr>
             <!-- <th class="shrink">#</th> -->
             <th> Donem Aciklamasi </th>
             <th> Donem Baslangic Tarihi </th>
             <th> Donem Bitis Tarihi  </th>
+            <th> Dönem Durumu </th>
+
           </tr>
-          <tr *ngFor="let term of terms">
-            <td>{{ term.name }}</td>
-            <td>{{ term.startDate }}</td>
-            <td>{{ term.endDate }}</td>
+          <tr *ngFor="let term of terms; let i = index;">
+            <td> {{ term.name }} </td> 
+            <td> {{ term.startDate }} </td>
+            <td> {{ term.endDate }} </td>
+            <td> <app-switch-button [isActive] = 'term.active' (emitInputValue) = 'isTermActive'></app-switch-button></td>
           </tr>
+          
         </table>
       </div>
 
-    <app-button *ngIf = '!termButtonClicked' text = 'Donem Tanimlama' (click) = "onClick()"></app-button>
-    
-    <div class="create-term-container" *ngIf = "termButtonClicked" >
-       
-        <div>
-            <label for="term-explanation"> <h3> Donem Aciklama </h3></label>
-            <input type="text" class = 'input'  [(ngModel)] ='term.name'> 
+        <div class="alert alert-danger" *ngIf = "missingTermInfo">
+          {{ missingTermWarningMessage()}}
         </div>
 
-        <div>
-            <label for="term-start-date"> <h3> Baslangic Tarihi </h3></label>
-            <input type="date" placeholder = 'dd-mm-yyyy' class = 'input' [(ngModel)] = 'term.startDate'>
-        </div>
- 
-        <div>
-            <label for="term-end-date"> <h3> Donem Bitis Tarihi </h3> </label>
-            <input type="date" class = 'input' [(ngModel)] = 'term.endDate'>
-        </div>
+    <div *ngIf="termButtonClicked" style="margin-bottom: 50px;">
+      <div class="create-term-container">
         
-        <fa-icon [icon] = 'faTimes' [ngStyle]="{color: 'red'}" (click) = 'termButtonClicked = !termButtonClicked'></fa-icon>
-        
-        <app-button text = 'EKLE' color = 'red' (btnClicked) = 'addTerm(term)' ></app-button>
+          <div>
+              <label for="term-explanation"> <h3> Donem Aciklama </h3></label>
+              <input type="text" class = 'input'  [(ngModel)] ='term.name'> 
+          </div>
+
+          <div>
+              <label for="term-start-date"> <h3> Baslangic Tarihi </h3></label>
+              <input type="date" class = 'input' [(ngModel)] = 'term.startDate'>
+          </div>
+  
+          <div>
+              <label for="term-end-date"> <h3> Donem Bitis Tarihi </h3> </label>
+              <input type="date" class = 'input' [(ngModel)] = 'term.endDate'>
+          </div>
+          
+          <h3>
+              <!-- <fa-icon [icon] = 'faTimes' [ngStyle]="{color: 'red'}" (click) = 'termButtonClicked = !termButtonClicked'></fa-icon> -->
+              <app-button color = 'red' text = 'Kapat' (click) = 'termButtonClicked = !termButtonClicked'></app-button>  
+          </h3>
+      </div>
+
+      <app-button text = 'EKLE' color = 'red' (btnClicked) = 'addTerm(term)' class = 'add-term-btn'></app-button>
+
     </div>
-    {{ termButtonClicked }}
 
+    <div style = 'justify-content: space-between; display: flex' *ngIf = '!termButtonClicked'>
+
+      <app-button *ngIf = '!termButtonClicked' text = 'Donem Tanimlama' (click) = "onClick()"></app-button>
+
+      <app-button color = 'blue' data-toggle="modal" data-target="#app-modal" text = 'Degisiklikleri kaydet'></app-button>
+
+    </div>
+    <app-modal modalTitle = 'Uyari!' modalBody = 'Degisiklikleri kaydetmek uzeresiniz' modalButtonText = 'KAYDET' (onSaveChanges) = 'saveChanges()'></app-modal>
     <app-logout-button></app-logout-button>
 </div>

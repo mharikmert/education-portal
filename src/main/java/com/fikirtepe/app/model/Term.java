@@ -21,6 +21,7 @@ public class Term implements Serializable {
    private String name; // "2021-2022"
    private String startDate;
    private String endDate;
+   private boolean isActive;
 
    @OneToMany(mappedBy = "term", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
    private Set<Teacher> teachers;

@@ -1,9 +1,6 @@
+import { HashLocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ButtonComponent } from 'src/app/components/button/button.component';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Term } from 'src/app/models/Term';
-import { Observable } from 'rxjs';
 import { TermService } from 'src/app/services/term.service';
 
 @Component({
@@ -14,23 +11,18 @@ import { TermService } from 'src/app/services/term.service';
 export class AdminMenuComponent implements OnInit {
 
   termButtonClicked : boolean = false
-  term: Term = {}; 
+  term: Term = {};
   terms: Term [] = []
-  isTermActive: boolean = false; 
-  faTimes = faTimes
+  isTermActive: boolean = false;
+  missingTermInfo: boolean = false; 
 
-  constructor(private httpClient: HttpClient, private termService: TermService) { }
+  constructor(private termService: TermService) { }
 
-  private apiUrl = 'http://localhost:8080'; 
-  private headers = new HttpHeaders({
-    'Content-Type':'applicatoin/json',
-    'Authorization': 'Bearer ' + localStorage.getItem('token')
-  })
-  ngOnInit(): void {
-    this.loadPage(); 
+  ngOnInit(): void  {
+     this.loadPage();
   }
 
-  loadPage(){
+  loadPage() {
     this.getAdmin();
     this.getTerms();
   }
@@ -39,13 +31,32 @@ export class AdminMenuComponent implements OnInit {
     this.termButtonClicked = true
   }
 
-  getAdmin = () => this.termService.getAdmin().subscribe(resp => console.log(resp));;
+  getAdmin = () => this.termService.getAdmin().subscribe(resp => console.log(resp));
 
-  addTerm(term: Term){ 
+  addTerm(term: Term){
+    if(Object.keys(term).length !== 3){
+      this.missingTermInfo = true; 
+      setTimeout( () => {
+        this.missingTermInfo = false; 
+      }, 2000)
+      return;
+    }
     this.termService.addTerm(term).subscribe(
       term => this.terms.push(term)
-      );
+    );
   }
 
   getTerms = () => this.termService.getTerms().subscribe(terms => this.terms = terms);
+
+  missingTermWarningMessage(){
+    return 'Detailed warnings here'
+  }
+
+  //should be able to call from modal component
+  saveChanges = () => {
+    //this.termService.updateTerms(terms : Term[]) ?; 
+    console.log(this.terms)
+  }
+
+
 }

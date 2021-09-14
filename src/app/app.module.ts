@@ -18,6 +18,8 @@ import { AdminMenuComponent } from './pages/menu/admin-menu/admin-menu.component
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LogoutUseCase } from './common/usecase/logout-usecase';
+import { SwitchButtonComponent } from './components/switch-button/switch-button.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { LogoutUseCase } from './common/usecase/logout-usecase';
     StudentMenuComponent,
     TeacherMenuComponent,
     AdminMenuComponent,
-    LogoutButtonComponent
+    LogoutButtonComponent,
+    SwitchButtonComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

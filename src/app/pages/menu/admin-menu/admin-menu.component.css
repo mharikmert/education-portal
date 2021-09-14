@@ -1,6 +1,7 @@
 .create-term-container{
-    display: block;
-    width: 300px;
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 .term-container{
@@ -9,6 +10,25 @@
     align-items: center;
     text-align: center;
 }
+.add-term-btn{
+    text-align: center;
+}
 .term-info{
     margin-right: 150px
+}
+h3{
+    cursor: pointer; 
+}
+.alert-danger{
+    text-align: center;
+}
+table,th,td{
+    background-color: lightblue;
+    padding: 10px;
+    border:1px solid black;
+    border-collapse: collapse;
+}
+.add-term-btn{
+    animation: cubic-bezier(1, 0, 0, 1);
+    margin-bottom: 100px;
 }

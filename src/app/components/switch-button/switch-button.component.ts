@@ -8,7 +8,7 @@ import { Component, OnInit, Output , EventEmitter, Input} from '@angular/core';
 export class SwitchButtonComponent implements OnInit {
 
   @Input() isActive?: boolean;
-  @Output() onChecked = new EventEmitter;
+  @Output() onChecked : EventEmitter<boolean> = new EventEmitter;
   constructor() { }
 
   ngOnInit(): void {
@@ -17,7 +17,7 @@ export class SwitchButtonComponent implements OnInit {
     console.log(this.isActive)
   }
 
-  emitInputValue(){
+  emitInputValue(value: boolean |undefined){
     return this.onChecked.emit(this.isActive);
   }
 }

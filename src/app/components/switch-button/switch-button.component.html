@@ -1,6 +1,6 @@
 <div style="display: flex; align-items: center; justify-content: space-around;">
     <label class="switch">
-    <input type="checkbox" [checked] = 'isActive' (change) = 'onInputChange()' [(ngModel)] = 'isActive'>
+    <input type="checkbox" [checked] = 'isActive' (change) = 'emitInputValue(isActive)' [(ngModel)] = 'isActive'>
     <span class="slider round"></span>
   </label>
   <div style="font-weight: bold;">

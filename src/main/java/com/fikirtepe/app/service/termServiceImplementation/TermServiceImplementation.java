@@ -6,6 +6,9 @@ import com.fikirtepe.app.service.TermService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Set;
+
 @Service
 public class TermServiceImplementation implements TermService{
 
@@ -14,6 +17,12 @@ public class TermServiceImplementation implements TermService{
     public TermServiceImplementation(TermRepository termRepository){
         this.termRepository = termRepository;
     }
+
+    @Override
+    public List<Term> findAllTerms() {
+        return termRepository.findAll();
+    }
+
     @Override
     public Term findTermByName(String name) {
         return termRepository.findTermByName(name);
@@ -24,6 +33,10 @@ public class TermServiceImplementation implements TermService{
         return termRepository.save(term);
     }
 
+    @Override
+    public List<Term> updateTerms(List<Term> terms){
+        return termRepository.saveAll(terms);
+    }
     @Override
     public void deleteTerm(Term term) {
         termRepository.delete(term);

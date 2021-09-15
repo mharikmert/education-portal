@@ -103,17 +103,6 @@ public class UserRestController {
                 .orElseGet( () -> ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/terms")
-    public ResponseEntity<List<Term>> getTerms(){
-        return ResponseEntity.ok(termRepository.findAll());
-    }
-
-    @PostMapping( "/terms")
-    public ResponseEntity<Term> addTerm(@RequestBody Term term){
-        termRepository.save(term);
-        return ResponseEntity.ok(term);
-    }
-
     //saves users that is approved by the admin in registration queue
     @RequestMapping(
             value = "/approveUser/{id}",

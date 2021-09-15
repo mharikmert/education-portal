@@ -1,7 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { text } from '@fortawesome/fontawesome-svg-core';
 import { Observable } from 'rxjs';
 import { Term } from '../models/Term';
 
@@ -27,4 +25,8 @@ export class TermService {
   getTerms(): Observable<Term []> {
     return this.httpClient.get<Term []>(this.apiUrl+ '/api/terms', {headers: this.headers}); 
   }
+  
+  updateTerms(terms : Term[]): Observable<Term []> {
+    return this.httpClient.post<Term []>(this.apiUrl+ '/api/updateTerms', terms, {headers: this.headers}); 
+  } 
 }

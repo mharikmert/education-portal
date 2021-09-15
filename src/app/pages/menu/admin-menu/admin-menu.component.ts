@@ -13,7 +13,6 @@ export class AdminMenuComponent implements OnInit {
   termButtonClicked : boolean = false
   term: Term = {};
   terms: Term [] = []
-  isTermActive: boolean = false;
   missingTermInfo: boolean = false; 
 
   constructor(private termService: TermService) { }
@@ -44,6 +43,7 @@ export class AdminMenuComponent implements OnInit {
     this.termService.addTerm(term).subscribe(
       term => this.terms.push(term)
     );
+    this.termButtonClicked = !this.termButtonClicked;
   }
 
   getTerms = () => this.termService.getTerms().subscribe(terms => this.terms = terms);
@@ -53,10 +53,6 @@ export class AdminMenuComponent implements OnInit {
   }
 
   //should be able to call from modal component
-  saveChanges = () => {
-    //this.termService.updateTerms(terms : Term[]) ?; 
-    console.log(this.terms)
-  }
-
-
+  saveChanges = async () => await this.termService.updateTerms(this.terms).subscribe();
+  
 }

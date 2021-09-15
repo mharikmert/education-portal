@@ -14,11 +14,11 @@
             <th> Dönem Durumu </th>
 
           </tr>
-          <tr *ngFor="let term of terms; let i = index;">
+          <tr *ngFor="let term of terms;">
             <td> {{ term.name }} </td> 
             <td> {{ term.startDate }} </td>
             <td> {{ term.endDate }} </td>
-            <td> <app-switch-button [isActive] = 'term.active' (emitInputValue) = 'isTermActive'></app-switch-button></td>
+            <td> <app-switch-button [isActive] = 'term.active' (onChecked) = 'term.active = ($event)'></app-switch-button></td>
           </tr>
           
         </table>

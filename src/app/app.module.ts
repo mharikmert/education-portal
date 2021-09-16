@@ -20,6 +20,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LogoutUseCase } from './common/usecase/logout-usecase';
 import { SwitchButtonComponent } from './components/switch-button/switch-button.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { UserActionsComponent } from './pages/menu/authorized-menu/user-actions/user-actions.component';
+import { CreateLectureComponent } from './pages/menu/authorized-menu/create-lecture/create-lecture.component';
+import { CreateClassroomComponent } from './pages/menu/authorized-menu/create-classroom/create-classroom.component';
+import { ParametersComponent } from './pages/menu/authorized-menu/parameters/parameters.component';
+import { CheckboxRoundComponent } from './components/checkbox-round/checkbox-round.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +42,12 @@ import { ModalComponent } from './components/modal/modal.component';
     AdminMenuComponent,
     LogoutButtonComponent,
     SwitchButtonComponent,
-    ModalComponent
+    ModalComponent,
+    UserActionsComponent,
+    CreateLectureComponent,
+    CreateClassroomComponent,
+    ParametersComponent,
+    CheckboxRoundComponent
   ],
   imports: [
     BrowserModule,

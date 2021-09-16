@@ -1,0 +1,50 @@
+<h1> Kullanıcı İşlemleri </h1>
+
+<div class="container">
+    <div class= 'checkbox-container'>
+        <!-- <app-checkbox-round></app-checkbox-round> -->
+        <div>
+            <input type='radio' class = 'checkbox-round' id = 'all' name = 'same' checked = 'true'>
+            <label> Tümü </label>
+        </div>
+        <div>
+            <input type='radio' class = 'checkbox-round' id = 'student' name = 'same'>
+            <label> Öğrenci </label>
+        </div>
+        <div>
+            <input type='radio' class = 'checkbox-round' id = 'parent' name = 'same'>
+            <label> Veli </label>
+        </div>
+        <div>
+            <input type='radio' class = 'checkbox-round' id = 'teacher' name = 'same'>
+            <label> Öğretmen </label>
+        </div>
+    </div>
+    <div class="table table-responsive" style = 'display: flex;'>
+            <table class="table table-striped table-bordered table-hover">
+            <tr>
+                <th> TC numarası </th>
+                <th> Adı </th>
+                <th> Soyadı </th>
+                <th> Telefon Numarası </th>
+                <th> Email </th>
+                <th> Ögrt/Ögr/Veli </th>
+
+            </tr>
+            <tr *ngFor="let user of users;">
+                <td> {{ user.id }} </td> 
+                <td> {{ user.firstName}} </td>
+                <td> {{ user.lastName }} </td>
+                <td> {{ user.phoneNumber }} </td>
+                <td> {{ user.email }} </td>
+                <td> {{ user.type }} </td>
+            </tr>
+            </table>
+
+            <div style = 'display: flex;'>
+                <app-button color = 'blue' text = 'Detay'></app-button>
+                <app-button color = 'blue' text = 'Sinif Atama'></app-button>
+            </div>
+            
+    </div> 
+</div>

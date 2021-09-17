@@ -2,9 +2,7 @@ package com.fikirtepe.app.controller;
 
 import com.fikirtepe.app.exception.UserNotFoundException;
 import com.fikirtepe.app.model.Role;
-import com.fikirtepe.app.model.Term;
 import com.fikirtepe.app.model.User;
-import com.fikirtepe.app.repository.TermRepository;
 import com.fikirtepe.app.service.EmailService;
 import com.fikirtepe.app.service.UserService;
 import org.slf4j.Logger;
@@ -12,14 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.annotation.security.RolesAllowed;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.net.URI;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -32,44 +24,12 @@ public class UserRestController {
 
     private final EmailService emailService;
     private final UserService userService;
-    private final TermRepository termRepository;
 
     @Autowired
-    public UserRestController(EmailService emailService, UserService userService, TermRepository termRepository){
+    public UserRestController(EmailService emailService, UserService userService){
         this.emailService = emailService;
         this.userService = userService;
-        this.termRepository = termRepository;
 
-    }
-    //user info is taken from the post request and user creates
-    //@ResponseStatus(HttpStatus.CREATED) // returned 201 if process is succeeded
-    @RequestMapping(
-            value = "/users",
-            method = RequestMethod.POST)
-    public ResponseEntity<?> createUser(@RequestBody User user,
-                                             HttpServletResponse response) throws IOException {
-        logger.info(user.toString());
-        try{
-            userService.findUser(user.getId());
-            return ResponseEntity.status(409).build();
-        }
-        catch(UserNotFoundException ex){
-            user.setPassword("password");
-            user.setType("STUDENT");
-            userService.createUser(user);
-            emailService.sendRegistrationReceivedMail(user);
-
-            //create resource location
-            URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                    .path("/{id}")
-                    .buildAndExpand(user.getId())
-                    .toUri();
-            //return 201 from uri location
-            return ResponseEntity.created(location).build();
-        }
-        catch(Exception ex){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
     }
 //    @Secured(value = "ROLE_ADMIN") -> api/users/** handles in web security config
 //    @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -153,7 +113,7 @@ public class UserRestController {
     public ResponseEntity<User> assignRole(@PathVariable long id,@PathVariable int role){
         User user = userService.findUser(id);
         switch (role){
-            case 0 : user.setRoles(Collections.singletonList(Role.ROLE_USER)); break;
+//            case 0 : user.setRoles(Collections.singletonList(Role.ROLE_USER)); break;
             case 1 : user.setRoles(Collections.singletonList(Role.ROLE_ADMIN)); break;
         }
         userService.save(user);

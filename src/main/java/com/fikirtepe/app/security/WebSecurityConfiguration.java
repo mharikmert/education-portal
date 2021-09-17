@@ -44,7 +44,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(allowedPaths).permitAll()
                 //allow register and login post requests
-                .antMatchers(HttpMethod.POST, "/api/users").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/students").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/users/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST, "/api/auth").permitAll()
                 .antMatchers("/swagger-resources/*", "*.html", "/api/v1/swagger.json")

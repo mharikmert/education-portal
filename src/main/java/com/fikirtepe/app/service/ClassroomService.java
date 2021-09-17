@@ -11,6 +11,7 @@ public interface ClassroomService {
     List<Classroom> findAllClassrooms();
     Classroom createClassroom(Classroom classRef);
     Classroom findClassroomByName(String className);
+    Classroom findClassroomById(Long id);
     Set<Student> findAllStudents(String className);
     Set<Teacher> findAllTeachers(String className);
     void deleteClassroom(Classroom classRef);

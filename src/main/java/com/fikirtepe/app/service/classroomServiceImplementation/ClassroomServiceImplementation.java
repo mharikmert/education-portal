@@ -36,6 +36,11 @@ public class ClassroomServiceImplementation implements ClassroomService {
     }
 
     @Override
+    public Classroom findClassroomById(Long id) {
+       return classroomRepository.findClassroomById(id);
+    }
+
+    @Override
     public Set<Student> findAllStudents(String className) {
         return classroomRepository.findClassroomByName(className).getStudents();
     }

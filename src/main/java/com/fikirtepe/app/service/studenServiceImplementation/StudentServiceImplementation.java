@@ -6,6 +6,8 @@ import com.fikirtepe.app.model.Student;
 import com.fikirtepe.app.model.Teacher;
 import com.fikirtepe.app.repository.StudentRepository;
 import com.fikirtepe.app.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +16,16 @@ import java.util.Set;
 @Service
 public class StudentServiceImplementation implements StudentService {
     private final StudentRepository studentRepository;
-    public StudentServiceImplementation(StudentRepository studentRepository){
+    private final PasswordEncoder passwordEncoder;
+    @Autowired
+    public StudentServiceImplementation(StudentRepository studentRepository, PasswordEncoder passwordEncoder){
         this.studentRepository = studentRepository;
+        this.passwordEncoder = passwordEncoder;
     }
     @Override
     public Student createStudent(Student student) {
+        student.setPassword(passwordEncoder.encode(student.getPassword()));
+        student.setType("Öğrenci");
         return studentRepository.save(student);
     }
 

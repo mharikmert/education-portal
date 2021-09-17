@@ -13,7 +13,6 @@ import java.util.Set;
 @Getter
 @Setter
 @RequiredArgsConstructor
-@Table(name = "terms")
 public class Term implements Serializable {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +22,11 @@ public class Term implements Serializable {
    private String endDate;
    private boolean isActive;
 
-   @OneToMany(mappedBy = "term", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+   @OneToMany//(mappedBy = "term", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
    private Set<Teacher> teachers;
-   @OneToMany(mappedBy = "term", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+   @OneToMany//(mappedBy = "term", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
    private Set<Student> students;
-   @OneToMany(mappedBy = "term", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+   @OneToMany//(mappedBy = "term", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
    private Set<Classroom> classrooms;
 
 

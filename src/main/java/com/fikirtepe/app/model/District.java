@@ -1,18 +1,21 @@
 package com.fikirtepe.app.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
-@Data
+@Getter
+@Setter
 @Entity
-public class District {
+public class District implements Serializable {
 
     @Id
     private long id;
-
-    private long cityPlateNo;
-
     private String districtName;
+    @ManyToOne
+    @JoinColumn(name = "city_plate_no")
+    private City city;
+
 }

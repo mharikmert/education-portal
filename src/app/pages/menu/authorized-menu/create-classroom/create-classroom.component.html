@@ -1,1 +1,26 @@
-<p>create-classroom works!</p>
+<div class = 'container'>
+    <div class="table table-responsive" style = 'display: flex;'>
+        <table class="table table-striped table-bordered table-hover">
+        <tr>
+            <th> Sinif Aciklamasi  </th>
+            <th> Kapasite  </th>
+            <th> Mevcut </th>
+            <th> Sinif Yili </th>
+
+        </tr>
+        <tr *ngFor="let classroom of classrooms">
+            <td> {{ classroom.name }} </td> 
+            <td> {{ classroom.capacity}} </td>
+            <td> {{ classroom.classroomSize }} </td>
+            <td> {{ classroom.grade }} </td>
+            <div style = 'display: flex;'>
+                <app-button color = 'blue' text = 'Ders Tanimlama '></app-button>
+                <app-button color = 'blue' text = 'Program'></app-button>
+            </div>
+        </tr>
+        </table>
+
+        
+    </div> 
+
+</div>

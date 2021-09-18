@@ -1,15 +1,13 @@
 package com.fikirtepe.app.service.studenServiceImplementation;
 
-import com.fikirtepe.app.model.Classroom;
-import com.fikirtepe.app.model.Lecture;
-import com.fikirtepe.app.model.Student;
-import com.fikirtepe.app.model.Teacher;
+import com.fikirtepe.app.model.*;
 import com.fikirtepe.app.repository.StudentRepository;
 import com.fikirtepe.app.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -26,6 +24,7 @@ public class StudentServiceImplementation implements StudentService {
     public Student createStudent(Student student) {
         student.setPassword(passwordEncoder.encode(student.getPassword()));
         student.setType("Öğrenci");
+        student.setRoles(Collections.singletonList(Role.ROLE_STUDENT));
         return studentRepository.save(student);
     }
 

@@ -8,6 +8,7 @@ import com.fikirtepe.app.service.LectureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -21,6 +22,11 @@ public class LectureServiceImplementation implements LectureService {
     @Override
     public Lecture createLecture(Lecture lecture) {
         return lectureRepository.save(lecture);
+    }
+
+    @Override
+    public List<Lecture> findAllLectures() {
+       return lectureRepository.findAll();
     }
 
     @Override

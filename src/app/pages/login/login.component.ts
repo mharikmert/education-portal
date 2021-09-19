@@ -34,15 +34,11 @@ export class LoginComponent implements OnInit {
       return; 
     }
 
-    let resp  = this.authService.login(this.username, this.password)
-
-    resp.subscribe((response) => {
+    this.authService.login(this.username, this.password).subscribe((response) => {
       console.log(response)
       const token = (<any>response).accessToken;     
-      // console.log(token)
       //puts the JWT to local storage 
       this.tokenService.setToken(token)
-      console.log(this.tokenService.getToken());
       
       localStorage.setItem('username', this.username);
 
@@ -53,7 +49,8 @@ export class LoginComponent implements OnInit {
     
     }, err => {
       this.errorType = 'any-error'
-      setTimeout( () => {this.btnClicked = false, this.errorType = '' }, 1500)
+      this.btnClicked = false;
+      setTimeout( () => {this.errorType = '' }, 1500)
     })
   }
 }

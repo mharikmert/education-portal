@@ -2,23 +2,29 @@
 
 <div class="container">
     <div class= 'checkbox-container'>
-        <!-- <app-checkbox-round></app-checkbox-round> -->
+        <!-- <app-checkbox-round label = 'All' [id] = "'All'" ></app-checkbox-round>
+        <app-checkbox-round label = 'Student' [id] = "'Student'"></app-checkbox-round>
+        <app-checkbox-round label = 'Parent' [id] = "'Parent'"></app-checkbox-round>
+        <app-checkbox-round label = 'Teacher' [id] = "'Teacher'"></app-checkbox-round> -->
+       
+        <!-- annd DRY goes for nothing -->
         <div>
-            <input type='radio' class = 'checkbox-round' id = 'all' name = 'same' checked = 'true'>
+            <input type='radio' class = 'checkbox-round' id = 'all' name = 'same' checked = 'true' (click) = "getUsers('users')">
             <label> Tümü </label>
         </div>
         <div>
-            <input type='radio' class = 'checkbox-round' id = 'student' name = 'same'>
+            <input type='radio' class = 'checkbox-round' id = 'student' name = 'same' (click) = "getUsers('students')">
             <label> Öğrenci </label>
         </div>
         <div>
-            <input type='radio' class = 'checkbox-round' id = 'parent' name = 'same'>
+            <input type='radio' class = 'checkbox-round' id = 'parent' name = 'same' (click) = "getUsers('parents')">
             <label> Veli </label>
         </div>
         <div>
-            <input type='radio' class = 'checkbox-round' id = 'teacher' name = 'same'>
+            <input type='radio' class = 'checkbox-round' id = 'teacher' name = 'same' (click) = "getUsers('teachers')">
             <label> Öğretmen </label>
         </div>
+
     </div>
     <div class="table table-responsive" style = 'display: flex;'>
             <table class="table table-striped table-bordered table-hover">
@@ -31,20 +37,20 @@
                 <th> Ögrt/Ögr/Veli </th>
 
             </tr>
-            <tr *ngFor="let user of users;">
+            <tr *ngFor="let user of users">
                 <td> {{ user.id }} </td> 
                 <td> {{ user.firstName}} </td>
                 <td> {{ user.lastName }} </td>
                 <td> {{ user.phoneNumber }} </td>
                 <td> {{ user.email }} </td>
                 <td> {{ user.type }} </td>
+                <div style = 'display: flex;'>
+                    <app-button color = 'blue' text = 'Detay' [routerLink]="['/user-actions/user-details']" routerLinkActive="router-link-active" ></app-button>
+                    <app-button color = 'blue' text = 'Sinif Atama'></app-button>
+                </div>
             </tr>
             </table>
 
-            <div style = 'display: flex;'>
-                <app-button color = 'blue' text = 'Detay'></app-button>
-                <app-button color = 'blue' text = 'Sinif Atama'></app-button>
-            </div>
             
     </div> 
 </div>

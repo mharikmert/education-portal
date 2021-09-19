@@ -35,4 +35,5 @@ h1{
     display: flex;
     margin-bottom: 20px;
     font-weight: bold;
+    justify-content: space-around;
 }

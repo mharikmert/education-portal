@@ -8,22 +8,19 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-actions.component.css']
 })
 export class UserActionsComponent implements OnInit {
-
   isChecked : boolean = false;
   isValidChecked: boolean = true;
+  userTypes = ['Öğrenci','Veli','Öğretmen'];
+  radioButton: string = 'radioButton'
   users: User [] = [];
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getUsers('users');
   }
 
-  getUsers(){
-    this.userService.getUsers().subscribe( users => this.users = users)
-  }
+  getUsers = (path: string) => this.userService.getUsers(path).subscribe( users => this.users = users)
 
-  checkedUserType(value : boolean){
-    console.log(this.isChecked)
-    console.log(value)
-  }
+  filterUsers = (userType : string) => this.users = this.users.filter( users => users.type === userType)
+
 }

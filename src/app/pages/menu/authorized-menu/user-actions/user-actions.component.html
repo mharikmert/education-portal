@@ -35,6 +35,7 @@
                 <th> Telefon Numarası </th>
                 <th> Email </th>
                 <th> Ögrt/Ögr/Veli </th>
+                <th> Aksiyon </th>
 
             </tr>
             <tr *ngFor="let user of users">
@@ -44,10 +45,13 @@
                 <td> {{ user.phoneNumber }} </td>
                 <td> {{ user.email }} </td>
                 <td> {{ user.type }} </td>
-                <div style = 'display: flex;'>
-                    <app-button color = 'blue' text = 'Detay' [routerLink]="['/user-actions/user-details']" routerLinkActive="router-link-active" ></app-button>
+                <td>
+                <div style = 'display: flex; background: none;'>
+                    <app-button color = 'blue' text = 'Detay' [routerLink]="['user-details']" routerLinkActive="router-link-active" ></app-button>
                     <app-button color = 'blue' text = 'Sinif Atama'></app-button>
                 </div>
+
+                </td>
             </tr>
             </table>
 

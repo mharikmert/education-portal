@@ -1,4 +1,14 @@
+<h1> Sinif Olusturma </h1>
 <div class = 'container'>
+
+    <div class = 'create-classroom-container'>
+        <app-input type = "text" label = "Sinif Aciklamasi" (onInput) = 'classroom.name = $event'></app-input>
+        <app-input type = "number" label = 'Kapasite' (onInput) = 'strCapacity = $event'></app-input>
+        <app-input type = "number" label = "Sinif Yili" (onInput) = 'strGrade = $event'></app-input>
+        <app-button color = 'green' text = 'Yeni sinif olustur' (btnClicked) = 'addClassroom(classroom)'></app-button>
+
+    </div>
+
     <div class="table table-responsive" style = 'display: flex;'>
         <table class="table table-striped table-bordered table-hover">
         <tr>

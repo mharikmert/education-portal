@@ -1,0 +1,13 @@
+table{
+    background-color: lightblue;
+}
+.container{
+    border:none;
+    width: 70%;
+}
+.create-classroom-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 5%;
+}

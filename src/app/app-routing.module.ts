@@ -13,6 +13,7 @@ import { UserActionsComponent } from './pages/menu/authorized-menu/user-actions/
 import { ParametersComponent } from './pages/menu/authorized-menu/parameters/parameters.component';
 import { CreateClassroomComponent } from './pages/menu/authorized-menu/create-classroom/create-classroom.component';
 import { CreateLectureComponent } from './pages/menu/authorized-menu/create-lecture/create-lecture.component';
+import { UserDetailsComponent } from './pages/menu/authorized-menu/user-actions/user-details/user-details.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -28,6 +29,7 @@ const routes: Routes = [
     {path: 'parent-menu', component: ParentMenuComponent, canActivate: [AuthGuard]},
     {path: 'authorized-menu', component: AuthorizedMenuComponent, canActivate: [AuthGuard]},
     {path: 'user-actions', component: UserActionsComponent, canActivate: [AuthGuard]},
+    {path: 'user-details', component: UserDetailsComponent, canActivate: [AuthGuard]},
     {path: 'create-lecture', component: CreateLectureComponent, canActivate: [AuthGuard]},
     {path: 'create-classroom', component: CreateClassroomComponent, canActivate: [AuthGuard]},
     {path: 'parameters', component: ParametersComponent, canActivate: [AuthGuard]},

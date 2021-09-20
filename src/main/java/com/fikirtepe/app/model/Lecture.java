@@ -16,6 +16,7 @@ public class Lecture implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String lectureCode;
 
     @ManyToMany//(mappedBy = "lectures", fetch = FetchType.LAZY)
     private Set<Student> students =  new HashSet<>();

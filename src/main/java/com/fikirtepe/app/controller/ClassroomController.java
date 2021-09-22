@@ -17,8 +17,12 @@ public class ClassroomController {
         this.classroomService = classroomService;
     }
     @GetMapping
-    public ResponseEntity<List<Classroom>> getClassroom(){
+    public ResponseEntity<List<Classroom>> getClassrooms(){
         return ResponseEntity.ok(classroomService.findAllClassrooms());
+    }
+    @GetMapping("/byName")
+    public ResponseEntity<Classroom> getClassroomByName(@RequestParam("name") String name){
+       return ResponseEntity.ok(classroomService.findClassroomByName(name));
     }
     @PostMapping
     public ResponseEntity<Classroom> createClassroom(@RequestBody Classroom classroom){

@@ -27,6 +27,7 @@ import { ParametersComponent } from './pages/menu/authorized-menu/parameters/par
 import { CheckboxRoundComponent } from './components/checkbox-round/checkbox-round.component';
 import { UserDetailsComponent } from './pages/menu/authorized-menu/user-actions/user-details/user-details.component';
 import { InputComponent } from './components/input/input.component';
+import { AssignLectureComponent } from './pages/menu/authorized-menu/create-classroom/assign-lecture/assign-lecture.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { InputComponent } from './components/input/input.component';
     CheckboxRoundComponent,
     UserDetailsComponent,
     InputComponent,
+    AssignLectureComponent,
   ],
   imports: [
     BrowserModule,

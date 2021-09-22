@@ -1,0 +1,18 @@
+
+<h1>Sinifa Ders Atama </h1>
+<div class = 'container'>
+    <h2>Sinif : {{classroom.name}}</h2>
+        <select> 
+            <option [ngValue]="null" disabled> Ders secimi </option>
+            <option *ngFor="let lecture of lectures"> 
+                {{lecture.name }} 
+            </option>
+        </select>
+        <select> 
+            <option [ngValue]="null" disabled> Ogretmen secimi </option>
+            <option *ngFor="let teacher of teachers"> 
+                {{teacher.firstName }} {{teacher.lastName }} 
+            </option>
+        </select>
+        <!-- number of hours, starting hours, days  -->
+</div>

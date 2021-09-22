@@ -16,6 +16,7 @@
             <th> Kapasite  </th>
             <th> Mevcut </th>
             <th> Sinif Yili </th>
+            <th> Aksiyon </th>
 
         </tr>
         <tr *ngFor="let classroom of classrooms">
@@ -23,10 +24,12 @@
             <td> {{ classroom.capacity}} </td>
             <td> {{ classroom.classroomSize }} </td>
             <td> {{ classroom.grade }} </td>
+            <td> 
             <div style = 'display: flex;'>
-                <app-button color = 'blue' text = 'Ders Tanimlama '></app-button>
+                <app-button color = 'blue' text = 'Ders Tanimlama ' (btnClicked) = 'shareClassroom(classroom)'></app-button>
                 <app-button color = 'blue' text = 'Program'></app-button>
             </div>
+            </td>
         </tr>
         </table>
 

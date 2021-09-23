@@ -1,0 +1,16 @@
+.container{
+    border:none;
+    width: 50%;
+}
+table,th,td{
+    background-color: lightblue;
+    padding: 10px;
+    border:1px solid black;
+    border-collapse: collapse;
+}
+.create-lecture-container{
+   display:flex;
+   margin-bottom:5%;
+   align-items: center;
+
+}

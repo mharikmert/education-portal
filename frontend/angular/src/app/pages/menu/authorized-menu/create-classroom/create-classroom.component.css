@@ -1,0 +1,16 @@
+.container{
+    border:none;
+    width: 70%;
+}
+.create-classroom-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 5%;
+}
+table,th,td{
+    background-color: lightblue;
+    padding: 10px;
+    border:1px solid black;
+    border-collapse: collapse;
+}

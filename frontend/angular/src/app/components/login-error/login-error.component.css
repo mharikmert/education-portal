@@ -1,0 +1,14 @@
+
+.warning-message{
+    width: 380px;
+    height: 40px;
+    border-radius: 10px;
+    line-height: 40px;
+    margin: 0 auto;
+    color:white;
+    position:relative;
+    background-color: darkred;
+    font-size:100%;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}

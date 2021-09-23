@@ -1,0 +1,39 @@
+.container{
+    border:none;
+    height: fit-content;
+    width: fit-content;
+}
+table{
+    background-color: lightblue;
+}
+.table-bordered, td, th{
+    border: 1px solid black;
+}
+h1{
+    font-weight: bold;
+    margin-top : 30px;
+}
+
+.checkbox-round {
+    width: 1.3em;
+    height: 1.3em;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.checkbox-round:checked {
+    background-color: green;
+}
+.checkbox-container{
+    display: flex;
+    margin-bottom: 20px;
+    font-weight: bold;
+    justify-content: space-around;
+}

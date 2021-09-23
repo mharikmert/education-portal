@@ -1,0 +1,8 @@
+<div class = 'checkbox-container'>
+    <div class="round">
+        <input type="radio" class = 'checkbox-round' id = '{{checkedId}}' (change) = 'emitChecked(isChecked)' [(ngModel)]="isChecked" name = '{{name}}'/> 
+    </div>
+    <div>
+        {{label}}
+    </div>
+</div>

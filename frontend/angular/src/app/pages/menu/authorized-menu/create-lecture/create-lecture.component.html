@@ -1,0 +1,23 @@
+<h1>Ders Olusturma </h1>
+<div class = 'container'>
+    <div class = 'create-lecture-container'>
+        <app-input type = 'text' label = 'Ders Adi' (onInput) = 'lecture.name = $event'></app-input>
+        <app-input type = 'text' label = 'Ders Kodu' (onInput) = 'lecture.lectureCode = $event'></app-input>
+        <app-button color = 'green' text = 'Ders Ekle' (btnClicked) = 'addLecture(lecture)'></app-button>
+    </div>
+    <div class="table table-responsive" style = 'display: flex;'>
+        <table class="table table-striped table-bordered table-hover">
+        <tr>
+            <th> Ders Adi  </th>
+            <th> Ders Kodu </th>
+
+        </tr>
+        <tr *ngFor="let lecture of lectures">
+            <td> {{ lecture.name }} </td> 
+            <td> {{ lecture.lectureCode}} </td>
+        </tr>
+        </table>
+
+        
+    </div> 
+</div>

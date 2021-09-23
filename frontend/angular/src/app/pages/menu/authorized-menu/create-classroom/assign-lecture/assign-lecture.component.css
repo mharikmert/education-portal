@@ -1,0 +1,10 @@
+.container{
+    border:none;
+}
+
+table,th,td{
+    background-color: lightblue;
+    padding: 10px;
+    border:1px solid black;
+    border-collapse: collapse;
+}

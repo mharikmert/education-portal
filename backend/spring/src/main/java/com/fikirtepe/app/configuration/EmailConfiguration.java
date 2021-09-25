@@ -17,7 +17,7 @@ public class EmailConfiguration {
 
     public FileInputStream configFile(){
         try{
-            return new FileInputStream("backend/spring/src/main/resources/config.properties");
+            return new FileInputStream("src/main/resources/config.properties");
         }catch(IOException ex){
             ex.printStackTrace();
         }

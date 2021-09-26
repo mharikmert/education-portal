@@ -33,8 +33,9 @@ $(document).ready(() => {
         })
         const formJson = JSON.stringify(obj);
         if(registerCondition){
+            document.querySelector('.loader').style.display = 'block'
             $.ajax({
-                url : '/api/users',
+                url : '/api/students',
                 type : 'POST',
                 dataType: 'json',
                 headers : {'Content-Type' : 'application/json; charset=utf-8'},
@@ -44,9 +45,11 @@ $(document).ready(() => {
                         redirect('/approval')
                     },
                     409: () => {
+                        document.querySelector('.loader').style.display = 'none'
                         $('#myModal').modal()
                     },
                     500: () => {
+                        document.querySelector('.loader').style.display = 'none'
                         console.log('beklenmedik bir hata oluştu')
                     }
                 },
@@ -71,7 +74,7 @@ $(document).ready(() => {
             $.each(result, function(index,value){
                 //appends cities to the select box
                 const option = document.createElement('option');
-                option.text = value['cityName'];
+                option.text = value['name'];
                 $('#city').append(option);
             });
         }, // end of ajax success
@@ -92,7 +95,7 @@ $(document).ready( () => {
         //iterate through cities json
         $.each(citiesJson, (index, value) => {
             //cities are matched, bring the districts that one with get request to the endpoint
-            if(selectedOption === value['cityName']){
+            if(selectedOption === value['name']){
                 const plateNo = value['plateNo'];
                 $.ajax({
                     url: '/api/cities/' + plateNo + '/districts', //contains all the districts with the plateNo

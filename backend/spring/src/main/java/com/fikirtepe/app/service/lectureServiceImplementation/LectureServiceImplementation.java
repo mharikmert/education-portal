@@ -30,6 +30,11 @@ public class LectureServiceImplementation implements LectureService {
     }
 
     @Override
+    public Lecture findLectureById(long id) {
+        return lectureRepository.findLectureById(id) ;
+    }
+
+    @Override
     public Lecture findLectureByName(String name) {
         return lectureRepository.findLectureByName(name);
     }

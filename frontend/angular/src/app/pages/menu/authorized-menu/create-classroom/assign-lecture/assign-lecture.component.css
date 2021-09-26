@@ -8,3 +8,16 @@ table,th,td{
     border:1px solid black;
     border-collapse: collapse;
 }
+.custom-select{
+    width: fit-content
+}
+.form-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5%;
+    background-color: lightblue;
+    padding: 5%;
+}
+h4{
+    font-weight: bold;
+}

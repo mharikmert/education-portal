@@ -2,6 +2,7 @@ import { HttpHeaders, HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject} from 'rxjs';
 import { Classroom } from '../models/Classroom';
+import { Section } from '../models/Section';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,9 @@ export class ClassroomService {
       params: {name : `${classroomName}`},
       headers: this.headers
     });
+  }
+  assignLecture(section: Section): Observable<Section>{
+    return this.httpClient.post<Section>(`${this.apiUrl}/api/classrooms/assignLecture`, section, {headers: this.headers})
   }
   nextClassroom(classroom: Classroom){
     this.classroom.next(classroom);

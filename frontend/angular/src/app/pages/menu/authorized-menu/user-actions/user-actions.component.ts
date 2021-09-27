@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 
@@ -13,7 +14,7 @@ export class UserActionsComponent implements OnInit {
   userTypes = ['Öğrenci','Veli','Öğretmen'];
   radioButton: string = 'radioButton'
   users: User [] = [];
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.getUsers('users');
@@ -22,5 +23,10 @@ export class UserActionsComponent implements OnInit {
   getUsers = (path: string) => this.userService.getUsers(path).subscribe( users => this.users = users)
 
   filterUsers = (userType : string) => this.users = this.users.filter( users => users.type === userType)
+  
+  assignClassroom(user: User){
+    this.userService.nextUser(user);
+    this.router.navigate(['assign-classroom']);
+  }
 
 }

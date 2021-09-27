@@ -28,6 +28,7 @@ import { CheckboxRoundComponent } from './components/checkbox-round/checkbox-rou
 import { UserDetailsComponent } from './pages/menu/authorized-menu/user-actions/user-details/user-details.component';
 import { InputComponent } from './components/input/input.component';
 import { AssignLectureComponent } from './pages/menu/authorized-menu/create-classroom/assign-lecture/assign-lecture.component';
+import { AssingClassroomComponent } from './pages/menu/authorized-menu/user-actions/assing-classroom/assing-classroom.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { AssignLectureComponent } from './pages/menu/authorized-menu/create-clas
     UserDetailsComponent,
     InputComponent,
     AssignLectureComponent,
+    AssingClassroomComponent,
   ],
   imports: [
     BrowserModule,

@@ -15,6 +15,7 @@ import { CreateClassroomComponent } from './pages/menu/authorized-menu/create-cl
 import { CreateLectureComponent } from './pages/menu/authorized-menu/create-lecture/create-lecture.component';
 import { UserDetailsComponent } from './pages/menu/authorized-menu/user-actions/user-details/user-details.component';
 import { AssignLectureComponent } from './pages/menu/authorized-menu/create-classroom/assign-lecture/assign-lecture.component';
+import { AssingClassroomComponent } from './pages/menu/authorized-menu/user-actions/assing-classroom/assing-classroom.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -34,6 +35,7 @@ const routes: Routes = [
     {path: 'create-lecture', component: CreateLectureComponent, canActivate: [AuthGuard]},
     {path: 'create-classroom', component: CreateClassroomComponent, canActivate: [AuthGuard]},
     {path: 'assign-lecture', component: AssignLectureComponent, canActivate: [AuthGuard]},
+    {path: 'assign-classroom', component: AssingClassroomComponent, canActivate: [AuthGuard]},
     {path: 'parameters', component: ParametersComponent, canActivate: [AuthGuard]},
   ]
 

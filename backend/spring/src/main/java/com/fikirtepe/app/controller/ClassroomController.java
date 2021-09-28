@@ -39,4 +39,9 @@ public class ClassroomController {
         return ResponseEntity.ok(sectionService.createSection(section));
     }
 
+    @GetMapping("/{id}/schedule")
+    public ResponseEntity<List<Section>> getSchedule(@PathVariable long id){
+        return ResponseEntity.ok(sectionService.findSectionsByClassroomId(id));
+    }
+
 }

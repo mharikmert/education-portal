@@ -6,6 +6,8 @@ import com.fikirtepe.app.service.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SectionServiceImplementation implements SectionService {
     private final SectionRepository sectionRepository;
@@ -17,6 +19,11 @@ public class SectionServiceImplementation implements SectionService {
     @Override
     public Section createSection(Section section) {
         return sectionRepository.save(section);
+    }
+
+    @Override
+    public List<Section> findSectionsByClassroomId(long id) {
+        return sectionRepository.findSectionsByClassroomId(id);
     }
 
     @Override

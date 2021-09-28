@@ -48,7 +48,7 @@
                 <td>
                 <div style = 'display: flex; background: none;'>
                     <app-button color = 'blue' text = 'Detay' [routerLink]="['user-details']" routerLinkActive="router-link-active" ></app-button>
-                    <app-button color = 'blue' text = 'Sinif Atama' *ngIf="user.type === 'Öğrenci' || user.type ==='Öğretmen'" (btnClicked) = 'assignClassroom(user)'></app-button>
+                    <app-button color = 'blue' text = 'Sinif Atama' *ngIf="user.type === 'Öğrenci'" (btnClicked) = 'assignClassroom(user)'></app-button>
                 </div>
 
                 </td>

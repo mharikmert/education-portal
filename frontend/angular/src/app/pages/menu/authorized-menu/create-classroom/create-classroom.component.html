@@ -26,8 +26,8 @@
             <td> {{ classroom.grade }} </td>
             <td> 
             <div style = 'display: flex;'>
-                <app-button color = 'blue' text = 'Ders Tanimlama ' (btnClicked) = 'shareClassroom(classroom)'></app-button>
-                <app-button color = 'blue' text = 'Program'></app-button>
+                <app-button color = 'blue' text = 'Ders Tanimlama ' (btnClicked)="shareClassroom(classroom,'assign-lecture')"></app-button>
+                <app-button color = 'blue' text = 'Program' (btnClicked)="shareClassroom(classroom, 'classroom-schedule')"></app-button>
             </div>
             </td>
         </tr>

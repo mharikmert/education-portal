@@ -33,9 +33,9 @@ export class CreateClassroomComponent implements OnInit {
     this.classroomService.addClassroom(classroom).subscribe(classrom => this.classrooms.push(classrom));
   }  
   
-  shareClassroom(classroom : Classroom){
+  shareClassroom(classroom : Classroom, path: string){
     //set the current classroom as sharedClassroom 
     this.classroomService.nextClassroom(classroom);
-    this.router.navigate(['assign-lecture'])
+    this.router.navigate([path])
   }
 }

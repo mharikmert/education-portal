@@ -1,0 +1,17 @@
+<h1> {{classroom.name}} Ders Programi </h1>
+<div class="container">
+    <div class="table table-responsive" style = 'display: flex;'>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <td> Ders Saatleri / Gunler </td>
+                    <td *ngFor="let sch of schedule">
+                        {{sch.day}}
+                    </td>
+                </tr>
+            </thead>
+        </table>
+
+        
+    </div> 
+</div>

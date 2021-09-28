@@ -29,12 +29,28 @@ export class AssignLectureComponent implements OnInit {
   ngOnInit(): void {
     //subscribe the observable BehaviorSubject in ClassroomService (sharedClassroom) to fetch last set classroom  
     this.classroomService.sharedClassrom.subscribe(classroom => this.classroom = classroom);
-    this.lectureService.getLectures().subscribe(lectures => this.lectures = lectures);
+    this.lectureService.getLectures().subscribe(lectures => this.lectures = this.filterLectures(lectures));
     this.teacherService.getTeachers().subscribe(teachers => this.teachers = teachers);
-    this.section.classroom = this.classroom
+    this.section.classroom = this.classroom;
+
   }
-  submit(){
-    this.classroomService.assignLecture(this.section).subscribe();
+
+  //Angular lifecycle hook: ngDoCheck() -> It is called every time a change is detected after ngOnInit() and ngOnChanges()
+  // ngDoCheck(): void { }
+
+  submit = () => this.classroomService.assignLecture(this.section).subscribe();
+
+  filterLectures(lectures : Lecture []): Lecture []{
+    switch(this.classroom.grade){
+      case 9: return this.filterLecture(lectures, '101'); 
+      case 10: return this.filterLecture(lectures,'202'); 
+      case 11: return this.filterLecture(lectures,'303'); 
+      case 12: return this.filterLecture(lectures,'404'); 
+      default: {console.log('No lecture filtered!, lectures ->', lectures); return []};
+    }
+  }
+  filterLecture(lectures : Lecture [], lectureCode : string){
+    return lectures.filter(lecture => lecture.lectureCode?.includes(lectureCode));
   }
 
 

@@ -1,1 +1,11 @@
-<p>assing-classroom works!</p>
+<h1> Kullaniciya Sinif Atama </h1>
+<div class = 'container'>
+    <h3> Kullanici : {{user.firstName}} {{user.lastName}}</h3>
+    <select class = 'custom-select' style = 'width: fit-content;' [(ngModel)]="classroom">
+        <option disabled>Sinif Sec </option>
+        <option *ngFor="let classroom of classrooms" [ngValue]="classroom">
+            {{classroom.name}}
+        </option>
+    </select>
+    <app-button text = 'sinif ata' (btnClicked) = 'assignClassroom()'></app-button>
+</div>

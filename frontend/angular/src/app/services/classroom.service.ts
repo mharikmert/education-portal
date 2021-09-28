@@ -28,15 +28,22 @@ export class ClassroomService {
   addClassroom(classroom: Classroom): Observable<Classroom> {
     return this.httpClient.post<Classroom>(`${this.apiUrl}` + '/api/classrooms', classroom, {headers: this.headers} )
   }
+  
   getClassroomByName(classroomName: string | undefined) : Observable<Classroom> {
     return this.httpClient.get<Classroom>(`${this.apiUrl}/api/classrooms/byName`, {
       params: {name : `${classroomName}`},
       headers: this.headers
     });
   }
+  
   assignLecture(section: Section): Observable<Section>{
     return this.httpClient.post<Section>(`${this.apiUrl}/api/classrooms/assignLecture`, section, {headers: this.headers})
   }
+
+  getSchedule(classroomId: bigint | undefined) : Observable<Section []>{
+    return this.httpClient.get<Section []>(`${this.apiUrl}/api/classrooms/${classroomId}/schedule`, {headers: this.headers});
+  }
+
   nextClassroom(classroom: Classroom){
     this.classroom.next(classroom);
   }

@@ -1,6 +1,7 @@
 import { HttpHeaders, HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Classroom } from '../models/Classroom';
 import { User } from '../models/User';
 
 @Injectable({
@@ -24,6 +25,9 @@ export class UserService {
     return this.httpClient.get<User []>(`${this.apiUrl}/api/${path}`, {headers: this.headers})
   }
 
+  assignClassroom(id: bigint | undefined, classroom: Classroom) : Observable<User>{
+    return this.httpClient.post<User>(`${this.apiUrl}/api/students/${id}/assignClassroom`, classroom, {headers: this.headers});
+  }
   nextUser(user: User){
     this.user.next(user);
   }

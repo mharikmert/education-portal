@@ -1,7 +1,7 @@
 package com.fikirtepe.app.controller;
 
 import com.fikirtepe.app.exception.UserNotFoundException;
-import com.fikirtepe.app.model.Student;
+import com.fikirtepe.app.model.*;
 import com.fikirtepe.app.service.EmailService;
 import com.fikirtepe.app.service.StudentService;
 import com.fikirtepe.app.service.UserService;
@@ -65,6 +65,20 @@ public class StudentController {
         catch(Exception ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+    @PostMapping("/{id}/assignClassroom")
+    public ResponseEntity<Student> assignClassroom(@RequestBody Classroom classroom, @PathVariable long id){
+        try {
+            Student student = studentService.findStudentById(id);
+            student.setClassroom(classroom);
+            studentService.save(student);
+            return ResponseEntity.ok(student);
+        } catch (UserNotFoundException ex){
+            throw new UserNotFoundException("User is not assigned to any classroom") ;
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return null;
     }
 
 }

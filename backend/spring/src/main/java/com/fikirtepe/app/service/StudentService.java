@@ -10,6 +10,7 @@ import java.util.Set;
 
 public interface StudentService {
     Student createStudent(Student student);
+    Student save(Student student);
     void deleteStudent(Student student);
     Student findStudentById(Long id);
     Classroom findClassroomsById(Long id);

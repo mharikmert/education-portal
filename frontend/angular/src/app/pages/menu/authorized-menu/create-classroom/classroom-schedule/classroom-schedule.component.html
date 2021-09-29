@@ -4,12 +4,21 @@
         <table class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
-                    <td> Ders Saatleri / Gunler </td>
-                    <td *ngFor="let sch of schedule">
-                        {{sch.day}}
+                    <td> Gun / Saat </td>
+                    <td *ngFor="let day of days">
+                        {{day}}
                     </td>
+
                 </tr>
             </thead>
+            <tbody>
+                <tr *ngFor="let hour of startingTime; let i = index;">
+                    <td> {{ startingTime [i] }} - {{ startingTime[i + 1]}}</td>
+                    <td *ngFor="let day of days">
+                        {{ filterSchedule(hour, day) }}
+                    </td>
+                </tr>
+            </tbody>
         </table>
 
         

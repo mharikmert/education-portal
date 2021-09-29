@@ -24,6 +24,11 @@ public class TeacherController {
     public ResponseEntity<Teacher> createTeacher(@RequestBody Teacher teacher){
         return ResponseEntity.ok(teacherService.createTeacher(teacher));
     }
+    @PostMapping("/temp")
+    public ResponseEntity<List<Teacher>> createTeachers(@RequestBody List<Teacher> teachers){
+       teachers.forEach(teacherService::createTeacher);
+       return ResponseEntity.ok(teacherService.findAll());
+    }
 }
 
 

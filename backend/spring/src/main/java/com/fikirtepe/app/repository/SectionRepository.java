@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface SectionRepository extends JpaRepository<Section, Long> {
     List<Section> findSectionsByClassroomId(long id);
+    Section findSectionByClassroomIdAndDayAndStartingTime(long id, String day, String startingTime);
 }

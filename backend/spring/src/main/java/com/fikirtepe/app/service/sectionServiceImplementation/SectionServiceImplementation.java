@@ -27,6 +27,11 @@ public class SectionServiceImplementation implements SectionService {
     }
 
     @Override
+    public Section findSectionByClassroomIdAndDayAndStartingTime(long id, String day, String startingTime) {
+        return sectionRepository.findSectionByClassroomIdAndDayAndStartingTime(id, day, startingTime);
+    }
+
+    @Override
     public void deleteSection(Section section) {
         sectionRepository.delete(section);
 

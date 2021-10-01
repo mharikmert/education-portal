@@ -23,4 +23,28 @@ public class Section implements Serializable {
     private Teacher teacher;
     @ManyToOne
     private Classroom classroom;
+
+    public Section(){ }
+    public Section(Long id, String day, String startingTime, int numberOfHours, Lecture lecture, Teacher teacher, Classroom classroom) {
+        this.id = id;
+        this.day = day;
+        this.startingTime = startingTime;
+        this.numberOfHours = numberOfHours;
+        this.lecture = lecture;
+        this.teacher = teacher;
+        this.classroom = classroom;
+    }
+
+    @Override
+    public String toString() {
+        return "Section{" +
+                "id=" + id +
+                ", day='" + day + '\'' +
+                ", startingTime='" + startingTime + '\'' +
+                ", numberOfHours=" + numberOfHours +
+                ", lecture=" + lecture +
+                ", teacher=" + teacher +
+                ", classroom=" + classroom +
+                '}';
+    }
 }

@@ -16,11 +16,11 @@ export class TeacherService {
   
   
   getTeachers() : Observable<User[]> {
-    return this.httpClient.get<User []>(`${environment.apiUrl}` + '/api/teachers', {headers: this.headers})
+    return this.httpClient.get<User []>(`${environment.apiUrl}/api/teachers`, {headers: this.headers})
   }
   
   addTeacher(teacher: User): Observable<User> {
-    return this.httpClient.post<User>(`${environment.apiUrl}` + '/api/teachers', teacher, {headers: this.headers} )
+    return this.httpClient.post<User>(`${environment.apiUrl}/api/teachers`, teacher, {headers: this.headers} )
   }
 
 

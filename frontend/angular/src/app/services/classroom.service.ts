@@ -23,11 +23,11 @@ export class ClassroomService {
   
   
   getClassrooms() : Observable<Classroom[]> {
-    return this.httpClient.get<Classroom []>(`${environment.apiUrl}` + '/api/classrooms', {headers: this.headers})
+    return this.httpClient.get<Classroom []>(`${environment.apiUrl}/api/classrooms`, {headers: this.headers})
   }
 
   addClassroom(classroom: Classroom): Observable<Classroom> {
-    return this.httpClient.post<Classroom>(`${environment.apiUrl}` + '/api/classrooms', classroom, {headers: this.headers} )
+    return this.httpClient.post<Classroom>(`${environment.apiUrl}/api/classrooms`, {headers: this.headers} )
   }
   
   getClassroomByName(classroomName: string | undefined) : Observable<Classroom> {

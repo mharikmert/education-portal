@@ -17,11 +17,11 @@ export class LectureService {
   
   
   getLectures() : Observable<Lecture[]> {
-    return this.httpClient.get<Lecture []>(`${environment.apiUrl}` + '/api/lectures', {headers: this.headers})
+    return this.httpClient.get<Lecture []>(`${environment.apiUrl}/api/lectures`, {headers: this.headers})
   }
   
   addLecture(lecture: Lecture): Observable<Classroom> {
-    return this.httpClient.post<Lecture>(`${environment.apiUrl}` + '/api/lectures', lecture, {headers: this.headers} )
+    return this.httpClient.post<Lecture>(`${environment.apiUrl}/api/lectures`, lecture, {headers: this.headers} )
   }
 
 

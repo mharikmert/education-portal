@@ -16,17 +16,17 @@ export class TermService {
   
   constructor(private httpClient: HttpClient) { }
 
-  getAdmin = () =>  this.httpClient.get(environment.apiUrl + '/api/users/by/username/' + localStorage.getItem('username'),{headers: this.headers});
+  getAdmin = () =>  this.httpClient.get(`${environment.apiUrl}/api/users/by/username`+ localStorage.getItem('username'),{headers: this.headers});
 
   addTerm(term: Term) {
-    return this.httpClient.post<Term>(environment.apiUrl+ '/api/terms',term, {headers: this.headers})  
+    return this.httpClient.post<Term>(`${environment.apiUrl}/api/terms`,term, {headers: this.headers})  
   }
 
   getTerms(): Observable<Term []> {
-    return this.httpClient.get<Term []>(environment.apiUrl+ '/api/terms', {headers: this.headers}); 
+    return this.httpClient.get<Term []>(`${environment.apiUrl}/api/terms`, {headers: this.headers}); 
   }
   
   updateTerms(terms : Term[]): Observable<Term []> {
-    return this.httpClient.post<Term []>(environment.apiUrl+ '/api/updateTerms', terms, {headers: this.headers}); 
+    return this.httpClient.post<Term []>(`${environment.apiUrl}/api/updateTerms`, terms, {headers: this.headers}); 
   } 
 }

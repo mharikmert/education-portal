@@ -40,7 +40,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors();
         http.csrf().disable();
-        //commence method overwritten to avoid unauth as default
         http.authorizeRequests()
                 .antMatchers(allowedPaths).permitAll()
                 //allow register and login post requests

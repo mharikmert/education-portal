@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -11,5 +12,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  redirectRegister = () => window.location.href = `${environment.apiUrl}/register`
 
 }

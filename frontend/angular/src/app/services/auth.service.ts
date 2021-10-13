@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,6 @@ import { Router } from '@angular/router';
 export class AuthService {
   constructor(private httpClient: HttpClient, private router: Router) { }
 
-  private apiUrl = 'http://localhost:8080/api/auth'
 
   login(username: string, password: string) : Observable<HttpClientModule> {
     // const httpOptions = {
@@ -23,6 +23,6 @@ export class AuthService {
       "password": password
     }
     
-    return this.httpClient.post(this.apiUrl, creds)
+    return this.httpClient.post(`${environment.apiUrl}/api/auth`, creds)
   }
 }

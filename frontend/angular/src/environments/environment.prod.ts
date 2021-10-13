@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  // apiUrl: 'http://egitimportali.online'
+  apiUrl: 'http://localhost:8080'
 };

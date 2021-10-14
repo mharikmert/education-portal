@@ -13,10 +13,13 @@
             </thead>
             <tbody>
                 <tr *ngFor="let hour of startingTime; let i = index;">
-                    <td> {{ startingTime [i] }} - {{ startingTime[i + 1]}}</td>
-                    <td *ngFor="let day of days">
-                        {{ filterSchedule(hour, day) }}
-                    </td>
+                    <!-- ng-container will not be added to DOM. -->
+                    <ng-container *ngIf="i !== startingTime.length - 1">
+                        <td > {{ startingTime [i] }} - {{ startingTime[i + 1] }}</td>
+                        <td *ngFor="let day of days">
+                            {{ filterSchedule(hour, day) }}
+                        </td>
+                    </ng-container>
                 </tr>
             </tbody>
         </table>

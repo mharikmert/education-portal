@@ -18,6 +18,8 @@ export class UserService {
   //shares users between unrelated components 
   private user : BehaviorSubject<User>= new BehaviorSubject<User>( new User());
   public sharedUser = this.user.asObservable();
+  private roles : BehaviorSubject<string []>= new BehaviorSubject<string []> ([]);
+  public sharedRoles = this.roles.asObservable();
 
   constructor(private httpClient: HttpClient) { }
   
@@ -30,6 +32,9 @@ export class UserService {
   }
   nextUser(user: User){
     this.user.next(user);
+  }
+  nextRole(authorities: string[]){
+    this.roles.next(authorities)
   }
   
 

@@ -1,0 +1,7 @@
+<div class = 'container'>
+    <app-button *ngIf = "roles.includes('ROLE_ADMIN')" text = 'Admin Menu' (btnClicked) = "this.router.navigate(['admin-menu'])"> </app-button> 
+    <app-button *ngIf = "roles.includes('ROLE_ADMIN' || 'ROLE_AUTHORIZED')" text = 'Yetkili Kullanici Menusu' (btnClicked) = "this.router.navigate(['authorized-menu'])"> </app-button>
+    <app-button *ngIf = "roles.includes('ROLE_ADMIN' || 'ROLE_STUDENT')" text = 'Ogrenci Menusu' (btnClicked) = "this.router.navigate(['student-menu'])"> </app-button>
+    <app-button *ngIf = "roles.includes('ROLE_ADMIN' || 'ROLE_TEACHER')" text = 'Ogretmen Menusu' (btnClicked) = "this.router.navigate(['teacher-menu'])"> </app-button>
+    <app-button *ngIf = "roles.includes('ROLE_ADMIN' || 'ROLE_PARENT')" text = 'Veli Menusu' (btnClicked) = "this.router.navigate(['parent-menu'])"> </app-button>
+</div>

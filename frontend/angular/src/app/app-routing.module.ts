@@ -17,6 +17,7 @@ import { UserDetailsComponent } from './pages/menu/authorized-menu/user-actions/
 import { AssignLectureComponent } from './pages/menu/authorized-menu/create-classroom/assign-lecture/assign-lecture.component';
 import { AssingClassroomComponent } from './pages/menu/authorized-menu/user-actions/assing-classroom/assing-classroom.component';
 import { ClassroomScheduleComponent } from './pages/menu/authorized-menu/create-classroom/classroom-schedule/classroom-schedule.component';
+import { LoggedInComponent } from './pages/logged-in/logged-in.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -39,6 +40,7 @@ const routes: Routes = [
     {path: 'classroom-schedule', component: ClassroomScheduleComponent, canActivate: [AuthGuard]},
     {path: 'assign-classroom', component: AssingClassroomComponent, canActivate: [AuthGuard]},
     {path: 'parameters', component: ParametersComponent, canActivate: [AuthGuard]},
+    {path: 'logged-in', component: LoggedInComponent, canActivate: [AuthGuard]}
   ]
 
 @NgModule({

@@ -30,6 +30,7 @@ import { InputComponent } from './components/input/input.component';
 import { AssignLectureComponent } from './pages/menu/authorized-menu/create-classroom/assign-lecture/assign-lecture.component';
 import { AssingClassroomComponent } from './pages/menu/authorized-menu/user-actions/assing-classroom/assing-classroom.component';
 import { ClassroomScheduleComponent } from './pages/menu/authorized-menu/create-classroom/classroom-schedule/classroom-schedule.component';
+import { LoggedInComponent } from './pages/logged-in/logged-in.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ClassroomScheduleComponent } from './pages/menu/authorized-menu/create-
     AssignLectureComponent,
     AssingClassroomComponent,
     ClassroomScheduleComponent,
+    LoggedInComponent,
   ],
   imports: [
     BrowserModule,

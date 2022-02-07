@@ -2,16 +2,19 @@
     <div class = "logo-container"> <img src = "../../../assets/cagdas-logo.png" alt="logo"> </div>
     <div class ="title-container"> <h1>Fikirtepe Eğitime Destek Projesi </h1> </div>
     
-    <app-button 
-        text = 'KAYIT' 
-        color = 'purple'
-        (click) = "redirectRegister()">
-    </app-button>
-    
-    <app-button 
-        text = 'GİRİŞ' 
-        color = 'purple'
-        [routerLink]="['/login']" 
-        routerLinkActive="router-link-active">
-    </app-button> 
+    <div class = 'button-container'>
+        <app-button 
+            text = 'KAYIT' 
+            color = 'purple'
+            (click) = "redirectRegister()">
+        </app-button>
+        
+        <app-button 
+            text = 'GİRİŞ' 
+            color = 'purple'
+            [routerLink]="['/login']" 
+            routerLinkActive="router-link-active">
+        </app-button> 
+
+    </div> 
 </div>

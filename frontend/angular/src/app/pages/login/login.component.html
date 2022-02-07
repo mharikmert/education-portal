@@ -1,20 +1,18 @@
-<div class="top-line-container">
+<div class="login-container">
     <div class = "login-header">
         <div class = "login-title">
             Öğrenci&nbsp;Bilgi&nbsp;Sistemi
         </div>
 
-        <div class = "turn-back-btn-container">
-            <button class = "btn" [routerLink]="['/']" routerLinkActive="router-link-active" > Ana Sayfaya Dön </button>
+    </div>
+    <div class = 'login-panel' (ngSubmit) = "onSubmit()">
+        <div class = "warning-message">
+            <app-login-error
+                errorType = "{{ errorType }}"
+            > 
+            </app-login-error>
         </div>
-    </div>
-    <div id = "warning-place">
-        <app-login-error
-            errorType = "{{ errorType }}"
-        > 
-        </app-login-error>
-    </div>
-    <form class = 'login-panel' (ngSubmit) = "onSubmit()">
+
         <div class = 'slogan'> EGITIM DEGISIM & GELISIM </div>
         <div class="logo"></div>
         
@@ -27,8 +25,23 @@
             <span id = 'toggle-password' [ngClass] = "showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'" aria-hidden="true" (click) = 'showPassword = !showPassword'></span>
         </div>
 
-        <button class = 'login-button btn' type = 'submit' (click) = 'onSubmit()'> GIRIS 
-            <span *ngIf = 'btnClicked' class="spinner-border spinner-border-sm" style = 'margin:auto'></span>
-        </button> 
-    </form>
+        <!-- Add a forgot password field that is aligned the left of the login-panel -->
+        <div class = 'forgot-password'>
+            <a routerLink = '/forgot-password'>
+                Sifremi Unuttum
+                <span class = 'fas fa-question-circle'
+                    aria-hidden="true">
+                </span>
+            </a>
+        </div>
+
+        <div>
+            <button class = 'login-button btn' type = 'submit' (click) = 'onSubmit()'> GIRIS 
+                <span *ngIf = 'btnClicked' class="spinner-border spinner-border-sm" style = 'margin:auto'></span>
+            </button> 
+        </div> 
+        <div>
+            <a class = 'register-button btn' routerLink = "/register"> Kayit olun </a>
+        </div>
+    </div>
 </div>

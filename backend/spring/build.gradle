@@ -6,43 +6,41 @@ plugins {
 
 group = 'com.fikirtepe.app'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.5.4'
-    implementation 'org.springframework.boot:spring-boot-devtools:2.5.4'
-    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.5.4'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.4'
-    implementation 'org.springframework.boot:spring-boot-starter-mail:2.5.4'
-    implementation 'org.springframework.boot:spring-boot-configuration-processor:2.5.4'
-    implementation 'org.springframework.boot:spring-boot-starter-security:2.5.4'
-    implementation 'org.springframework.security:spring-security-test:5.5.1'
-    implementation 'org.springframework.session:spring-session-jdbc:2.5.2'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.boot:spring-boot-configuration-processor'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.security:spring-security-test'
+    implementation 'org.springframework.session:spring-session-jdbc'
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
     // https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
     implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.0.2'
     // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
     implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.2'
 
-
-
     implementation 'mysql:mysql-connector-java:8.0.25'
 
-    compileOnly 'org.projectlombok:lombok:1.18.20'
-    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools:2.5.4'
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.3'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testImplementation 'org.hamcrest:hamcrest-core:2.2'
 
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 
 }
 

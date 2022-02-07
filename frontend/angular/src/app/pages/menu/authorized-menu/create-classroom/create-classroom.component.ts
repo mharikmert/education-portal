@@ -30,7 +30,11 @@ export class CreateClassroomComponent implements OnInit {
     this.classroom.capacity = parseInt(this.strCapacity);
     this.classroom.grade = parseInt(this.strGrade);
     console.log(this.classroom)
-    this.classroomService.addClassroom(classroom).subscribe(classrom => this.classrooms.push(classrom));
+    if(classroom.capacity && classroom.grade){
+      this.classroomService.addClassroom(classroom).subscribe(classrom => this.classrooms.push(classrom));
+    } else{
+      alert('Please enter classroom capacity and grade')
+    }
   }  
   
   shareClassroom(classroom : Classroom, path: string){

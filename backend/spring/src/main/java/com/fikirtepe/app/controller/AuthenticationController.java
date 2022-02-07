@@ -3,7 +3,7 @@ package com.fikirtepe.app.controller;
 import com.fikirtepe.app.payload.LoginRequest;
 import com.fikirtepe.app.payload.LoginResponse;
 import com.fikirtepe.app.security.JwtTokenUtil;
-import com.fikirtepe.app.service.JwtUserDetailsService;
+import com.fikirtepe.app.security.JwtUserDetailsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

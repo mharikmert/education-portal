@@ -1,6 +1,5 @@
 package com.fikirtepe.app.security;
 
-import com.fikirtepe.app.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -22,12 +21,22 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-    @Autowired
     private JwtUserDetailsService jwtUserDetailsService;
-    @Autowired
     private JwtRequestFilter jwtRequestFilter;
+
+    @Autowired
+    public void setJwtAuthenticationEntryPoint(JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint) {
+        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
+    }
+    @Autowired
+    public void setJwtUserDetailsService(JwtUserDetailsService jwtUserDetailsService) {
+        this.jwtUserDetailsService = jwtUserDetailsService;
+    }
+    @Autowired
+    public void setJwtRequestFilter(JwtRequestFilter jwtRequestFilter) {
+        this.jwtRequestFilter = jwtRequestFilter;
+    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{

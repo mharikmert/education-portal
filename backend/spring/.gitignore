@@ -36,5 +36,5 @@ out/
 ### VS Code ###
 .vscode/
 
-### Local Configuration ###
-src/main/resources/config.properties
+### Environment Variables ###
+application.yml

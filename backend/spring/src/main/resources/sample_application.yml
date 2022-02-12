@@ -1,0 +1,47 @@
+###  rename this file as application.yml after setting your environment variables ###
+
+# default configuration
+spring:
+  mail:
+    properties:
+      mail.smtp.auth: true
+      smtp.starttls.enable: true
+    host: smtp.gmail.com # smtp server
+    port: 587 # smtp port
+    username: # your email
+    password: # your app password
+
+server:
+  port: 8080
+
+jwt_secret: "secret key here"
+jwt_expiration: "1h"
+
+# dev environment configuration
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/fikirtepedb
+    username: username
+    password: password
+server:
+  port: 9000
+
+# prod environment configuration
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: # your database url here (ex: jdbc:mysql://IP:PORT/DATABASE)
+    username: # your database username
+    password: # your database password
+
+server:
+  port: 0
+
+---

@@ -5,48 +5,26 @@ import com.fikirtepe.app.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.util.Properties;
 
 @Component
 @Service
 public class EmailServiceImplementation implements EmailService {
     private final Logger logger = LoggerFactory.getLogger(EmailServiceImplementation.class);
-    private final JavaMailSenderImpl javaMailSender;
-    private final String email;
-    private final String password;
+    private JavaMailSenderImpl javaMailSender;
 
-    //injects javaMailSender for mailing capability
-    @Autowired
-    public JavaMailSender setJavaMailSender(JavaMailSenderImpl javaMailSender) {
-        javaMailSender.setUsername(email);
-        javaMailSender.setPassword(password);
-        javaMailSender.setJavaMailProperties(getMailProperties());
-        return javaMailSender;
-    }
+    @Value("${spring.mail.username}") private String email;
 
-    //get email bean with qualifier annotation that is defined in email configuration class
+    //injects javaMailSender from application context
     @Autowired
-    public EmailServiceImplementation(JavaMailSenderImpl javaMailSender, @Qualifier("email") String email, @Qualifier("email_password") String password){
+    public void setJavaMailSender(JavaMailSenderImpl javaMailSender) {
         this.javaMailSender = javaMailSender;
-        this.email = email;
-        this.password = password;
-    }
-
-    private Properties getMailProperties(){
-        Properties properties = new Properties();
-        properties.setProperty("mail.username",email);
-        properties.setProperty("mail.password",password);
-        properties.setProperty("mail.smtp.auth", "true");
-        properties.setProperty("mail.smtp.starttls.enable", "true");
-        return properties;
     }
 
     @Override

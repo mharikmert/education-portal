@@ -3,9 +3,6 @@
 # default configuration
 spring:
   mail:
-    properties:
-      mail.smtp.auth: true
-      smtp.starttls.enable: true
     host: smtp.gmail.com # smtp server
     port: 587 # smtp port
     username: # your email

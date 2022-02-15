@@ -22,7 +22,7 @@ import { LoggedInComponent } from './pages/logged-in/logged-in.component';
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
+  // {path: 'register', component: RegisterComponent},
   {path: 'home', component: HomeComponent}, 
 
     //refactor these as children routes  

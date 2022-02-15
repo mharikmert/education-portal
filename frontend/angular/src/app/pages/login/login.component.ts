@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { LoggedInService } from 'src/app/services/logged-in.service';
 import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
+import { environment} from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-login',
@@ -70,4 +72,5 @@ export class LoginComponent implements OnInit {
       setTimeout( () => {this.errorType = '' }, 1500)
     })
   }
+  redirectRegister = () => window.location.href = `${environment.apiUrl}/register`;
 }

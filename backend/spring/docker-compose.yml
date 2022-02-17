@@ -1,0 +1,13 @@
+version: '3'
+services:
+  fikirtepe-backend:
+    image: fikirtepe-backend:latest
+    container_name: fikirtepe-backend-server
+    ports:
+      - "8080:8080"
+    restart: always
+
+  fikirtepe-frontend:
+    image: fikirtepe-ui:latest
+    container_name: fikirtepe-frontend-server
+    restart: always

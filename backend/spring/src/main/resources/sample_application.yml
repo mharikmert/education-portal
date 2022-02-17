@@ -27,6 +27,19 @@ spring:
 server:
   port: 9000
 
+# test environment configuration
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    url: jdbc:mysql://localhost:3306/fikirtepetestdb
+    username: username
+    password: password
+server:
+  port: 9001
+
 # prod environment configuration
 ---
 spring:

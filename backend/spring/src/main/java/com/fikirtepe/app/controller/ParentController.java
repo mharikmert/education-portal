@@ -18,7 +18,7 @@ public class ParentController {
     }
     @GetMapping
     public ResponseEntity<List<Parent>> getParents(){
-        return ResponseEntity.ok(parentService.findAllParents());
+        return ResponseEntity.ok(parentService.getParents());
     }
     @PostMapping
     public ResponseEntity<Parent> createParent(@RequestBody Parent parent){

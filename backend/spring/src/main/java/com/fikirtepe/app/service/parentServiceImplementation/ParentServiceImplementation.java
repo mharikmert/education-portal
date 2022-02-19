@@ -28,22 +28,18 @@ public class ParentServiceImplementation implements ParentService {
     }
 
     @Override
-    public List<Parent> findAllParents() {
+    public List<Parent> getParents() {
        return parentRepository.findAll();
     }
 
     @Override
-    public Parent findParentById(Long id) {
+    public Parent getParentById(Long id) {
         return parentRepository.findParentById(id);
     }
 
-    @Override
-    public Set<Student> findStudentsByParentId(Long id) {
-        return parentRepository.findParentById(id).getStudents();
-    }
 
     @Override
-    public void deleteParent(Parent parent) {
-        parentRepository.delete(parent);
+    public void deleteParent(Long id) {
+        parentRepository.deleteById(id);
     }
 }

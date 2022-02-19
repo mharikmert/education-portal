@@ -27,39 +27,23 @@ public class StudentServiceImplementation implements StudentService {
         student.setRoles(Collections.singletonList(Role.ROLE_STUDENT));
         return studentRepository.save(student);
     }
-
     @Override
     public Student save(Student student) {
         return studentRepository.save(student);
     }
 
     @Override
-    public void deleteStudent(Student student) {
-        studentRepository.delete(student);
+    public void deleteStudentById(Long id) {
+        studentRepository.delete(getStudentById(id));
     }
 
     @Override
-    public Student findStudentById(Long id) {
+    public Student getStudentById(Long id) {
         return studentRepository.findStudentById(id);
     }
 
     @Override
-    public Classroom findClassroomsById(Long id) {
-        return studentRepository.findStudentById(id).getClassroom();
-    }
-
-    @Override
-    public List<Student> findAllStudents() {
+    public List<Student> getStudents() {
         return studentRepository.findAll();
-    }
-
-    @Override
-    public Set<Lecture> findLecturesById(Long id) {
-        return studentRepository.findStudentById(id).getLectures();
-    }
-
-    @Override
-    public Set<Teacher> findTeachersById(Long id) {
-        return studentRepository.findStudentById(id).getClassroom().getTeachers();
     }
 }

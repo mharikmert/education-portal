@@ -18,7 +18,7 @@ public class TeacherController {
     }
     @GetMapping
     public ResponseEntity<List<Teacher>> getTeachers(){
-        return ResponseEntity.ok(teacherService.findAll());
+        return ResponseEntity.ok(teacherService.getTeachers());
     }
     @PostMapping
     public ResponseEntity<Teacher> createTeacher(@RequestBody Teacher teacher){
@@ -27,7 +27,7 @@ public class TeacherController {
     @PostMapping("/temp")
     public ResponseEntity<List<Teacher>> createTeachers(@RequestBody List<Teacher> teachers){
        teachers.forEach(teacherService::createTeacher);
-       return ResponseEntity.ok(teacherService.findAll());
+       return ResponseEntity.ok(teacherService.getTeachers());
     }
 }
 

@@ -20,7 +20,7 @@ public class TermController {
     }
     @GetMapping("/terms")
     public ResponseEntity<List<Term>> getTerms(){
-        return ResponseEntity.ok(termService.findAllTerms());
+        return ResponseEntity.ok(termService.getTerms());
     }
 
     @PostMapping( "/terms")

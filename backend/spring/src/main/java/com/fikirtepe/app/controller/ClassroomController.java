@@ -24,11 +24,11 @@ public class ClassroomController {
     }
     @GetMapping
     public ResponseEntity<List<Classroom>> getClassrooms(){
-        return ResponseEntity.ok(classroomService.findAllClassrooms());
+        return ResponseEntity.ok(classroomService.getClassrooms());
     }
     @GetMapping("/byName")
     public ResponseEntity<Classroom> getClassroomByName(@RequestParam("name") String name){
-       return ResponseEntity.ok(classroomService.findClassroomByName(name));
+       return ResponseEntity.ok(classroomService.getClassroomByName(name));
     }
     @PostMapping
     public ResponseEntity<Classroom> createClassroom(@RequestBody Classroom classroom){
@@ -37,7 +37,7 @@ public class ClassroomController {
 
     @PostMapping("/assignLecture")
     public ResponseEntity<?> assignLecture(@RequestBody Section section){
-        if(sectionService.findSectionByClassroomIdAndDayAndStartingTime(section.getClassroom().getId(), section.getDay(), section.getStartingTime()) == null){
+        if(sectionService.getSectionByClassroomIdAndDayAndStartingTime(section.getClassroom().getId(), section.getDay(), section.getStartingTime()) == null){
             if (section.getNumberOfHours() == 1) {
                sectionService.createSection(section);
                return ResponseEntity.status(HttpStatus.CREATED).body(section);
@@ -58,7 +58,7 @@ public class ClassroomController {
 
     @GetMapping("/{id}/schedule")
     public ResponseEntity<List<Section>> getSchedule(@PathVariable long id){
-        return ResponseEntity.ok(sectionService.findSectionsByClassroomId(id));
+        return ResponseEntity.ok(sectionService.getSectionsByClassroomId(id));
     }
 
 }

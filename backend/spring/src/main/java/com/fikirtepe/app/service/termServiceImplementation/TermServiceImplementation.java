@@ -18,12 +18,12 @@ public class TermServiceImplementation implements TermService{
     }
 
     @Override
-    public List<Term> findAllTerms() {
+    public List<Term> getTerms() {
         return termRepository.findAll();
     }
 
     @Override
-    public Term findTermByName(String name) {
+    public Term getTermByName(String name) {
         return termRepository.findTermByName(name);
     }
 
@@ -35,6 +35,11 @@ public class TermServiceImplementation implements TermService{
     @Override
     public List<Term> updateTerms(List<Term> terms){
         return termRepository.saveAll(terms);
+    }
+
+    @Override
+    public Term updateTerm(Term term) {
+        return termRepository.save(term);
     }
     @Override
     public void deleteTerm(Term term) {

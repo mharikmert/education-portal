@@ -19,7 +19,7 @@ public class RedirectionController {
     @GetMapping("/{userType}-menu/{id}")
     public ModelAndView redirectUser(@PathVariable String userType, @PathVariable Long id){
        try{
-           User user = userService.findUser(id);
+           User user = userService.getUserById(id);
            ModelAndView mav = new ModelAndView();
            mav.addObject(user);
            mav.setViewName("User Types/" + userType + "-menu");

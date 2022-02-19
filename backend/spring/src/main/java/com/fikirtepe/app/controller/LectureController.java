@@ -18,7 +18,7 @@ public class LectureController {
     }
     @GetMapping
     public ResponseEntity<List<Lecture>> getLectures(){
-        return ResponseEntity.ok(lectureService.findAllLectures());
+        return ResponseEntity.ok(lectureService.getLectures());
     }
     @PostMapping
     public ResponseEntity<Lecture> createLecture(@RequestBody Lecture lecture){

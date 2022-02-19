@@ -21,7 +21,7 @@ public class ClassroomServiceImplementation implements ClassroomService {
     }
 
     @Override
-    public List<Classroom> findAllClassrooms() {
+    public List<Classroom> getClassrooms() {
        return classroomRepository.findAll();
     }
 
@@ -31,23 +31,18 @@ public class ClassroomServiceImplementation implements ClassroomService {
     }
 
     @Override
-    public Classroom findClassroomByName(String name) {
+    public Classroom getClassroomByName(String name) {
         return classroomRepository.findClassroomByName(name);
     }
 
     @Override
-    public Classroom findClassroomById(Long id) {
+    public Classroom getClassroomById(Long id) {
        return classroomRepository.findClassroomById(id);
     }
 
     @Override
-    public Set<Student> findAllStudents(String className) {
-        return classroomRepository.findClassroomByName(className).getStudents();
-    }
-
-    @Override
-    public Set<Teacher> findAllTeachers(String className) {
-        return classroomRepository.findClassroomByName(className).getTeachers();
+    public Set<Student> getStudentsByClassroomName(String classroomName){
+        return classroomRepository.findClassroomByName(classroomName).getStudents();
     }
 
     @Override

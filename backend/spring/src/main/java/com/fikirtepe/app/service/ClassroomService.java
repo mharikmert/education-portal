@@ -8,12 +8,11 @@ import java.util.List;
 import java.util.Set;
 
 public interface ClassroomService {
-    List<Classroom> findAllClassrooms();
+    List<Classroom> getClassrooms();
     Classroom createClassroom(Classroom classRef);
-    Classroom findClassroomByName(String className);
-    Classroom findClassroomById(Long id);
-    Set<Student> findAllStudents(String className);
-    Set<Teacher> findAllTeachers(String className);
+    Classroom getClassroomByName(String classroomName);
+    Set<Student> getStudentsByClassroomName(String classroomName);
+    Classroom getClassroomById(Long id);
     void deleteClassroom(Classroom classRef);
     void deleteClassroomByName(String name);
 }

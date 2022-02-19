@@ -36,7 +36,7 @@ public class StudentController {
 
     @GetMapping
     public List<Student> getStudents(){
-        return studentService.findAllStudents();
+        return studentService.getStudents();
     }
 
     //creates a student
@@ -46,7 +46,7 @@ public class StudentController {
                                         HttpServletResponse response) throws IOException {
         logger.info(student.toString());
         try{
-            userService.findUser(student.getId());
+            userService.getUserById(student.getId());
             return ResponseEntity.status(409).build();
         }
         catch(UserNotFoundException ex){
@@ -69,7 +69,7 @@ public class StudentController {
     @PostMapping("/{id}/assignClassroom")
     public ResponseEntity<Student> assignClassroom(@RequestBody Classroom classroom, @PathVariable long id){
         try {
-            Student student = studentService.findStudentById(id);
+            Student student = studentService.getStudentById(id);
             student.setClassroom(classroom);
             studentService.save(student);
             return ResponseEntity.ok(student);

@@ -8,8 +8,7 @@ import java.util.Set;
 
 public interface ParentService {
     Parent createParent(Parent parent);
-    List<Parent> findAllParents();
-    Parent findParentById(Long id);
-    Set<Student> findStudentsByParentId(Long id);
-    void deleteParent(Parent parent);
+    List<Parent> getParents();
+    Parent getParentById(Long id);
+    void deleteParent(Long id);
 }

@@ -25,27 +25,28 @@ public class LectureServiceImplementation implements LectureService {
     }
 
     @Override
-    public List<Lecture> findAllLectures() {
+    public List<Lecture> getLectures() {
        return lectureRepository.findAll();
     }
 
     @Override
-    public Lecture findLectureById(long id) {
+    public Lecture getLectureById(long id) {
         return lectureRepository.findLectureById(id) ;
     }
 
     @Override
-    public Lecture findLectureByName(String name) {
+    public Lecture getLectureByName(String name) {
         return lectureRepository.findLectureByName(name);
     }
 
     @Override
-    public Set<Classroom> findClassroomsByLectureName(String name) {
-        return lectureRepository.findLectureByName(name).getClassrooms();
+    public void updateLecture(Lecture lecture) {
+        lectureRepository.save(lecture);
     }
 
     @Override
-    public Set<Teacher> findTeachersByLectureName(String name) {
-        return lectureRepository.findLectureByName(name).getTeachers();
+    public void deleteLecture(long id) {
+        lectureRepository.delete(getLectureById(id));
     }
+
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SectionServiceImplementation implements SectionService {
@@ -22,18 +23,25 @@ public class SectionServiceImplementation implements SectionService {
     }
 
     @Override
-    public List<Section> findSectionsByClassroomId(long id) {
+    public Section getSectionById(Long id){
+        return sectionRepository.findSectionById(id);
+    }
+
+    @Override
+    public List<Section> getSectionsByClassroomId(long id) {
         return sectionRepository.findSectionsByClassroomId(id);
     }
 
     @Override
-    public Section findSectionByClassroomIdAndDayAndStartingTime(long id, String day, String startingTime) {
+    public Section getSectionByClassroomIdAndDayAndStartingTime(long id, String day, String startingTime) {
         return sectionRepository.findSectionByClassroomIdAndDayAndStartingTime(id, day, startingTime);
     }
-
+    @Override
+    public Section updateSection(Section section){
+        return sectionRepository.save(section);
+    }
     @Override
     public void deleteSection(Section section) {
         sectionRepository.delete(section);
-
     }
 }

@@ -21,6 +21,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.boot:spring-boot-configuration-processor'
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.security:spring-security-test'
     implementation 'org.springframework.session:spring-session-jdbc'
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
@@ -36,11 +37,8 @@ dependencies {
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools:2.5.4'
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.3'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-    testImplementation 'org.hamcrest:hamcrest-core:2.2'
-
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation(platform('org.junit:junit-bom:5.8.2'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
 
 }
 

@@ -9,7 +9,6 @@ import java.util.Set;
 public interface TeacherService {
     Teacher createTeacher(Teacher teacher);
     Teacher save(Teacher teacher);
-    Teacher findTeacherById(Long id);
-    List<Teacher> findAll();
-    Set<Classroom> findClassroomsById(Long id);
+    Teacher getTeacherById(Long id);
+    List<Teacher> getTeachers();
 }

@@ -52,6 +52,25 @@ public class User implements Serializable {
         this.setId(id);
         this.password = password;
     }
+    //create a constructor for all fields
+    public User(Long id, String username, String password, 
+                String firstName, String lastName, String phoneNumber, 
+                String email, String type, String city, String district, 
+                boolean isApproved, List<Role> roles) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.type = type;
+        this.city = city;
+        this.district = district;
+        this.isApproved = isApproved;
+        this.roles = roles;
+    }
+
 
     @Override
     public String toString() {

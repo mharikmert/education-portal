@@ -29,13 +29,14 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public void createUser(User user){
+    public User createUser(User user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
+        return user;
     }
 
     @Override
-    public User findUser(long id) throws UserNotFoundException{
+    public User getUserById(long id) throws UserNotFoundException{
         User user = userRepository.findById(id).orElse(null);
         if(user == null) throw new UserNotFoundException("User not found");
         return user;
@@ -43,25 +44,36 @@ public class UserServiceImplementation implements UserService {
 
     @Override
 //    @Secured(value = {"ROLE_ADMIN"})
-    public List<User> findAllUsers() {
+    public List<User> getUsers() {
         return userRepository.findAll();
     }
 
     @Override
 //    @Secured(value = {"ROLE_ADMIN"})
     public void deleteUser(Long id){
-       userRepository.delete(findUser(id));
+       userRepository.delete(getUserById(id));
     }
 
+    //create a method to update the user
+
     @Override
-    public boolean verifyUser(User user) {
-        try{
-            User inDb = findUser(user.getId());
-            //check the password matches with encrypted password in database
-            return passwordEncoder.matches(user.getPassword(), inDb.getPassword());
-        } catch(UserNotFoundException ex){
-            return false;
-        }
+    public User updateUser(Long id, User user) {
+        User userToUpdate = userRepository.findById(id).orElse(null);
+
+        if(userToUpdate == null)
+            throw new UserNotFoundException("User is not found with id");
+
+        userToUpdate.setFirstName(user.getFirstName());
+        userToUpdate.setLastName(user.getLastName());
+        userToUpdate.setUsername(user.getUsername());
+        userToUpdate.setPassword(user.getPassword());
+        userToUpdate.setEmail(user.getEmail());
+        userToUpdate.setPhoneNumber(user.getPhoneNumber());
+        userToUpdate.setRoles(user.getRoles());
+        userToUpdate.setEmail(user.getEmail());
+
+
+        return userRepository.save(userToUpdate);
     }
 
     @Override
@@ -70,9 +82,9 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public User findByUserName(String username) {
+    public User getUserByUsername(String username) {
         try{
-            return userRepository.findUserByUsername(username) ;
+            return userRepository.findByUsername(username);
         }
         catch (UserNotFoundException ex){
             throw new UserNotFoundException("User is not found with username");

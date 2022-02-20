@@ -31,44 +31,86 @@ public class UserRestController {
         this.userService = userService;
 
     }
-//    @Secured(value = "ROLE_ADMIN") -> api/users/** handles in web security config
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
-//    @RolesAllowed({"ROLE_ADMIN","ROLE_USER"})
-//returns all the users
-@RequestMapping(
-            value = "/users",
-            method = RequestMethod.GET)
-    public ResponseEntity<List<User>> getUsers(){
-        return ResponseEntity.ok(userService.findAllUsers());
+    @PostMapping("/users")
+    public ResponseEntity<?> createUser(@RequestBody User user) {
+        logger.info("Creating user: {}", user);
+        User newUser = userService.createUser(user);
+        return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
-    //returns user with the given id parameter
-    @RequestMapping(
-            value = "/users/{id}",
-            method = RequestMethod.GET)
-    public ResponseEntity<User> getUser(@PathVariable long id) {
-        return Optional
-                .ofNullable(userService.findUser(id))
-                .map(user -> ResponseEntity.ok().body(user)) // 200 ok
-                .orElseGet(() -> ResponseEntity.notFound().build()); // 404 not found
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getAllUsers() {
+        logger.info("Getting all users");
+        List<User> users = userService.getUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("/users/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        logger.info("Getting user with id: {}", id);
+        Optional<User> user = Optional.ofNullable(userService.getUserById(id));
+        if(user.isPresent()){
+            return new ResponseEntity<>(user.get(), HttpStatus.OK);
+        }
+        else{
+            throw new UserNotFoundException("User with id: " + id + " not found");
+        }
+    }
+
+    @PutMapping("/users/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
+        logger.info("Updating user with id: {}", id);
+        Optional<User> oldUser = Optional.ofNullable(userService.getUserById(id));
+        if(oldUser.isPresent()){
+            User newUser = userService.updateUser(id, user);
+            return new ResponseEntity<>(newUser, HttpStatus.OK);
+        }
+        else{
+            throw new UserNotFoundException("User with id: " + id + " not found");
+        }
+    }
+
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+        logger.info("Deleting user with id: {}", id);
+        Optional<User> user = Optional.ofNullable(userService.getUserById(id));
+        if(user.isPresent()){
+            userService.deleteUser(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        else{
+            throw new UserNotFoundException("User with id: " + id + " not found");
+        }
+    }
+
+    @GetMapping("/users/{id}/roles")
+    public ResponseEntity<List<Role>> getRolesByUserId(@PathVariable Long id) {
+        logger.info("Getting roles for user with id: {}", id);
+        Optional<User> user = Optional.ofNullable(userService.getUserById(id));
+        if(user.isPresent()){
+            return new ResponseEntity<>(user.get().getRoles(), HttpStatus.OK);
+        }
+        else{
+            throw new UserNotFoundException("User with id: " + id + " not found");
+        }
     }
 
     @RequestMapping(
             path = "/users/by/username/{username}",
             method = RequestMethod.GET)
-    public ResponseEntity<User> getUserWithUsername(@PathVariable("username") String username){
+    public ResponseEntity<User> getUserByUsername(@PathVariable("username") String username){
         return Optional
-                .ofNullable(userService.findByUserName(username))
+                .ofNullable(userService.getUserByUsername(username))
                 .map( user -> ResponseEntity.ok().body(user))
                 .orElseGet( () -> ResponseEntity.notFound().build());
     }
 
-    //saves users that is approved by the admin in registration queue
+    //saves users that are approved by the admin in registration queue
     @RequestMapping(
             value = "/approveUser/{id}",
             method = RequestMethod.GET)
     public ResponseEntity<User> approveUser(@PathVariable long id) {
-        User user = userService.findUser(id);
+        User user = userService.getUserById(id);
         user.setApproved(true);
         userService.save(user);
         emailService.sendRegistrationApprovedMail(user);
@@ -80,41 +122,23 @@ public class UserRestController {
             value = "/rejectUser/{id}",
             method = RequestMethod.GET)
     public ResponseEntity<User> rejectUser(@PathVariable long id){
-        User user = userService.findUser(id);
+        User user = userService.getUserById(id);
         userService.deleteUser(id);
         emailService.sendRegistrationRejectedMail(user);
         return ResponseEntity.ok(user);
-    }
-
-    //deletes a user with id
-    @RequestMapping(
-            value = "/delete/{id}",
-            //defining explicit mapping to avoid 405 not supported error -> https://www.baeldung.com/spring-request-method-not-supported-405
-            method = {RequestMethod.GET, RequestMethod.DELETE})
-    @ResponseBody
-    public ResponseEntity<?> deleteUser(@PathVariable Long id){
-        try{
-            //find the user with the given id and delete
-            userService.findUser(id);
-            userService.deleteUser(id);
-            return ResponseEntity.ok().body("User is successfully deleted");
-
-        }catch(UserNotFoundException ex){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User is not found to delete"); // 404 user not found
-        }catch(Exception ex){
-            //other exceptions are caught, build an internal server error
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
     }
 
     @RequestMapping(
             value = "/assignRole/{id}/{role}",
             method = RequestMethod.GET)
     public ResponseEntity<User> assignRole(@PathVariable long id,@PathVariable int role){
-        User user = userService.findUser(id);
-        switch (role){
-//            case 0 : user.setRoles(Collections.singletonList(Role.ROLE_USER)); break;
-            case 1 : user.setRoles(Collections.singletonList(Role.ROLE_ADMIN)); break;
+        User user = userService.getUserById(id);
+        switch (role) {
+            case 0 -> user.setRoles(Collections.singletonList(Role.ROLE_ADMIN));
+            case 1 -> user.setRoles(Collections.singletonList(Role.ROLE_AUTHORIZED));
+            case 2 -> user.setRoles(Collections.singletonList(Role.ROLE_STUDENT));
+            case 3 -> user.setRoles(Collections.singletonList(Role.ROLE_TEACHER));
+            case 4 -> user.setRoles(Collections.singletonList(Role.ROLE_PARENT));
         }
         userService.save(user);
         return ResponseEntity.ok(user);

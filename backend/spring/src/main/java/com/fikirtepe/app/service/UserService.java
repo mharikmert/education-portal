@@ -2,13 +2,14 @@ package com.fikirtepe.app.service;
 
 import com.fikirtepe.app.model.User;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
-    User findUser(long id);
-    List<User> findAllUsers();
-    void createUser(User user);
+    User getUserById(long id);
+    List<User> getUsers();
+    User createUser(User user);
     void deleteUser(Long id);
-    boolean verifyUser(User user);
+    User updateUser(Long id, User user);
     void save(User user);
-    User findByUserName(String username);
+    User getUserByUsername(String username);
 }

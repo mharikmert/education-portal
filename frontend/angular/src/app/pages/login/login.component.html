@@ -17,11 +17,11 @@
         <div class="logo"></div>
         
         <div>
-            <input type="text" name = 'username' [(ngModel)] = 'username' placeholder = 'Kullanici Adi/ TCKN'>
+            <input type="text" name = 'username' [(ngModel)] = 'username' placeholder = 'Kullanici Adi/ TCKN' (keydown.enter) = "onSubmit()">
         </div>
 
         <div>
-            <input [type]="showPassword ? 'text' : 'password' " name = 'password' [(ngModel)]='password' placeholder = 'Sifre'/>
+            <input [type]="showPassword ? 'text' : 'password' " name = 'password' [(ngModel)]='password' placeholder = 'Sifre' (keydown.enter) = "onSubmit()"/>
             <span id = 'toggle-password' [ngClass] = "showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'" aria-hidden="true" (click) = 'showPassword = !showPassword'></span>
         </div>
 
@@ -40,8 +40,5 @@
                 <span *ngIf = 'btnClicked' class="spinner-border spinner-border-sm" style = 'margin:auto'></span>
             </button> 
         </div> 
-        <div>
-            <button class = 'login-button btn' type = 'submit' (click) = "redirectRegister()"> KAYIT OL </button> 
-        </div>
     </div>
 </div>

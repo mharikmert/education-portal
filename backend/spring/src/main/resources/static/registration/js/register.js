@@ -1,10 +1,14 @@
-
-//post request
-$(document).ready(() => {
+$(document).ready( () => {
     $('#register-button').on('click', function(event) {
         event.preventDefault();
         const formData = $('#form').serializeArray();
         let obj = {}, formState = {}, registerCondition = true;
+        if(!document.querySelector('#kvkk').checked){
+            registerCondition = false;
+            throwWarning('kvkk');
+        } else takeBackWarning('kvkk');
+
+
         $.each(formData, (index, value) => {
             //radio button conversion
             if(value['value'] === 'yes' || value['value'] === 'no'){
@@ -14,6 +18,7 @@ $(document).ready(() => {
             }
 
             obj[value['name']] = value['value']
+            console.log(value)
 
             if(value['name'].includes('Name') || value['name'] === 'educationReason')
                 formState[value['name']] = validateNameForm(value['name']);
@@ -24,11 +29,19 @@ $(document).ready(() => {
             else if(value['name'] === 'email')
                 formState[value['name']] = validateEmail(value['name'])
 
+            else if (value['name'] === 'kvkk'){
+                formState[value['name']] = validateKvkk(value['name']);
+            }
+            else if(value['name'] === 'birthDate'){
+                formState[value['name']] = validateBirthDate(value['name']);
+            }
             else if(value['name'].includes('Number'))
                 formState[value['name']] = validatePhoneForm(value['name'])
 
             $.each(formState, (index, value) => {
-                if(!value) registerCondition = false;
+                if(!document.querySelector('#kvkk').checked || !value){
+                    registerCondition = false;
+                }
             })
         })
         const formJson = JSON.stringify(obj);
@@ -55,12 +68,13 @@ $(document).ready(() => {
                 },
             });
         }
-    });
+    })
 });
 
 let citiesJson;
 //add all the cities to the #city select box with get request
 $(document).ready(() => {
+    $('.js-example-basic-single').select2();
     //ajax post to get all the cities
     $.ajax({
         url: '/api/cities', // contains all the cities
@@ -123,7 +137,81 @@ $(document).ready( () => {
     }); // end of city change function
 
 })
+const validateKvkk = (id) => {
+    const kvkk = document.querySelector('#' + id);
+    if(kvkk.checked){
+        $('#invalid-kvkk-warning').css('display', 'none');
+        return true;
+    }
+    else {
+        // $('#invalid-kvkk-warning').css('display', 'block');
+        return false;
+    }
+}
 
+const validateBirthDate = (id) => {
+    const birthDate = document.querySelector('#' + id);
+    const birthDateValue = birthDate.value;
+    const birthDateArray = birthDateValue.split('-');
+    const birthDateYear = birthDateArray[0];
+    const birthDateMonth = birthDateArray[1];
+    const birthDateDay = birthDateArray[2];
+
+    // console.log(birthDateYear, birthDateMonth, birthDateDay);
+
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1;
+    const currentDay = currentDate.getDate();
+
+    // console.log(currentYear, currentMonth, currentDay);
+
+    if(birthDateYear > currentYear){
+        throwWarning(id);
+        return false;
+    }
+    else if(birthDateYear == currentYear){
+        if(birthDateMonth > currentMonth){
+            throwWarning(id);
+            return false;
+        }
+        else if(birthDateMonth == currentMonth){
+            if(birthDateDay > currentDay){
+                throwWarning(id);
+                return false;
+            }
+            else {
+                takeBackWarning(id);
+                return true;
+            }
+        }
+        else {
+            takeBackWarning(id);
+            return true;
+        }
+    }
+
+    else if (birthDateYear < currentYear - 20){
+        $('#birthDate').css('border', '1px solid red')
+        $('#notallowed-birthDate-warning').css('display', 'block');
+        return false;
+    }
+    else {
+        takeBackWarning(id);
+        return true;
+    }
+}
+
+const  validateSelectOptions = (id) => {
+    const selectOption = document.querySelector('#' + id);
+    // console.log(selectOption)
+    console.log(selectOption.value)
+    if(selectOption.value === 'empty'){
+        console.log('not selected');
+        throwWarning(id);
+    }
+
+}
 //id validation method for turkish identity number
 const isValidUserID = (userID) => {
     userID = String(userID);
@@ -175,6 +263,8 @@ const throwWarning = (inputFieldId) => {
 const takeBackWarning = (inputFieldId) => {
     $('#'+inputFieldId).css('border', 'none')
     $('#invalid-' + inputFieldId + '-warning').css('display', 'none');
+    if(inputFieldId ==='birthDate')
+        $('#notallowed-' + inputFieldId + '-warning').css('display', 'none');
     $('#' + inputFieldId + 'Label').css('display','block');
 }
 
@@ -256,7 +346,7 @@ const nameFieldsControl = (id) => {
 }
 const numericalFieldsControl = (id) => {
     $('#' + id).bind('keypress', function(e) {
-         if($("#"+id).val().length < 11){
+        if($("#"+id).val().length < 11){
             var k = e.which;
             var ok = k >= 48 && k <= 57; // 0-9
 

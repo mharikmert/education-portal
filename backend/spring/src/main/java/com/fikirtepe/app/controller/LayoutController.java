@@ -10,17 +10,13 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @Configuration
 public class LayoutController {
-    @RequestMapping("/")
-    public ModelAndView main(){
-        return new ModelAndView("main");
-    }
-    @RequestMapping("/login")
-    public ModelAndView login(){
-        return new ModelAndView("login");
-    }
     @RequestMapping("/register")
     public ModelAndView register(){
             return new ModelAndView("register");
+    }
+    @GetMapping("/KVKK")
+    public ModelAndView kvkk(){
+        return new ModelAndView("KVKK");
     }
     @RequestMapping("/approval")
     public ModelAndView approval(){

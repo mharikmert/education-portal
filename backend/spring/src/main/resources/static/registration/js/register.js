@@ -55,14 +55,18 @@ $(document).ready( () => {
                 data : formJson,
                 statusCode: {
                     201: () => {
-                        redirect('/approval')
+                        $('.loader').css('display', 'none');
+                        $('.alert').css('display', 'block');
+                        setTimeout( () => {
+                            redirect('http://localhost:4200');
+                        }, 1500);
                     },
                     409: () => {
-                        document.querySelector('.loader').style.display = 'none'
+                        $('.loader').css('display', 'none');
                         $('#myModal').modal()
                     },
                     500: () => {
-                        document.querySelector('.loader').style.display = 'none'
+                        $('.loader').css('display', 'none');
                         console.log('beklenmedik bir hata oluştu')
                     }
                 },
@@ -166,16 +170,20 @@ const validateBirthDate = (id) => {
 
     // console.log(currentYear, currentMonth, currentDay);
 
+    if(birthDate.value === ''){
+        throwWarning(id);
+        return false;
+    }
     if(birthDateYear > currentYear){
         throwWarning(id);
         return false;
     }
-    else if(birthDateYear == currentYear){
+    else if(birthDateYear === currentYear){
         if(birthDateMonth > currentMonth){
             throwWarning(id);
             return false;
         }
-        else if(birthDateMonth == currentMonth){
+        else if(birthDateMonth === currentMonth){
             if(birthDateDay > currentDay){
                 throwWarning(id);
                 return false;
@@ -263,7 +271,7 @@ const throwWarning = (inputFieldId) => {
 const takeBackWarning = (inputFieldId) => {
     $('#'+inputFieldId).css('border', 'none')
     $('#invalid-' + inputFieldId + '-warning').css('display', 'none');
-    if(inputFieldId ==='birthDate')
+    if(inputFieldId === 'birthDate')
         $('#notallowed-' + inputFieldId + '-warning').css('display', 'none');
     $('#' + inputFieldId + 'Label').css('display','block');
 }

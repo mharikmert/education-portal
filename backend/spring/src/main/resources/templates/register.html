@@ -292,8 +292,8 @@
                         <div class="value">
                             <div class="input-group" style="text-align: unset;">
                                 <label>
-                                    <input id = 'educationReason' class="input--style-5" type="text" name="educationReason" onfocusout="validateNameForm(this.id)"
-                                           style = "height:100px;">
+                                    <textarea id = 'educationReason' name="educationReason" onfocusout="validateNameForm(this.id)"
+                                              cols = "40" rows = "5" style="background: #e5e5e5; color: #555555; border-radius: 5px;"> </textarea>
                                 </label>
                             </div>
                             <div id = 'invalid-educationReason-warning' class = 'invalid-input' >  Bu alanı doldurmak zorunludur </div>
@@ -315,6 +315,12 @@
                     <button id = "register-button" class="btn btn--radius-2 btn--red register-button-container" type = "submit"> KAYIT OL
                         <div class = 'loader' style='display: none'> </div>
                     </button>
+
+                    <div class="alert" style = 'display:none'>
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <strong style = "text-align: center"> Kayıt Başarılı! </strong> <br>
+                        Lütfen mail adresinizi kontrol ediniz.
+                    </div>
 
                 </form>
             </div>

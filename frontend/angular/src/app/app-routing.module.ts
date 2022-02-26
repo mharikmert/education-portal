@@ -7,7 +7,6 @@ import { AuthorizedMenuComponent } from './pages/menu/authorized-menu/authorized
 import { ParentMenuComponent } from './pages/menu/parent-menu/parent-menu.component';
 import { StudentMenuComponent } from './pages/menu/student-menu/student-menu.component';
 import { TeacherMenuComponent } from './pages/menu/teacher-menu/teacher-menu.component';
-import { RegisterComponent } from './pages/register/register.component';
 import { AuthGuard } from './auth.guard';
 import { UserActionsComponent } from './pages/menu/authorized-menu/user-actions/user-actions.component';
 import { ParametersComponent } from './pages/menu/authorized-menu/parameters/parameters.component';
@@ -18,12 +17,15 @@ import { AssignLectureComponent } from './pages/menu/authorized-menu/create-clas
 import { AssingClassroomComponent } from './pages/menu/authorized-menu/user-actions/assing-classroom/assing-classroom.component';
 import { ClassroomScheduleComponent } from './pages/menu/authorized-menu/create-classroom/classroom-schedule/classroom-schedule.component';
 import { LoggedInComponent } from './pages/logged-in/logged-in.component';
+import { TeacherRegistrationComponent } from './pages/teacher-registration/teacher-registration.component';
+import { KvvkComponent } from './pages/kvkk/kvkk.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  // {path: 'register', component: RegisterComponent},
   {path: 'home', component: HomeComponent}, 
+  {path: 'teacher-register', component: TeacherRegistrationComponent },
+  {path: 'kvkk', component: KvvkComponent },
 
     //refactor these as children routes  
 

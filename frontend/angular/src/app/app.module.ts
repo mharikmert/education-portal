@@ -7,9 +7,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { ButtonComponent } from './components/button/button.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
 import { LoginErrorComponent } from './components/login-error/login-error.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ParentMenuComponent } from './pages/menu/parent-menu/parent-menu.component';
 import { AuthorizedMenuComponent } from './pages/menu/authorized-menu/authorized-menu.component';
 import { StudentMenuComponent } from './pages/menu/student-menu/student-menu.component';
@@ -31,6 +30,8 @@ import { AssignLectureComponent } from './pages/menu/authorized-menu/create-clas
 import { AssingClassroomComponent } from './pages/menu/authorized-menu/user-actions/assing-classroom/assing-classroom.component';
 import { ClassroomScheduleComponent } from './pages/menu/authorized-menu/create-classroom/classroom-schedule/classroom-schedule.component';
 import { LoggedInComponent } from './pages/logged-in/logged-in.component';
+import { TeacherRegistrationComponent } from './pages/teacher-registration/teacher-registration.component';
+import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,6 @@ import { LoggedInComponent } from './pages/logged-in/logged-in.component';
     ButtonComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent,
     LoginErrorComponent,
     ParentMenuComponent,
     AuthorizedMenuComponent,
@@ -60,11 +60,14 @@ import { LoggedInComponent } from './pages/logged-in/logged-in.component';
     AssingClassroomComponent,
     ClassroomScheduleComponent,
     LoggedInComponent,
+    TeacherRegistrationComponent,
+    RadioButtonComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     FontAwesomeModule
   ],

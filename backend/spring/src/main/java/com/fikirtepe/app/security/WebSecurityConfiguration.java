@@ -44,6 +44,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Value("${allowed.paths}") private String [] allowedPaths;
+    @Value("${post.allowed.paths}") private String [] postAllowedPaths;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -52,9 +53,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(allowedPaths).permitAll()
                 //allow register and login post requests
-                .antMatchers(HttpMethod.POST, "/api/students").permitAll()
+                .antMatchers(HttpMethod.POST, postAllowedPaths).permitAll()
                 .antMatchers(HttpMethod.GET, "/api/users/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.POST, "/api/auth").permitAll()
                 .antMatchers("/swagger-resources/*", "*.html", "/api/v1/swagger.json")
                 /*
                 similar to hasRole with only difference ROLE prefix

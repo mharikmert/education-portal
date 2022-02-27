@@ -10,4 +10,6 @@ services:
   fikirtepe-frontend:
     image: fikirtepe-ui:latest
     container_name: fikirtepe-frontend-server
+    ports:
+      - "4200:80" # port mapping for host and container
     restart: always

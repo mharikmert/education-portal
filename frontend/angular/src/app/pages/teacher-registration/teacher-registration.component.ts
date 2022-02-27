@@ -13,15 +13,8 @@ import { environment } from 'src/environments/environment';
 
 export class TeacherRegistrationComponent implements OnInit {
 
-  firstName?: String;
-  lastName?: String; 
-  email?: String; 
-  phone?: String;
   subject?: String; 
-  city?: City;
-  notes?: String; 
   cities?: City[];
-  kvkkChecked?: boolean; 
 
   teacherFormGroup!: FormGroup;
   submitted: boolean = false;
@@ -42,7 +35,7 @@ export class TeacherRegistrationComponent implements OnInit {
         ]),
       'city': new FormControl(null, Validators.required),
       'notes': new FormControl(null),
-      'terms' : new FormControl(null, Validators.required, )
+      'terms' : new FormControl(null, Validators.requiredTrue )
 
     });
   }
@@ -52,19 +45,27 @@ export class TeacherRegistrationComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.subject)
     this.submitted = true;
-    if (this.teacherFormGroup.invalid) {
-      console.log('form invalid')
+    if (this.teacherFormGroup.valid && this.subject) {
+      console.log(JSON.stringify(this.teacherFormGroup.value, null, 2));
+
+      this.httpClient.post(`${environment.apiUrl}/api/teachers`, this.teacherFormGroup.value).subscribe();
+    } 
+    else {
+      console.log('Form is invalid');
       return;
     }
-    console.log(JSON.stringify(this.teacherFormGroup.value, null, 2));
   }
+
   onReset(): void {
     this.submitted = false;
     this.teacherFormGroup.reset();
   }
+
   getCities() : Observable<City[]>{
     return this.httpClient.get<City[]>(`${environment.apiUrl}/api/cities`); 
   }
+
+
+
 }

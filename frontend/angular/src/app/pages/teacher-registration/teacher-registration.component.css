@@ -14,3 +14,7 @@
 input{
   text-align: left;
 }
+.invalid-div{
+  border-color: red;
+  border: 1px solid red;
+}

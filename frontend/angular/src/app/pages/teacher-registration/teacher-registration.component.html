@@ -60,11 +60,7 @@
 
                   </div>
 
-                  <div
-                  class="d-md-block justify-content-start align-items-center mb-4 py-2" 
-                  [ngClass]="{ 'is-invalid': submitted && !subject }"
-                  >
-
+                  <div class="d-md-block justify-content-start align-items-center mb-4 py-2">
                     <div>
                         <h6 class="mb-0 me-4">Gönüllü Olacağınız Alan: </h6>
                     </div>
@@ -77,33 +73,35 @@
                     <app-radio-button label = 'Tarih' id = 'history'(onChecked)="this.subject = $event"></app-radio-button>
                     <app-radio-button label = 'Cografya' id = 'geograpy'(onChecked)="this.subject = $event"></app-radio-button>
 
-                    <div *ngIf="submitted && !subject" class="invalid-feedback">
-                      <div> Lutfen alan seciniz </div>
-                    </div>
-  
+                      <div *ngIf="submitted && !subject" style="color:#DC3545; font-size: 14px;">
+                        <div> Lutfen alan seciniz </div>
+                      </div>
                   </div>
   
                   <div class="form-outline mb-4">
                     <label class="form-label" for="notes"> Ek olarak Belirtmek Istediginiz Notlar </label>
                     <textarea type="text" id="notes" class="form-control form-control-lg" rows="3" cols="40" style="font-size:medium" formControlName = 'notes'></textarea>
                   </div>
-                  <div class="form-check d-flex justify-content-center mb-5">
-                      <div>
-                        <input
-                          class="form-check-input me-2"
-                          type="checkbox"
-                          id="terms"
-                          formControlName = "terms"
-                        />
-                      </div>
 
-                      <label class="form-check-label radio-label" for="kvkk-field">
-                        KVKK uyarınca kişisel verilerimin <a href="#/kvkk" class="text-body"><u>Açık Rıza ve Aydınlatma Metninde</u></a> belirtilen hususlar kapsamında işlenmesini ve aktarılmasına onay verdiğimi kabul ediyorum. 
-                      </label>
+                  <div id = 'kvkk-container' class="form-check d-flex justify-content-center mb-5"
+                  [ngClass]="{ 'invalid-div': submitted && f.terms.errors }"
+                  >
+                        <div>
+                          <input
+                            class="form-check-input me-2"
+                            type="checkbox"
+                            id="terms"
+                            formControlName = "terms"
+                          />
+                        </div>
+                        <label class="form-check-label radio-label" for="kvkk-field">
+                          KVKK uyarınca kişisel verilerimin <a href="#/kvkk" class="text-body"><u>Açık Rıza ve Aydınlatma Metninde</u></a> belirtilen hususlar kapsamında işlenmesini ve aktarılmasına onay verdiğimi kabul ediyorum. 
+                        </label>
                   </div>
-                      <div *ngIf="submitted && f.terms.errors" class="invalid-feedback">
-                        <div *ngIf="f.terms.errors.required"> Lutfen kullanim kosullarini kabul ediniz </div>
-                      </div>
+                  
+                  <div *ngIf="submitted && f.terms.errors" style="color: #DC3545; font-size:14px">
+                    <div *ngIf="f.terms.errors.required"> Lutfen kullanim kosullarini kabul ediniz </div>
+                  </div>
                     
   
                   <div class="d-flex justify-content-center">

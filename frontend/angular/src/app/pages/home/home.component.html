@@ -1,1 +1,30 @@
-<app-header> </app-header>
+<div class="container">
+    <div class = "logo-container"> <img src = "../../../assets/cagdas-logo.png" alt="logo"> </div>
+    <div class ="title-container"> <h1>ÇAĞDAŞ EĞİTİME DESTEK PROJESİ </h1> </div>
+    
+    <div class = 'button-container'>
+        <app-button 
+            text = 'ÖĞRENCİ KAYIT' 
+            color = 'purple'
+            [routerLink] = '["/student-registration"]'
+        >
+        </app-button>
+
+        <app-button 
+            text = 'GÖNÜLLÜ ÖĞRETMEN KAYIT' 
+            color = 'purple'
+            [routerLink] = '["/teacher-registration"]'
+        >
+        </app-button>
+        
+        <div [ngStyle]="{'margin-top': '30px'}">
+            <app-button 
+                text = 'GİRİŞ' 
+                color = 'purple'
+                [routerLink]="['/login']" 
+                routerLinkActive="router-link-active">
+            </app-button> 
+        </div>
+
+    </div> 
+</div>

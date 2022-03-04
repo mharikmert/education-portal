@@ -19,12 +19,14 @@ import { ClassroomScheduleComponent } from './pages/menu/authorized-menu/create-
 import { LoggedInComponent } from './pages/logged-in/logged-in.component';
 import { TeacherRegistrationComponent } from './pages/teacher-registration/teacher-registration.component';
 import { KvvkComponent } from './pages/kvkk/kvkk.component';
+import { StudentRegistrationComponent } from './pages/student-registration/student-registration.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent}, 
-  {path: 'teacher-register', component: TeacherRegistrationComponent },
+  {path: 'teacher-registration', component: TeacherRegistrationComponent },
+  {path: 'student-registration', component: StudentRegistrationComponent},
   {path: 'kvkk', component: KvvkComponent },
 
     //refactor these as children routes  

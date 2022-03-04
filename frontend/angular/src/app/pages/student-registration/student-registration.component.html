@@ -1,0 +1,237 @@
+<div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5"> ÖĞRENCİ KAYIT FORMU </h2>
+
+              <form [formGroup]="studentFormGroup" (ngSubmit)="onSubmit()">
+
+                <!-- First name -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="firstName"> Ad </label>
+                    <input type="text" id="firstName" formControlName = 'firstName' class="form-control form-control-lg" 
+                    [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"/>
+                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                      <div *ngIf="f.firstName.errors.required"> Lutfen adinizi giriniz </div>
+                    </div>
+                </div>
+
+                <!-- Last name  -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="lastName"> Soyad  </label>
+                    <input type="text" id="lastName" formControlName ='lastName' class="form-control form-control-lg"
+                    [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"/>
+                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                      <div *ngIf="f.lastName.errors.required"> Lutfen soyadinizi giriniz </div>
+                    </div>
+                </div>
+
+
+                <!-- identity number -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="tckn"> TCKN </label>
+                  <input type="text" id="tckn" formControlName = 'tckn' class="form-control form-control-lg"
+                   [ngClass]="{ 'is-invalid': submitted && f.tckn.errors }"/>
+                      <div *ngIf="submitted && f.tckn.errors" class="invalid-feedback">
+                        <div *ngIf="f.tckn.errors.required || f.tckn.errors.invalid"> Lutfen gecerli bir tckn giriniz </div>
+                      </div>
+                </div>
+
+                  <!-- Birthdate -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="birthdate"> Dogum Tarihi</label>
+                  <input type="date" id="birthdate" formControlName = 'birthdate' class="form-control form-control-lg"
+                  [ngClass]="{ 'is-invalid': submitted && f.birthdate.errors }"/>
+                      <div *ngIf="submitted && f.birthdate.errors" class="invalid-feedback">
+                        <div *ngIf="f.birthdate.errors.required"> Lutfen dogum tarihinizi giriniz </div>
+                      </div>
+
+                      <!-- **** TODO : Custom birthdate errors required in abstract control **** -->
+
+                      <div *ngIf="submitted && f.birthdate.errors" class="invalid-feedback">
+                        <div *ngIf="f.birthdate.errors.invalid"> Lutfen gecerli bir tarih giriniz </div>
+                      </div>
+                      <div *ngIf="submitted && f.birthdate.errors" class="invalid-feedback">
+                        <div *ngIf="f.birthdate.errors.notallowed"> Yas 20'den buyuk olamaz </div>
+                      </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="email">Email</label>
+                  <input type="email" id="email" formControlName = 'email' class="form-control form-control-lg"
+                  [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+                      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required"> Lutfen gecerli bir email adresi giriniz </div>
+                      </div>
+                </div>
+
+                <!-- Phone -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="phone"> Cep Telefonu </label>
+                  <input type="text" id="phone" formControlName = 'phone' class="form-control form-control-lg"
+                   [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"/>
+                      <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                        <div *ngIf="f.phone.errors.required || f.phone.errors.invalid"> Lutfen gecerli bir telefon numarasi giriniz </div>
+                      </div>
+                </div>
+
+                <!-- Grade - Section -->
+                <div class="grade-section-container" style="display:flex; justify-content:space-between">
+                  <!-- Grade -->
+                  <div class = 'form-outline mb-4'>
+                    <label class="form-label" for="grade" style="margin-top: 5px;"> Sinif </label>
+                      <select class="form-select" aria-label="Default select example" formControlName="grade"
+                      [ngClass]="{ 'is-invalid': submitted && f.grade.errors }" >
+                        <option selected disabled> Sinif seciniz </option>
+                        <option> 9 </option>
+                        <option> 10 </option>
+                        <option> 11 </option>
+                        <option> 12 </option>
+                        <option> Mezun </option>
+                      </select>
+
+                    <div *ngIf="submitted && f.grade.errors" class="invalid-feedback">
+                      <div *ngIf="f.grade.errors.required"> Lutfen sinif seciniz </div>
+                    </div>
+
+                  </div>
+                  <!--  Section -->
+                  <div class = 'form-outline mb-4'>
+                    <label class="form-label" for="section" style="margin-top: 5px;"> Bolum </label>
+                      <select class="form-select" aria-label="Default select example" formControlName="section" 
+                      [ngClass]="{ 'is-invalid': submitted && f.section.errors }">
+                        <option selected disabled> Bolum Seciniz </option>
+                        <option> Sayisal </option>
+                        <option> Esit Agirlik </option>
+                      </select>
+
+                    <div *ngIf="submitted && f.section.errors" class="invalid-feedback">
+                      <div *ngIf="f.section.errors.required"> Lutfen bolum seciniz </div>
+                    </div>
+
+                  </div>
+                </div>
+                
+                <!-- School -->
+                <div class="form-outline mb-4">
+                      <label class="form-label" for="school"> Okul  </label>
+                      <input type="text" id="school" formControlName ='school' class="form-control form-control-lg"
+                      [ngClass]="{ 'is-invalid': submitted && f.school.errors }"/>
+                      <div *ngIf="submitted && f.school.errors" class="invalid-feedback">
+                        <div *ngIf="f.school.errors.required"> Lutfen okulunuzu giriniz </div>
+                      </div>
+                </div>
+
+                <!-- City - District -->
+                <div class="city-district-container" style="display:flex; justify-content:space-between">
+                  <!-- City -->
+                  <div class = 'form-outline mb-4'>
+                    <label class="form-label" for="city" style="margin-top: 5px;"> Sehir </label>
+                      <select class="form-select" aria-label="Default select example" formControlName="city" (change)="setDistricts(getValue($event))"
+                      [ngClass]="{ 'is-invalid': submitted && f.city.errors }" >
+                        <option selected disabled> Sehir Seciniz </option>
+                        <option *ngFor="let city of cities" [value]="city.plateNo">
+                          {{city.name}} 
+                        </option>
+                      </select>
+
+                    <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                      <div *ngIf="f.city.errors.required"> Lutfen sehir seciniz </div>
+                    </div>
+
+                  </div>
+                  <!-- District -->
+                  <div class = 'form-outline mb-4'>
+                    <label class="form-label" for="city" style="margin-top: 5px;"> Ilce </label>
+                      <select class="form-select" aria-label="Default select example" formControlName="district" 
+                      [ngClass]="{ 'is-invalid': submitted && f.district.errors }">
+                        <option selected value = "0" disabled> Ilce Seciniz </option>
+                        <option *ngFor="let district of districts">
+                          {{district.districtName}}
+                        </option>
+
+                      </select>
+
+                    <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
+                      <div *ngIf="f.district.errors.required"> Lutfen ilce seciniz </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class = 'form-outline mb-4'>
+                  <label class="form-label" for="radio-label"> Evinizde internet var mi?</label>
+                  <div style="display: flex; justify-content: space-evenly;">
+                    <app-radio-button label = 'Evet' [isChecked]="true" (onChecked)="this.hasInternet = true"></app-radio-button>
+                    <app-radio-button label = 'Hayir' (onChecked)="this.hasInternet = false"></app-radio-button>
+                  </div>
+                </div>
+              
+                <!-- Parent first name  -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="parentname"> Veli Ad </label>
+                    <input type="text" id="firstName" formControlName = 'pfirstName' class="form-control form-control-lg"/>
+                </div>
+
+
+                <!-- Parent last name -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="lastName"> Veli Soyad  </label>
+                    <input type="text" id="lastName" formControlName ='plastName' class="form-control form-control-lg"/>
+                </div>
+
+                <!-- Parent phone number -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="phone">Veli Cep Telefonu </label>
+                  <input type="text" id="phone" formControlName = 'pPhone' class="form-control form-control-lg"/>
+                </div>
+
+                <!-- Student notes -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="notes"> Neden bu egitimi almak istiyorsunuz? </label>
+                  <textarea type="text" id="notes" class="form-control form-control-lg" rows="3" cols="40" style="font-size:medium" formControlName = 'notes'
+                  [ngClass]="{ 'is-invalid': submitted && f.notes.errors }"></textarea>
+                  <div *ngIf="submitted && f.notes.errors" class = "invalid-feedback">
+                    <div *ngIf="f.notes.errors.required"> Lutfen belirtiniz </div>
+                  </div>
+                </div>
+
+                <!-- terms and conditions -->
+                <div id = 'kvkk-container' class="form-check d-flex justify-content-center mb-5"
+                [ngClass]="{ 'invalid-div': submitted && f.terms.errors }"
+                >
+                      <div>
+                        <input
+                          class="form-check-input me-2"
+                          type="checkbox"
+                          id="terms"
+                          formControlName = "terms"
+                        />
+                      </div>
+                      <label class="form-check-label radio-label" for="kvkk-field">
+                        KVKK uyarınca kişisel verilerimin <a href="#/kvkk" class="text-body"><u>Açık Rıza ve Aydınlatma Metninde</u></a> belirtilen hususlar kapsamında işlenmesini ve aktarılmasına onay verdiğimi kabul ediyorum. 
+                      </label>
+                </div>
+                
+                <div *ngIf="submitted && f.terms.errors" style="color: #DC3545; font-size:14px">
+                  <div *ngIf="f.terms.errors.required"> Lutfen kullanim kosullarini kabul ediniz </div>
+                </div>
+                  
+
+                <div class="d-flex justify-content-center">
+                  <button class = 'btn' type = 'submit'> kayit ol</button>
+                </div>
+
+                <p class="text-center text-muted mt-5 mb-0"> Kayıtlı kullanıcı mısınız?<a href="#/login" class="fw-bold text-body"><u>Giriş Yapın</u></a></p>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -34,6 +34,7 @@ export class TeacherRegistrationComponent implements OnInit {
           Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')
         ]),
       'city': new FormControl(null, Validators.required),
+      'subject' : this.subject,
       'notes': new FormControl(null),
       'terms' : new FormControl(null, Validators.requiredTrue )
 
@@ -65,6 +66,7 @@ export class TeacherRegistrationComponent implements OnInit {
   getCities() : Observable<City[]>{
     return this.httpClient.get<City[]>(`${environment.apiUrl}/api/cities`); 
   }
+
 
 
 

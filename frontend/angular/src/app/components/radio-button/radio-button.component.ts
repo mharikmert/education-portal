@@ -7,7 +7,7 @@ import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 })
 export class RadioButtonComponent implements OnInit {
 
-  isChecked: boolean = false;
+  @Input() isChecked?: boolean; 
   @Input() label?: string;
   @Input() id?: string; 
   @Input() name?: string;
@@ -20,7 +20,6 @@ export class RadioButtonComponent implements OnInit {
   onClick() {
     this.isChecked = true;
     this.onChecked.emit(this.label);
-    console.log(this.label);
   }
 
 }

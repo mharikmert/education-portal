@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { City } from 'src/app/models/City';
 import { environment } from 'src/environments/environment';
@@ -19,7 +20,7 @@ export class TeacherRegistrationComponent implements OnInit {
   teacherFormGroup!: FormGroup;
   submitted: boolean = false;
 
-  constructor(private httpClient: HttpClient, private formBuilder: FormBuilder) { }
+  constructor(private httpClient: HttpClient, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.getCities().subscribe(cities => this.cities = cities);
@@ -50,7 +51,25 @@ export class TeacherRegistrationComponent implements OnInit {
     if (this.teacherFormGroup.valid && this.subject) {
       console.log(JSON.stringify(this.teacherFormGroup.value, null, 2));
 
-      this.httpClient.post(`${environment.apiUrl}/api/teachers`, this.teacherFormGroup.value).subscribe();
+      const request = this.httpClient.post(`${environment.apiUrl}/api/teacher`, this.teacherFormGroup.value, {observe: 'response'}); 
+      request.subscribe( response => {
+          console.log('this is the response code of the request' , response.status)
+          if(response.status === 201){
+            this.submitted = false; 
+            console.log('kaydiniz alinmistir.. ')
+            this.router.navigate(['/']);
+          }
+      }, error => {
+        if(error.status === 400){
+          console.log('this is the error message from bad request', error)
+        }
+        else if(error.status === 409){
+          console.log('this is the error message from already registered user' , error)
+        }
+        else if(error.status === 500){
+          console.log('this is the error message from interval server error ' , error)
+        }
+      });
     } 
     else {
       console.log('Form is invalid');

@@ -32,29 +32,29 @@
                 <!-- identity number -->
                 <div class="form-outline mb-4">
                   <label class="form-label" for="tckn"> TCKN </label>
-                  <input type="text" id="tckn" formControlName = 'tckn' class="form-control form-control-lg"
-                   [ngClass]="{ 'is-invalid': submitted && f.tckn.errors }"/>
-                      <div *ngIf="submitted && f.tckn.errors" class="invalid-feedback">
-                        <div *ngIf="f.tckn.errors.required || f.tckn.errors.invalid"> Lutfen gecerli bir tckn giriniz </div>
+                  <input type="text" id="tckn" formControlName = 'id' class="form-control form-control-lg"
+                   [ngClass]="{ 'is-invalid': submitted && f.id.errors }"/>
+                      <div *ngIf="submitted && f.id.errors" class="invalid-feedback">
+                        <div *ngIf="f.id.errors.required || f.id.errors.invalid"> Lutfen gecerli bir tckn giriniz </div>
                       </div>
                 </div>
 
                   <!-- Birthdate -->
                 <div class="form-outline mb-4">
                   <label class="form-label" for="birthdate"> Dogum Tarihi</label>
-                  <input type="date" id="birthdate" formControlName = 'birthdate' class="form-control form-control-lg"
-                  [ngClass]="{ 'is-invalid': submitted && f.birthdate.errors }"/>
-                      <div *ngIf="submitted && f.birthdate.errors" class="invalid-feedback">
-                        <div *ngIf="f.birthdate.errors.required"> Lutfen dogum tarihinizi giriniz </div>
+                  <input type="date" id="birthdate" formControlName = 'birthDate' class="form-control form-control-lg"
+                  [ngClass]="{ 'is-invalid': submitted && f.birthDate.errors }"/>
+                      <div *ngIf="submitted && f.birthDate.errors" class="invalid-feedback">
+                        <div *ngIf="f.birthDate.errors.required"> Lutfen dogum tarihinizi giriniz </div>
                       </div>
 
                       <!-- **** TODO : Custom birthdate errors required in abstract control **** -->
 
-                      <div *ngIf="submitted && f.birthdate.errors" class="invalid-feedback">
-                        <div *ngIf="f.birthdate.errors.invalid"> Lutfen gecerli bir tarih giriniz </div>
+                      <div *ngIf="submitted && f.birthDate.errors" class="invalid-feedback">
+                        <div *ngIf="f.birthDate.errors.invalid"> Lutfen gecerli bir tarih giriniz </div>
                       </div>
-                      <div *ngIf="submitted && f.birthdate.errors" class="invalid-feedback">
-                        <div *ngIf="f.birthdate.errors.notallowed"> Yas 20'den buyuk olamaz </div>
+                      <div *ngIf="submitted && f.birthDate.errors" class="invalid-feedback">
+                        <div *ngIf="f.birthDate.errors.notallowed"> Yas 20'den buyuk olamaz </div>
                       </div>
                 </div>
 
@@ -71,10 +71,10 @@
                 <!-- Phone -->
                 <div class="form-outline mb-4">
                   <label class="form-label" for="phone"> Cep Telefonu </label>
-                  <input type="text" id="phone" formControlName = 'phone' class="form-control form-control-lg"
-                   [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"/>
-                      <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
-                        <div *ngIf="f.phone.errors.required || f.phone.errors.invalid"> Lutfen gecerli bir telefon numarasi giriniz </div>
+                  <input type="text" id="phone" formControlName = 'phoneNumber' class="form-control form-control-lg"
+                   [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }"/>
+                      <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+                        <div *ngIf="f.phoneNumber.errors.required || f.phoneNumber.errors.invalid"> Lutfen gecerli bir telefon numarasi giriniz </div>
                       </div>
                 </div>
 
@@ -115,13 +115,13 @@
                   </div>
                 </div>
                 
-                <!-- School -->
+                <!-- schoolName -->
                 <div class="form-outline mb-4">
-                      <label class="form-label" for="school"> Okul  </label>
-                      <input type="text" id="school" formControlName ='school' class="form-control form-control-lg"
-                      [ngClass]="{ 'is-invalid': submitted && f.school.errors }"/>
-                      <div *ngIf="submitted && f.school.errors" class="invalid-feedback">
-                        <div *ngIf="f.school.errors.required"> Lutfen okulunuzu giriniz </div>
+                      <label class="form-label" for="schoolName"> Okul  </label>
+                      <input type="text" id="schoolName" formControlName ='schoolName' class="form-control form-control-lg"
+                      [ngClass]="{ 'is-invalid': submitted && f.schoolName.errors }"/>
+                      <div *ngIf="submitted && f.schoolName.errors" class="invalid-feedback">
+                        <div *ngIf="f.schoolName.errors.required"> Lutfen okulunuzu giriniz </div>
                       </div>
                 </div>
 
@@ -131,8 +131,8 @@
                   <div class = 'form-outline mb-4'>
                     <label class="form-label" for="city" style="margin-top: 5px;"> Sehir </label>
                       <select class="form-select" aria-label="Default select example" formControlName="city" (change)="setDistricts(getValue($event))"
-                      [ngClass]="{ 'is-invalid': submitted && f.city.errors }" >
-                        <option selected disabled> Sehir Seciniz </option>
+                      [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+                        <option selected disabled [value]="0"> Sehir Seciniz </option>
                         <option *ngFor="let city of cities" [value]="city.plateNo">
                           {{city.name}} 
                         </option>
@@ -147,15 +147,15 @@
                   <div class = 'form-outline mb-4'>
                     <label class="form-label" for="city" style="margin-top: 5px;"> Ilce </label>
                       <select class="form-select" aria-label="Default select example" formControlName="district" 
-                      [ngClass]="{ 'is-invalid': submitted && f.district.errors }">
-                        <option selected value = "0" disabled> Ilce Seciniz </option>
+                      [ngClass]="{ 'is-invalid': submitted && (f.district.errors || f.district.value == 0) }">
+                        <option selected disabled [value]="0"> Ilce Seciniz </option>
                         <option *ngFor="let district of districts">
                           {{district.districtName}}
                         </option>
 
                       </select>
 
-                    <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
+                    <div *ngIf="submitted && f.district.errors && f.district.value == 0" class="invalid-feedback">
                       <div *ngIf="f.district.errors.required"> Lutfen ilce seciniz </div>
                     </div>
 
@@ -222,7 +222,9 @@
                   
 
                 <div class="d-flex justify-content-center">
-                  <button class = 'btn' type = 'submit'> kayit ol</button>
+                  <button class = 'btn' type = 'submit'> kayit ol
+                    <span *ngIf="submitted && studentFormGroup.valid" class="spinner-border spinner-border-sm" style = 'margin:auto'></span>
+                  </button>
                 </div>
 
                 <p class="text-center text-muted mt-5 mb-0"> Kayıtlı kullanıcı mısınız?<a href="#/login" class="fw-bold text-body"><u>Giriş Yapın</u></a></p>

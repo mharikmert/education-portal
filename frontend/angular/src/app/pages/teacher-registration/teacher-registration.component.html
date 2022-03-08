@@ -47,8 +47,8 @@
                   <div class = 'form-outline mb-4'>
                     <label class="form-label" for="city" style="margin-top: 5px;"> Sehir </label>
                     <select class="form-select" aria-label="Default select example" formControlName="city" 
-                    [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
-                      <option selected value = "0" disabled> Sehir Seciniz </option>
+                    [ngClass]="{ 'is-invalid': submitted && (f.city.errors || f.city.value == '0')}">
+                      <option selected disabled [value]="0"> Sehir Seciniz </option>
                       <option *ngFor="let city of cities">
                         {{city.name}}
                       </option>
@@ -105,7 +105,9 @@
                     
   
                   <div class="d-flex justify-content-center">
-                    <button class = 'btn' type = 'submit'> kayit ol</button>
+                    <button class = 'btn' type = 'submit'> kayit ol
+                      <span *ngIf="submitted && teacherFormGroup.valid" class="spinner-border spinner-border-sm" style = 'margin:auto'></span>
+                    </button>
                   </div>
   
                   <p class="text-center text-muted mt-5 mb-0"> Kayıtlı kullanıcı mısınız?<a href="#/login" class="fw-bold text-body"><u>Giriş Yapın</u></a></p>

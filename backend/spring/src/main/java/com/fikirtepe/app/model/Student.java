@@ -16,42 +16,25 @@ public class Student extends User implements Serializable {
 
     private LocalDate birthDate;
     private String address;
-    private String phoneNumber;
     private String schoolName;
     private int grade;
     private String section;
     private boolean hasInternet;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-//    @JoinTable(name = "student_lecture",
-//            joinColumns = {
-//                    @JoinColumn(name = "student_id", referencedColumnName = "id",
-//                            nullable = false),
-//            },
-//            inverseJoinColumns = {
-//                    @JoinColumn(name = "lecture_id", referencedColumnName = "id",
-//                            nullable = false)
-//            })
-    private Set<Lecture> lectures = new HashSet<>();
+    @ManyToMany
+    private Set<Lecture> lectures = new HashSet<>(); // m-n
 
     @ManyToOne
-//    @JoinColumn(name = "term_id")
-    private Term term;
+    private Classroom classroom; // 1-n
 
     @ManyToOne
-//    @JoinColumn(name = "classroom_id")
-    private Classroom classroom;
-
-    @ManyToOne
-//    @JoinColumn(name = "parent_id")
-    private Parent parent;
+    private Parent parent; // 1-n
 
     @Override
     public String toString() {
         return super.toString() + "Student{" +
                 "birthDate=" + birthDate +
                 ", address='" + address + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
                 ", schoolName='" + schoolName + '\'' +
                 ", grade=" + grade +
                 ", section='" + section + '\'' +

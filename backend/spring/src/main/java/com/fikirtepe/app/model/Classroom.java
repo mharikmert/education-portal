@@ -1,11 +1,11 @@
 package com.fikirtepe.app.model;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -19,17 +19,8 @@ public class Classroom implements Serializable {
     private int classroomSize;
     private int grade;
 
-    @OneToMany//(mappedBy = "classroom", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Student> students;
-
-    @ManyToMany//(mappedBy = "classrooms", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Teacher> teachers;
-
-    @ManyToMany//(mappedBy = "classrooms", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Lecture> lectures;
-
+    @JoinColumn(nullable = false)
     @ManyToOne
-//    @JoinColumn(name = "term_id")
     private Term term;
-
+    //create a composite key for classroom
 }

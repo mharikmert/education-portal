@@ -1,5 +1,6 @@
 package com.fikirtepe.app.model;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,11 +19,17 @@ public class Section implements Serializable {
     private int numberOfHours;
 
     @ManyToOne
-    private Lecture lecture;
+    private Lecture lecture; // 1-n
+
     @ManyToOne
-    private Teacher teacher;
+    private Teacher teacher; // 1-n
+
     @ManyToOne
-    private Classroom classroom;
+    private Classroom classroom; // 1-n
+
+    @JoinColumn(nullable = false)
+    @ManyToOne
+    private Term term; // 1-n
 
     public Section(){ }
     public Section(Long id, String day, String startingTime, int numberOfHours, Lecture lecture, Teacher teacher, Classroom classroom) {

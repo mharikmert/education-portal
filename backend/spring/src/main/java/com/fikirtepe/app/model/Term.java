@@ -6,7 +6,6 @@ import org.hibernate.Hibernate;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -14,20 +13,12 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class Term implements Serializable {
    @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @GeneratedValue(strategy = GenerationType.AUTO)
    private Long id;
    private String name; // "2021-2022"
    private String startDate;
    private String endDate;
    private boolean isActive;
-
-   @OneToMany//(mappedBy = "term", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-   private Set<Teacher> teachers;
-   @OneToMany//(mappedBy = "term", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-   private Set<Student> students;
-   @OneToMany//(mappedBy = "term", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-   private Set<Classroom> classrooms;
-
 
    @Override
    public boolean equals(Object o) {
@@ -50,8 +41,6 @@ public class Term implements Serializable {
               ", name='" + name + '\'' +
               ", startDate='" + startDate + '\'' +
               ", endDate='" + endDate + '\'' +
-              ", teachers=" + teachers +
-              ", students=" + students +
               '}';
    }
 }

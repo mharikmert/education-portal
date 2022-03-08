@@ -12,6 +12,6 @@ import java.util.Set;
 @Entity
 public class Parent extends User implements Serializable {
 
-    @OneToMany//(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Student> students;
+    @OneToMany
+    private Set<Student> students; // 1-n
 }

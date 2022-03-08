@@ -41,11 +41,6 @@ public class ClassroomServiceImplementation implements ClassroomService {
     }
 
     @Override
-    public Set<Student> getStudentsByClassroomName(String classroomName){
-        return classroomRepository.findClassroomByName(classroomName).getStudents();
-    }
-
-    @Override
     public void deleteClassroom(Classroom classRef){
         classroomRepository.delete(classRef);
     }

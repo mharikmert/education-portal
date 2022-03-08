@@ -22,6 +22,7 @@ public class TeacherController {
     }
     @PostMapping
     public ResponseEntity<Teacher> createTeacher(@RequestBody Teacher teacher){
+        System.out.println(teacher.toString());
         return ResponseEntity.ok(teacherService.createTeacher(teacher));
     }
     @PostMapping("/temp")

@@ -14,8 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
@@ -40,10 +38,9 @@ public class StudentController {
     }
 
     //creates a student
-    //@ResponseStatus(HttpStatus.CREATED) // returned 201 if process is succeeded
+    @ResponseStatus(HttpStatus.CREATED) // returned 201 if the creation process is succeeded
     @PostMapping
-    public ResponseEntity<?> createStudent(@RequestBody Student student,
-                                        HttpServletResponse response) throws IOException {
+    public ResponseEntity<?> createStudent(@RequestBody Student student) {
         logger.info(student.toString());
         try{
             userService.getUserById(student.getId());

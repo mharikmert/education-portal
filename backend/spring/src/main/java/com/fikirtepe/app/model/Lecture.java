@@ -1,5 +1,6 @@
 package com.fikirtepe.app.model;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,16 +19,8 @@ public class Lecture implements Serializable {
     private String name;
     private String lectureCode;
 
-    @ManyToMany//(mappedBy = "lectures", fetch = FetchType.LAZY)
-    private Set<Student> students =  new HashSet<>();
-
-    @ManyToMany//(mappedBy = "lectures", fetch = FetchType.LAZY)
-    private Set<Teacher> teachers = new HashSet<>();
-
-    @ManyToMany
-//    @JoinTable(name = "lectures_classrooms",
-//            joinColumns = @JoinColumn(name = "lecture_id"),
-//            inverseJoinColumns = @JoinColumn(name = "classroom_id"))
-    private Set<Classroom> classrooms;
+    @JoinColumn(nullable = false)
+    @ManyToOne
+    private Term term; // 1-n
 
 }

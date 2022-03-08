@@ -1,6 +1,7 @@
 package com.fikirtepe.app.model;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -43,6 +44,10 @@ public class User implements Serializable {
     private String city;
     private String district;
     private boolean isApproved;
+
+    @JoinColumn(nullable = false)
+    @ManyToOne
+    private Term term; // 1-n
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Role> roles;

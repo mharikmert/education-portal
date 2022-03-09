@@ -6,6 +6,8 @@ import { City } from 'src/app/models/City';
 import { environment } from 'src/environments/environment';
 import { District } from 'src/app/models/Districts';
 import { Router } from '@angular/router';
+import { Term } from 'src/app/models/Term';
+
 @Component({
   selector: 'app-student-registration',
   templateUrl: './student-registration.component.html',
@@ -13,6 +15,12 @@ import { Router } from '@angular/router';
 })
 export class StudentRegistrationComponent implements OnInit {
 
+  term: Term = {
+    name: '2022-2023',
+    startDate: new Date('2022-09-01'),
+    endDate: new Date('2023-08-31'),
+    active: true
+  }
   selectedCity: City = {}; 
   hasInternet: boolean = true;
   cities: City[] = [];
@@ -34,8 +42,7 @@ export class StudentRegistrationComponent implements OnInit {
       'section': new FormControl(null, Validators.required),
       'schoolName': new FormControl(null, Validators.required),
       'email': new FormControl(null, [Validators.required, Validators.email]),
-      'phoneNumber' : new FormControl(
-        null,
+      'phoneNumber' : new FormControl(null, 
         [
           Validators.required,
           Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')
@@ -47,8 +54,8 @@ export class StudentRegistrationComponent implements OnInit {
       'plastName': new FormControl(null),
       'pPhone': new FormControl(null),
       'notes': new FormControl(null, Validators.required),
-      'terms' : new FormControl(null, Validators.requiredTrue )
-
+      'terms' : new FormControl(null, Validators.requiredTrue),
+      'term': this.term
     });
   }
 
@@ -58,13 +65,11 @@ export class StudentRegistrationComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
-    console.log('actual value of hasInternet : ', this.hasInternet)
     console.table(this.studentFormGroup.value);
-    // console.log(this.studentFormGroup.value, null, 2); 
     if (this.studentFormGroup.valid) {
       console.log(JSON.stringify(this.studentFormGroup.value, null, 2));
+      const request = this.httpClient.post(`${environment.apiUrl}/api/students`, this.studentFormGroup.value , {observe: 'response'});
 
-      const request = this.httpClient.post(`${environment.apiUrl}/api/students`, this.studentFormGroup.value, {observe: 'response'}); 
       request.subscribe( response => {
           console.log('this is the response code of the request' , response.status)
           if(response.status === 201){
@@ -82,6 +87,8 @@ export class StudentRegistrationComponent implements OnInit {
         else if(error.status === 500){
           console.log('this is the error message from interval server error ' , error)
         }
+        //deactivates spinner 
+        this.submitted = false; 
       });
     }
     else {

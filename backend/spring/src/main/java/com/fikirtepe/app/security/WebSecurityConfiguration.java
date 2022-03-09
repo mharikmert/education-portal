@@ -52,7 +52,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers(allowedPaths).permitAll()
-                //allow register and login post requests
                 .antMatchers(HttpMethod.POST, postAllowedPaths).permitAll()
                 .antMatchers(HttpMethod.GET, "/api/users/**").hasRole("ADMIN")
                 .antMatchers("/swagger-resources/*", "*.html", "/api/v1/swagger.json")

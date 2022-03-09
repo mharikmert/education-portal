@@ -4,6 +4,8 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { City } from 'src/app/models/City';
+import { Term } from 'src/app/models/Term';
+import { Lecture } from 'src/app/models/Lecture';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -14,9 +16,18 @@ import { environment } from 'src/environments/environment';
 
 export class TeacherRegistrationComponent implements OnInit {
 
-  subject?: String; 
+  term: Term = {
+    name: 'Term 1',
+    startDate: new Date('2020-01-01'),
+    endDate: new Date('2020-06-30')
+  }
+
+  subject: string = ''; 
   cities?: City[];
 
+  lecture: Lecture = {
+    name: this.subject
+  }
   teacherFormGroup!: FormGroup;
   submitted: boolean = false;
 
@@ -35,9 +46,11 @@ export class TeacherRegistrationComponent implements OnInit {
           Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')
         ]),
       'city': new FormControl(null, Validators.required),
-      'subject' : this.subject,
       'notes': new FormControl(null),
-      'terms' : new FormControl(null, Validators.requiredTrue )
+      'terms' : new FormControl(null, Validators.requiredTrue ),
+      'term': this.term,
+      'lecture': this.lecture
+
 
     });
   }
@@ -51,7 +64,7 @@ export class TeacherRegistrationComponent implements OnInit {
     if (this.teacherFormGroup.valid && this.subject) {
       console.log(JSON.stringify(this.teacherFormGroup.value, null, 2));
 
-      const request = this.httpClient.post(`${environment.apiUrl}/api/teacher`, this.teacherFormGroup.value, {observe: 'response'}); 
+      const request = this.httpClient.post(`${environment.apiUrl}/api/teachers`, this.teacherFormGroup.value, {observe: 'response'}); 
       request.subscribe( response => {
           console.log('this is the response code of the request' , response.status)
           if(response.status === 201){
@@ -69,6 +82,8 @@ export class TeacherRegistrationComponent implements OnInit {
         else if(error.status === 500){
           console.log('this is the error message from interval server error ' , error)
         }
+        // deactivates spinner 
+        this.submitted = false; 
       });
     } 
     else {

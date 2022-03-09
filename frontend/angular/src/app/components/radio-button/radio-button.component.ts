@@ -11,7 +11,7 @@ export class RadioButtonComponent implements OnInit {
   @Input() label?: string;
   @Input() id?: string; 
   @Input() name?: string;
-  @Output() onChecked: EventEmitter<String> = new EventEmitter();
+  @Output() onChecked: EventEmitter<string> = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {

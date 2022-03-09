@@ -3,6 +3,7 @@ package com.fikirtepe.app.controller;
 import com.fikirtepe.app.model.Teacher;
 import com.fikirtepe.app.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,10 +21,11 @@ public class TeacherController {
     public ResponseEntity<List<Teacher>> getTeachers(){
         return ResponseEntity.ok(teacherService.getTeachers());
     }
+
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public ResponseEntity<Teacher> createTeacher(@RequestBody Teacher teacher){
-        System.out.println(teacher.toString());
-        return ResponseEntity.ok(teacherService.createTeacher(teacher));
+        return ResponseEntity.status(HttpStatus.CREATED).body(teacherService.createTeacher(teacher));
     }
     @PostMapping("/temp")
     public ResponseEntity<List<Teacher>> createTeachers(@RequestBody List<Teacher> teachers){

@@ -53,7 +53,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(allowedPaths).permitAll()
                 .antMatchers(HttpMethod.POST, postAllowedPaths).permitAll()
-                .antMatchers(HttpMethod.GET, "/api/users/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/terms/current").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/users/**", "/api/terms/**").hasRole("ADMIN")
                 .antMatchers("/swagger-resources/*", "*.html", "/api/v1/swagger.json")
                 /*
                 similar to hasRole with only difference ROLE prefix

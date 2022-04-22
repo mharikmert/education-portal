@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface TermService {
     List<Term> getTerms();
+    Term getCurrentTerm();
+    void activateTerm(int termId);
     Term getTermByName(String name);
     Term createTerm(Term term);
     void deleteTerm(Term term);

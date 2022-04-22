@@ -27,9 +27,22 @@ public class TermController {
     public ResponseEntity<Term> addTerm(@RequestBody Term term){
         return ResponseEntity.ok(termService.createTerm(term));
     }
+    @GetMapping("/terms/current")
+    public ResponseEntity<Term> getCurrentTerm(){
+        return ResponseEntity.ok(termService.getCurrentTerm());
+    }
     @PostMapping("/updateTerms")
     public ResponseEntity<List<Term>> updateTerms(@RequestBody List<Term> terms){
         return ResponseEntity.ok(termService.updateTerms(terms));
     }
-
+    @PostMapping("/terms/{id}/activate")
+    public ResponseEntity<?> activateTerm(@PathVariable int id){
+            termService.activateTerm(id);
+            if(termService.getCurrentTerm().getId() == id){
+                return ResponseEntity.ok("Term activated");
+            }
+            else {
+                return ResponseEntity.ok("Term not activated");
+            }
+        }
 }

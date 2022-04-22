@@ -18,6 +18,19 @@ public class TermServiceImplementation implements TermService{
     }
 
     @Override
+    public Term getCurrentTerm() {
+        return termRepository.findCurrentTerm();
+    }
+
+    @Override
+    public void activateTerm(int termId){
+        List<Term> terms = getTerms();
+        for(Term term : terms){
+            term.setActive(term.getId() == termId);
+        }
+        termRepository.saveAll(terms);
+    }
+    @Override
     public List<Term> getTerms() {
         return termRepository.findAll();
     }

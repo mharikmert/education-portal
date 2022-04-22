@@ -14,7 +14,7 @@ import java.util.Objects;
 public class Term implements Serializable {
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
-   private Long id;
+   private int id;
    private String name; // "2021-2022"
    private String startDate;
    private String endDate;

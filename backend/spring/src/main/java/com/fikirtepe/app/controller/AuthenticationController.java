@@ -3,7 +3,7 @@ package com.fikirtepe.app.controller;
 import com.fikirtepe.app.payload.LoginRequest;
 import com.fikirtepe.app.payload.LoginResponse;
 import com.fikirtepe.app.security.JwtTokenUtil;
-import com.fikirtepe.app.security.JwtUserDetailsService;
+import com.fikirtepe.app.service.UserDetailsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,21 +22,23 @@ public class AuthenticationController {
     private static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
     private AuthenticationManager authenticationManager;
     private JwtTokenUtil jwtTokenUtil;
-    private JwtUserDetailsService jwtUserDetailsService;
+    private UserDetailsService userDetailsService;
 
     @Autowired
-    public void setAuthenticationService(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, JwtUserDetailsService jwtUserDetailsService){
+    public void setAuthenticationService(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, UserDetailsService userDetailsService){
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
-        this.jwtUserDetailsService = jwtUserDetailsService;
+        this.userDetailsService = userDetailsService;
     }
 
-//    @CrossOrigin(origins = "https://localhost:4200")
     @RequestMapping(value = "/api/auth", method = RequestMethod.POST)
     public ResponseEntity<LoginResponse> createAuthToken(@RequestBody LoginRequest user) throws Exception{
+
         authenticate(user.getUsername(), user.getPassword());
-        final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(user.getUsername());
+
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
+
         LoginResponse response = new LoginResponse(userDetails.getUsername(), token, userDetails.getAuthorities());
         return ResponseEntity.ok(response);
     }

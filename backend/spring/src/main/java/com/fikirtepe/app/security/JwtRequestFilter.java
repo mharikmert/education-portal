@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fikirtepe.app.repository.UserRepository;
+import com.fikirtepe.app.service.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,15 +21,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-	private JwtUserDetailsService userDetailService;
-	private JwtTokenUtil jwtTokenUtil;
+	private final JwtTokenUtil jwtTokenUtil;
+	private final UserDetailsService userDetailsService;
 
-	@Autowired
-	public void setUserDetailService(JwtUserDetailsService jwtUserDetailsService){
-		this.userDetailService = jwtUserDetailsService;
-	}
-	@Autowired
-	public void setJwtTokenUtil(JwtTokenUtil jwtTokenUtil){
+	public JwtRequestFilter(UserDetailsService userDetailsService, JwtTokenUtil jwtTokenUtil) {
+		this.userDetailsService = userDetailsService;
 		this.jwtTokenUtil = jwtTokenUtil;
 	}
 
@@ -54,7 +52,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		//Once we get the token validate it.
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-			UserDetails userDetails = this.userDetailService.loadUserByUsername(username);
+			UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
 			// if token is valid configure Spring Security to manually set authentication
 			if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {

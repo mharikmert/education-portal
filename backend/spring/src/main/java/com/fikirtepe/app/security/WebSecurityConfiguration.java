@@ -1,5 +1,7 @@
 package com.fikirtepe.app.security;
 
+import com.fikirtepe.app.repository.UserRepository;
+import com.fikirtepe.app.service.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -15,56 +17,46 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import javax.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-    private JwtUserDetailsService jwtUserDetailsService;
-    private JwtRequestFilter jwtRequestFilter;
+    private final JwtRequestFilter jwtRequestFilter;
+    private final UserDetailsService userDetailsService;
 
-    @Autowired
-    public void setJwtAuthenticationEntryPoint(JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint) {
-        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
-    }
-    @Autowired
-    public void setJwtUserDetailsService(JwtUserDetailsService jwtUserDetailsService) {
-        this.jwtUserDetailsService = jwtUserDetailsService;
-    }
-    @Autowired
-    public void setJwtRequestFilter(JwtRequestFilter jwtRequestFilter) {
+    public WebSecurityConfiguration(UserDetailsService userDetailsService, JwtRequestFilter jwtRequestFilter, UserRepository userRepository) {
         this.jwtRequestFilter = jwtRequestFilter;
+        this.userDetailsService = userDetailsService;
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Value("${allowed.paths}") private String [] allowedPaths;
     @Value("${post.allowed.paths}") private String [] postAllowedPaths;
+    @Value("${get.allowed.paths}") private String [] getAllowedPaths;
+    @Value("${admin.allowed.paths}") private String [] adminAllowedPaths;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors();
-        http.csrf().disable();
+        // enable cors, disable csrf
+        http.cors().and().csrf().disable();
         http.authorizeRequests()
                 .antMatchers(allowedPaths).permitAll()
+                .antMatchers(adminAllowedPaths).hasRole("ADMIN") // or hasAuthority("ROLE_ADMIN")
                 .antMatchers(HttpMethod.POST, postAllowedPaths).permitAll()
-                .antMatchers(HttpMethod.GET, "/api/terms/current").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/users/**", "/api/terms/**").hasRole("ADMIN")
-                .antMatchers("/swagger-resources/*", "*.html", "/api/v1/swagger.json")
-                /*
-                similar to hasRole with only difference ROLE prefix
-                in hasRole("ADMIN"), ROLE prefix automatically added by spring security
-                 */
-                .hasAuthority("ROLE_ADMIN")
-                //.hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, getAllowedPaths).permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                .exceptionHandling().authenticationEntryPoint(
+                        (request, response, authException) ->
+                                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized")
+                )
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         // Add a filter to validate the tokens with every request

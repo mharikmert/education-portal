@@ -14,17 +14,10 @@ import java.util.List;
 @Service
 public class UserServiceImplementation implements UserService {
 
-    UserRepository userRepository;
-
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    public UserServiceImplementation(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-    }
-
-    PasswordEncoder passwordEncoder;
-
-    @Autowired
-    public void setPasswordEncoder(PasswordEncoder passwordEncoder){
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -83,12 +76,10 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public User getUserByUsername(String username) {
-        try{
-            return userRepository.findByUsername(username);
-        }
-        catch (UserNotFoundException ex){
-            throw new UserNotFoundException("User is not found with username");
-        }
+        return userRepository.findByUsername(username)
+                .orElseThrow(
+                        () -> new UserNotFoundException("User not found with username: " + username)
+                );
     }
 
 }

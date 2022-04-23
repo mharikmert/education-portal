@@ -29,4 +29,8 @@ export class TermService {
   updateTerms(terms : Term[]): Observable<Term []> {
     return this.httpClient.post<Term []>(`${environment.apiUrl}/api/updateTerms`, terms, {headers: this.headers}); 
   } 
+
+  getCurrentTerm(): Observable<Term> {
+    return this.httpClient.get<Term>(`${environment.apiUrl}/api/terms/current`); 
+  }
 }

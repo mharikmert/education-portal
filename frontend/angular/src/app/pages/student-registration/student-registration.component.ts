@@ -7,32 +7,39 @@ import { environment } from 'src/environments/environment';
 import { District } from 'src/app/models/Districts';
 import { Router } from '@angular/router';
 import { Term } from 'src/app/models/Term';
-
+import { TermService } from 'src/app/services/term.service';
 @Component({
   selector: 'app-student-registration',
   templateUrl: './student-registration.component.html',
   styleUrls: ['./student-registration.component.css']
 })
 export class StudentRegistrationComponent implements OnInit {
-
-  term: Term = {
-    name: '2022-2023',
-    startDate: new Date('2022-09-01'),
-    endDate: new Date('2023-08-31'),
-    active: true
-  }
+  
+  currentTerm?: Term;
   selectedCity: City = {}; 
   hasInternet: boolean = true;
   cities: City[] = [];
   districts: District[] = []; 
-
   studentFormGroup!: FormGroup;
   submitted: boolean = false;
+  btnClicked: boolean = false;
 
-  constructor(private httpClient: HttpClient, private formBuilder: FormBuilder, private router: Router) { }
+  constructor( private httpClient: HttpClient, 
+              private formBuilder: FormBuilder, 
+              private router: Router, 
+              private termService: TermService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.termService.getCurrentTerm().subscribe(term => this.currentTerm = term);
     this.getCities().subscribe(cities => this.cities = cities);
+    this.createForm();
+  }
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.studentFormGroup.controls;
+  }
+
+  createForm(){
     this.studentFormGroup = this.formBuilder.group({
       'firstName': new FormControl(null, Validators.required),
       'lastName': new FormControl(null, Validators.required),
@@ -49,32 +56,29 @@ export class StudentRegistrationComponent implements OnInit {
         ]),
       'city': new FormControl(null, Validators.required),
       'district': new FormControl(null, Validators.required),
-      'hasInternet': this.hasInternet,
+      'hasInternet': '',
       'pfirstName': new FormControl(null),
       'plastName': new FormControl(null),
       'pPhone': new FormControl(null),
       'notes': new FormControl(null, Validators.required),
       'terms' : new FormControl(null, Validators.requiredTrue),
-      'term': this.term
+      'term': ''
     });
   }
-
-  get f(): { [key: string]: AbstractControl } {
-    return this.studentFormGroup.controls;
-  }
-
   onSubmit(): void {
+
+    this.studentFormGroup.value.term = this.currentTerm;
+    this.studentFormGroup.value.hasInternet = this.hasInternet;
     this.submitted = true;
-    console.table(this.studentFormGroup.value);
+
     if (this.studentFormGroup.valid) {
-      console.log(JSON.stringify(this.studentFormGroup.value, null, 2));
+
       const request = this.httpClient.post(`${environment.apiUrl}/api/students`, this.studentFormGroup.value , {observe: 'response'});
 
       request.subscribe( response => {
-          console.log('this is the response code of the request' , response.status)
+
           if(response.status === 201){
             this.submitted = false; 
-            console.log('kaydiniz alinmistir.. ')
             this.router.navigate(['/']);
           }
       }, error => {
@@ -92,9 +96,8 @@ export class StudentRegistrationComponent implements OnInit {
       });
     }
     else {
-      // console.log(this.studentFormGroup.value, this.studentFormGroup.errors);
       console.log('Form is invalid');
-      return;
+      this.btnClicked = false;
     }
   }
 
@@ -106,7 +109,6 @@ export class StudentRegistrationComponent implements OnInit {
   getCities() : Observable<City[]>{
     return this.httpClient.get<City[]>(`${environment.apiUrl}/api/cities`); 
   }
-
   setDistricts(cityId: number | undefined) {
     this.httpClient.get<District[]>(`${environment.apiUrl}/api/cities/${cityId}/districts`).subscribe(districts => this.districts = districts);
   }

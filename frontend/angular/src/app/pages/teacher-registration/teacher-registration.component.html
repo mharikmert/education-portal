@@ -65,15 +65,15 @@
                         <h6 class="mb-0 me-4">Gönüllü Olacağınız Alan: </h6>
                     </div>
   
-                    <app-radio-button label = 'Fizik' id = 'physics' (onChecked)="this.subject = $event"> </app-radio-button>
-                    <app-radio-button label = 'Kimya' id = 'chemistry'(onChecked)="this.subject = $event" ></app-radio-button>
-                    <app-radio-button label = 'Biyoloji' id = 'bio'(onChecked)="this.subject = $event"></app-radio-button>
-                    <app-radio-button label = 'Matematik' id = 'math'(onChecked)="this.subject = $event"></app-radio-button>
-                    <app-radio-button label = 'Turkce' id = 'turkish'(onChecked)="this.subject = $event"></app-radio-button>
-                    <app-radio-button label = 'Tarih' id = 'history'(onChecked)="this.subject = $event"></app-radio-button>
-                    <app-radio-button label = 'Cografya' id = 'geograpy'(onChecked)="this.subject = $event"></app-radio-button>
+                    <app-radio-button label = 'Fizik' id = 'physics' (onChecked)="lecture.name = $event"> </app-radio-button>
+                    <app-radio-button label = 'Kimya' id = 'chemistry'(onChecked)="lecture.name = $event" ></app-radio-button>
+                    <app-radio-button label = 'Biyoloji' id = 'bio'(onChecked)="lecture.name = $event"></app-radio-button>
+                    <app-radio-button label = 'Matematik' id = 'math'(onChecked)="lecture.name = $event"></app-radio-button>
+                    <app-radio-button label = 'Turkce' id = 'turkish'(onChecked)="lecture.name = $event"></app-radio-button>
+                    <app-radio-button label = 'Tarih' id = 'history'(onChecked)="lecture.name = $event"></app-radio-button>
+                    <app-radio-button label = 'Cografya' id = 'geograpy'(onChecked)="lecture.name = $event"></app-radio-button>
 
-                      <div *ngIf="submitted && !subject" style="color:#DC3545; font-size: 14px;">
+                      <div *ngIf="submitted && !lecture.name" style="color:#DC3545; font-size: 14px;">
                         <div> Lutfen alan seciniz </div>
                       </div>
                   </div>
@@ -105,8 +105,8 @@
                     
   
                   <div class="d-flex justify-content-center">
-                    <button class = 'btn' type = 'submit'> kayit ol
-                      <span *ngIf="submitted && teacherFormGroup.valid" class="spinner-border spinner-border-sm" style = 'margin:auto'></span>
+                    <button  class = 'btn' type = 'submit' (click)="btnClicked = true"> KAYIT OL
+                      <span *ngIf="submitted && btnClicked" class="spinner-border spinner-border-sm" style = 'margin:auto'></span>
                     </button>
                   </div>
   

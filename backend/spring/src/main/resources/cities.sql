@@ -1,81 +1,81 @@
-INSERT city (plate_no, name) VALUES (1, 'ADANA');
-INSERT city (plate_no, name) VALUES (2, 'ADIYAMAN');
-INSERT city (plate_no, name) VALUES (3, 'AFYON');
-INSERT city (plate_no, name) VALUES (4, 'AĞRI');
-INSERT city (plate_no, name) VALUES (5, 'AMASYA');
-INSERT city (plate_no, name) VALUES (6, 'ANKARA');
-INSERT city (plate_no, name) VALUES (7, 'ANTALYA');
-INSERT city (plate_no, name) VALUES (8, 'ARTVİ');
-INSERT city (plate_no, name) VALUES (9, 'AYDIN');
-INSERT city (plate_no, name) VALUES (10, 'BALIKESİR');
-INSERT city (plate_no, name) VALUES (11, 'BİLECİK');
-INSERT city (plate_no, name) VALUES (12, 'BİNGÖL');
-INSERT city (plate_no, name) VALUES (13, 'BİTLİS');
-INSERT city (plate_no, name) VALUES (14, 'BOLU');
-INSERT city (plate_no, name) VALUES (15, 'BURDUR');
-INSERT city (plate_no, name) VALUES (16, 'BURSA');
-INSERT city (plate_no, name) VALUES (17, 'ÇANAKKALE');
-INSERT city (plate_no, name) VALUES (18, 'ÇANKIRI');
-INSERT city (plate_no, name) VALUES (19, 'ÇORUM');
-INSERT city (plate_no, name) VALUES (20, 'DENİZLİ');
-INSERT city (plate_no, name) VALUES (21, 'DİYARBAKIR');
-INSERT city (plate_no, name) VALUES (22, 'EDİRNE');
-INSERT city (plate_no, name) VALUES (23, 'ELAZIĞ');
-INSERT city (plate_no, name) VALUES (24, 'ERZİNCAN');
-INSERT city (plate_no, name) VALUES (25, 'ERZURUM');
-INSERT city (plate_no, name) VALUES (26, 'ESKİŞEHİR');
-INSERT city (plate_no, name) VALUES (27, 'GAZİANTEP');
-INSERT city (plate_no, name) VALUES (28, 'GİRESUN');
-INSERT city (plate_no, name) VALUES (29, 'GÜMÜŞHANE');
-INSERT city (plate_no, name) VALUES (30, 'HAKKARİ');
-INSERT city (plate_no, name) VALUES (31, 'HATAY');
-INSERT city (plate_no, name) VALUES (32, 'ISPARTA');
-INSERT city (plate_no, name) VALUES (33, 'İÇEL');
-INSERT city (plate_no, name) VALUES (34, 'İSTANBUL');
-INSERT city (plate_no, name) VALUES (35, 'İZMİR');
-INSERT city (plate_no, name) VALUES (36, 'KARS');
-INSERT city (plate_no, name) VALUES (37, 'KASTAMONU');
-INSERT city (plate_no, name) VALUES (38, 'KAYSERİ');
-INSERT city (plate_no, name) VALUES (39, 'KIRKLARELİ');
-INSERT city (plate_no, name) VALUES (40, 'KIRŞEHİR');
-INSERT city (plate_no, name) VALUES (41, 'KOCAELİ');
-INSERT city (plate_no, name) VALUES (42, 'KONYA');
-INSERT city (plate_no, name) VALUES (43, 'KÜTAHYA');
-INSERT city (plate_no, name) VALUES (44, 'MALATYA');
-INSERT city (plate_no, name) VALUES (45, 'MANİSA');
-INSERT city (plate_no, name) VALUES (46, 'KAHRAMANMARAŞ');
-INSERT city (plate_no, name) VALUES (47, 'MARDİ');
-INSERT city (plate_no, name) VALUES (48, 'MUĞLA');
-INSERT city (plate_no, name) VALUES (49, 'MUŞ');
-INSERT city (plate_no, name) VALUES (50, 'NEVŞEHİR');
-INSERT city (plate_no, name) VALUES (51, 'NİĞDE');
-INSERT city (plate_no, name) VALUES (52, 'ORDU');
-INSERT city (plate_no, name) VALUES (53, 'RİZE');
-INSERT city (plate_no, name) VALUES (54, 'SAKARYA');
-INSERT city (plate_no, name) VALUES (55, 'SAMSUN');
-INSERT city (plate_no, name) VALUES (56, 'SİİRT');
-INSERT city (plate_no, name) VALUES (57, 'SİNOP');
-INSERT city (plate_no, name) VALUES (58, 'SİVAS');
-INSERT city (plate_no, name) VALUES (59, 'TEKİRDAĞ');
-INSERT city (plate_no, name) VALUES (60, 'TOKAT');
-INSERT city (plate_no, name) VALUES (61, 'TRABZON');
-INSERT city (plate_no, name) VALUES (62, 'TUNCELİ');
-INSERT city (plate_no, name) VALUES (63, 'ŞANLIURFA');
-INSERT city (plate_no, name) VALUES (64, 'UŞAK');
-INSERT city (plate_no, name) VALUES (65, 'VAN');
-INSERT city (plate_no, name) VALUES (66, 'YOZGAT');
-INSERT city (plate_no, name) VALUES (67, 'ZONGULDAK');
-INSERT city (plate_no, name) VALUES (68, 'AKSARAY');
-INSERT city (plate_no, name) VALUES (69, 'BAYBURT');
-INSERT city (plate_no, name) VALUES (70, 'KARAMAN');
-INSERT city (plate_no, name) VALUES (71, 'KIRIKKALE');
-INSERT city (plate_no, name) VALUES (72, 'BATMAN');
-INSERT city (plate_no, name) VALUES (73, 'ŞIRNAK');
-INSERT city (plate_no, name) VALUES (74, 'BARTIN');
-INSERT city (plate_no, name) VALUES (75, 'ARDAHAN');
-INSERT city (plate_no, name) VALUES (76, 'IĞDIR');
-INSERT city (plate_no, name) VALUES (77, 'YALOVA');
-INSERT city (plate_no, name) VALUES (78, 'KARABÜK');
-INSERT city (plate_no, name) VALUES (79, 'KİLİS');
-INSERT city (plate_no, name) VALUES (80, 'OSMANİYE');
-INSERT city (plate_no, name) VALUES (81, 'DÜZCE');
+insert into city values(1, 'ADANA'),
+(2, 'ADIYAMAN'),
+(3, 'AFYON'),
+(4, 'AĞRI'),
+(5, 'AMASYA'),
+(6, 'ANKARA'),
+(7, 'ANTALYA'),
+(8, 'ARTVİ'),
+(9, 'AYDIN'),
+(10, 'BALIKESİR'),
+(11, 'BİLECİK'),
+(12, 'BİNGÖL'),
+(13, 'BİTLİS'),
+(14, 'BOLU'),
+(15, 'BURDUR'),
+(16, 'BURSA'),
+(17, 'ÇANAKKALE'),
+(18, 'ÇANKIRI'),
+(19, 'ÇORUM'),
+(20, 'DENİZLİ'),
+(21, 'DİYARBAKIR'),
+(22, 'EDİRNE'),
+(23, 'ELAZIĞ'),
+(24, 'ERZİNCAN'),
+(25, 'ERZURUM'),
+(26, 'ESKİŞEHİR'),
+(27, 'GAZİANTEP'),
+(28, 'GİRESUN'),
+(29, 'GÜMÜŞHANE'),
+(30, 'HAKKARİ'),
+(31, 'HATAY'),
+(32, 'ISPARTA'),
+(33, 'İÇEL'),
+(34, 'İSTANBUL'),
+(35, 'İZMİR'),
+(36, 'KARS'),
+(37, 'KASTAMONU'),
+(38, 'KAYSERİ'),
+(39, 'KIRKLARELİ'),
+(40, 'KIRŞEHİR'),
+(41, 'KOCAELİ'),
+(42, 'KONYA'),
+(43, 'KÜTAHYA'),
+(44, 'MALATYA'),
+(45, 'MANİSA'),
+(46, 'KAHRAMANMARAŞ'),
+(47, 'MARDİ'),
+(48, 'MUĞLA'),
+(49, 'MUŞ'),
+(50, 'NEVŞEHİR'),
+(51, 'NİĞDE'),
+(52, 'ORDU'),
+(53, 'RİZE'),
+(54, 'SAKARYA'),
+(55, 'SAMSUN'),
+(56, 'SİİRT'),
+(57, 'SİNOP'),
+(58, 'SİVAS'),
+(59, 'TEKİRDAĞ'),
+(60, 'TOKAT'),
+(61, 'TRABZON'),
+(62, 'TUNCELİ'),
+(63, 'ŞANLIURFA'),
+(64, 'UŞAK'),
+(65, 'VAN'),
+(66, 'YOZGAT'),
+(67, 'ZONGULDAK'),
+(68, 'AKSARAY'),
+(69, 'BAYBURT'),
+(70, 'KARAMAN'),
+(71, 'KIRIKKALE'),
+(72, 'BATMAN'),
+(73, 'ŞIRNAK'),
+(74, 'BARTIN'),
+(75, 'ARDAHAN'),
+(76, 'IĞDIR'),
+(77, 'YALOVA'),
+(78, 'KARABÜK'),
+(79, 'KİLİS'),
+(80, 'OSMANİYE'),
+(81, 'DÜZCE');

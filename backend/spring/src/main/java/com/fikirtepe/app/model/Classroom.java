@@ -1,6 +1,5 @@
 package com.fikirtepe.app.model;
 
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,9 +17,4 @@ public class Classroom implements Serializable {
     private int capacity;
     private int classroomSize;
     private int grade;
-
-    @JoinColumn(nullable = false)
-    @ManyToOne
-    private Term term;
-    //create a composite key for classroom
 }

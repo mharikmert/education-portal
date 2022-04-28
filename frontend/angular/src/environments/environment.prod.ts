@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://egitimportali.online'
+  apiUrl: 'http://egitimportali-demo.mharikmert.com'
 };

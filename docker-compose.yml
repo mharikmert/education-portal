@@ -1,0 +1,14 @@
+version: '3'
+services:
+  nginx: 
+    restart: always
+    build: 
+      context: ./nginx
+    ports:
+      - "80:80"
+  api:
+    build:
+      context: ./backend/spring
+  client: 
+    build: 
+      context: ./frontend/angular

@@ -24,4 +24,14 @@ public class LectureController {
     public ResponseEntity<Lecture> createLecture(@RequestBody Lecture lecture){
         return ResponseEntity.ok(lectureService.createLecture(lecture));
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Lecture> deleteLecture(@PathVariable Long id){
+        try {
+            lectureService.deleteLecture(id);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok().build();
+    }
 }

@@ -24,5 +24,9 @@ export class LectureService {
     return this.httpClient.post<Lecture>(`${environment.apiUrl}/api/lectures`, lecture, {headers: this.headers} )
   }
 
+  deleteLecture(id: bigint | undefined){
+    return this.httpClient.delete(`${environment.apiUrl}/api/lectures/${id}`, {headers: this.headers, observe: 'response'} )
+  }
+
 
 }

@@ -1,1 +1,111 @@
-<p>user-details works!</p>
+<div class="container-fluid">
+    <div class="row justify-content-center" style = 'margin-top: 8%'>
+        <div class="col-md-6" style = 'width: fit-content; block-size: fit-content;'>
+            <div class="card">
+                <div class="card-header">
+                    <div style = 'display:flex; justify-content: space-between;'>
+                        <h3 class="card-title"> <strong> Kullanıcı Detayı </strong></h3>
+                        <app-button *ngIf="!this.editBtnClicked"text = 'Düzenle' (btnClicked)="this.editBtnClicked = true"> </app-button>
+                    </div>
+                    <p class="card-text">
+                        <table class="table table-striped table-bordered table-hover">
+                            <tr>
+                                <th>TC Numarası</th>
+                                <td>{{user.id}}</td>
+                                <input *ngIf="this.editBtnClicked" type="text" name="tckn" class="input" style="margin: auto; border:1.5px solid black">
+                            </tr>
+
+                            <tr>
+                                <th>Adı</th>
+                                <td>{{user.firstName}}</td>
+                                <input *ngIf="this.editBtnClicked" type="text" name="tckn" class="input" style="margin: auto; border:1.5px solid black">
+                            </tr>
+
+                            <tr>
+                                <th>Soyadı</th>
+                                <td>{{user.lastName}}</td>
+                                <input *ngIf="this.editBtnClicked" type="text" name="tckn" class="input" style="margin: auto; border:1.5px solid black">
+                            </tr>
+
+                            <tr>
+                                <th>Telefon Numarası</th>
+                                <td>{{user.phoneNumber}}</td>
+                                <input *ngIf="this.editBtnClicked" type="text" name="tckn" class="input" style="margin: auto; border:1.5px solid black">
+                            </tr>
+
+                            <tr>
+                                <th>Email</th>
+                                <td>{{user.email}}</td>
+                                <input *ngIf="this.editBtnClicked" type="text" name="tckn" class="input" style="margin: auto; border:1.5px solid black">
+                            </tr>
+
+                            <tr>
+                                <th>Öğretmen/Öğrenci/Veli</th>
+                                <td>{{user.type}}</td>
+                                <input *ngIf="this.editBtnClicked" type="text" name="tckn" class="input" style="margin: auto; border:1.5px solid black">
+                            </tr>
+
+                            <tr>
+                                <th> Aktif Kullanici Durumu </th>
+                                <td> <app-switch-button [isActive] = 'user.approved' (onChecked) = 'user.approved = ($event)'></app-switch-button></td>
+                            </tr>
+
+                            <tr>
+                                <th> Roller </th>
+                                <td>
+                                    <div style = 'display: flex'>
+                                        <div *ngFor="let role of user.roles"> 
+                                            <button class = 'btn' style = 'background-color:purple; color: white;' (click)="removeRole(role)"> {{ role }} <i class='fa fa-remove fa-lg' style='color: red;'> </i></button>
+                                        </div>
+
+
+                                        <div style = 'margin-left: 2%;'>
+                                            <button class = 'btn' style = 'background-color:blue' (click)="addRoleBtnClicked = !addRoleBtnClicked"> Rol Ekle </button>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="addRoleBtnClicked" style="display: flex">
+                                        <div *ngFor="let role of getRolesUserDoesntHave()">
+                                            <button class = 'btn' style = 'background-color:green;' (click)="this.user?.roles?.push(role)"> {{ role }} <i class='fa fa-plus fa-lg'> </i></button>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <input *ngIf="this.editBtnClicked" type="text" name="tckn" class="input" style="margin: auto; border:1.5px solid black">
+                            </tr>
+                            <ng-container *ngIf="user.type === 'Öğrenci'">
+                                <tr>
+                                    <th> Sinif </th>
+                                    <td>{{user.classroom?.name}}</td>
+                                    <input *ngIf="this.editBtnClicked" type="text" name="tckn" class="input" style="margin: auto; border:1.5px solid black">
+                                </tr>
+                                <tr>
+                                    <th> Alan </th>
+                                    <td>{{user.section}}</td>
+                                    <input *ngIf="this.editBtnClicked" type="text" name="tckn" class="input" style="margin: auto; border:1.5px solid black">
+                                </tr>
+                                <tr>
+                                    <th> Internet Imkani </th>
+                                    <td>{{ user.hasInternet ? "Var" : "Yok"}}</td>
+                                    <input *ngIf="this.editBtnClicked" type="text" name="tckn" class="input" style="margin: auto; border:1.5px solid black">
+                                </tr>
+                                <tr>
+                                    <th> Okul Adi </th>
+                                    <td>{{user.schoolName}}</td>
+                                    <input *ngIf="this.editBtnClicked" type="text" name="tckn" class="input" style="margin: auto; border:1.5px solid black">
+                                    </tr>
+                            </ng-container>
+
+                        </table>
+                        <div style="text-align:center">
+                            <app-button *ngIf="this.editBtnClicked" text = 'Kaydet' color = 'green' (click)="updateRoles()"></app-button>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

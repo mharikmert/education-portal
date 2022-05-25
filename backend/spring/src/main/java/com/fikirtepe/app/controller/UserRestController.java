@@ -2,8 +2,10 @@ package com.fikirtepe.app.controller;
 
 import com.fikirtepe.app.exception.UserNotFoundException;
 import com.fikirtepe.app.model.Role;
+import com.fikirtepe.app.model.Student;
 import com.fikirtepe.app.model.User;
 import com.fikirtepe.app.service.EmailService;
+import com.fikirtepe.app.service.StudentService;
 import com.fikirtepe.app.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -24,11 +27,13 @@ public class UserRestController {
 
     private final EmailService emailService;
     private final UserService userService;
+    private final StudentService studentService;
 
     @Autowired
-    public UserRestController(EmailService emailService, UserService userService){
+    public UserRestController(EmailService emailService, UserService userService, StudentService studentService) {
         this.emailService = emailService;
         this.userService = userService;
+        this.studentService = studentService;
 
     }
     @PostMapping("/users")
@@ -49,8 +54,12 @@ public class UserRestController {
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         logger.info("Getting user with id: {}", id);
         Optional<User> user = Optional.ofNullable(userService.getUserById(id));
+        Optional<Student> userAsStudent = Optional.ofNullable(studentService.getStudentById(id));
         if(user.isPresent()){
-            return new ResponseEntity<>(user.get(), HttpStatus.OK);
+            return userAsStudent.<ResponseEntity<User>> map(
+                    student -> new ResponseEntity<>(student, HttpStatus.OK)
+                    )
+                    .orElseGet(() -> new ResponseEntity<>(user.get(), HttpStatus.OK));
         }
         else{
             throw new UserNotFoundException("User with id: " + id + " not found");
@@ -94,6 +103,20 @@ public class UserRestController {
             throw new UserNotFoundException("User with id: " + id + " not found");
         }
     }
+    @PostMapping("/users/{id}/roles")
+    public ResponseEntity<User> updateUserRoles(@PathVariable Long id, @RequestBody List<Role> roles) {
+        logger.info("Adding role to user with id: {}", id);
+        logger.info("Roles: {}", roles);
+        Optional<User> user = Optional.ofNullable(userService.getUserById(id));
+        if(user.isPresent()){
+            user.get().setRoles(roles);
+            userService.save(user.get());
+            return new ResponseEntity<>(user.get(), HttpStatus.OK);
+        }
+        else{
+            throw new UserNotFoundException("User with id: " + id + " not found");
+        }
+    }
 
     @RequestMapping(
             path = "/users/by/username/{username}",
@@ -125,22 +148,6 @@ public class UserRestController {
         User user = userService.getUserById(id);
         userService.deleteUser(id);
         emailService.sendRegistrationRejectedMail(user);
-        return ResponseEntity.ok(user);
-    }
-
-    @RequestMapping(
-            value = "/assignRole/{id}/{role}",
-            method = RequestMethod.GET)
-    public ResponseEntity<User> assignRole(@PathVariable long id,@PathVariable int role){
-        User user = userService.getUserById(id);
-        switch (role) {
-            case 0 -> user.setRoles(Collections.singletonList(Role.ROLE_ADMIN));
-            case 1 -> user.setRoles(Collections.singletonList(Role.ROLE_AUTHORIZED));
-            case 2 -> user.setRoles(Collections.singletonList(Role.ROLE_STUDENT));
-            case 3 -> user.setRoles(Collections.singletonList(Role.ROLE_TEACHER));
-            case 4 -> user.setRoles(Collections.singletonList(Role.ROLE_PARENT));
-        }
-        userService.save(user);
         return ResponseEntity.ok(user);
     }
 }

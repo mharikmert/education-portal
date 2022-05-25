@@ -23,7 +23,20 @@ export class AssingClassroomComponent implements OnInit {
   }
   
   assignClassroom(){
-    this.userService.assignClassroom(this.user.id, this.classroom).subscribe(resp => console.log(resp));
+    if(this.user.classroom == this.classroom){
+      alert("User is already assigned to this classroom")
+      return;
+    }
+    const request = this.userService.assignClassroom(this.user.id, this.classroom);
+
+    request.subscribe( ( req ) => {
+      if(req.status == 200){
+        alert("Classroom assigned successfully")
+      }
+    })
+  }
+  localError(){
+    throw new Error("Local error")
   }
 
 }

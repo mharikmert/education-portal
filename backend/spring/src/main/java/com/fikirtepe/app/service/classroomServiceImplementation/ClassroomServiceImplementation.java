@@ -29,6 +29,10 @@ public class ClassroomServiceImplementation implements ClassroomService {
     public Classroom createClassroom(Classroom classRef){
         return classroomRepository.save(classRef);
     }
+    @Override
+    public Classroom updateClassroom(Classroom classroom){
+        return classroomRepository.save(classroom);
+    }
 
     @Override
     public Classroom getClassroomByName(String name) {

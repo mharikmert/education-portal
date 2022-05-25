@@ -9,7 +9,8 @@ import java.util.Set;
 
 public interface ClassroomService {
     List<Classroom> getClassrooms();
-    Classroom createClassroom(Classroom classRef);
+    Classroom createClassroom(Classroom classroom);
+    Classroom updateClassroom(Classroom classroom);
     Classroom getClassroomByName(String classroomName);
     Classroom getClassroomById(Long id);
     void deleteClassroom(Classroom classRef);

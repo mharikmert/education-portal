@@ -1,11 +1,66 @@
-<h1> Kullaniciya Sinif Atama </h1>
+<h1> Öğrenciye Sınıf Atama </h1>
 <div class = 'container'>
-    <h3> Kullanici : {{user.firstName}} {{user.lastName}}</h3>
-    <select class = 'custom-select' style = 'width: fit-content;' [(ngModel)]="classroom">
-        <option disabled>Sinif Sec </option>
-        <option *ngFor="let classroom of classrooms" [ngValue]="classroom">
-            {{classroom.name}}
-        </option>
-    </select>
-    <app-button text = 'sinif ata' (btnClicked) = 'assignClassroom()'></app-button>
+    <div class = 'row'>
+        <div class = 'col-md-4'>
+            <div class = 'card'>
+                <div class = 'card-header'>
+                    <h3>Öğrenci Bilgileri</h3>
+                </div>
+                <div class = 'card-body'>
+                    <table class = 'table table-bordered'>
+                        <tr>
+                            <th>Adı</th>
+                            <td>{{user.firstName}}</td>
+                        </tr>
+                        <tr>
+                            <th>Soyadı</th>
+                            <td>{{user.lastName}}</td>
+                        </tr>
+                        <tr>
+                            <th> Sınıfı </th>
+                            <td>{{user.classroom?.name}}</td>
+                        </tr>
+                        <tr>
+                            <th> Alan </th>
+                            <td>{{user.section }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class = 'col-md-4'>
+            <div class = 'card'>
+                <div class = 'card-header'>
+                    <h3>Sınıf Bilgileri</h3>
+                </div>
+                <div class = 'card-body'>
+                    <table class = 'table table-bordered'>
+                        <tr>
+                            <th>Sınıf </th>
+                            <td>{{user.classroom?.name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Sınıf Kapasitesi </th>
+                            <td>{{user.classroom?.capacity}}</td>
+                        </tr>
+                        <tr>
+                            <th>Sınıf Mevcudu </th>
+                            <td>{{ user.classroom?.classroomSize}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class = 'col-md-4' style = 'margin:auto; text-align:center;'>
+            <h3 class = 'card'> Mevcut Siniflar </h3>
+            <div>
+                <select class = 'form-select' style = 'width: fit-content; display:inline-flex' [(ngModel)]="classroom">
+                    <option disabled> Sinif Sec </option>
+                    <option *ngFor="let classroom of classrooms" [ngValue]="classroom">
+                        {{classroom.name}}
+                    </option>
+                </select>
+            </div>
+            <app-button text = 'sinif ata' (btnClicked) = 'assignClassroom()'></app-button>
+        </div>
 </div>

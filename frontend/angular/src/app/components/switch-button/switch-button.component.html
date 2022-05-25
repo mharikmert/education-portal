@@ -1,9 +1,9 @@
-<div style="display: flex; align-items: center; justify-content: space-around;">
+<div style="display: flex; align-items:center;">
     <label class="switch">
     <input type="checkbox" [checked] = 'isActive' (change) = 'emitInputValue(isActive)' [(ngModel)] = 'isActive'>
     <span class="slider round"></span>
   </label>
-  <div style="font-weight: bold;">
+  <div style="font-weight: bold; margin-left: 2%;">
     {{ isActive ? 'Aktif' : 'Pasif'}}
   </div>
 </div>

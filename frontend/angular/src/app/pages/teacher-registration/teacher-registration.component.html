@@ -48,7 +48,7 @@
                     <label class="form-label" for="city" style="margin-top: 5px;"> Sehir </label>
                     <select class="form-select" aria-label="Default select example" formControlName="city" 
                     [ngClass]="{ 'is-invalid': submitted && (f.city.errors || f.city.value == '0')}">
-                      <option selected disabled [value]="0"> Sehir Seciniz </option>
+                      <option [ngValue]="null" disabled> Şehir Seçiniz </option>
                       <option *ngFor="let city of cities">
                         {{city.name}}
                       </option>

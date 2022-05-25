@@ -66,7 +66,6 @@ export class StudentRegistrationComponent implements OnInit {
     });
   }
   onSubmit(): void {
-
     this.studentFormGroup.value.term = this.currentTerm;
     this.studentFormGroup.value.hasInternet = this.hasInternet;
     this.submitted = true;

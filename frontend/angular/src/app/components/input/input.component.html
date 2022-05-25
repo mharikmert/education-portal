@@ -1,4 +1,8 @@
-<div class = 'inputContainer'>
-    <label>  <h4> {{label}}</h4> </label>
-    <input type = "inputType" class = 'input' (change) = 'emitInput(inputValue)' [(ngModel)]="inputValue">
+<div class = 'inputContainer' style="text-align:center">
+    <div>
+        <label>  <h4> {{label}}</h4> </label>
+    </div>
+    <div>
+        <input type = "inputType" class = 'input' (change) = 'emitInput(inputValue)' [(ngModel)]="inputValue">
+    </div>
 </div>

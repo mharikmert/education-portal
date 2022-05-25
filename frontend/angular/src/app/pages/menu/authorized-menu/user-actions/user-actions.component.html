@@ -26,8 +26,8 @@
         </div>
 
     </div>
-    <div class="table table-responsive" style = 'display: flex;'>
-            <table class="table table-striped table-bordered table-hover">
+    <div class="table table-responsive" style = 'display: flex'>
+        <table class="table table-striped table-bordered table-hover">
             <tr>
                 <th> TC numarası </th>
                 <th> Adı </th>
@@ -47,14 +47,12 @@
                 <td> {{ user.type }} </td>
                 <td>
                 <div style = 'display: flex; background: none;'>
-                    <app-button color = 'blue' text = 'Detay' [routerLink]="['user-details']" routerLinkActive="router-link-active" ></app-button>
+                    <app-button color = 'blue' text = 'Detay' (btnClicked)="redirectDetails(user)"></app-button>
                     <app-button color = 'blue' text = 'Sinif Atama' *ngIf="user.type === 'Öğrenci'" (btnClicked) = 'assignClassroom(user)'></app-button>
                 </div>
 
                 </td>
             </tr>
-            </table>
-
-            
+        </table>
     </div> 
 </div>

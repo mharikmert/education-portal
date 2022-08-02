@@ -1,0 +1,11 @@
+<h1 mat-dialog-title> {{title}} </h1>
+<div mat-dialog-content align="center">
+    <p>{{ content }}</p>
+</div>
+<div mat-dialog-actions align='center'>
+    <button *ngIf="confirmationButtonText" mat-raised-button color="primary"> {{ confirmationButtonText}}</button>
+    <button *ngIf="cancelButtonText" mat-raised-button mat-dialog-close tabindex="-1">{{cancelButtonText}}</button>
+    <div style="align-items: baseline">
+        <app-button color="red" text="Kapat" (btnClicked)="onClickClose()"> </app-button>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, MaxLengthValidator, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -8,26 +8,31 @@ import { District } from 'src/app/models/Districts';
 import { Router } from '@angular/router';
 import { Term } from 'src/app/models/Term';
 import { TermService } from 'src/app/services/term.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { Dialog } from 'src/app/common/usecase/dialog-usecase';
 @Component({
   selector: 'app-student-registration',
   templateUrl: './student-registration.component.html',
   styleUrls: ['./student-registration.component.css']
 })
 export class StudentRegistrationComponent implements OnInit {
-  
+
   currentTerm?: Term;
-  selectedCity: City = {}; 
+  selectedCity: City = {};
   hasInternet: boolean = true;
   cities: City[] = [];
-  districts: District[] = []; 
+  districts: District[] = [];
   studentFormGroup!: FormGroup;
   submitted: boolean = false;
   btnClicked: boolean = false;
 
-  constructor( private httpClient: HttpClient, 
-              private formBuilder: FormBuilder, 
-              private router: Router, 
-              private termService: TermService) { }
+  constructor(private httpClient: HttpClient,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private termService: TermService,
+    private dialog: Dialog
+  ) { }
 
   async ngOnInit() {
     this.termService.getCurrentTerm().subscribe(term => this.currentTerm = term);
@@ -39,17 +44,17 @@ export class StudentRegistrationComponent implements OnInit {
     return this.studentFormGroup.controls;
   }
 
-  createForm(){
+  createForm() {
     this.studentFormGroup = this.formBuilder.group({
       'firstName': new FormControl(null, Validators.required),
       'lastName': new FormControl(null, Validators.required),
-      'id': new FormControl(null, Validators.required), 
+      'id': new FormControl(null, Validators.required),
       'birthDate': new FormControl(null, Validators.required),
       'grade': new FormControl(null, Validators.required),
       'section': new FormControl(null, Validators.required),
       'schoolName': new FormControl(null, Validators.required),
       'email': new FormControl(null, [Validators.required, Validators.email]),
-      'phoneNumber' : new FormControl(null, 
+      'phoneNumber': new FormControl(null,
         [
           Validators.required,
           Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')
@@ -61,7 +66,7 @@ export class StudentRegistrationComponent implements OnInit {
       'plastName': new FormControl(null),
       'pPhone': new FormControl(null),
       'notes': new FormControl(null, Validators.required),
-      'terms' : new FormControl(null, Validators.requiredTrue),
+      'terms': new FormControl(null, Validators.requiredTrue),
       'term': ''
     });
   }
@@ -72,26 +77,41 @@ export class StudentRegistrationComponent implements OnInit {
 
     if (this.studentFormGroup.valid) {
 
-      const request = this.httpClient.post(`${environment.apiUrl}/api/students`, this.studentFormGroup.value , {observe: 'response'});
+      // const dialogConfig = new MatDialogConfig();
+      const request = this.httpClient.post(`${environment.apiUrl}/api/students`, this.studentFormGroup.value, { observe: 'response' });
 
-      request.subscribe( response => {
+      request.subscribe(response => {
 
-          if(response.status === 201){
-            this.submitted = false; 
-            this.router.navigate(['/']);
+        if (response.status === 201) {
+          this.submitted = false;
+          const data = {
+            title: 'Kayit Basarili',
+            content: 'Kaydiniz basariyla alinmistir, lutfen mail adresinizi kontrol ediniz.'
           }
+          this.dialog?.openDialog(data);
+
+          setInterval(() => {
+            this.dialog?.closeDialog();
+            this.router.navigate(['/']);
+          }, 1500)
+        }
       }, error => {
-        if(error.status === 400){
-          console.log('this is the error message from bad request', error)
+        if (error.status === 409) {
+          const data = {
+            title: 'Kayit gerceklestirilemedi',
+            content: 'E posta adresi zaten kayitli, lutfen baska bir e posta adresi giriniz.'
+          }
+          this.dialog?.openDialog(data);
         }
-        else if(error.status === 409){
-          console.log('this is the error message from already registered user' , error)
-        }
-        else if(error.status === 500){
-          console.log('this is the error message from interval server error ' , error)
+        else if (error.status === 500) {
+          const data = {
+            title: 'Kayit gerceklestirilemedi',
+            content: 'Bilinmeyen bir hata olustu'
+          }
+          this.dialog?.openDialog(data);
         }
         //deactivates spinner 
-        this.submitted = false; 
+        this.submitted = false;
       });
     }
     else {
@@ -105,8 +125,8 @@ export class StudentRegistrationComponent implements OnInit {
     this.studentFormGroup.reset();
   }
 
-  getCities() : Observable<City[]>{
-    return this.httpClient.get<City[]>(`${environment.apiUrl}/api/cities`); 
+  getCities(): Observable<City[]> {
+    return this.httpClient.get<City[]>(`${environment.apiUrl}/api/cities`);
   }
   setDistricts(cityId: number | undefined) {
     this.httpClient.get<District[]>(`${environment.apiUrl}/api/cities/${cityId}/districts`).subscribe(districts => this.districts = districts);

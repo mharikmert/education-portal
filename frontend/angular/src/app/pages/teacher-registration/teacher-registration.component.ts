@@ -8,6 +8,9 @@ import { Term } from 'src/app/models/Term';
 import { Lecture } from 'src/app/models/Lecture';
 import { environment } from 'src/environments/environment';
 import { TermService } from 'src/app/services/term.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { Dialog } from 'src/app/common/usecase/dialog-usecase';
 
 @Component({
   selector: 'app-teacher-registration',
@@ -24,10 +27,12 @@ export class TeacherRegistrationComponent implements OnInit {
   submitted: boolean = false;
   btnClicked: boolean = false;
 
-  constructor ( private httpClient: HttpClient,
+  constructor(private httpClient: HttpClient,
     private formBuilder: FormBuilder,
     private router: Router,
-    private termService: TermService) { }
+    private termService: TermService,
+    private dialog: Dialog
+  ) { }
 
   ngOnInit(): void {
     this.termService.getCurrentTerm().subscribe(term => this.currentTerm = term)
@@ -39,12 +44,12 @@ export class TeacherRegistrationComponent implements OnInit {
     return this.teacherFormGroup.controls;
   }
 
-  createForm(){
+  createForm() {
     this.teacherFormGroup = this.formBuilder.group({
       'firstName': new FormControl(null, Validators.required),
       'lastName': new FormControl(null, Validators.required),
       'email': new FormControl(null, [Validators.required, Validators.email]),
-      'phone' : new FormControl(
+      'phone': new FormControl(
         null,
         [
           Validators.required,
@@ -52,7 +57,7 @@ export class TeacherRegistrationComponent implements OnInit {
         ]),
       'city': new FormControl(null, Validators.required),
       'notes': new FormControl(null),
-      'terms' : new FormControl(null, Validators.requiredTrue ),
+      'terms': new FormControl(null, Validators.requiredTrue),
       'term': '',
       'lecture': ''
     });
@@ -66,23 +71,37 @@ export class TeacherRegistrationComponent implements OnInit {
     if (this.teacherFormGroup.valid && this.lecture.name) {
       console.log(JSON.stringify(this.teacherFormGroup.value, null, 2));
 
-      const request = this.httpClient.post(`${environment.apiUrl}/api/teachers`, this.teacherFormGroup.value, {observe: 'response'});
-      request.subscribe( response => {
-          console.log('this is the response code of the request' , response.status)
-          if(response.status === 201){
-            this.submitted = false;
-            console.log('kaydiniz alinmistir.. ')
-            this.router.navigate(['/']);
+      const request = this.httpClient.post(`${environment.apiUrl}/api/teachers`, this.teacherFormGroup.value, { observe: 'response' });
+      request.subscribe(response => {
+        // const dialogConfig = new MatDialogConfig()
+        // console.log('this is the response code of the request', response.status)
+        if (response.status === 201) {
+          this.submitted = false;
+          const data = {
+            title: 'Kayit Basarili',
+            content: 'Kaydiniz basariyla alinmistir, lutfen mail adresinizi kontrol ediniz.'
           }
+          this.dialog?.openDialog(data);
+          setInterval(() => {
+            this.dialog?.closeDialog()
+            this.router.navigate(['/']);
+          }, 1500);
+        }
       }, error => {
-        if(error.status === 400){
-          console.log('this is the error message from bad request', error)
+        if (error.status === 409) {
+          const data = {
+            title: 'Kayit Hatasi',
+            content: 'E posta adresi zaten kayitli, lutfen baska bir e posta adresi giriniz.'
+          }
+          this.dialog?.openDialog(data);
+          // console.log('this is the error message from already registered user', error)
         }
-        else if(error.status === 409){
-          console.log('this is the error message from already registered user' , error)
-        }
-        else if(error.status === 500){
-          console.log('this is the error message from interval server error ' , error)
+        else if (error.status === 500) {
+          const data = {
+            title: 'Kayit Hatasi',
+            content: 'Kayit islemi sirasinda hata olustu.'
+          }
+          this.dialog?.openDialog(data);
         }
         // deactivates spinner
         this.submitted = false;
@@ -99,7 +118,7 @@ export class TeacherRegistrationComponent implements OnInit {
     this.teacherFormGroup.reset();
   }
 
-  getCities() : Observable<City[]>{
+  getCities(): Observable<City[]> {
     return this.httpClient.get<City[]>(`${environment.apiUrl}/api/cities`);
   }
 

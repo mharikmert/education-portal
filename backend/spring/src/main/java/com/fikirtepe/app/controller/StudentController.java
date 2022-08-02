@@ -48,12 +48,12 @@ public class StudentController {
     }
 
     //creates a student
-    @ResponseStatus(HttpStatus.CREATED) // returned 201 if the creation process is succeeded
+    @ResponseStatus(HttpStatus.CREATED) // returned 201 successfully  created
     @PostMapping
     public ResponseEntity<?> createStudent(@RequestBody Student student) {
         logger.info(student.toString());
         try{
-            userService.getUserById(student.getId());
+            userService.getUserByEmail(student.getEmail());
             return ResponseEntity.status(409).build();
         }
         catch(UserNotFoundException ex){

@@ -1,16 +1,18 @@
-html, body{
-    margin:0;
-    padding:0;
-    border:0;
-    outline:0;
-    font-size:100%;
-    vertical-align:baseline;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
     background-image: url("assets/bg.png");
-    background-size:cover;
+    background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
 }
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -20,14 +22,16 @@ html, body{
 body {
     font-family: "Poppins", sans-serif;
 }
+
 .container {
     margin: 30px auto;
-    overflow: auto;
+    /* overflow: auto; */
     min-height: 300px;
     border: 2px solid black;
     padding: 30px;
     border-radius: 5px;
 }
+
 .btn {
     display: inline-block;
     background-color: #000;
@@ -43,39 +47,49 @@ body {
     width: max-content
 }
 
-.header-btn{
-    color : #800080;
+.header-btn {
+    color: #800080;
     font-weight: bold;
     font-size: 18px;
     height: 50px;
     width: 100px;
     margin-left: 10px;
     border-radius: 30px;
-    outline:none;
+    outline: none;
     cursor: pointer;
 }
 
-.btn:hover{
-    background: linear-gradient(
-            45deg,
+.btn:hover {
+    background: linear-gradient(45deg,
             rgba(29, 236, 197, 0.5),
-            rgba(91, 14, 214, 0.5) 100%
-    );
+            rgba(91, 14, 214, 0.5) 100%);
 }
-.logout-btn, h1{
+
+.logout-btn,
+h1 {
     text-align: center;
 }
 
-input{
+input {
     height: 25px;
     border-style: outset;
-    border-radius:8px;
+    border-radius: 8px;
     font-size: 90%;
     font-style: normal;
     font-weight: bold;
     font-family: serif;
     text-align: center;
-    color:black;
-    margin-left:auto;
-    margin-bottom:2.2%;
+    color: black;
+    margin-left: auto;
+    margin-bottom: 2.2%;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }

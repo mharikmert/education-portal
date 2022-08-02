@@ -32,6 +32,10 @@ import { LoggedInComponent } from './pages/logged-in/logged-in.component';
 import { TeacherRegistrationComponent } from './pages/teacher-registration/teacher-registration.component';
 import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 import { StudentRegistrationComponent } from './pages/student-registration/student-registration.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { Dialog } from './common/usecase/dialog-usecase';
 
 @NgModule({
   declarations: [
@@ -62,6 +66,7 @@ import { StudentRegistrationComponent } from './pages/student-registration/stude
     TeacherRegistrationComponent,
     RadioButtonComponent,
     StudentRegistrationComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,9 +74,14 @@ import { StudentRegistrationComponent } from './pages/student-registration/stude
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
   ],
-  providers: [LogoutUseCase],
+  providers: [
+    LogoutUseCase,
+    Dialog
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

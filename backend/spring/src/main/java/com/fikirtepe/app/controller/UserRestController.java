@@ -121,7 +121,7 @@ public class UserRestController {
     @RequestMapping(
             path = "/users/by/username/{username}",
             method = RequestMethod.GET)
-    public ResponseEntity<User> getUserByUsername(@PathVariable("username") String username){
+    public ResponseEntity<Optional<User>> getUserByUsername(@PathVariable("username") String username){
         return Optional
                 .ofNullable(userService.getUserByUsername(username))
                 .map( user -> ResponseEntity.ok().body(user))

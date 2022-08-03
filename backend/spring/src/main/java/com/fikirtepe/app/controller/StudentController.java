@@ -15,11 +15,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
-import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/students")
@@ -51,25 +50,28 @@ public class StudentController {
     @ResponseStatus(HttpStatus.CREATED) // returned 201 successfully  created
     @PostMapping
     public ResponseEntity<?> createStudent(@RequestBody Student student) {
-        logger.info(student.toString());
         try{
-            userService.getUserByEmail(student.getEmail());
-            return ResponseEntity.status(409).build();
-        }
-        catch(UserNotFoundException ex){
-            student.setPassword("password");
-            studentService.createStudent(student);
-            emailService.sendRegistrationReceivedMail(student);
+            Optional<User> user = userService.getUserByEmail(student.getEmail());
 
-            //create resource location
-            URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                    .path("/{id}")
-                    .buildAndExpand(student.getId())
-                    .toUri();
-            //return 201 from uri location
-            return ResponseEntity.created(location).build();
+            if(user.isPresent()){
+               return ResponseEntity.status(409).build();
+            }
+
+            else{
+                student.setPassword("password");
+                studentService.createStudent(student);
+                emailService.sendRegistrationReceivedMail(student);
+
+                URI location = ServletUriComponentsBuilder
+                        .fromCurrentRequest()
+                        .path("/{id}")
+                        .buildAndExpand(student.getId())
+                        .toUri();
+                return ResponseEntity.created(location).build();
+            }
         }
         catch(Exception ex){
+            ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }

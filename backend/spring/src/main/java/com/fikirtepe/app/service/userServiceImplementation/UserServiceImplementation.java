@@ -4,11 +4,11 @@ import com.fikirtepe.app.exception.UserNotFoundException;
 import com.fikirtepe.app.model.User;
 import com.fikirtepe.app.repository.UserRepository;
 import com.fikirtepe.app.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 //service layer between user and controller
 @Service
@@ -75,18 +75,12 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public User getUserByUsername(String username) {
-        return userRepository.findByUsername(username)
-                .orElseThrow(
-                        () -> new UserNotFoundException("User not found with username: " + username)
-                );
+    public Optional<User> getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
     @Override
-    public User getUserByEmail(String email) {
-        return userRepository.findByEmail(email)
-                .orElseThrow(
-                        () -> new UserNotFoundException("User not found with email: " + email)
-                );
+    public Optional<User> getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
 }

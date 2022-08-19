@@ -1,14 +1,22 @@
 version: '3'
 services:
-  nginx: 
+  nginx:
+    image: ghcr.io/mharikmert/fikirtepe-student-information-system/nginx:latest
+    container_name: portal-nginx-container
     restart: always
-    build: 
+    build:
       context: ./nginx
     ports:
       - "80:80"
+
   api:
+    image: ghcr.io/mharikmert/fikirtepe-student-information-system/api:latest
+    container_name: portal-api-container
     build:
       context: ./backend/spring
-  client: 
-    build: 
+
+  client:
+    image: ghcr.io/mharikmert/fikirtepe-student-information-system/client:latest
+    container_name: portal-client-container
+    build:
       context: ./frontend/angular

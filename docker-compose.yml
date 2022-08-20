@@ -1,7 +1,7 @@
 version: '3'
 services:
   nginx:
-    image: ghcr.io/mharikmert/fikirtepe-student-information-system/nginx:latest
+    image: ghcr.io/mharikmert/education-portal/nginx:latest
     container_name: portal-nginx-container
     restart: always
     build:
@@ -10,13 +10,13 @@ services:
       - "80:80"
 
   api:
-    image: ghcr.io/mharikmert/fikirtepe-student-information-system/api:latest
+    image: ghcr.io/mharikmert/education-portal/api:latest
     container_name: portal-api-container
     build:
       context: ./backend/spring
 
   client:
-    image: ghcr.io/mharikmert/fikirtepe-student-information-system/client:latest
+    image: ghcr.io/mharikmert/education-portal/client:latest
     container_name: portal-client-container
     build:
       context: ./frontend/angular

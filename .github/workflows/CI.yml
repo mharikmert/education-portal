@@ -2,13 +2,13 @@ name: Docker Images CI
 
 on:
   push:
-    branches: ["master"]
+    branches: ["dev"]
   pull_request:
-    branches: ["master"]
+    branches: ["dev"]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Login to GitHub Container Registry

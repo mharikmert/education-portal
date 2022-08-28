@@ -14,7 +14,6 @@ import { StudentMenuComponent } from './pages/menu/student-menu/student-menu.com
 import { TeacherMenuComponent } from './pages/menu/teacher-menu/teacher-menu.component';
 import { AdminMenuComponent } from './pages/menu/admin-menu/admin-menu.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LogoutUseCase } from './common/usecase/logout-usecase';
 import { SwitchButtonComponent } from './components/switch-button/switch-button.component';
 import { ModalComponent } from './components/modal/modal.component';
@@ -74,7 +73,6 @@ import { Dialog } from './common/usecase/dialog-usecase';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FontAwesomeModule,
     BrowserAnimationsModule,
     MatDialogModule,
   ],

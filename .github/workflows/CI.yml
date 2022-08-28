@@ -1,0 +1,35 @@
+name: build
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHB_TOKEN }}
+
+      - uses: actions/checkout/@v3
+      - name: Add secrets
+        run: echo "${{secrets.APP_SECRET}}" >> backend/spring/src/main/resources/application.properties
+
+      - name: Build images with docker compose
+        run: docker compose -f docker-compose.yml build
+
+      - name: Run containers
+        run: docker compose up -d
+
+      - name: Display running containers
+        run: docker ps -a
+
+      - name: Push Images to Github container Registry
+        run: docker compose -f docker-compose.yml push

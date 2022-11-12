@@ -4,7 +4,7 @@ WORKDIR /home/gradle/src
 
 RUN gradle build --no-daemon -x test
 
-FROM openjdk:17-alpine AS runtime
+FROM openjdk:17 AS runtime
 
 EXPOSE 8080
 

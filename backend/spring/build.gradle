@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.5.4'
+    id 'org.springframework.boot' version '2.7.5'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
 }
@@ -23,20 +23,16 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.security:spring-security-test'
     implementation 'org.springframework.session:spring-session-jdbc'
-    implementation 'io.springfox:springfox-boot-starter:3.0.0'
-    // https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
-    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.0.2'
-    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
     implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.2'
 
-    implementation 'mysql:mysql-connector-java:8.0.25'
+    implementation 'mysql:mysql-connector-java:8.0.30'
 
-    compileOnly 'org.projectlombok:lombok:1.18.22'
-    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
-    developmentOnly 'org.springframework.boot:spring-boot-devtools:2.5.4'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools:2.7.5'
 
-    testImplementation(platform('org.junit:junit-bom:5.8.2'))
+    testImplementation(platform('org.junit:junit-bom:5.9.0'))
     testImplementation('org.junit.jupiter:junit-jupiter')
 
 }

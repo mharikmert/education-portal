@@ -19,9 +19,6 @@ jobs:
           password: ${{ secrets.GITHB_TOKEN }}
 
       - uses: actions/checkout/@v3
-      - name: Add secrets
-        run: echo "${{secrets.APP_SECRET}}" >> backend/spring/src/main/resources/application.properties
-
       - name: Build images with docker compose
         run: docker compose -f docker-compose.yml build
 

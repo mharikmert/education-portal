@@ -22,33 +22,33 @@ import { KvvkComponent } from './pages/kvkk/kvkk.component';
 import { StudentRegistrationComponent } from './pages/student-registration/student-registration.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'login', component: LoginComponent},
-  {path: 'home', component: HomeComponent}, 
-  {path: 'teacher-registration', component: TeacherRegistrationComponent },
-  {path: 'student-registration', component: StudentRegistrationComponent},
-  {path: 'kvkk', component: KvvkComponent },
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'teacher-registration', component: TeacherRegistrationComponent },
+  { path: 'student-registration', component: StudentRegistrationComponent },
+  { path: 'kvkk', component: KvvkComponent },
 
-    //refactor these as children routes  
+  //refactor these as children routes  
 
-    {path: 'admin-menu', component: AdminMenuComponent, canActivate: [AuthGuard]}, 
-    {path: 'student-menu', component: StudentMenuComponent, canActivate: [AuthGuard]},
-    {path: 'teacher-menu', component: TeacherMenuComponent, canActivate: [AuthGuard]}, 
-    {path: 'parent-menu', component: ParentMenuComponent, canActivate: [AuthGuard]},
-    {path: 'authorized-menu', component: AuthorizedMenuComponent, canActivate: [AuthGuard]},
-    {path: 'user-actions', component: UserActionsComponent, canActivate: [AuthGuard]},
-    {path: 'user-details', component: UserDetailsComponent, canActivate: [AuthGuard]},
-    {path: 'create-lecture', component: CreateLectureComponent, canActivate: [AuthGuard]},
-    {path: 'create-classroom', component: CreateClassroomComponent, canActivate: [AuthGuard]},
-    {path: 'assign-lecture', component: AssignLectureComponent, canActivate: [AuthGuard]},
-    {path: 'classroom-schedule', component: ClassroomScheduleComponent, canActivate: [AuthGuard]},
-    {path: 'assign-classroom', component: AssingClassroomComponent, canActivate: [AuthGuard]},
-    {path: 'parameters', component: ParametersComponent, canActivate: [AuthGuard]},
-    {path: 'logged-in', component: LoggedInComponent, canActivate: [AuthGuard]}
-  ]
+  { path: 'admin-menu', component: AdminMenuComponent, canActivate: [AuthGuard] },
+  { path: 'student-menu', component: StudentMenuComponent, canActivate: [AuthGuard] },
+  { path: 'teacher-menu', component: TeacherMenuComponent, canActivate: [AuthGuard] },
+  { path: 'parent-menu', component: ParentMenuComponent, canActivate: [AuthGuard] },
+  { path: 'authorized-menu', component: AuthorizedMenuComponent, canActivate: [AuthGuard] },
+  { path: 'user-actions', component: UserActionsComponent, canActivate: [AuthGuard] },
+  { path: 'user-details', component: UserDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'create-lecture', component: CreateLectureComponent, canActivate: [AuthGuard] },
+  { path: 'create-classroom', component: CreateClassroomComponent, canActivate: [AuthGuard] },
+  { path: 'assign-lecture', component: AssignLectureComponent, canActivate: [AuthGuard] },
+  { path: 'classroom-schedule', component: ClassroomScheduleComponent, canActivate: [AuthGuard] },
+  { path: 'assign-classroom', component: AssingClassroomComponent, canActivate: [AuthGuard] },
+  { path: 'parameters', component: ParametersComponent, canActivate: [AuthGuard] },
+  { path: 'logged-in', component: LoggedInComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
+]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

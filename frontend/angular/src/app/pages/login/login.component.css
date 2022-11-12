@@ -1,24 +1,27 @@
-.slogan{
+.slogan {
     text-align: center;
-    font-size:100%;
+    font-size: 100%;
     font-weight: bold;
     text-shadow: 0.5px 0.866px 1px red;
-    margin-bottom:2%;
+    margin-bottom: 2%;
 }
-.login-container{
+
+.login-container {
     background-repeat: no-repeat;
-    background-size:cover;
-    text-align:center;
-    margin:auto;
+    background-size: cover;
+    text-align: center;
+    margin: auto;
 }
-.login-title{
+
+.login-title {
     float: left;
     font-size: 130%;
     font-weight: bold;
     color: black;
     text-shadow: 0.5px 0.866px 1px darkred;
 }
-.login-panel{
+
+.login-panel {
     width: 380px;
     height: 500px;
     margin: 3% auto 0;
@@ -27,137 +30,163 @@
     border-radius: 15px;
     padding-top: 10px;
 }
-.login-header{
-    display:flex;
+
+.login-header {
+    display: flex;
     justify-content: space-between;
 }
-.login-title{
-    margin:left;
+
+.login-title {
+    margin: left;
 }
-.logo{
-    background-image:url("../../../assets/penmen.png");
+
+.logo {
+    background-image: url("../../../assets/penmen.png");
     background-size: cover;
-    width:40%;
+    width: 40%;
     height: 30%;
     border-radius: 50%;
     background-position-x: 15%;
-    margin:0 auto;
+    margin: 0 auto;
     margin-bottom: 50px
 }
-input{
-    width:50%;
+
+input {
+    width: 50%;
     height: 25px;
     border-style: outset;
-    border-radius:8px;
+    border-radius: 8px;
     font-size: 90%;
     font-style: normal;
     font-weight: bold;
     font-family: serif;
     text-align: center;
-    color:black;
-    margin-left:auto;
-    margin-bottom:2.2%;
+    color: black;
+    margin-left: auto;
+    margin-bottom: 2.2%;
 }
-::placeholder{
+
+::placeholder {
     opacity: 70%;
 }
-.login-assets-img{
-    width:23px;
-    height:23px;
-    background-size:cover;
-    position:absolute;
-    margin-left:7px;
-    margin-top:3px;
+
+.login-assets-img {
+    width: 23px;
+    height: 23px;
+    background-size: cover;
+    position: absolute;
+    margin-left: 7px;
+    margin-top: 3px;
 }
-#toggle-password{
-    margin-left:-23px;
-    cursor: pointer;
-}
-.login-button,.register-button{
-    background-color:darkred;
+
+.login-button,
+.register-button {
+    background-color: darkred;
     color: white;
-    margin-bottom:8%;
+    margin-bottom: 8%;
     height: fit-content;
     border-color: darkred;
     cursor: pointer;
 }
+
 .btn {
     background-color: darkred;
     text-align: center;
 }
 
-.create-password,.forgot-password{
-    background-color:teal;
+.create-password,
+.forgot-password {
+    background-color: teal;
     border-style: none;
-    color:white;
-    cursor:pointer;
+    color: white;
+    cursor: pointer;
 }
-.arrow{
+
+.arrow {
     width: 20px;
-    height:20px;
+    height: 20px;
     background-image: url("../../../assets/arrow.svg");
-    position:absolute;
-    background-size:cover;
-    margin-top:3px;
+    position: absolute;
+    background-size: cover;
+    margin-top: 3px;
 }
-.list{
-    list-style-type:none;
-    border-color:black;
+
+.list {
+    list-style-type: none;
+    border-color: black;
 }
-.menu{
+
+.menu {
     font-size: 180%;
     font-weight: bold;
-    height:100%;
+    height: 100%;
 }
-ul{
-    display:grid;
+
+ul {
+    display: grid;
 }
-li{
-  font-size:71%;
+
+li {
+    font-size: 71%;
     margin: 0 auto 5%;
 }
-a{
-    color:darkred;
+
+a {
+    color: darkred;
     font-size: small;
 }
-.register-button{
+
+.register-button {
     border: 1px solid darkred;
     border-radius: 3px;
     background-color: darkred;
-    color:white;
+    color: white;
     width: fit-content;
 }
-@media only screen and (max-width: 500px){
-    .input{
+
+@media only screen and (max-width: 500px) {
+    .input {
         width: 85%;
     }
-    .btn{
+
+    .btn {
         width: fit-content;
         height: 30px
     }
-    .login-container{
-        display:block;
+
+    .login-container {
+        display: block;
     }
-    .login-panel{
+
+    .login-panel {
         width: 75%;
-        margin-top:15%
+        margin-top: 15%
     }
-    .input{
+
+    .input {
         width: 200px
     }
-    .login-button, .forgot-password, .create-password, .register-button{
-        margin-left : auto;
+
+    .login-button,
+    .forgot-password,
+    .create-password,
+    .register-button {
+        margin-left: auto;
     }
-    .logo{
+
+    .logo {
         height: 20%;
     }
-    .warning-message{
-        font-size:85%;
+
+    .warning-message {
+        font-size: 85%;
     }
-    .slogan{
+
+    .slogan {
         padding-top: 5%;
     }
-    .btn{
-        height:auto
+
+    .btn {
+        height: auto
     }
 }

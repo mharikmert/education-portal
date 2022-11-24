@@ -39,4 +39,4 @@ jobs:
         with:
           context: ./frontend/angular
           push: true
-          tags: ghcr.io/mharikmert/portal-backend:${{ steps.tag_version.outputs.new_tag }}
+          tags: ghcr.io/mharikmert/portal-frontend:${{ steps.tag_version.outputs.new_tag }}

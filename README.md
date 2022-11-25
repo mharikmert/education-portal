@@ -18,8 +18,8 @@ You can use the source code to build Java and Angular applications separately or
 git clone https://github.com/mharikmert/education-portal
 ```
 ```bash
-docker pull ghcr.io/mharikmert/education-portal/api:latest
-docker pull ghcr.io/mharikmert/education-portal/client:latest
+docker pull ghcr.io/mharikmert/portal-backend:latest 
+docker pull ghcr.io/mharikmert/portal-frontend:latest
 ```
 
 ## Configuration
@@ -47,8 +47,8 @@ docker compose up -d
 
 ### Pull the images and Run
 ```bash 
-docker run -p 8080:8080 --env-file /path/to/env/.env ghcr.io/mharikmert/education-portal/api:latest
-docker run -p 4200:80 ghcr.io/mharikmert/education-portal/client:latest
+docker run -p 8080:8080 --env-file /path/to/env/.env ghcr.io/mharikmert/portal-backend:latest
+docker run -p 4200:80 ghcr.io/mharikmert/portal-frontend:latest
 ```
 
 

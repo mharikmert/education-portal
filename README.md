@@ -38,6 +38,7 @@ jwt_secret = ${JWT_SECRET}
 ```
 ## Run
 Backend application requires an environment variable file as you see above, it can be done by uncommenting the `env_file` line in the docker-compose.yaml file and specifying the file path or simply running the backend container with the .env file.
+
 ![Ss](https://user-images.githubusercontent.com/42295478/201759646-e0088021-b2fa-4082-a936-401e219c0a58.png)
 
 ### Build and Run with compose

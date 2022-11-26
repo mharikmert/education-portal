@@ -8,8 +8,6 @@ import { District } from 'src/app/models/Districts';
 import { Router } from '@angular/router';
 import { Term } from 'src/app/models/Term';
 import { TermService } from 'src/app/services/term.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { Dialog } from 'src/app/common/usecase/dialog-usecase';
 import { constants } from 'src/app/utils/constants';
 @Component({

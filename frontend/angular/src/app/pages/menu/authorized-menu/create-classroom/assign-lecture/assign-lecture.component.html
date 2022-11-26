@@ -1,57 +1,56 @@
-
 <h1> Ders Atama </h1>
-<div class = 'container'>
+<div class='container'>
     <h2> Sınıf : {{classroom.name}}</h2>
 
-    <div class = 'form-container'>
+    <div class='form-container'>
         <div>
             <h4> Ders Seçimi </h4>
-            <select class = 'form-select' [(ngModel)]="section.lecture">
-                <option  disabled [selected]='lectures'> Ders Seçimi </option>
-                <option *ngFor="let lecture of lectures" [ngValue] = 'lecture'>
+            <select class='form-select' [(ngModel)]="section.lecture">
+                <option disabled [selected]='lectures'> Ders Seçimi </option>
+                <option *ngFor="let lecture of lectures" [ngValue]='lecture'>
                     {{lecture.name }} ( {{lecture.lectureCode}})
                 </option>
             </select>
         </div>
-            
+
         <div>
             <h4> Öğretmen Seçimi </h4>
-            <select class = 'form-select' [(ngModel)]="section.teacher"> 
-                <option disabled>  Öğretmen Seçimi </option>
-                <option *ngFor="let teacher of teachers" [ngValue] = 'teacher'> 
-                    {{teacher.firstName }} {{teacher.lastName }} 
+            <select class='form-select' [(ngModel)]="section.teacher">
+                <option disabled> Öğretmen Seçimi </option>
+                <option *ngFor="let teacher of teachers" [ngValue]='teacher'>
+                    {{teacher.firstName }} {{teacher.lastName }}
 
                 </option>
             </select>
         </div>
-    
+
         <div>
             <h4> Ders Saati </h4>
-            <select class = 'form-select' [(ngModel)] = 'section.numberOfHours'>
-                <option disabled [selected] ='{}'> Ders Saati </option>
+            <select class='form-select' [(ngModel)]='section.numberOfHours'>
+                <option disabled [selected]='{}'> Ders Saati </option>
                 <option> 1 </option>
                 <option> 2 </option>
             </select>
         </div>
-    
+
         <div>
             <h4> Ders Günü </h4>
-            <select class = 'form-select' [(ngModel)] = 'section.day'>
-                <option disabled [selected] = 'days'> Ders Günü </option>
+            <select class='form-select' [(ngModel)]='section.day'>
+                <option disabled [selected]='days'> Ders Günü </option>
                 <option *ngFor="let day of days"> {{ day }}</option>
             </select>
         </div>
         <div>
             <h4> Baslangıç Saati </h4>
-            <select class = 'form-select' [(ngModel)]="section.startingTime">
-                <option disabled [selected] = 'startingTime'> Baslangıç Saati </option>
-                <option *ngFor="let time of startingTime"> {{ time }}</option>
+            <select class='form-select' [(ngModel)]="section.startingTime">
+                <option disabled [selected]='lectureHours'> Baslangıç Saati </option>
+                <option *ngFor="let time of lectureHours"> {{ time }}</option>
             </select>
         </div>
     </div>
 
-    <div style = 'text-align: center;'>
-        <app-button text="Kaydet" color = 'green' (btnClicked)="submit()"></app-button>
+    <div style='text-align: center;'>
+        <app-button text="Kaydet" color='green' (btnClicked)="submit()"></app-button>
     </div>
 
 

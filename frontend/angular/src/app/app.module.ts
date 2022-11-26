@@ -33,8 +33,10 @@ import { RadioButtonComponent } from './components/radio-button/radio-button.com
 import { StudentRegistrationComponent } from './pages/student-registration/student-registration.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { Dialog } from './common/usecase/dialog-usecase';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,7 @@ import { Dialog } from './common/usecase/dialog-usecase';
     RadioButtonComponent,
     StudentRegistrationComponent,
     DialogComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +78,7 @@ import { Dialog } from './common/usecase/dialog-usecase';
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    MatTableModule
   ],
   providers: [
     LogoutUseCase,

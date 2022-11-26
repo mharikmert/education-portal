@@ -44,7 +44,7 @@
             <h4> Baslangıç Saati </h4>
             <select class='form-select' [(ngModel)]="section.startingTime">
                 <option disabled [selected]='lectureHours'> Baslangıç Saati </option>
-                <option *ngFor="let time of lectureHours"> {{ time }}</option>
+                <option *ngFor="let lectureHour of lectureHours"> {{ lectureHour.startingTime }}</option>
             </select>
         </div>
     </div>

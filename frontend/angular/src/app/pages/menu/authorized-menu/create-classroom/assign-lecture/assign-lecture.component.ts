@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Classroom } from 'src/app/models/Classroom';
-import { Lecture } from 'src/app/models/Lecture';
+import { Lecture, LectureHour } from 'src/app/models/Lecture';
 import { Section } from 'src/app/models/Section';
 import { User } from 'src/app/models/User';
 import { ClassroomService } from 'src/app/services/classroom.service';
@@ -19,7 +19,7 @@ export class AssignLectureComponent implements OnInit {
   lectures: Lecture[] = [];
   teachers: User[] = [];
   days: string[] = constants.DAYS;
-  lectureHours: string[] = constants.LECTURE_HOURS;
+  lectureHours: LectureHour[] = constants.LECTURE_HOURS
   section: Section = {}
 
 
@@ -66,6 +66,4 @@ export class AssignLectureComponent implements OnInit {
   filterLecture(lectures: Lecture[], lectureCode: string) {
     return lectures.filter(lecture => lecture.lectureCode?.includes(lectureCode));
   }
-
-
 }

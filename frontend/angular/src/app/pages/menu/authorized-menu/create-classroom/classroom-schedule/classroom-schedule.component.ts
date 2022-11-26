@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Classroom } from 'src/app/models/Classroom';
+import { LectureHour } from 'src/app/models/Lecture';
 import { Section } from 'src/app/models/Section';
 import { ClassroomService } from 'src/app/services/classroom.service';
 import { constants } from 'src/app/utils/constants';
@@ -15,7 +16,7 @@ export class ClassroomScheduleComponent implements OnInit {
   classroom: Classroom = {}
   schedule: Section[] = []
   days: string[] = constants.DAYS;
-  startingTime: string[] = constants.LECTURE_HOURS;
+  lectureHours: LectureHour[] = constants.LECTURE_HOURS
 
   ngOnInit(): void {
     this.classroomService.sharedClassrom.subscribe(classroom => this.classroom = classroom);

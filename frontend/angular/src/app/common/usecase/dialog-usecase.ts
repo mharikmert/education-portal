@@ -8,7 +8,6 @@ export class Dialog {
     dialogConfig = new MatDialogConfig()
 
     openDialog(data: any) {
-        console.log(data);
         this.dialogConfig = {
             data: data,
             width: '500px',

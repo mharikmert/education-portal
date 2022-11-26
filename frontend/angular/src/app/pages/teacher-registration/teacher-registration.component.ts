@@ -11,6 +11,7 @@ import { TermService } from 'src/app/services/term.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { Dialog } from 'src/app/common/usecase/dialog-usecase';
+import { constants } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-teacher-registration',
@@ -69,39 +70,24 @@ export class TeacherRegistrationComponent implements OnInit {
     this.submitted = true;
 
     if (this.teacherFormGroup.valid && this.lecture.name) {
-      console.log(JSON.stringify(this.teacherFormGroup.value, null, 2));
 
       const request = this.httpClient.post(`${environment.apiUrl}/api/teachers`, this.teacherFormGroup.value, { observe: 'response' });
       request.subscribe(response => {
-        // const dialogConfig = new MatDialogConfig()
-        // console.log('this is the response code of the request', response.status)
         if (response.status === 201) {
           this.submitted = false;
-          const data = {
-            title: 'Kayit Basarili',
-            content: 'Kaydiniz basariyla alinmistir, lutfen mail adresinizi kontrol ediniz.'
-          }
-          this.dialog?.openDialog(data);
-          setInterval(() => {
+          this.dialog?.openDialog(constants.REGISTRATION_SUCCESS);
+          const interval = setInterval(() => {
             this.dialog?.closeDialog()
             this.router.navigate(['/']);
-          }, 1500);
+            clearInterval(interval);
+          }, 2000);
         }
       }, error => {
         if (error.status === 409) {
-          const data = {
-            title: 'Kayit Hatasi',
-            content: 'E posta adresi zaten kayitli, lutfen baska bir e posta adresi giriniz.'
-          }
-          this.dialog?.openDialog(data);
-          // console.log('this is the error message from already registered user', error)
+          this.dialog?.openDialog(constants.ALREADY_REGISTERED);
         }
         else if (error.status === 500) {
-          const data = {
-            title: 'Kayit Hatasi',
-            content: 'Kayit islemi sirasinda hata olustu.'
-          }
-          this.dialog?.openDialog(data);
+          this.dialog?.openDialog(constants.REGISTRATION_FAILED);
         }
         // deactivates spinner
         this.submitted = false;

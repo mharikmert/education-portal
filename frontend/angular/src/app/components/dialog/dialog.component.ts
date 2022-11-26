@@ -8,7 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class DialogComponent {
   title?: string;
-  content?: string;
+  message?: string;
   confirmationButtonText?: string;
   cancelButtonText?: string;
 
@@ -16,7 +16,7 @@ export class DialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DialogComponent>) {
     if (data) {
-      this.content = data.content || this.content;
+      this.message = data.message || this.message;
       this.title = data.title || this.title;
     }
     if (data.confirmationButtonText) {

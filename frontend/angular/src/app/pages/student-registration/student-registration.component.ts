@@ -11,6 +11,7 @@ import { TermService } from 'src/app/services/term.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { Dialog } from 'src/app/common/usecase/dialog-usecase';
+import { constants } from 'src/app/utils/constants';
 @Component({
   selector: 'app-student-registration',
   templateUrl: './student-registration.component.html',
@@ -77,38 +78,26 @@ export class StudentRegistrationComponent implements OnInit {
 
     if (this.studentFormGroup.valid) {
 
-      // const dialogConfig = new MatDialogConfig();
       const request = this.httpClient.post(`${environment.apiUrl}/api/students`, this.studentFormGroup.value, { observe: 'response' });
 
       request.subscribe(response => {
 
         if (response.status === 201) {
           this.submitted = false;
-          const data = {
-            title: 'Kayit Basarili',
-            content: 'Kaydiniz basariyla alinmistir, lutfen mail adresinizi kontrol ediniz.'
-          }
-          this.dialog?.openDialog(data);
+          this.dialog?.openDialog(constants.REGISTRATION_SUCCESS);
 
-          setInterval(() => {
+          const interval = setInterval(() => {
             this.dialog?.closeDialog();
             this.router.navigate(['/']);
-          }, 1500)
+            clearInterval(interval);
+          }, 2000)
         }
       }, error => {
         if (error.status === 409) {
-          const data = {
-            title: 'Kayit gerceklestirilemedi',
-            content: 'E posta adresi zaten kayitli, lutfen baska bir e posta adresi giriniz.'
-          }
-          this.dialog?.openDialog(data);
+          this.dialog?.openDialog(constants.ALREADY_REGISTERED);
         }
         else if (error.status === 500) {
-          const data = {
-            title: 'Kayit gerceklestirilemedi',
-            content: 'Bilinmeyen bir hata olustu'
-          }
-          this.dialog?.openDialog(data);
+          this.dialog?.openDialog(constants.REGISTRATION_FAILED);
         }
         //deactivates spinner 
         this.submitted = false;

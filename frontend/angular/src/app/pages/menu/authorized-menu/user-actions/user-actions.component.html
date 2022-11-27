@@ -1,58 +1,36 @@
 <h1> Kullanıcı İşlemleri </h1>
 
-<div class="container">
-    <div class= 'checkbox-container'>
-        <!-- <app-checkbox-round label = 'All' [id] = "'All'" ></app-checkbox-round>
-        <app-checkbox-round label = 'Student' [id] = "'Student'"></app-checkbox-round>
-        <app-checkbox-round label = 'Parent' [id] = "'Parent'"></app-checkbox-round>
-        <app-checkbox-round label = 'Teacher' [id] = "'Teacher'"></app-checkbox-round> -->
-       
-        <!-- annd DRY goes for nothing -->
-        <div>
-            <input type='radio' class = 'checkbox-round' id = 'all' name = 'same' checked = 'true' (click) = "getUsers('users')">
-            <label> Tümü </label>
-        </div>
-        <div>
-            <input type='radio' class = 'checkbox-round' id = 'student' name = 'same' (click) = "getUsers('students')">
-            <label> Öğrenci </label>
-        </div>
-        <div>
-            <input type='radio' class = 'checkbox-round' id = 'parent' name = 'same' (click) = "getUsers('parents')">
-            <label> Veli </label>
-        </div>
-        <div>
-            <input type='radio' class = 'checkbox-round' id = 'teacher' name = 'same' (click) = "getUsers('teachers')">
-            <label> Öğretmen </label>
-        </div>
+<div class="radio-container">
+    <mat-radio-group aria-label="Select an option">
 
-    </div>
-    <div class="table table-responsive" style = 'display: flex'>
-        <table class="table table-striped table-bordered table-hover">
-            <tr>
-                <th> TC numarası </th>
-                <th> Adı </th>
-                <th> Soyadı </th>
-                <th> Telefon Numarası </th>
-                <th> Email </th>
-                <th> Ögrt/Ögr/Veli </th>
-                <th> Aksiyon </th>
+        <mat-radio-button value="users" checked (change)="getUsers('users')">Tümü</mat-radio-button>
+        <mat-radio-button *ngFor="let type of userTypes" [value]="type.endPoint" (change)="radioChange($event)">
+            {{type.value}}
+        </mat-radio-button>
 
-            </tr>
-            <tr *ngFor="let user of users">
-                <td> {{ user.id }} </td> 
-                <td> {{ user.firstName}} </td>
-                <td> {{ user.lastName }} </td>
-                <td> {{ user.phoneNumber }} </td>
-                <td> {{ user.email }} </td>
-                <td> {{ user.type }} </td>
-                <td>
-                <div style = 'display: flex; background: none;'>
-                    <app-button color = 'blue' text = 'Detay' (btnClicked)="redirectDetails(user)"></app-button>
-                    <app-button color = 'blue' text = 'Sinif Atama' *ngIf="user.type === 'Öğrenci'" (btnClicked) = 'assignClassroom(user)'></app-button>
-                </div>
 
-                </td>
-            </tr>
-        </table>
-    </div> 
+    </mat-radio-group>
 </div>
+
+
+
+<table mat-table [dataSource]="tableData" class="mat-elevation-z8">
+    <ng-container [matColumnDef]="column.name" *ngFor="let column of tableColumns">
+        <th mat-header-cell *matHeaderCellDef> {{column.name}} </th>
+        <td mat-cell *matCellDef="let element">
+
+            {{ column.key !== 'actions' ? element[column.key] : ''}}
+
+            <ng-container *ngIf="column.key === 'actions'">
+                <button mat-button (click)="editUser(element.id)">Düzenle</button>
+
+                <button mat-button (click)="deleteUser(element.id)">Sil</button>
+
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+
+</table>

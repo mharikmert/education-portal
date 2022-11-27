@@ -34,6 +34,9 @@ import { StudentRegistrationComponent } from './pages/student-registration/stude
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { Dialog } from './common/usecase/dialog-usecase';
 import { TableComponent } from './components/table/table.component';
@@ -78,7 +81,10 @@ import { TableComponent } from './components/table/table.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatRadioModule,
+    MatPaginatorModule,
+    MatButtonModule,
   ],
   providers: [
     LogoutUseCase,

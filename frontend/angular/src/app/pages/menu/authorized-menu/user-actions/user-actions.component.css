@@ -1,39 +1,43 @@
-.container{
-    border:none;
+.container {
+    border: none;
     height: fit-content;
     width: fit-content;
 }
-table{
-    background-color: lightblue;
-}
-.table-bordered, td, th{
-    border: 1px solid black;
-}
-h1{
+
+
+th.mat-header-cell {
+    text-align: center;
     font-weight: bold;
-    margin-top : 30px;
+    font-size: 1.1em;
+    color: black
 }
 
-.checkbox-round {
-    width: 1.3em;
-    height: 1.3em;
-    background-color: white;
-    border-radius: 50%;
-    vertical-align: middle;
-    border: 1px solid #ddd;
-    appearance: none;
-    -webkit-appearance: none;
-    outline: none;
-    cursor: pointer;
-    margin-right: 5px;
+table {
+    width: 70%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    margin: auto;
 }
 
-.checkbox-round:checked {
-    background-color: green;
+h1 {
+    font-weight: bold;
+    margin-top: 30px;
 }
-.checkbox-container{
+
+.radio-container {
     display: flex;
     margin-bottom: 20px;
     font-weight: bold;
     justify-content: space-around;
+}
+
+.mat-radio-button~.mat-radio-button {
+    margin-left: 16px;
+}
+
+.mat-button {
+    background-color: cornflowerblue;
+    margin: 5px;
 }

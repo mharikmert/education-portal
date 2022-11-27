@@ -31,4 +31,10 @@ export const constants = {
         title: 'Ders Atama Başarılı',
         message: 'Ders atama işleminiz başarıyla gerçekleşmiştir.',
     },
+
+    USER_TYPES: [
+        { value: 'Öğrenci', endPoint: 'students' },
+        { value: 'Öğretmen', endPoint: 'teachers' },
+        { value: 'Veli', endPoint: 'parents' },
+    ],
 }

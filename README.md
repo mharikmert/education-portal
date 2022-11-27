@@ -4,8 +4,8 @@
 [![Java 17](https://img.shields.io/badge/Java-17-brightgreen.svg)](https://www.oracle.com/java/technologies/downloads/#java17)
 [![Spring Boot 2.7.5](https://img.shields.io/badge/SpringBoot-2.7.5-brightgreen.svg)](https://github.com/spring-projects/spring-boot/releases/tag/v2.7.5)
 [![Gradle 7.3.3](https://img.shields.io/badge/Gradle-7.3.3-brightgreen.svg)](https://gradle.org/releases)
-[![Angular 12.0.3](https://img.shields.io/badge/Angular-12.0.3-brightgreen.svg)](https://www.npmjs.com/package/@angular/cli/v/12.0.3)
-[![TypeScript 4.2.3](https://img.shields.io/badge/TypeScript-4.2.3-brightgreen.svg)](https://www.npmjs.com/package/typescript/v/4.2.3)
+[![Angular 15.0.1](https://img.shields.io/badge/Angular-15.0.1-brightgreen.svg)](https://www.npmjs.com/package/@angular/cli/v/15.0.1)
+[![TypeScript 4.6.4](https://img.shields.io/badge/TypeScript-4.6.4-brightgreen.svg)](https://www.npmjs.com/package/typescript/v/4.6.4)
 [![MySQL 8.0.13](https://img.shields.io/badge/MySQL-8.0.13-brightgreen.svg)](https://www.npackd.org/p/com.mysql.dev.MySQLWorkbench/8.0.13)
 
 ## Description

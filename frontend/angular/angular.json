@@ -1,12 +1,15 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "23015f12-8709-4795-810e-d2cb821c8ffa"
+    "analytics": "23015f12-8709-4795-810e-d2cb821c8ffa",
+    "cache": {
+      "enabled": false
+    }
   },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "fikirtepe-angular": {
+    "education-portal": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -20,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/fikirtepe-angular",
+            "outputPath": "dist/build",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -44,8 +47,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "1mb",
-                  "maximumError": "2mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "4mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -76,10 +79,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "fikirtepe-angular:build:production"
+              "browserTarget": "education-portal:build:production"
             },
             "development": {
-              "browserTarget": "fikirtepe-angular:build:development"
+              "browserTarget": "education-portal:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -87,7 +90,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fikirtepe-angular:build"
+            "browserTarget": "education-portal:build"
           }
         },
         "test": {
@@ -109,6 +112,5 @@
         }
       }
     }
-  },
-  "defaultProject": "fikirtepe-angular"
+  }
 }

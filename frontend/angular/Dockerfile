@@ -17,6 +17,6 @@ FROM nginx:1.20-alpine
 
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 
-COPY --from=node /usr/app/dist/fikirtepe-angular /usr/share/nginx/html
+COPY --from=node /usr/app/dist/build /usr/share/nginx/html
 
 EXPOSE 80 443

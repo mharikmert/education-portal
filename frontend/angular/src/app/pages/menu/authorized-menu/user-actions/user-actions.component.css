@@ -12,13 +12,36 @@ th.mat-header-cell {
     color: black
 }
 
-table {
-    width: 70%;
+table,
+.mdc-data-table__table {
     border-collapse: collapse;
     border-radius: 10px;
     overflow: hidden;
     text-align: center;
     margin: auto;
+    min-width: 70%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.mat-mdc-header-cell {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.mdc-data-table__cell {
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.mat-mdc-button {
+    background-color: bisque;
+    color: white;
+    font-size: 0.9em;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    width: 100px;
 }
 
 h1 {

@@ -56,7 +56,6 @@ export class UserActionsComponent implements OnInit {
 
   radioChange = (event: any) => {
     this.userType = event.value;
-    console.log('radioChange', this.userType, event);
     this.getUsers(this.userType);
   }
 
@@ -81,8 +80,9 @@ export class UserActionsComponent implements OnInit {
         this.userService.nextUser(<Parent>user); break;
       case 'Öğretmen':
         this.userService.nextUser(<Teacher>user); break;
+
     }
-    this.router.navigate(['edit-user']);
+    this.router.navigate(['user-details']);
   }
 
   deleteUser(user: User) {

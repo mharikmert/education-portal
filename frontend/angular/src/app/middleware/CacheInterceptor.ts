@@ -24,9 +24,7 @@ function sendRequest(
     next: HttpHandler,
     cache: Map<string, any>): Observable<HttpEvent<any>> {
 
-    const noHeaderReq = req.clone({ headers: req.headers.delete('Authorization') });
-
-    return next.handle(noHeaderReq).pipe(
+    return next.handle(req).pipe(
         tap(event => {
             if (event instanceof HttpResponse) {
                 cache.set(req.url, event);

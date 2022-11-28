@@ -11,18 +11,12 @@ export class AuthService {
   constructor(private httpClient: HttpClient, private router: Router) { }
 
 
-  login(username: string, password: string) : Observable<HttpClientModule> {
-    // const httpOptions = {
-    //   headers : new HttpHeaders({
-    //     'Content-type' : 'application/json',
-    //     'Authorization': 'Basic ' + btoa(username + ':' + password)
-    //   }) 
-    // }
-    const creds = { 
+  login(username: string, password: string): Observable<HttpClientModule> {
+    const creds = {
       "username": username,
       "password": password
     }
-    
+
     return this.httpClient.post(`${environment.apiUrl}/api/auth`, creds)
   }
 }

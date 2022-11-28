@@ -37,7 +37,7 @@ public class WebSecurityConfiguration  {
     @Value("${post.allowed.paths}") private String [] postAllowedPaths;
     @Value("${get.allowed.paths}") private String [] getAllowedPaths;
     @Value("${admin.allowed.paths}") private String [] adminAllowedPaths;
-    @Value("${authorized.get.allowed.paths}") private String [] authorizedGetAllowedPaths;
+    @Value("${authorized.and.admin.allowed.paths}") private String [] authorizedAndAdminAllowedPaths;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
@@ -47,8 +47,9 @@ public class WebSecurityConfiguration  {
                 .antMatchers(allowedPaths).permitAll()
                 .antMatchers(HttpMethod.POST, postAllowedPaths).permitAll()
                 .antMatchers(HttpMethod.GET, getAllowedPaths).permitAll()
-                .antMatchers(HttpMethod.GET, authorizedGetAllowedPaths).hasRole("AUTHORIZED")
-                .antMatchers(adminAllowedPaths).hasRole("ADMIN")
+                .antMatchers(adminAllowedPaths).access("hasRole('ROLE_ADMIN')")
+                .antMatchers(authorizedAndAdminAllowedPaths).access("hasRole('ROLE_ADMIN') or hasRole('ROLE_AUTHORIZED')")
+
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(

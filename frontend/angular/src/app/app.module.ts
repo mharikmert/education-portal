@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonComponent } from './components/button/button.component';
@@ -37,9 +37,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { Dialog } from './common/usecase/dialog-usecase';
 import { TableComponent } from './components/table/table.component';
+import { CacheInterceptor } from './middleware/CacheInterceptor';
 
 @NgModule({
   declarations: [
@@ -85,10 +88,13 @@ import { TableComponent } from './components/table/table.component';
     MatRadioModule,
     MatPaginatorModule,
     MatButtonModule,
+    MatCardModule,
+    MatProgressBarModule
   ],
   providers: [
     LogoutUseCase,
-    Dialog
+    Dialog,
+    { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

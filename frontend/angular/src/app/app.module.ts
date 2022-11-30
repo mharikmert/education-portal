@@ -39,6 +39,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { Dialog } from './common/usecase/dialog-usecase';
 import { TableComponent } from './components/table/table.component';
@@ -89,7 +91,9 @@ import { CacheInterceptor } from './middleware/CacheInterceptor';
     MatPaginatorModule,
     MatButtonModule,
     MatCardModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [
     LogoutUseCase,

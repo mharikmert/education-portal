@@ -1,25 +1,38 @@
 <h1>Ders Olusturma </h1>
-<div class = 'container'>
-    <div class = 'create-lecture-container'>
-        <app-input type = 'text' label = 'Ders Adi' (onInput) = 'lecture.name = $event'></app-input>
-        <app-input type = 'text' label = 'Ders Kodu' (onInput) = 'lecture.lectureCode = $event'></app-input>
-        <app-button color = 'green' text = 'Ders Ekle' (btnClicked) = 'addLecture(lecture)'></app-button>
-    </div>
-    <div class="table table-responsive" style = 'display: flex;'>
-        <table class="table table-striped table-bordered table-hover">
-        <tr>
-            <th> Ders Adi  </th>
-            <th> Ders Kodu </th>
+<div class='container'>
 
-        </tr>
-        <tr *ngFor="let lecture of lectures">
-            <td> {{ lecture.name }} </td> 
-            <td> {{ lecture.lectureCode}} </td>
-            
-            <i class="fa fa-times" aria-hidden="true" (click)="onDeleteLecture(lecture.id)"></i>
-        </tr>
-        </table>
 
-        
-    </div> 
+    <form class="add-lecture-form">
+        <mat-form-field class="form-input">
+            <mat-label>Ders Adı </mat-label>
+            <input matInput type="text" [(ngModel)]="lecture.name" name="lectureName">
+        </mat-form-field>
+        <mat-form-field class="form-input">
+            <mat-label>Ders Kodu </mat-label>
+            <input matInput type="text" [(ngModel)]="lecture.lectureCode" name="lectureCode">
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="addLecture(this.lecture)">Ders Ekle</button>
+    </form>
+
+    <table mat-table [dataSource]="lectures" class="mat-elevation-z8">
+        <ng-container [matColumnDef]="column.name" *ngFor="let column of tableColumns">
+
+            <th mat-header-cell *matHeaderCellDef> {{column.name}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element[column.key] }}
+                <ng-container *ngIf="column.key === 'actions'">
+                    <button mat-button (click)="onEditLecture(element.id)">Düzenle</button>
+
+                    <button mat-button (click)="onDeleteLecture(element.id)">Sil</button>
+
+                </ng-container>
+            </td>
+
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+
+    </table>
 </div>

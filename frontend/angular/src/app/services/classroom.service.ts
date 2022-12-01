@@ -45,6 +45,10 @@ export class ClassroomService {
     return this.httpClient.get<Section[]>(`${environment.apiUrl}/api/classrooms/${classroomId}/schedule`, { headers: this.headers });
   }
 
+  deleteClassroom(classroom: Classroom): Observable<Classroom> {
+    return this.httpClient.delete<Classroom>(`${environment.apiUrl}/api/classrooms/${classroom.id}`, { headers: this.headers })
+  }
+
   nextClassroom(classroom: Classroom) {
     this.classroom.next(classroom);
   }

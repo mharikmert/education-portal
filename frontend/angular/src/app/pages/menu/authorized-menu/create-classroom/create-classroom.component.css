@@ -1,16 +1,15 @@
-.container{
-    border:none;
-    width: 70%;
-}
-.create-classroom-container{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-bottom: 5%;
-}
-table,th,td{
-    background-color: lightblue;
+.form-input {
+    justify-content: baseline;
+    margin: 10px;
     padding: 10px;
-    border:1px solid black;
-    border-collapse: collapse;
+    align-items: center;
+}
+
+.mat-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
 }

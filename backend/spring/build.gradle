@@ -4,7 +4,7 @@ plugins {
     id 'java'
 }
 
-group = 'com.fikirtepe.app'
+group = 'portal.backend.app'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
